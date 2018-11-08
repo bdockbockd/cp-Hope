@@ -12,6 +12,7 @@ public class tigerSprite {
 	private Image[] tigerImage = Images.bigTigerMotion;
 	public int tigerPosition = 0;
 	
+	private int duration;
 	private boolean isMove;
     private double positionX;
     private double positionY;    
@@ -62,7 +63,14 @@ public class tigerSprite {
 //    public void addList(Sprite e) {
 //    	this.spriteList.add(e);
 //    }
+    
+    public int getDuration() {
+    	return this.duration;
+    }
 
+    public void setDuration(int n) {
+    	this.duration = n;
+    }
     public void setImage(Image i)
     {
         image = i;
@@ -115,11 +123,15 @@ public class tigerSprite {
         positionY += velocityY * time;
         this.setImage(this.nextPosition());
     }
-    public void update(double time, String text)
+    public void update(double time, int duration)
     {
-        positionX += -velocityX * time;
-        positionY += -velocityY * time;
-        this.setImage(this.nextPosition());
+        positionX += velocityX * time;
+        positionY += velocityY * time;
+        if(duration==0) {
+        	this.setImage(this.nextPosition());
+        }
+    	this.setDuration(duration-1);
+
     }
     
 

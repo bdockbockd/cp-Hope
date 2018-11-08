@@ -26,6 +26,8 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	private long lastNanoTime;
 //	private AudioClip sound;
+    public static ArrayList<String> input = new ArrayList<String>();
+
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -62,7 +64,6 @@ public class Main extends Application {
 
         
         // Input
-        ArrayList<String> input = new ArrayList<String>();
         theScene.setOnKeyPressed(
                 new EventHandler<KeyEvent>()
                 {
@@ -105,30 +106,18 @@ public class Main extends Application {
                 tiger2.setMove(false);
                 tiger1.setVelocity(0,0);
                 tiger2.setVelocity(0, 0);
-                if (input.contains("LEFT") && tiger1.getPositionX() >=0) {
-                    tiger1.addVelocity(-100,0);
-                    tiger2.addVelocity(-100,0);
-
-                }
-                if (input.contains("RIGHT") && tiger1.getPositionX() < 850) {
-                    tiger1.addVelocity(100,0);
-                    tiger2.addVelocity(100,0);
-
-                }
-                if (input.contains("UP") && tiger1.getPositionY() > 250) {
-                    tiger1.addVelocity(0,-100);
-                    tiger2.addVelocity(0,-100);
-
-                }
-                if (input.contains("DOWN") && tiger1.getPositionY() < 500) {
-                    tiger1.addVelocity(0,100);
-                    tiger2.addVelocity(0,100);
-
-                }
+                
+                Main.keyActionToSpeed(tiger1);
+                Main.keyActionToSpeed(tiger2);
+                
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	tiger2.update(elapsedTime, "Go opposite Direction");
                 }
+                if(tiger2.getMove() == true) {
+                	tiger2.update(elapsedTime, tiger2.getDuration());
+                }
+//                if(tiger2.getDuration() == 0) tiger2.setDuration(5);
+//                System.out.print
                 gc.clearRect(0, 0, 972,800);
                 
 //                System.out.println(tiger1.getPositionY());
@@ -141,7 +130,24 @@ public class Main extends Application {
         primaryStage.show();
         
 	}
-	
+	public static void keyActionToSpeed(tigerSprite tiger) {
+		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
+            tiger.addVelocity(-100,0);
+
+        }
+        if (input.contains("RIGHT") && tiger.getPositionX() < 850) {
+            tiger.addVelocity(100,0);
+
+        }
+        if (input.contains("UP") && tiger.getPositionY() > 250) {
+            tiger.addVelocity(0,-100);
+
+        }
+        if (input.contains("DOWN") && tiger.getPositionY() < 500) {
+            tiger.addVelocity(0,100);
+
+        }
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}

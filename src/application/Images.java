@@ -18,7 +18,7 @@ public class Images {
 		}
 		
 		for (int i=3;i<blackTigerMotion.length+3;i++) {
-			blackTigerMotion[i-3] = new Image("Game1-0"+i+".png", 100, 100, false, false);
+			blackTigerMotion[i-3] = new Image("Game1-0"+i+".png", 300, 300, false, false);
 			
 		}
 	}

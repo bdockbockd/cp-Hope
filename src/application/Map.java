@@ -4,30 +4,22 @@ import javafx.scene.image.Image;
 
 public class Map {
 	
-	private Image imgBack;
-	private int motionSpeed = 3;
+	private Image img;
+	private int motion = 3;
 	
-	private double gravity = 0.8;
 	
 //	private MediaPlayer bgm;
 	
-	//@SafeVarargs
 	public Map(Image image) {
-		this.imgBack = image;
+		this.img = image;
 	}
 	
-//	public void Motion(Entity e) {
-//		moveEntity(e);
-////		pullGravity(e);
-////		decelerate(e);
-//		moveMap();
-//		if (e.getVelocityY() >= 0 && isOnFloor(e)) {
-//			e.setVelocity(0);
-//			>> e Player set Jumping false
-//		}
+//	public void Motion(Sprite e) {
+
+	
 //	}
 	
-//	public void motionAll() {
+//	public void moveAll() {
 //		for(all thing in sharedEntity )
 //			motion(each thing)
 //	}
