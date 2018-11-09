@@ -7,7 +7,8 @@ public class Images {
 	
 	public static final Image[] bigTigerMotion = new Image[15];
 	public static final Image[] blackTigerMotion = new Image[3];
-	
+
+
 	static {
 		for (int i=0; i<bigTigerMotion.length; i++) {
 			if(i<10) {
@@ -22,5 +23,4 @@ public class Images {
 			
 		}
 	}
-
 }

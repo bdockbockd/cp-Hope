@@ -1,5 +1,6 @@
 package application;
 	
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -62,6 +63,12 @@ public class Main extends Application {
         
         lastNanoTime = System.nanoTime();
 
+        String musicFile = "Music-loop-120-bpm.mp3";     // For example
+        URL a= ClassLoader.getSystemResource(musicFile);
+        Media b = new Media(a.toString());
+        MediaPlayer ne = new MediaPlayer(b);
+        ne.setAutoPlay(true);
+        ne.setVolume(0.5);
         
         // Input
         theScene.setOnKeyPressed(
@@ -115,6 +122,9 @@ public class Main extends Application {
                 }
                 if(tiger2.getMove() == true) {
                 	tiger2.update(elapsedTime, tiger2.getDuration());
+                	if(currentNanoTime % 10 ==0) {
+                		tiger2.setImage(tiger2.nextPosition());
+                	}
                 }
 //                if(tiger2.getDuration() == 0) tiger2.setDuration(5);
 //                System.out.print
@@ -128,7 +138,6 @@ public class Main extends Application {
         	
         }.start();
         primaryStage.show();
-        
 	}
 	public static void keyActionToSpeed(tigerSprite tiger) {
 		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
@@ -145,7 +154,6 @@ public class Main extends Application {
         }
         if (input.contains("DOWN") && tiger.getPositionY() < 500) {
             tiger.addVelocity(0,100);
-
         }
 	}
 	public static void main(String[] args) {

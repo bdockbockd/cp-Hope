@@ -52,17 +52,6 @@ public class tigerSprite {
     	this.tigerPosition = (this.tigerPosition+1)%this.tigerImage.length;
     	return (this.tigerImage)[tigerPosition];
     }
-//    public void getCollided() {
-//    	this.setVelocity(0, 0);
-//    }
-    
-//    public ArrayList<Sprite> getSpriteList() {
-//    	return this.spriteList;
-//    }
-//    
-//    public void addList(Sprite e) {
-//    	this.spriteList.add(e);
-//    }
     
     public int getDuration() {
     	return this.duration;
@@ -127,10 +116,10 @@ public class tigerSprite {
     {
         positionX += velocityX * time;
         positionY += velocityY * time;
-        if(duration==0) {
-        	this.setImage(this.nextPosition());
-        }
-    	this.setDuration(duration-1);
+//        if(duration==0) {
+//        	this.setImage(this.nextPosition());
+//        }
+//    	this.setDuration(duration-1);
 
     }
     
