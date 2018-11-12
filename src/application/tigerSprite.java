@@ -110,7 +110,7 @@ public class tigerSprite {
     {
         positionX += velocityX * time;
         positionY += velocityY * time;
-        this.setImage(this.nextPosition());
+//        this.setImage(this.nextPosition());
     }
     public void update(double time, int duration)
     {
