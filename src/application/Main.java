@@ -4,6 +4,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Sprite.BlackTiger;
+import Sprite.SpecialTiger;
+import Sprite.TigerSprite;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -21,8 +24,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.layout.BorderPane;
-
 
 public class Main extends Application {
 	private long lastNanoTime;
@@ -43,23 +44,16 @@ public class Main extends Application {
         gc.drawImage(Images.startscreen, 0, 0);
         
         //create tiger onScreen
-        tigerSprite tiger1 = new tigerSprite();
-//        tiger1.setImage(); already set when declaring
+        BlackTiger tiger1 = new BlackTiger();
+        //        tiger1.setImage(); already set when declaring
         tiger1.setPosition(300, 300);
         
-        tigerSprite tiger2 = new tigerSprite();
-        tiger2.changeType();
+        SpecialTiger tiger2 = new SpecialTiger();
         tiger2.setPosition(400,400);
         
         
         
-        //sound 
-//        sound = new AudioClip(this.getClass().getResource("bensound-buddy.mp3").toExternalForm());
-//        sound.play();
-//        URL resource = getClass().getClassLoader().getResource("bensound-buddy.mp3");
-//        Media media = new Media(resource.toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-//        mediaPlayer.play();
+
         
         lastNanoTime = System.nanoTime();
 
@@ -108,7 +102,6 @@ public class Main extends Application {
 
                 lastNanoTime = currentNanoTime;
                 
-                
                 tiger1.setMove(false);
                 tiger2.setMove(false);
                 tiger1.setVelocity(0,0);
@@ -119,15 +112,15 @@ public class Main extends Application {
                 
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	if(currentNanoTime % 5 ==0) {
+//                	if(currentNanoTime % 3 ==0) {
                 		tiger1.setImage(tiger1.nextPosition());
-                	}
+//                	}
                 }
                 if(tiger2.getMove() == true) {
-                	tiger2.update(elapsedTime, tiger2.getDuration());
-                	if(currentNanoTime % 10 ==0) {
+                	tiger2.update(elapsedTime);
+//                	if(currentNanoTime % 3 ==0) {
                 		tiger2.setImage(tiger2.nextPosition());
-                	}
+//                	}
                 }
 //                if(tiger2.getDuration() == 0) tiger2.setDuration(5);
 //                System.out.print
@@ -142,7 +135,11 @@ public class Main extends Application {
         }.start();
         primaryStage.show();
 	}
-	public static void keyActionToSpeed(tigerSprite tiger) {
+	public static void keyActionToSpeed(TigerSprite tiger) {
+		System.out.print("The position of the "+ tiger.getClass().getName());
+		System.out.print("x:"+Double.toString(tiger.getPositionX()));
+		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+
 		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
             tiger.addVelocity(-100,0);
 
