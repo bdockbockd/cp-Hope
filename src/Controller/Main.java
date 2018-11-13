@@ -1,9 +1,11 @@
-package application;
+package Controller;
 	
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
+import TigerSpirte.tigerSprite;
+import application.Images;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -125,7 +127,7 @@ public class Main extends Application {
                 }
                 if(tiger2.getMove() == true) {
                 	tiger2.update(elapsedTime, tiger2.getDuration());
-                	if(currentNanoTime % 10 ==0) {
+                	if(currentNanoTime % 4 ==0) {
                 		tiger2.setImage(tiger2.nextPosition());
                 	}
                 }
