@@ -3,7 +3,7 @@ package application;
 import javafx.scene.image.Image;
 
 public class Images {
-	public static final Image startscreen = new Image(ClassLoader.getSystemResource("background1.jpg").toString());
+	public static final Image startscreen = new Image(ClassLoader.getSystemResource("map-01.png").toString(),1250,800,false,false);
 	public static final Image[] bigTigerMotion = new Image[15];
 	public static final Image[] blackTigerMotion = new Image[3];
 
@@ -19,5 +19,7 @@ public class Images {
 		for (int i=3;i<blackTigerMotion.length+3;i++) {
 			blackTigerMotion[i-3] = new Image(ClassLoader.getSystemResource("Game1-0"+i+".png").toString(), 300, 300, false, false);
 		}
+		
+//		for(int i=3; i<)
 	}
 }

@@ -54,11 +54,17 @@ public abstract class Sprite {
     	this.velocityY = velocityY;
     }
     
-//    public boolean collideWidth(Sprite e) {
-//    	
-//		return false;
-//    	
-//    }
+    public boolean collideWidth(Sprite object) {
+    	double thisX = this.getPositionX();
+    	double thisY = this.getPositionY();
+    	
+    	double objectX = object.getPositionX();
+    	double objectY = object.getPositionY();
+    	
+    	double absX = Math.abs(thisX-objectX);
+    	double absY = Math.abs(thisY-objectY);
+    	return (absX <10 || absY <10) ? true : false;
+    }
 	
 	public void setImage(Image i) {
 		this.image = i;

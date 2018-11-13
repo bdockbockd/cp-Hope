@@ -4,14 +4,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
-<<<<<<< HEAD:src/application/Main.java
 import Sprite.BlackTiger;
 import Sprite.SpecialTiger;
 import Sprite.TigerSprite;
-=======
-import TigerSpirte.tigerSprite;
 import application.Images;
->>>>>>> 34dbf3a153f997c0a3c6c3eb1734167854cfee33:src/Controller/Main.java
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -34,6 +30,16 @@ public class Main extends Application {
 	private long lastNanoTime;
 //	private AudioClip sound;
     public static ArrayList<String> input = new ArrayList<String>();
+    public static final ArrayList<String> type2Key = new ArrayList<String>();
+    public static ArrayList<String> input2 = new ArrayList<String>();
+    
+    static {
+    	type2Key.add("W");
+    	type2Key.add("A");
+    	type2Key.add("S");
+    	type2Key.add("D");
+    }
+
 
 
 	@Override
@@ -44,7 +50,7 @@ public class Main extends Application {
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 972, 600 );
+        Canvas canvas = new Canvas(1250,800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(Images.startscreen, 0, 0);
         
@@ -78,6 +84,9 @@ public class Main extends Application {
                         String code = e.getCode().toString();
                         if ( !input.contains(code) )
                             input.add( code );
+                        if(type2Key.contains(code) && !input2.contains(code)) {
+                        	input2.add(code);
+                        }
                     }
                 });
 
@@ -87,7 +96,12 @@ public class Main extends Application {
                     public void handle(KeyEvent e)
                     {
                         String code = e.getCode().toString();
-                        input.remove( code );
+                        if(input.contains(code)) {
+                        	input.remove(code);
+                        }
+                        if(input2.contains(code)) {
+                        	input2.remove(code);
+                        }
                     }
                 });
         
@@ -113,46 +127,42 @@ public class Main extends Application {
                 tiger2.setVelocity(0, 0);
                 
                 Main.keyActionToSpeed(tiger1);
-                Main.keyActionToSpeed(tiger2);
+                Main.keyActionToSpeed2(tiger2);
                 
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-//                	if(currentNanoTime % 3 ==0) {
-                		tiger1.setImage(tiger1.nextPosition());
-//                	}
+                	tiger1.setImage(tiger1.nextPosition());
                 }
                 if(tiger2.getMove() == true) {
-<<<<<<< HEAD:src/application/Main.java
                 	tiger2.update(elapsedTime);
-//                	if(currentNanoTime % 3 ==0) {
-=======
-                	tiger2.update(elapsedTime, tiger2.getDuration());
-                	if(currentNanoTime % 4 ==0) {
->>>>>>> 34dbf3a153f997c0a3c6c3eb1734167854cfee33:src/Controller/Main.java
+//                	if(currentNanoTime % 4 ==0) {
                 		tiger2.setImage(tiger2.nextPosition());
-//                	}
+//                }
                 }
-//                if(tiger2.getDuration() == 0) tiger2.setDuration(5);
-//                System.out.print
-                gc.clearRect(0, 0, 972,800);
+//                gc.clearRect(0, 0, 1250,800);
+                if(tiger1.collideWidth(tiger2)) {
+                	System.out.print("collide");
+                } else {
+                	System.out.println("not collide");
+                }
                 
-//                System.out.println(tiger1.getPositionY());
                 gc.drawImage(Images.startscreen, 0, 0);
                 tiger1.render( gc );
                 tiger2.render(gc);
-			}
-        	
+                
+			}	
         }.start();
-        primaryStage.show();
+		primaryStage.show();
+//        primaryStage.setFullScreen(true);
+
 	}
 	public static void keyActionToSpeed(TigerSprite tiger) {
-		System.out.print("The position of the "+ tiger.getClass().getName());
-		System.out.print("x:"+Double.toString(tiger.getPositionX()));
-		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+//		System.out.print("The position of the "+ tiger.getClass().getName());
+//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
+//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
 
 		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
             tiger.addVelocity(-100,0);
-
         }
         if (input.contains("RIGHT") && tiger.getPositionX() < 850) {
             tiger.addVelocity(100,0);
@@ -163,6 +173,27 @@ public class Main extends Application {
 
         }
         if (input.contains("DOWN") && tiger.getPositionY() < 500) {
+            tiger.addVelocity(0,100);
+        }
+	}
+	public static void keyActionToSpeed2(TigerSprite tiger) {
+//		System.out.print("The position of the "+ tiger.getClass().getName());
+//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
+//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+
+		if (input2.contains("A") && tiger.getPositionX() >=50) {
+            tiger.addVelocity(-100,0);
+
+        }
+        if (input2.contains("D") && tiger.getPositionX() < 850) {
+            tiger.addVelocity(100,0);
+
+        }
+        if (input2.contains("W") && tiger.getPositionY() > 250) {
+            tiger.addVelocity(0,-100);
+
+        }
+        if (input2.contains("S") && tiger.getPositionY() < 500) {
             tiger.addVelocity(0,100);
         }
 	}
