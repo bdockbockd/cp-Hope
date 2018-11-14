@@ -77,15 +77,6 @@ public abstract class TigerSprite extends Sprite{
         gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
     }
 
-    public Rectangle2D getBoundary()
-    {
-        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
-    }
-
-//    public boolean intersects(Sprite s)
-//    {
-//        return s.getBoundary().intersects( this.getBoundary() );
-//    }
     
     public String toString()
     {

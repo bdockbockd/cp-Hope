@@ -39,6 +39,7 @@ public class Main extends Application {
     	type2Key.add("S");
     	type2Key.add("D");
     }
+    int i;
 
 
 
@@ -52,7 +53,7 @@ public class Main extends Application {
 
         Canvas canvas = new Canvas(1250,800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(Images.startscreen, 0, 0);
+        gc.drawImage((Images.stageMap)[0], 0, 0);
         
         //create tiger onScreen
         BlackTiger tiger1 = new BlackTiger();
@@ -140,13 +141,17 @@ public class Main extends Application {
 //                }
                 }
 //                gc.clearRect(0, 0, 1250,800);
-                if(tiger1.collideWidth(tiger2)) {
-                	System.out.print("collide");
+                System.out.print(tiger1.printBoundary());
+                System.out.println(tiger2.printBoundary());
+                if(tiger1.intersects(tiger2)) {
+                	System.out.println("collide");
                 } else {
                 	System.out.println("not collide");
                 }
                 
-                gc.drawImage(Images.startscreen, 0, 0);
+                
+				gc.drawImage((Images.stageMap)[(i+1)%3], 0, 0);
+                i++;
                 tiger1.render( gc );
                 tiger2.render(gc);
                 
