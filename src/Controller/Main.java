@@ -132,22 +132,24 @@ public class Main extends Application {
                 
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	tiger1.setImage(tiger1.nextPosition());
+                	if(currentNanoTime % 20 ==0) {
+                		tiger1.setImage(tiger1.nextPosition());
+                }
                 }
                 if(tiger2.getMove() == true) {
                 	tiger2.update(elapsedTime);
-//                	if(currentNanoTime % 4 ==0) {
+                	if(currentNanoTime % 10 ==0) {
                 		tiger2.setImage(tiger2.nextPosition());
-//                }
+                	}
                 }
 //                gc.clearRect(0, 0, 1250,800);
-                System.out.print(tiger1.printBoundary());
-                System.out.println(tiger2.printBoundary());
-                if(tiger1.intersects(tiger2)) {
-                	System.out.println("collide");
-                } else {
-                	System.out.println("not collide");
-                }
+//                System.out.print(tiger1.printBoundary());
+//                System.out.println(tiger2.printBoundary());
+//                if(tiger1.intersects(tiger2)) {
+//                	System.out.println("collide");
+//                } else {
+//                	System.out.println("not collide");
+//                }
                 
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);

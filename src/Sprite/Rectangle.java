@@ -2,8 +2,8 @@ package Sprite;
 
 public class Rectangle {
 	
-	protected double x;
-	protected double y;
+	protected double positionX;
+	protected double positionY;
 	protected double width;
 	protected double height;
 
@@ -12,40 +12,42 @@ public class Rectangle {
 	}
 	
 	public Rectangle(double x, double y, double width, double height) {
-		this.x = x;
-		this.y = y;
+		this.positionX = x;
+		this.positionY = y;
 		this.width = width;
 		this.height = height;
 	}
 	
 	public boolean collideWith(Rectangle r) {
-		if (x < r.x + r.width && x + width > r.x && y < r.y + r.height && height + y > r.y) return true;
+		double x = this.getPositionX();
+		double y = this.getPositionY();
+		if (x < r.getPositionX() + r.width && x + width > r.getPositionX() && y < r.getPositionY() + r.height && height + y > r.getPositionY()) return true;
 		return false;
 	}
 	
-	public boolean collideWith(double x, double y, double width, double height) {
-		if (this.x < x + width && this.x + this.width > x && this.y < y + height && this.height + this.y > y) return true;
-		return false;
-	}
+//	public boolean collideWith(double x, double y, double width, double height) {
+//		if (this.x < x + width && this.x + this.width > x && this.y < y + height && this.height + this.y > y) return true;
+//		return false;
+//	}
 	
-	public String toString() {
-		return String.format("%s [x=%f, y=%f, width=%f, height=%f]", getClass().getSimpleName(), x, y, width, height);
-	}
+//	public String toString() {
+//		return String.format("%s [x=%f, y=%f, width=%f, height=%f]", getClass().getSimpleName(), x, y, width, height);
+//	}
 	
-	public double getX() {
-		return x;
+	public double getPositionX() {
+		return this.positionX;
 	}
 
-	public void setX(double x) {
-		this.x = x;
+	public void setPositionX(double x) {
+		this.positionX = x;
 	}
 
-	public double getY() {
-		return y;
+	public double getPositionY() {
+		return this.positionY;
 	}
 
-	public void setY(double y) {
-		this.y = y;
+	public void setPositionY(double y) {
+		this.positionY = y;
 	}
 
 	public double getWidth() {
