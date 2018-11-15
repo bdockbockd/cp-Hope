@@ -23,7 +23,7 @@ public class Images {
 		}
 		
 		for(int i=0;i<stageMap.length;i++) {
-			stageMap[i] = new Image(ClassLoader.getSystemResource("map-0"+(i+1)+".png").toString(),1250,800,false,false);
+			stageMap[i] = new Image(ClassLoader.getSystemResource("fullMap-0"+(i+1)+".png").toString(),1250,800,false,false);
 		}
 		
 //		for(int i=3; i<)

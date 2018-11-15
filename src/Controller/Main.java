@@ -150,7 +150,7 @@ public class Main extends Application {
                 }
                 
                 
-				gc.drawImage((Images.stageMap)[(i+1)%3], 0, 0);
+				gc.drawImage((Images.stageMap)[0], 0, 0);
                 i++;
                 tiger1.render( gc );
                 tiger2.render(gc);
