@@ -4,22 +4,80 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class HumanSprite extends Sprite {
+	
+	public int humanPosition = 0;
+	private boolean isMove;
 
-	public HumanSprite(Image image) {
-		super(image);
-		// TODO Auto-generated constructor stub
-	}
+    public HumanSprite(Image image)
+	    {
+	       super(image);
+	       this.setVelocityX(0);
+	       this.setPositionX(0);
+	       this.setVelocityY(0);
+	       this.setPositionY(0);
+	
+	    }
+    
+    public static HumanSprite randomEnemy() {
+    	HumanSprite e = new HumanSprite();
+        e.setImage("moneybag.png");
+        double px = 350 * Math.random() + 50;
+        double py = 350 * Math.random() + 50;          
+        moneybag.setPosition(px,py);
+        return moneybag;
+    }
 
-	@Override
-	public void update(double time) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setImage(String filename)
+    {
+        Image i = new Image(filename);
+        setImage(i);
+    }
+    
+    public void setMove(boolean tf) {
+    	this.isMove = tf;
+    }
+    
+    public boolean getMove() {
+    	return this.isMove;
+    }
 
-	@Override
-	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
-	}
+    // add more type of setPosition 
+    public void setPosition(double x, double y)
+    {
+        this.setPositionX(x);
+        this.setPositionY(y);
+    }
+    
+    public void setVelocity(double x, double y)
+    {
+        this.setVelocityX(x);
+        this.setVelocityY(y);
+    }
+
+    public void addVelocity(double x, double y)
+    {
+        this.setVelocity(x+ this.getVelocityX(), y + this.getVelocityY());
+        this.setMove(true);
+    }
+
+    public void update(double time)
+    {
+        this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
+        this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+    }
+    
+
+    public void render(GraphicsContext gc)
+    {
+        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
+    }
+
+    
+    public String toString()
+    {
+        return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
+        + " Velocity: [" + this.getVelocityX() + "," + this.getVelocityY() + "]";
+    }  
+
 
 }

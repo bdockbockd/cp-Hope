@@ -132,8 +132,11 @@ public class Main extends Application {
                 
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	tiger1.setImage(tiger1.nextPosition());
+                	if(currentNanoTime % 20 ==0) {
+                		tiger1.setImage(tiger1.nextPosition());
                 }
+                }
+<<<<<<< HEAD
 //                if(tiger2.getMove() == true) {
 //                	tiger2.update(elapsedTime);
 ////                	if(currentNanoTime % 4 ==0) {
@@ -142,6 +145,16 @@ public class Main extends Application {
 //                }
 //                gc.clearRect(0, 0, 1250,800);
                 System.out.print(tiger1.printBoundary());
+=======
+                if(tiger2.getMove() == true) {
+                	tiger2.update(elapsedTime);
+                	if(currentNanoTime % 10 ==0) {
+                		tiger2.setImage(tiger2.nextPosition());
+                	}
+                }
+//                gc.clearRect(0, 0, 1250,800);
+//                System.out.print(tiger1.printBoundary());
+>>>>>>> 45ac384a82e5c10dadcca5200e1a6021971279cd
 //                System.out.println(tiger2.printBoundary());
 //                if(tiger1.intersects(tiger2)) {
 //                	System.out.println("collide");
