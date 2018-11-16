@@ -8,7 +8,8 @@ import javafx.scene.image.Image;
 public class BlackTiger extends TigerSprite {
 	
 	private static final String name = "blackTiger";
-	private static Image[] tigerImage = Images.blackTigerMotion;
+	private static Image[] tigerImageL = Images.blackTigerMotionL;
+	private static Image[] tigerImageR = Images.blackTigerMotionR;
 
 	public BlackTiger() {
 		super(tigerImage[0]);

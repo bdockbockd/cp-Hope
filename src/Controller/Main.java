@@ -60,8 +60,8 @@ public class Main extends Application {
         //        tiger1.setImage(); already set when declaring
         tiger1.setPosition(300, 300);
         
-        SpecialTiger tiger2 = new SpecialTiger();
-        tiger2.setPosition(400,400);
+//        SpecialTiger tiger2 = new SpecialTiger();
+//        tiger2.setPosition(400,400);
         
         
         
@@ -69,12 +69,12 @@ public class Main extends Application {
         
         lastNanoTime = System.nanoTime();
 
-        String musicFile = "Music-loop-120-bpm.mp3";     // For example
-        URL a= ClassLoader.getSystemResource(musicFile);
-        Media b = new Media(a.toString());
-        MediaPlayer ne = new MediaPlayer(b);
-        ne.setAutoPlay(true);
-        ne.setVolume(0.5);
+//        String musicFile = "Music-loop-120-bpm.mp3";     // For example
+//        URL a= ClassLoader.getSystemResource(musicFile);
+//        Media b = new Media(a.toString());
+//        MediaPlayer ne = new MediaPlayer(b);
+//        ne.setAutoPlay(true);
+//        ne.setVolume(0.5);
         
         // Input
         theScene.setOnKeyPressed(
@@ -123,37 +123,37 @@ public class Main extends Application {
                 lastNanoTime = currentNanoTime;
                 
                 tiger1.setMove(false);
-                tiger2.setMove(false);
+//                tiger2.setMove(false);
                 tiger1.setVelocity(0,0);
-                tiger2.setVelocity(0, 0);
+//                tiger2.setVelocity(0, 0);
                 
                 Main.keyActionToSpeed(tiger1);
-                Main.keyActionToSpeed2(tiger2);
+//                Main.keyActionToSpeed2(tiger2);
                 
                 if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
                 	tiger1.setImage(tiger1.nextPosition());
                 }
-                if(tiger2.getMove() == true) {
-                	tiger2.update(elapsedTime);
-//                	if(currentNanoTime % 4 ==0) {
-                		tiger2.setImage(tiger2.nextPosition());
+//                if(tiger2.getMove() == true) {
+//                	tiger2.update(elapsedTime);
+////                	if(currentNanoTime % 4 ==0) {
+//                		tiger2.setImage(tiger2.nextPosition());
+////                }
 //                }
-                }
 //                gc.clearRect(0, 0, 1250,800);
                 System.out.print(tiger1.printBoundary());
-                System.out.println(tiger2.printBoundary());
-                if(tiger1.intersects(tiger2)) {
-                	System.out.println("collide");
-                } else {
-                	System.out.println("not collide");
-                }
+//                System.out.println(tiger2.printBoundary());
+//                if(tiger1.intersects(tiger2)) {
+//                	System.out.println("collide");
+//                } else {
+//                	System.out.println("not collide");
+//                }
                 
                 
-				gc.drawImage((Images.stageMap)[(i+1)%3], 0, 0);
+				gc.drawImage((Images.stageMap)[0], 0, 0);
                 i++;
                 tiger1.render( gc );
-                tiger2.render(gc);
+//                tiger2.render(gc);
                 
 			}	
         }.start();
