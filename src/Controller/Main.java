@@ -123,9 +123,9 @@ public class Main extends Application {
                 lastNanoTime = currentNanoTime;
                 
                 tiger1.setMove(false);
-                tiger2.setMove(false);
+//                tiger2.setMove(false);
                 tiger1.setVelocity(0,0);
-                tiger2.setVelocity(0, 0);
+//                tiger2.setVelocity(0, 0);
                 
                 Main.keyActionToSpeed(tiger1);
                 Main.keyActionToSpeed2(tiger2);

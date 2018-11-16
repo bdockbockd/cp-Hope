@@ -19,11 +19,11 @@ public class Images {
 		}
 		
 		for (int i=0;i<blackTigerMotion.length;i++) {
-			blackTigerMotion[i] = new Image(ClassLoader.getSystemResource("walkingGreenBlackPanther-0"+(i+1)+".png").toString(), 351, 200, false, false);
+			blackTigerMotion[i] = new Image(ClassLoader.getSystemResource("resources/BlackPantherDesign/greenBlackPanther/walkingGreenBlackPanther/walkingGreenBlackPanther-0"+(i+1)+".png").toString(), 351, 200, false, false);
 		}
 		
 		for(int i=0;i<stageMap.length;i++) {
-			stageMap[i] = new Image(ClassLoader.getSystemResource("fullMap-0"+(i+1)+".png").toString(),1250,800,false,false);
+			stageMap[i] = new Image(ClassLoader.getSystemResource("resources/fullMap/fullMap-0"+(i+1)+".png").toString(),1250,800,false,false);
 		}
 		
 //		for(int i=3; i<)
