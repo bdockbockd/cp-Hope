@@ -8,16 +8,17 @@ import javafx.scene.image.Image;
 public class BlackTiger extends TigerSprite {
 	
 	private static final String name = "blackTiger";
-	private static Image[] tigerImageL = Images.blackTigerMotionL;
-	private static Image[] tigerImageR = Images.blackTigerMotionR;
 
 	public BlackTiger() {
-		super(tigerImage[0]);
+		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 	}
 	
-    public Image nextPosition() {
-    	this.tigerPosition = (this.tigerPosition+1)%tigerImage.length;
-    	return (tigerImage)[tigerPosition];
+    public void nextPosition(String direction) {
+    	if(this.getFace().equals("LEFT")) {
+    		this.setImage((this.getImageL())[this.getPositionL()]);
+    	} else {
+    		this.setImage((this.getImageR())[this.getPositionR()]);
+    	}
     }
     
     public void render(GraphicsContext gc)

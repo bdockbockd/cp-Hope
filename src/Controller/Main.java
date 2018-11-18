@@ -57,11 +57,7 @@ public class Main extends Application {
         
         //create tiger onScreen
         BlackTiger tiger1 = new BlackTiger();
-        //        tiger1.setImage(); already set when declaring
         tiger1.setPosition(300, 300);
-        
-//        SpecialTiger tiger2 = new SpecialTiger();
-//        tiger2.setPosition(400,400);
         
         
         
@@ -123,38 +119,20 @@ public class Main extends Application {
                 lastNanoTime = currentNanoTime;
                 
                 tiger1.setMove(false);
-//                tiger2.setMove(false);
                 tiger1.setVelocity(0,0);
-//                tiger2.setVelocity(0, 0);
                 
                 Main.keyActionToSpeed(tiger1);
-//                Main.keyActionToSpeed2(tiger2);
                 
-                if(tiger1.getMove() == true) {        
+//                if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	if(currentNanoTime % 20 ==0) {
-                		tiger1.setImage(tiger1.nextPosition());
-                }
-                }
-<<<<<<< HEAD
-//                if(tiger2.getMove() == true) {
-//                	tiger2.update(elapsedTime);
-////                	if(currentNanoTime % 4 ==0) {
-//                		tiger2.setImage(tiger2.nextPosition());
-////                }
+                	tiger1.nextPosition(tiger1.getFace());
 //                }
-//                gc.clearRect(0, 0, 1250,800);
-                System.out.print(tiger1.printBoundary());
-=======
-                if(tiger2.getMove() == true) {
-                	tiger2.update(elapsedTime);
-                	if(currentNanoTime % 10 ==0) {
-                		tiger2.setImage(tiger2.nextPosition());
-                	}
-                }
+                
 //                gc.clearRect(0, 0, 1250,800);
 //                System.out.print(tiger1.printBoundary());
->>>>>>> 45ac384a82e5c10dadcca5200e1a6021971279cd
+                
+//                gc.clearRect(0, 0, 1250,800);
+//                System.out.print(tiger1.printBoundary());
 //                System.out.println(tiger2.printBoundary());
 //                if(tiger1.intersects(tiger2)) {
 //                	System.out.println("collide");
@@ -164,9 +142,8 @@ public class Main extends Application {
                 
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
-                i++;
+//                i++;
                 tiger1.render( gc );
-//                tiger2.render(gc);
                 
 			}	
         }.start();
@@ -181,10 +158,11 @@ public class Main extends Application {
 
 		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
             tiger.addVelocity(-100,0);
+            tiger.setFace("LEFT");
         }
         if (input.contains("RIGHT") && tiger.getPositionX() < 850) {
             tiger.addVelocity(100,0);
-
+            tiger.setFace("RIGHT");
         }
         if (input.contains("UP") && tiger.getPositionY() > 250) {
             tiger.addVelocity(0,-100);
@@ -201,7 +179,7 @@ public class Main extends Application {
 
 		if (input2.contains("A") && tiger.getPositionX() >=50) {
             tiger.addVelocity(-100,0);
-
+            
         }
         if (input2.contains("D") && tiger.getPositionX() < 850) {
             tiger.addVelocity(100,0);

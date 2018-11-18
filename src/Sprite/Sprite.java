@@ -7,15 +7,70 @@ import javafx.scene.image.Image;
 public abstract class Sprite extends Rectangle {
 	
 	private Image image;
-  
+	private Image[] imageL;
+	private Image[] imageR;
+	private Image[] imageList;
+	private String face;
+	
+	protected int PositionL = 0;
+	protected int PositionR = 0;
+
+	
     private double velocityX, velocityY;
     
-    public Sprite(Image image) {
+    public Sprite(Image image, Image[] imageL, Image[] imageR) {
     	super(0,0,image.getWidth(),image.getHeight());
+    	this.setFace("Right");
     	this.setImage(image);
+    	this.setImageL(imageL);
+    	this.setImageR(imageR);
     }
+    
+	public Image[] getImageL() {
+		return imageL;
+	}
 
-    public double getVelocityX() {
+
+
+	public int getPositionL() {
+		return PositionL;
+	}
+
+
+	public void setPositionL(int PositionL) {
+		this.PositionL = PositionL;
+	}
+
+
+	public int getPositionR() {
+		return PositionR;
+	}
+
+
+	public void setPositionR(int PositionR) {
+		this.PositionR = PositionR;
+	}
+
+
+	public void setImageL(Image[] imageL) {
+		this.imageL = imageL;
+	}
+
+
+
+	public Image[] getImageR() {
+		return imageR;
+	}
+
+
+
+	public void setImageR(Image[] imageR) {
+		this.imageR = imageR;
+	}
+
+
+
+	public double getVelocityX() {
     	return this.velocityX;
     }
     public void setVelocityX(double velocityX) {
@@ -50,5 +105,40 @@ public abstract class Sprite extends Rectangle {
 	}
 	public abstract void update(double time);
 	public abstract void render(GraphicsContext gc);
+
+
+
+	public Image[] getImageList() {
+		return imageList;
+	}
+
+
+
+	public void setImageList(Image[] imageList) {
+		this.imageList = imageList;
+	}
+
+	public String getFace() {
+		return face;
+	}
+
+
+
+
+
+	public void setFace(String face) {
+		if (!(face.equals(this.getFace()))) {
+			this.face = face;
+			this.setPositionR(0);
+			this.setPositionL(0);
+			return;
+		}
+		if(face == "LEFT") {
+			this.setPositionL((this.getPositionL()+1)%3);
+		} else {
+			this.setPositionR((this.getPositionR()+1)%3);
+
+		}
+	}
 	
 }

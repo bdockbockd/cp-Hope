@@ -8,14 +8,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class TigerSprite extends Sprite{
-	
-	public int tigerPosition = 0;
+
 	private boolean isMove;
 
-
-    public TigerSprite(Image image)
+    public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
-       super(image);
+       super(image, imageL, imageR);
+       this.setImageList(imageList);
        this.setVelocityX(0);
        this.setPositionX(0);
        this.setVelocityY(0);
@@ -32,11 +31,11 @@ public abstract class TigerSprite extends Sprite{
 //        return moneybag;
 //    }
 
-    public void setImage(String filename)
-    {
-        Image i = new Image(filename);
-        setImage(i);
-    }
+//    public void setImage(String filename)
+//    {
+//        Image i = new Image(filename);
+//        setImage(i);
+//    }
     
     public void setMove(boolean tf) {
     	this.isMove = tf;
