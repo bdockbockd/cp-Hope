@@ -11,6 +11,7 @@ public abstract class Sprite extends Rectangle {
 	private Image[] imageR;
 	private Image[] imageList;
 	private String face;
+	private int duration = 3;
 	
 	protected int PositionL = 0;
 	protected int PositionR = 0;
@@ -120,10 +121,6 @@ public abstract class Sprite extends Rectangle {
 		return face;
 	}
 
-
-
-
-
 	public void setFace(String face) {
 		if (!(face.equals(this.getFace()))) {
 			this.face = face;
@@ -131,11 +128,15 @@ public abstract class Sprite extends Rectangle {
 			this.setPositionL(0);
 			return;
 		}
-		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%3);
+		if(duration == 10) {
+			if(face == "LEFT") {
+				this.setPositionL((this.getPositionL()+1)%3);
+			} else {
+				this.setPositionR((this.getPositionR()+1)%3);
+			}
+			duration = 0;
 		} else {
-			this.setPositionR((this.getPositionR()+1)%3);
-
+			duration++;
 		}
 	}
 	

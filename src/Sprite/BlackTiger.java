@@ -23,7 +23,7 @@ public class BlackTiger extends TigerSprite {
     
     public void render(GraphicsContext gc)
     {
-        gc.drawImage( this.getImage(), this.getPositionX()-100, this.getPositionY()-100 );
+        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY());
     }
     
     public String getName() {

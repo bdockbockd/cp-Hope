@@ -62,10 +62,6 @@ public class Main extends Application {
         BlackTiger tiger1 = new BlackTiger();
         tiger1.setPosition(300, 300);
         
-        
-        
-
-        
         lastNanoTime = System.nanoTime();
 
         // Input
@@ -104,11 +100,6 @@ public class Main extends Application {
                     }
                 });
         
-        
-//        for(int i =0; i<Images.bigTigerMotion.length;i++) {
-//        	gc.drawImage((Images.bigTigerMotion)[i], );
-//        }
-        
         root.getChildren().add( canvas );
         new AnimationTimer()  {
 
@@ -132,9 +123,9 @@ public class Main extends Application {
 //                gc.clearRect(0, 0, 1250,800);
 //                System.out.print(tiger1.printBoundary());
                 
-//                gc.clearRect(0, 0, 1250,800);
 //                System.out.print(tiger1.printBoundary());
 //                System.out.println(tiger2.printBoundary());
+                	
 //                if(tiger1.intersects(tiger2)) {
 //                	System.out.println("collide");
 //                } else {
@@ -152,23 +143,22 @@ public class Main extends Application {
 
 	}
 	public static void keyActionToSpeed(TigerSprite tiger, long current) {
-//		System.out.print("The position of the "+ tiger.getClass().getName());
-//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
-//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
-
-		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
+		System.out.print("The position of the "+ tiger.getClass().getName());
+		System.out.print("x:"+Double.toString(tiger.getPositionX()));
+		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+		if (input.contains("LEFT") && tiger.getPositionX() >-55) {
             tiger.addVelocity(-200,0);
             tiger.setFace("LEFT");
         }
-        if (input.contains("RIGHT") && tiger.getPositionX() < 850) {
+        if (input.contains("RIGHT") && tiger.getPositionX() < 965) {
             tiger.addVelocity(200,0);
             tiger.setFace("RIGHT");
         }
-        if (input.contains("UP") && tiger.getPositionY() > 250) {
+        if (input.contains("UP") && tiger.getPositionY() > 150) {
             tiger.addVelocity(0,-200);
 
         }
-        if (input.contains("DOWN") && tiger.getPositionY() < 500) {
+        if (input.contains("DOWN") && tiger.getPositionY() < 640) {
             tiger.addVelocity(0,200);
         }
         if(input.contains("H")) {

@@ -1,5 +1,6 @@
-package Sprite;
+package Enemy;
 
+import Sprite.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -8,24 +9,33 @@ public class HumanSprite extends Sprite {
 	public int humanPosition = 0;
 	private boolean isMove;
 
-    public HumanSprite(Image image)
-	    {
-	       super(image);
-	       this.setVelocityX(0);
-	       this.setPositionX(0);
-	       this.setVelocityY(0);
-	       this.setPositionY(0);
-	
-	    }
-    
-    public static HumanSprite randomEnemy() {
-    	HumanSprite e = new HumanSprite();
-        e.setImage("moneybag.png");
-        double px = 350 * Math.random() + 50;
-        double py = 350 * Math.random() + 50;          
-        moneybag.setPosition(px,py);
-        return moneybag;
+	protected boolean attackStage;
+
+    public HumanSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
+    {
+       super(image, imageL, imageR);
+       this.setImageList(imageList);
+       this.setVelocityX(0);
+       this.setPositionX(0);
+       this.setVelocityY(0);
+       this.setPositionY(0);
     }
+    
+//    Sprite briefcase = new Sprite();
+//    briefcase.setImage("briefcase.png");
+//    briefcase.setPosition(200, 0);
+//     
+//    ArrayList<Sprite> moneybagList = new ArrayList<Sprite>();
+     
+//    for (int i = 0; i < 15; i++)
+//    {
+//        Sprite moneybag = new Sprite();
+//        moneybag.setImage("moneybag.png");
+//        double px = 350 * Math.random() + 50;
+//        double py = 350 * Math.random() + 50;          
+//        moneybag.setPosition(px,py);
+//        moneybagList.add( moneybag );
+//    }
 
     public void setImage(String filename)
     {
