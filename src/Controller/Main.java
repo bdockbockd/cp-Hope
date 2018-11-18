@@ -79,8 +79,10 @@ public class Main extends Application {
                     public void handle(KeyEvent e)
                     {
                         String code = e.getCode().toString();
-                        if ( !input.contains(code) )
+                        if ( !input.contains(code) ) {
                             input.add( code );
+//                            System.out.println(code);
+                        }
                         if(type2Key.contains(code) && !input2.contains(code)) {
                         	input2.add(code);
                         }
@@ -94,6 +96,10 @@ public class Main extends Application {
                     {
                         String code = e.getCode().toString();
                         if(input.contains(code)) {
+                        	if(code.equals("H")) {
+                        		tiger1.setAttackable(false);
+                        		tiger1.render(gc);
+                        	}
                         	input.remove(code);
                         }
                         if(input2.contains(code)) {
@@ -143,8 +149,7 @@ public class Main extends Application {
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
 //                i++;
-                tiger1.render( gc );
-                
+				tiger1.render( gc );
 			}	
         }.start();
 		primaryStage.show();
@@ -170,6 +175,9 @@ public class Main extends Application {
         }
         if (input.contains("DOWN") && tiger.getPositionY() < 500) {
             tiger.addVelocity(0,100);
+        }
+        if(input.contains("H")) {
+        	tiger.setAttackable(true);
         }
 	}
 	public static void keyActionToSpeed2(TigerSprite tiger) {

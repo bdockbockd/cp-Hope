@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 public abstract class TigerSprite extends Sprite{
 
 	private boolean isMove;
+	protected boolean attackable;
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -81,6 +82,24 @@ public abstract class TigerSprite extends Sprite{
     {
         return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
         + " Velocity: [" + this.getVelocityX() + "," + this.getVelocityY() + "]";
-    }  
+    }
+
+
+	public boolean isAttackable() {
+		return attackable;
+	}
+
+
+	public void setAttackable(boolean attackable) {
+		this.attackable = attackable;
+		if(attackable == true) {
+			this.setImageL(Images.blackTigerBasicAttackL);
+			this.setImageR(Images.blackTigerBasicAttackR);
+		} else {
+			this.setImageL(Images.blackTigerMotionL);
+			this.setImageR(Images.blackTigerMotionR);
+		}
+	}  
+	
 
 }
