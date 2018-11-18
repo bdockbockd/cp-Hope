@@ -1,8 +1,11 @@
 package Controller;
 	
-import java.io.File;
+import java.io.*;
+import sun.audio.*;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.sound.sampled.AudioInputStream;
 
 import Sprite.BlackTiger;
 import Sprite.SpecialTiger;
@@ -65,13 +68,6 @@ public class Main extends Application {
         
         lastNanoTime = System.nanoTime();
 
-//        String musicFile = "Music-loop-120-bpm.mp3";     // For example
-//        URL a= ClassLoader.getSystemResource(musicFile);
-//        Media b = new Media(a.toString());
-//        MediaPlayer ne = new MediaPlayer(b);
-//        ne.setAutoPlay(true);
-//        ne.setVolume(0.5);
-        
         // Input
         theScene.setOnKeyPressed(
                 new EventHandler<KeyEvent>()
@@ -126,8 +122,7 @@ public class Main extends Application {
                 
                 tiger1.setMove(false);
                 tiger1.setVelocity(0,0);
-                
-                Main.keyActionToSpeed(tiger1);
+                Main.keyActionToSpeed(tiger1, currentNanoTime);
                 
 //                if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
@@ -156,28 +151,29 @@ public class Main extends Application {
 //        primaryStage.setFullScreen(true);
 
 	}
-	public static void keyActionToSpeed(TigerSprite tiger) {
+	public static void keyActionToSpeed(TigerSprite tiger, long current) {
 //		System.out.print("The position of the "+ tiger.getClass().getName());
 //		System.out.print("x:"+Double.toString(tiger.getPositionX()));
 //		System.out.println("y:"+Double.toString(tiger.getPositionY()));
 
 		if (input.contains("LEFT") && tiger.getPositionX() >=50) {
-            tiger.addVelocity(-100,0);
+            tiger.addVelocity(-200,0);
             tiger.setFace("LEFT");
         }
         if (input.contains("RIGHT") && tiger.getPositionX() < 850) {
-            tiger.addVelocity(100,0);
+            tiger.addVelocity(200,0);
             tiger.setFace("RIGHT");
         }
         if (input.contains("UP") && tiger.getPositionY() > 250) {
-            tiger.addVelocity(0,-100);
+            tiger.addVelocity(0,-200);
 
         }
         if (input.contains("DOWN") && tiger.getPositionY() < 500) {
-            tiger.addVelocity(0,100);
+            tiger.addVelocity(0,200);
         }
         if(input.contains("H")) {
         	tiger.setAttackable(true);
+            Main.playSound("32_udyr_tigerattack_roar_1.wav");
         }
 	}
 	public static void keyActionToSpeed2(TigerSprite tiger) {
@@ -200,6 +196,16 @@ public class Main extends Application {
         if (input2.contains("S") && tiger.getPositionY() < 500) {
             tiger.addVelocity(0,100);
         }
+	}
+	
+	public static void  playSound(String file) {
+//		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
+//		MediaPlayer ne = new MediaPlayer(b);
+//		ne.setVolume(0.5); 
+//		ne.play();
+		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
+		sound.setVolume(0.5);
+		sound.play();
 	}
 	public static void main(String[] args) {
 		launch(args);
