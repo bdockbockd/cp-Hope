@@ -55,9 +55,7 @@ public abstract class Sprite extends Rectangle {
 	public void setImageL(Image[] imageL) {
 		this.imageL = imageL;
 	}
-
-
-
+	
 	public Image[] getImageR() {
 		return imageR;
 	}
