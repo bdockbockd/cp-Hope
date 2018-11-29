@@ -18,8 +18,8 @@ public class Images {
 	public static final Image[] stageMap = new Image[3];
 	
 	static {
-		humanMotionR[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-01.png", 351, 200, false, false);
-		humanMotionL[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-02.png", 351, 200, false, false);
+		humanMotionR[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-01.png", 70, 98, false, false);
+		humanMotionL[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-02.png", 70, 98 , false, false);
 		
 		for (int i=0;i<blackTigerBasicAttackL.length;i++) {
 			blackTigerBasicAttackL[i] = new Image("resources/BlackPantherDesign/greenBlackPanther/attack/attackingGreenBlackPanther-0"+(i+1)+".png", 351, 200, false, false);

@@ -11,6 +11,7 @@ public abstract class TigerSprite extends Sprite{
 
 	private boolean isMove;
 	protected boolean attackable;
+	protected int timesBasicAttack;
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -21,22 +22,6 @@ public abstract class TigerSprite extends Sprite{
        this.setVelocityY(0);
        this.setPositionY(0);
     }
-    
-    
-//    public static tigerSprite randomMoney() {
-//    	tigerSprite moneybag = new tigerSprite();
-//        moneybag.setImage("moneybag.png");
-//        double px = 350 * Math.random() + 50;
-//        double py = 350 * Math.random() + 50;          
-//        moneybag.setPosition(px,py);
-//        return moneybag;
-//    }
-
-//    public void setImage(String filename)
-//    {
-//        Image i = new Image(filename);
-//        setImage(i);
-//    }
     
     public void setMove(boolean tf) {
     	this.isMove = tf;
@@ -88,10 +73,20 @@ public abstract class TigerSprite extends Sprite{
 	public boolean isAttackable() {
 		return attackable;
 	}
+	
 
+
+	public int getTimesBasicAttack() {
+		return timesBasicAttack;
+	}
+
+	public void setTimesBasicAttack(int timesBasicAttack) {
+		this.timesBasicAttack = timesBasicAttack;
+	}
 
 	public void setAttackable(boolean attackable) {
 		this.attackable = attackable;
+		this.setTimesBasicAttack((this.getTimesBasicAttack()+1)%3);
 		if(attackable == true) {
 			this.setImageL(Images.blackTigerBasicAttackL);
 			this.setImageR(Images.blackTigerBasicAttackR);
@@ -99,7 +94,32 @@ public abstract class TigerSprite extends Sprite{
 			this.setImageL(Images.blackTigerMotionL);
 			this.setImageR(Images.blackTigerMotionR);
 		}
-	}  
+	} 
+	
+	@Override
+	public void setFace(String face) {
+		if (!(face.equals(this.getFace()))) {
+			this.face = face;
+			this.setPositionR(0);
+			this.setPositionL(0);
+			return;
+		}
+		if(face == "LEFT") {
+			if(this.isAttackable()) {
+				this.setSkillPositionL(timesBasicAttack);
+			} else {
+				this.setPositionL((this.getPositionL()+1)%3);
+			}
+		} else {
+			if(this.isAttackable()) {
+				this.setSkillPositionR(timesBasicAttack);
+			} else {
+				this.setPositionR((this.getPositionR()+1)%3);
+			}
+		}
+
+	}
+	
 	
 
 }

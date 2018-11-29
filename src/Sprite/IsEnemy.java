@@ -1,6 +1,6 @@
 package Sprite;
 
-public interface Enemy {
+public interface IsEnemy {
 	
 	boolean isEnemy = true;
 	

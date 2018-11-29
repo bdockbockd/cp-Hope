@@ -22,7 +22,7 @@ public class Rectangle {
 		double x = this.getPositionX();
 		double y = this.getPositionY();
 		if (x < r.getPositionX() + r.width && x + width > r.getPositionX() && y < r.getPositionY() + r.height && height + y > r.getPositionY()) return true;
-		return false;
+			return false;
 	}
 	
 //	public boolean collideWith(double x, double y, double width, double height) {

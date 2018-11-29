@@ -14,10 +14,18 @@ public class BlackTiger extends TigerSprite {
 	}
 	
     public void nextPosition(String direction) {
-    	if(this.getFace().equals("LEFT")) {
-    		this.setImage((this.getImageL())[this.getPositionL()]);
+    	if(!this.isAttackable()) {
+    		if(this.getFace().equals("LEFT")) {
+    			this.setImage((this.getImageL())[this.getPositionL()]);
+    		} else {
+    			this.setImage((this.getImageR())[this.getPositionR()]);
+    		}
     	} else {
-    		this.setImage((this.getImageR())[this.getPositionR()]);
+    		if(this.getFace().equals("LEFT")) {
+    			this.setImage(this.getImageL()[this.getSkillPositionL()]);
+    		} else {
+    			this.setImage((this.getImageR())[this.getSkillPositionR()]);
+    		}
     	}
     }
     

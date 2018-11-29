@@ -1,33 +1,23 @@
 package Controller;
 	
-import java.io.*;
-import sun.audio.*;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.sound.sampled.AudioInputStream;
-
-import Sprite.BlackTiger;
-import Sprite.SpecialTiger;
-import Sprite.TigerSprite;
+import Enemy.*;
+import Sprite.*;
 import application.Images;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
 	private long lastNanoTime;
@@ -35,6 +25,8 @@ public class Main extends Application {
     public static ArrayList<String> input = new ArrayList<String>();
     public static final ArrayList<String> type2Key = new ArrayList<String>();
     public static ArrayList<String> input2 = new ArrayList<String>();
+    public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
+//    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
     static {
     	type2Key.add("W");
@@ -58,9 +50,19 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
         
+
+        
+        
         //create tiger onScreen
         BlackTiger tiger1 = new BlackTiger();
         tiger1.setPosition(300, 300);
+        
+        Enemy.BadHuman.generatelistBot(5);
+        BadHuman bad1 = Enemy.BadHuman.generateRandom();
+        bad1.setPosition(300, 300);
+//        enemySprite.add(bad1);
+        enemySprite.addAll(Enemy.BadHuman.getbadList());
+
         
         lastNanoTime = System.nanoTime();
 
@@ -99,8 +101,13 @@ public class Main extends Application {
                         }
                     }
                 });
-        
         root.getChildren().add( canvas );
+//        Label a = new Label("asdadasdasdas");
+//        a.setAlignment(Pos.CENTER);
+//        root.getChildren().add(a);
+        
+        
+        
         new AnimationTimer()  {
 
 			@Override
@@ -113,10 +120,17 @@ public class Main extends Application {
                 
                 tiger1.setMove(false);
                 tiger1.setVelocity(0,0);
+                bad1.setVelocity(0, 0);
                 Main.keyActionToSpeed(tiger1, currentNanoTime);
-                
+            	Main.keySpeed(bad1, currentNanoTime);
+
+            	bad1.update(elapsedTime);
+            	for(int i =0;i<BadHuman.getbadList().size();i++) {
+					((BadHuman.getbadList()).get(i)).update(elapsedTime);
+				}
 //                if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
+                	System.out.println(tiger1.getFace());
                 	tiger1.nextPosition(tiger1.getFace());
 //                }
                 
@@ -135,17 +149,26 @@ public class Main extends Application {
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
 //                i++;
+				for(int i =0;i<BadHuman.getbadList().size();i++) {
+					((BadHuman.getbadList()).get(i)).render(gc);
+				}
+				for(int i =0;i<Main.enemySprite.size();i++) {
+					if(tiger1.intersect(Main.enemySprite.get(i))) {
+						System.out.println("got enemy");
+					} 
+				}
+				bad1.render(gc);
 				tiger1.render( gc );
 			}	
         }.start();
 		primaryStage.show();
-//        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
 
 	}
 	public static void keyActionToSpeed(TigerSprite tiger, long current) {
-		System.out.print("The position of the "+ tiger.getClass().getName());
-		System.out.print("x:"+Double.toString(tiger.getPositionX()));
-		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+//		System.out.print("The position of the "+ tiger.getClass().getName());
+//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
+//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
 		if (input.contains("LEFT") && tiger.getPositionX() >-55) {
             tiger.addVelocity(-200,0);
             tiger.setFace("LEFT");
@@ -163,30 +186,35 @@ public class Main extends Application {
         }
         if(input.contains("H")) {
         	tiger.setAttackable(true);
+        	tiger.setFace(tiger.getFace());
+        	System.out.print(tiger.getFace());
             Main.playSound("32_udyr_tigerattack_roar_1.wav");
         }
 	}
-	public static void keyActionToSpeed2(TigerSprite tiger) {
-//		System.out.print("The position of the "+ tiger.getClass().getName());
-//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
-//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
+	public static void keySpeed(BadHuman bad, long current) {
+//		System.out.print("The position of the "+ bad.getClass().getName());
+//		System.out.print("x:"+Double.toString(bad.getPositionX()));
+//		System.out.println("y:"+Double.toString(bad.getPositionY()));
+		if (input.contains("LEFT") && bad.getPositionX() >100) {
+            bad.addVelocity(-200,0);
+            bad.setFace("LEFT");
+        }
+        if (input.contains("RIGHT") && bad.getPositionX() < 1270) {
+            bad.addVelocity(200,0);
+            bad.setFace("RIGHT");
+        }
+        if (input.contains("UP") && bad.getPositionY() > 312) {
+            bad.addVelocity(0,-200);
 
-		if (input2.contains("A") && tiger.getPositionX() >=50) {
-            tiger.addVelocity(-100,0);
-            
         }
-        if (input2.contains("D") && tiger.getPositionX() < 850) {
-            tiger.addVelocity(100,0);
-
+        if (input.contains("DOWN") && bad.getPositionY() < 720) {
+            bad.addVelocity(0,200);
         }
-        if (input2.contains("W") && tiger.getPositionY() > 250) {
-            tiger.addVelocity(0,-100);
-
-        }
-        if (input2.contains("S") && tiger.getPositionY() < 500) {
-            tiger.addVelocity(0,100);
-        }
+//        if(input.contains("H")) {
+//        	bad.setAttackable(true);
+//        }
 	}
+	
 	
 	public static void  playSound(String file) {
 //		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
