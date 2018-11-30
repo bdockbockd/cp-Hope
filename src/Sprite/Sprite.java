@@ -96,19 +96,7 @@ public abstract class Sprite extends Rectangle {
     	this.velocityY = velocityY;
     }
     
-    public Rectangle2D getBoundary()
-    {
-        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
-    }
-
-    public String printBoundary() {
-    	return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
-    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]";
-    }
-    public boolean intersect(Sprite s)
-    {
-        return this.getBoundary().intersects(s.getBoundary());
-    }
+   
 	
 	public void setImage(Image i) {
 		this.image = i;

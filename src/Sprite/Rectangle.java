@@ -1,5 +1,7 @@
 package Sprite;
 
+import javafx.geometry.Rectangle2D;
+
 public class Rectangle {
 	
 	protected double positionX;
@@ -18,12 +20,20 @@ public class Rectangle {
 		this.height = height;
 	}
 	
-	public boolean collideWith(Rectangle r) {
-		double x = this.getPositionX();
-		double y = this.getPositionY();
-		if (x < r.getPositionX() + r.width && x + width > r.getPositionX() && y < r.getPositionY() + r.height && height + y > r.getPositionY()) return true;
-			return false;
-	}
+	
+	 public Rectangle2D getBoundary()
+	    {
+	        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
+	    }
+
+	    public String printBoundary() {
+	    	return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
+	    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]";
+	    }
+	    public boolean intersect(Sprite s)
+	    {
+	        return this.getBoundary().intersects(s.getBoundary());
+	    }
 	
 //	public boolean collideWith(double x, double y, double width, double height) {
 //		if (this.x < x + width && this.x + this.width > x && this.y < y + height && this.height + this.y > y) return true;

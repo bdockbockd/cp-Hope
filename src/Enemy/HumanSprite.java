@@ -62,6 +62,18 @@ public class HumanSprite extends Sprite {
     {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        if(this.positionX < 100) {
+        	this.setPositionX(100);
+        }
+        if(this.positionX > 1270){
+        	this.setPositionX(1270);
+        }
+        if(this.positionY < 312) {
+        	this.setPositionY(312);
+        }
+        if(this.positionY > 720) {
+        	this.setPositionY(720);
+        }
     }
     
 

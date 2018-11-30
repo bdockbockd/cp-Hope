@@ -12,6 +12,8 @@ public abstract class TigerSprite extends Sprite{
 	private boolean isMove;
 	protected boolean attackable;
 	protected int timesBasicAttack;
+	protected boolean canMovePosition = true;
+
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -83,6 +85,15 @@ public abstract class TigerSprite extends Sprite{
 	public void setTimesBasicAttack(int timesBasicAttack) {
 		this.timesBasicAttack = timesBasicAttack;
 	}
+	
+
+	public boolean isCanMovePosition() {
+		return canMovePosition;
+	}
+
+	public void setCanMovePosition(boolean canMovePosition) {
+		this.canMovePosition = canMovePosition;
+	}
 
 	public void setAttackable(boolean attackable) {
 		this.attackable = attackable;
@@ -106,19 +117,31 @@ public abstract class TigerSprite extends Sprite{
 		}
 		if(face == "LEFT") {
 			if(this.isAttackable()) {
-				this.setSkillPositionL(timesBasicAttack);
+				this.setSkillPositionL((timesBasicAttack+1)%3);
 			} else {
 				this.setPositionL((this.getPositionL()+1)%3);
 			}
 		} else {
 			if(this.isAttackable()) {
-				this.setSkillPositionR(timesBasicAttack);
+				this.setSkillPositionR((timesBasicAttack+1)%3);
 			} else {
 				this.setPositionR((this.getPositionR()+1)%3);
 			}
 		}
-
 	}
+	
+	
+	public void switchToWalk() {
+		this.setAttackable(false);
+		this.setImageL(Images.blackTigerMotionL);
+		this.setImageR(Images.blackTigerMotionR);
+		if(this.getFace() == "LEFT") {
+			this.setImage((this.getImageL())[(this.getPositionL()+1)%3]);
+		} else {
+			this.setImage((this.getImageR())[(this.getPositionR()+1)%3]);
+		}
+	}
+	
 	
 	
 

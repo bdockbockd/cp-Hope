@@ -7,6 +7,7 @@ import Sprite.*;
 import application.Images;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ public class Main extends Application {
     public static final ArrayList<String> type2Key = new ArrayList<String>();
     public static ArrayList<String> input2 = new ArrayList<String>();
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
+    public static boolean canUpdateBot = true;
+    
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
     static {
@@ -53,7 +56,7 @@ public class Main extends Application {
 
         
         
-        //create tiger onScreen
+        //create tiger onScreenss
         BlackTiger tiger1 = new BlackTiger();
         tiger1.setPosition(300, 300);
         
@@ -91,8 +94,9 @@ public class Main extends Application {
                         String code = e.getCode().toString();
                         if(input.contains(code)) {
                         	if(code.equals("H")) {
-                        		tiger1.setAttackable(false);
-                        		tiger1.render(gc);
+                        		tiger1.setCanMovePosition(true);
+
+                        		
                         	}
                         	input.remove(code);
                         }
@@ -121,16 +125,16 @@ public class Main extends Application {
                 tiger1.setMove(false);
                 tiger1.setVelocity(0,0);
                 bad1.setVelocity(0, 0);
-                Main.keyActionToSpeed(tiger1, currentNanoTime);
+                Main.keyActionToSpeed(tiger1, currentNanoTime, gc);
             	Main.keySpeed(bad1, currentNanoTime);
 
             	bad1.update(elapsedTime);
-            	for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-				}
+//            	for(int i =0;i<BadHuman.getbadList().size();i++) {
+//					((BadHuman.getbadList()).get(i)).update(elapsedTime);
+//				}
 //                if(tiger1.getMove() == true) {        
                 	tiger1.update(elapsedTime);
-                	System.out.println(tiger1.getFace());
+//                	System.out.println(tiger1.getFace());
                 	tiger1.nextPosition(tiger1.getFace());
 //                }
                 
@@ -149,12 +153,34 @@ public class Main extends Application {
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
 //                i++;
+				if(Main.canUpdateBot == true) {
+					Thread delay = new Thread(()->{
+						try {
+							for(int i =0;i<BadHuman.getbadList().size();i++) {
+								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+							}
+							Main.canUpdateBot = false;
+							Thread.sleep(1000);
+							Main.canUpdateBot = true;
+							
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					});
+					delay.start();
+				}
+				for(int i =0;i<BadHuman.getbadList().size();i++) {
+					((BadHuman.getbadList()).get(i)).update(elapsedTime);
+				}
+			
+				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
 				}
 				for(int i =0;i<Main.enemySprite.size();i++) {
 					if(tiger1.intersect(Main.enemySprite.get(i))) {
-						System.out.println("got enemy");
+//						System.out.println("got enemy");
 					} 
 				}
 				bad1.render(gc);
@@ -162,10 +188,10 @@ public class Main extends Application {
 			}	
         }.start();
 		primaryStage.show();
-        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(true);
 
 	}
-	public static void keyActionToSpeed(TigerSprite tiger, long current) {
+	public static void keyActionToSpeed(BlackTiger tiger, long current, GraphicsContext gc) {
 //		System.out.print("The position of the "+ tiger.getClass().getName());
 //		System.out.print("x:"+Double.toString(tiger.getPositionX()));
 //		System.out.println("y:"+Double.toString(tiger.getPositionY()));
@@ -184,13 +210,27 @@ public class Main extends Application {
         if (input.contains("DOWN") && tiger.getPositionY() < 640) {
             tiger.addVelocity(0,200);
         }
-        if(input.contains("H")) {
-        	tiger.setAttackable(true);
-        	tiger.setFace(tiger.getFace());
-        	System.out.print(tiger.getFace());
-            Main.playSound("32_udyr_tigerattack_roar_1.wav");
+        if(input.contains("H") && tiger.isCanMovePosition() == true) {
+			Main.playSound("32_udyr_tigerattack_roar_1.wav");
+
+        	Thread t = new Thread(()->{
+    			try {
+    	        	tiger.setAttackable(true);
+    	        	tiger.setFace(tiger.getFace());
+//    	        	System.out.print(tiger.getFace());
+    	            tiger.setCanMovePosition(false);
+    	            Thread.sleep(500);
+    	            tiger.switchToWalk();
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		});
+    		t.start();
         }
 	}
+	
 	public static void keySpeed(BadHuman bad, long current) {
 //		System.out.print("The position of the "+ bad.getClass().getName());
 //		System.out.print("x:"+Double.toString(bad.getPositionX()));
@@ -199,14 +239,16 @@ public class Main extends Application {
             bad.addVelocity(-200,0);
             bad.setFace("LEFT");
         }
+		
         if (input.contains("RIGHT") && bad.getPositionX() < 1270) {
             bad.addVelocity(200,0);
             bad.setFace("RIGHT");
         }
+        
         if (input.contains("UP") && bad.getPositionY() > 312) {
             bad.addVelocity(0,-200);
-
         }
+        
         if (input.contains("DOWN") && bad.getPositionY() < 720) {
             bad.addVelocity(0,200);
         }

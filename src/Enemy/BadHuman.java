@@ -8,21 +8,32 @@ import application.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
-public class BadHuman extends HumanSprite implements Runnable  {
+public class BadHuman extends HumanSprite  {
 
 	private String name;
     private static ArrayList<BadHuman> badList = new ArrayList<BadHuman>();
+    private long sleepTime;
+    public static BlackTiger instanceTiger;
+    private boolean isDamaged;
     
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
 		// TODO Auto-generated constructor stub
-		Thread t = new Thread(()->{
-			run();
-		});
-		t.start();
+//		Thread a = new Thread(()-> {
+//			try {
+//				Thread.sleep(3000);
+//				this.update();
+//				
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		});
+		
 	}
 
-    public void nextPosition(String direction) {
+
+	public void nextPosition(String direction) {
     	if(this.getFace().equals("LEFT")) {
     		this.setImage((this.getImageL())[this.getPositionL()]);
     	} else {
@@ -74,23 +85,86 @@ public class BadHuman extends HumanSprite implements Runnable  {
     {
         return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
     }
+    public void update(double time, BlackTiger tiger)
+    {
+        this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
+        this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        
+        this.setSleepTime((long)Math.random()*500);
+        if(this.intersect(tiger) == false) {
+//        Thread t = new Thread(()->{
+//        		try {
+        			if(tiger.getPositionX()+220 < this.getPositionX()) {
+    					this.setFace("LEFT");
+        				if(tiger.getPositionY()+175 < this.getPositionY() ) {
+            				this.setVelocity(-Math.random()*200,-Math.random()*200);
+//	          				try {
+//								Thread.sleep((long) (Math.random()*1000));
+//							} catch (InterruptedException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//            				this.setVelocity(0, 0);
+        				} else {
+        					this.setVelocity(-Math.random()*200,Math.random()*200);
+//	          				try {
+//								Thread.sleep((long) (Math.random()*1000));
+//							} catch (InterruptedException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//            				this.setVelocity(0, 0);
+        				}
+      
+        			} else {
+        				this.setFace("RIGHT");
+        				if(tiger.getPositionY()+175 < this.getPositionY()) {
+            				this.setVelocity(Math.random()*200,-Math.random()*200);
+//	          				try {
+//								Thread.sleep((long) (Math.random()*1000));
+//							} catch (InterruptedException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//            				this.setVelocity(0, 0);
+        				} else {
+        					this.setVelocity(Math.random()*200,Math.random()*200);
+//	          				try {
+//								Thread.sleep((long) (Math.random()*1000));
+//							} catch (InterruptedException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//          				this.setVelocity(0, 0);
+        				}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		while(true) {
-		try {
-			this.setFace("LEFT");
-			this.setVelocity(-100,0);
-			Thread.sleep(1000);
-			this.setFace("RIGHT");
-			this.setVelocity(100, 0);
-			Thread.sleep(1000);
-		}
-		catch(Exception e) {
-		}
-		}
+        				
+        			}
+        }
+        
+       
+//        		}
+//        		catch(Exception e) {
+//        			
+//        		}
+//        });
+//    t.start();
+    }
+        
+
+
+	public long getSleepTime() {
+		return sleepTime;
 	}
 
+
+	public void setSleepTime(long sleepTime) {
+		this.sleepTime = sleepTime;
+	}
+    
+    
+    
 }
+
+
 

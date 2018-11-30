@@ -13,11 +13,10 @@ public class Images {
 	
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
-//	public static final Image[] humanBasicAttackL = new Image[1];
-//	public static final Image[] humanBasicAttackR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
 	
 	static {
+		
 		humanMotionR[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-01.png", 70, 98, false, false);
 		humanMotionL[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-02.png", 70, 98 , false, false);
 		
