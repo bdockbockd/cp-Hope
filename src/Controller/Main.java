@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
 	private long lastNanoTime;
@@ -129,30 +131,15 @@ public class Main extends Application {
             	Main.keySpeed(bad1, currentNanoTime);
 
             	bad1.update(elapsedTime);
-//            	for(int i =0;i<BadHuman.getbadList().size();i++) {
-//					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-//				}
-//                if(tiger1.getMove() == true) {        
-                	tiger1.update(elapsedTime);
-//                	System.out.println(tiger1.getFace());
-                	tiger1.nextPosition(tiger1.getFace());
-//                }
+
+                tiger1.update(elapsedTime);
+               	tiger1.nextPosition(tiger1.getFace());
+
                 
 //                gc.clearRect(0, 0, 1250,800);
-//                System.out.print(tiger1.printBoundary());
-                
-//                System.out.print(tiger1.printBoundary());
-//                System.out.println(tiger2.printBoundary());
-                	
-//                if(tiger1.intersects(tiger2)) {
-//                	System.out.println("collide");
-//                } else {
-//                	System.out.println("not collide");
-//                }
                 
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
-//                i++;
 				if(Main.canUpdateBot == true) {
 					Thread delay = new Thread(()->{
 						try {
@@ -211,15 +198,16 @@ public class Main extends Application {
             tiger.addVelocity(0,200);
         }
         if(input.contains("H") && tiger.isCanMovePosition() == true) {
-			Main.playSound("32_udyr_tigerattack_roar_1.wav");
+			Main.playSound("bp1_attack-01.wav");
 
         	Thread t = new Thread(()->{
     			try {
     	        	tiger.setAttackable(true);
     	        	tiger.setFace(tiger.getFace());
+    	        	tiger.nextPosition(tiger.getFace());
 //    	        	System.out.print(tiger.getFace());
     	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(500);
+    	            Thread.sleep(300);
     	            tiger.switchToWalk();
 
 				} catch (InterruptedException e) {
@@ -259,13 +247,23 @@ public class Main extends Application {
 	
 	
 	public static void  playSound(String file) {
-		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
+		Media b = new Media(ClassLoader.getSystemResource("resources/design/bp1/attack/"+file).toString());
 		MediaPlayer ne = new MediaPlayer(b);
 		ne.setVolume(0.5); 
-		ne.play();
-		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
-		sound.setVolume(0.5);
-		sound.play();
+		Thread a = new Thread(()-> {
+			ne.play();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		a.start();
+	
+//		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
+//		sound.setVolume(0.5);
+//		sound.play();
 	}
 	public static void main(String[] args) {
 		launch(args);

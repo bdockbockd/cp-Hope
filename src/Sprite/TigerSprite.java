@@ -142,6 +142,28 @@ public abstract class TigerSprite extends Sprite{
 		}
 	}
 	
+	public void setFace(String face, int duration) {
+
+		if (!(face.equals(this.getFace()))) {
+			this.face = face;
+			this.setPositionR(0);
+			this.setPositionL(0);
+			return;
+		}
+		if(face == "LEFT") {
+			if(this.isAttackable()) {
+				this.setSkillPositionL((timesBasicAttack+1)%3);
+			} else {
+				this.setPositionL((this.getPositionL()+1)%3);
+			}
+		} else {
+			if(this.isAttackable()) {
+				this.setSkillPositionR((timesBasicAttack+1)%3);
+			} else {
+				this.setPositionR((this.getPositionR()+1)%3);
+			}
+		}
+	}
 	
 	
 
