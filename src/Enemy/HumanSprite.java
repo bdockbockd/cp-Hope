@@ -24,18 +24,6 @@ public class HumanSprite extends Sprite {
 //    Sprite briefcase = new Sprite();
 //    briefcase.setImage("briefcase.png");
 //    briefcase.setPosition(200, 0);
-//     
-//    ArrayList<Sprite> moneybagList = new ArrayList<Sprite>();
-     
-//    for (int i = 0; i < 15; i++)
-//    {
-//        Sprite moneybag = new Sprite();
-//        moneybag.setImage("moneybag.png");
-//        double px = 350 * Math.random() + 50;
-//        double py = 350 * Math.random() + 50;          
-//        moneybag.setPosition(px,py);
-//        moneybagList.add( moneybag );
-//    }
 
     public void setImage(String filename)
     {
@@ -74,6 +62,18 @@ public class HumanSprite extends Sprite {
     {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        if(this.positionX < 100) {
+        	this.setPositionX(100);
+        }
+        if(this.positionX > 1270){
+        	this.setPositionX(1270);
+        }
+        if(this.positionY < 312) {
+        	this.setPositionY(312);
+        }
+        if(this.positionY > 720) {
+        	this.setPositionY(720);
+        }
     }
     
 
