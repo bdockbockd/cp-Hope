@@ -259,10 +259,10 @@ public class Main extends Application {
 	
 	
 	public static void  playSound(String file) {
-//		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
-//		MediaPlayer ne = new MediaPlayer(b);
-//		ne.setVolume(0.5); 
-//		ne.play();
+		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
+		MediaPlayer ne = new MediaPlayer(b);
+		ne.setVolume(0.5); 
+		ne.play();
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
 		sound.setVolume(0.5);
 		sound.play();
