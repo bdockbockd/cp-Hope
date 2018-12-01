@@ -26,9 +26,9 @@ public class Rectangle {
 	        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
 	    }
 
-	    public String printBoundary() {
-	    	return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
-	    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]";
+	    public void printBoundary() {
+	    	System.out.println( " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
+	    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]");
 	    }
 	    public boolean intersect(Sprite s)
 	    {

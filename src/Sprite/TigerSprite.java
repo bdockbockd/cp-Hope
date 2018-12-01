@@ -36,8 +36,8 @@ public abstract class TigerSprite extends Sprite{
     // add more type of setPosition 
     public void setPosition(double x, double y)
     {
-        this.setPositionX(x);
-        this.setPositionY(y);
+        this.setPositionX(x-170);
+        this.setPositionY(y-150);
     }
     
     public void setVelocity(double x, double y)
