@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,6 +31,7 @@ public class Main extends Application {
     public static ArrayList<String> input2 = new ArrayList<String>();
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
     public static boolean canUpdateBot = true;
+    
     
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
@@ -64,7 +66,7 @@ public class Main extends Application {
 //        enemySprite.add(bad1);
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        
+        Main.playBackGround("bgm-01 naruto.mp3");
         lastNanoTime = System.nanoTime();
 
         // Input
@@ -139,15 +141,18 @@ public class Main extends Application {
 				if(Main.canUpdateBot == true) {
 					Thread delay = new Thread(()->{
 						try {
-//							for(int i =0;i<BadHuman.getbadList().size();i++) {
-//								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
-//							}
-							((BlackTiger)tiger1).printBoundary();
+							for(int i =0;i<BadHuman.getbadList().size();i++) {
+								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+							}
+							
+							
+//							((BlackTiger)tiger1).printBoundary();
 //							//147-224 77, 720-800 80
 //							//position + 80, 80
 //							//width 351-105 = 146 height 200-206+149= 73
 //							//-60  ,1250-1205
-							bad1.printBoundary();
+							tiger1.printBoundary();
+							
 							Main.canUpdateBot = false;
 							Thread.sleep(1000);
 							Main.canUpdateBot = true;
@@ -160,9 +165,10 @@ public class Main extends Application {
 					delay.start();
 				}
 //				System.out.println(bad1.intersect(tiger1));
-//				for(int i =0;i<BadHuman.getbadList().size();i++) {
-//					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-//				}
+//				tiger1.printBoundary();
+				for(int i =0;i<BadHuman.getbadList().size();i++) {
+					((BadHuman.getbadList()).get(i)).update(elapsedTime);
+				}
 			
 				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
@@ -231,26 +237,35 @@ public class Main extends Application {
 //		System.out.print("The position of the "+ bad.getClass().getName());
 //		System.out.print("x:"+Double.toString(bad.getPositionX()));
 //		System.out.println("y:"+Double.toString(bad.getPositionY()));
-		if (input.contains("LEFT") && bad.getPositionX() >100) {
+		if (input.contains("A") && bad.getPositionX() >100) {
             bad.addVelocity(-200,0);
             bad.setFace("LEFT");
         }
 		
-        if (input.contains("RIGHT") && bad.getPositionX() < 1270) {
+        if (input.contains("D") && bad.getPositionX() < 1270) {
             bad.addVelocity(200,0);
             bad.setFace("RIGHT");
         }
         
-        if (input.contains("UP") && bad.getPositionY() > 312) {
+        if (input.contains("W") && bad.getPositionY() > 312) {
             bad.addVelocity(0,-200);
         }
         
-        if (input.contains("DOWN") && bad.getPositionY() < 720) {
+        if (input.contains("S") && bad.getPositionY() < 720) {
             bad.addVelocity(0,200);
         }
 //        if(input.contains("H")) {
 //        	bad.setAttackable(true);
 //        }
+	}
+	
+	public static void  playBackGround(String file) {
+		Media b = new Media(ClassLoader.getSystemResource("resources/sound/"+file).toString());
+		MediaPlayer ne = new MediaPlayer(b);
+		ne.setVolume(1); 
+		ne.setCycleCount(MediaPlayer.INDEFINITE);
+		ne.play();
+	
 	}
 	
 	
@@ -269,9 +284,6 @@ public class Main extends Application {
 		});
 		a.start();
 	
-//		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
-//		sound.setVolume(0.5);
-//		sound.play();
 	}
 	public static void main(String[] args) {
 		launch(args);

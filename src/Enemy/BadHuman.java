@@ -85,6 +85,31 @@ public class BadHuman extends HumanSprite  {
     {
         return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
     }
+    
+    @Override
+    public void printBoundary() {
+    	System.out.println( " Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
+    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]");
+    }
+    
+//    public double getRealWidth() {
+//    	
+//    }
+//    
+//    public double getRealHeight() {
+//    	
+//    }
+    
+    public double getRealX() {
+    	return this.getPositionX()-100;
+    	//73
+    }
+  
+    public double getRealY() {
+    	return this.getPositionY()-312;
+    	//150
+    }
+    
     public void update(double time, BlackTiger tiger)
     {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);

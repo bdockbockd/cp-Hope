@@ -41,7 +41,6 @@ public class BlackTiger extends TigerSprite {
     @Override
     public Rectangle2D getBoundary()
     {
-//    	System.out.println("chilld");
         return new Rectangle2D(this.getPositionX(),this.getPositionY(),146,73);
         
     }
@@ -52,11 +51,13 @@ public class BlackTiger extends TigerSprite {
     	        + " Width: [" + 160 + "," + 70 + "]");
     }
     public double getRealX() {
-    	return this.getPositionX()+170;
+    	return (this.getPositionX()<0) ? 0 : this.getPositionX()+71;
+    	//73
     }
   
     public double getRealY() {
-    	return this.getPositionY()+150;
+    	return (this.getPositionY()<0) ? 0 : this.getPositionY()-151.1;
+    	//150
     }
     
     
