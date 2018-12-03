@@ -31,9 +31,9 @@ public class Main extends Application {
     public static ArrayList<String> input2 = new ArrayList<String>();
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
     public static boolean canUpdateBot = true;
+    public static boolean ccheck = true;
     
-    
-//    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
+    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
     static {
     	type2Key.add("W");
@@ -68,6 +68,7 @@ public class Main extends Application {
 
         Main.playBackGround("bgm-01 naruto.mp3");
         lastNanoTime = System.nanoTime();
+        //
 
         // Input
         theScene.setOnKeyPressed(
@@ -93,7 +94,7 @@ public class Main extends Application {
                     {
                         String code = e.getCode().toString();
                         if(input.contains(code)) {
-                        	if(code.equals("H")) {
+                        	if(code.equals("SPACE")) {
                         		tiger1.setCanMovePosition(true);
 
                         		
@@ -129,9 +130,24 @@ public class Main extends Application {
             	Main.keySpeed(bad1, currentNanoTime);
 
             	bad1.update(elapsedTime);
-
                 tiger1.update(elapsedTime);
-               	tiger1.nextPosition(tiger1.getFace());
+                
+                
+                
+                if(Main.ccheck) {
+                Thread x = new Thread (()-> {
+                	try {
+                		Main.ccheck = false;
+                		tiger1.nextPosition(tiger1.getFace());
+                		Thread.sleep(50);
+                		Main.ccheck = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                });
+                x.start();
+                }
+               	//tiger1.nextPosition(tiger1.getFace());
 
                 
 //                gc.clearRect(0, 0, 1250,800);
@@ -145,16 +161,25 @@ public class Main extends Application {
 								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 							}
 							
-							
-//							((BlackTiger)tiger1).printBoundary();
-//							//147-224 77, 720-800 80
-//							//position + 80, 80
-//							//width 351-105 = 146 height 200-206+149= 73
-//							//-60  ,1250-1205
-							tiger1.printBoundary();
-							
+//							bad1.printBoundary();
+//							tiger1.printBoundary();
+							if(tiger1.isAttackable()) {
+								if(tiger1.getFace() == "LEFT") {
+									for(int i=0;i<BadHuman.getbadList().size();i++) {
+										if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryLeft())) {
+											Main.playBackGround("attack.wav");
+										}
+									}
+								} else {
+									for(int i=0;i<BadHuman.getbadList().size();i++) {
+										if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryRight())) {
+											Main.playBackGround("attack.wav");
+										}
+									}
+								}
+							}
 							Main.canUpdateBot = false;
-							Thread.sleep(1000);
+							Thread.sleep(300);
 							Main.canUpdateBot = true;
 							
 						} catch (InterruptedException e) {
@@ -164,12 +189,13 @@ public class Main extends Application {
 					});
 					delay.start();
 				}
-//				System.out.println(bad1.intersect(tiger1));
-//				tiger1.printBoundary();
+				
+				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
+					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
 				}
-			
+				
 				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
@@ -179,9 +205,7 @@ public class Main extends Application {
 //						System.out.println("got enemy"+ i);
 //					} 
 //				}
-//				if(bad1.intersect(tiger1)) {
-//					System.out.print("true");
-//				}
+
 				bad1.render(gc);
 				tiger1.render( gc );
 			}	
@@ -211,7 +235,7 @@ public class Main extends Application {
         if (input.contains("DOWN") && tiger.getPositionY() < 560) {
             tiger.addVelocity(0,200);
         }
-        if(input.contains("H") && tiger.isCanMovePosition() == true) {
+        if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
 			Main.playSound("bp1_attack-01.wav");
 
         	Thread t = new Thread(()->{
@@ -262,8 +286,21 @@ public class Main extends Application {
 	public static void  playBackGround(String file) {
 		Media b = new Media(ClassLoader.getSystemResource("resources/sound/"+file).toString());
 		MediaPlayer ne = new MediaPlayer(b);
-		ne.setVolume(1); 
-		ne.setCycleCount(MediaPlayer.INDEFINITE);
+		ne.setVolume(0.5); 
+		if(file.equals("bgm-01 naruto.mp3")) {
+			ne.setCycleCount(MediaPlayer.INDEFINITE);
+		} else {
+		Thread a = new Thread(()->{
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ne.stop();
+		});
+		a.start();
+		}
 		ne.play();
 	
 	}
