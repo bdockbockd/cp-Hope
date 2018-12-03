@@ -39,7 +39,6 @@ public class Main extends Application {
     	type2Key.add("S");
     	type2Key.add("D");
     }
-    int i;
 
 
 
@@ -54,10 +53,7 @@ public class Main extends Application {
         Canvas canvas = new Canvas(1250,800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
-        
-
-        
-        
+         
         //create tiger onScreenss
         BlackTiger tiger1 = new BlackTiger();
         tiger1.setPosition(300, 300);
@@ -131,36 +127,27 @@ public class Main extends Application {
             	Main.keySpeed(bad1, currentNanoTime);
 
             	bad1.update(elapsedTime);
-//            	for(int i =0;i<BadHuman.getbadList().size();i++) {
-//					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-//				}
-//                if(tiger1.getMove() == true) {        
-                	tiger1.update(elapsedTime);
-//                	System.out.println(tiger1.getFace());
-                	tiger1.nextPosition(tiger1.getFace());
-//                }
+
+                tiger1.update(elapsedTime);
+               	tiger1.nextPosition(tiger1.getFace());
+
                 
 //                gc.clearRect(0, 0, 1250,800);
-//                System.out.print(tiger1.printBoundary());
-                
-//                System.out.print(tiger1.printBoundary());
-//                System.out.println(tiger2.printBoundary());
-                	
-//                if(tiger1.intersects(tiger2)) {
-//                	System.out.println("collide");
-//                } else {
-//                	System.out.println("not collide");
-//                }
                 
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
-//                i++;
 				if(Main.canUpdateBot == true) {
 					Thread delay = new Thread(()->{
 						try {
-							for(int i =0;i<BadHuman.getbadList().size();i++) {
-								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
-							}
+//							for(int i =0;i<BadHuman.getbadList().size();i++) {
+//								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+//							}
+							((BlackTiger)tiger1).printBoundary();
+//							//147-224 77, 720-800 80
+//							//position + 80, 80
+//							//width 351-105 = 146 height 200-206+149= 73
+//							//-60  ,1250-1205
+							bad1.printBoundary();
 							Main.canUpdateBot = false;
 							Thread.sleep(1000);
 							Main.canUpdateBot = true;
@@ -172,19 +159,23 @@ public class Main extends Application {
 					});
 					delay.start();
 				}
-				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-				}
+//				System.out.println(bad1.intersect(tiger1));
+//				for(int i =0;i<BadHuman.getbadList().size();i++) {
+//					((BadHuman.getbadList()).get(i)).update(elapsedTime);
+//				}
 			
 				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
 				}
-				for(int i =0;i<Main.enemySprite.size();i++) {
-					if(tiger1.intersect(Main.enemySprite.get(i))) {
-//						System.out.println("got enemy");
-					} 
-				}
+//				for(int i =0;i<Main.enemySprite.size();i++) {
+//					if(tiger1.intersect(Main.enemySprite.get(i))) {
+//						System.out.println("got enemy"+ i);
+//					} 
+//				}
+//				if(bad1.intersect(tiger1)) {
+//					System.out.print("true");
+//				}
 				bad1.render(gc);
 				tiger1.render( gc );
 			}	
@@ -197,7 +188,8 @@ public class Main extends Application {
 //		System.out.print("The position of the "+ tiger.getClass().getName());
 //		System.out.print("x:"+Double.toString(tiger.getPositionX()));
 //		System.out.println("y:"+Double.toString(tiger.getPositionY()));
-		if (input.contains("LEFT") && tiger.getPositionX() >-55) {
+		if (input.contains("LEFT") && tiger.getPositionX() >-70) {
+			// x 70
             tiger.addVelocity(-200,0);
             tiger.setFace("LEFT");
         }
@@ -206,22 +198,24 @@ public class Main extends Application {
             tiger.setFace("RIGHT");
         }
         if (input.contains("UP") && tiger.getPositionY() > 150) {
+        	// y 50
             tiger.addVelocity(0,-200);
 
         }
-        if (input.contains("DOWN") && tiger.getPositionY() < 640) {
+        if (input.contains("DOWN") && tiger.getPositionY() < 560) {
             tiger.addVelocity(0,200);
         }
         if(input.contains("H") && tiger.isCanMovePosition() == true) {
-			Main.playSound("32_udyr_tigerattack_roar_1.wav");
+			Main.playSound("bp1_attack-01.wav");
 
         	Thread t = new Thread(()->{
     			try {
     	        	tiger.setAttackable(true);
     	        	tiger.setFace(tiger.getFace());
+    	        	tiger.nextPosition(tiger.getFace());
 //    	        	System.out.print(tiger.getFace());
     	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(500);
+    	            Thread.sleep(300);
     	            tiger.switchToWalk();
 
 				} catch (InterruptedException e) {
@@ -261,13 +255,23 @@ public class Main extends Application {
 	
 	
 	public static void  playSound(String file) {
-		Media b = new Media("resources/BlackPantherDesign/greenBlackPanther/attack"+file);
+		Media b = new Media(ClassLoader.getSystemResource("resources/design/bp1/attack/"+file).toString());
 		MediaPlayer ne = new MediaPlayer(b);
 		ne.setVolume(0.5); 
-		ne.play();
-		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
-		sound.setVolume(0.5);
-		sound.play();
+		Thread a = new Thread(()-> {
+			ne.play();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		a.start();
+	
+//		AudioClip sound = new AudioClip(ClassLoader.getSystemResource(file).toString());
+//		sound.setVolume(0.5);
+//		sound.play();
 	}
 	public static void main(String[] args) {
 		launch(args);

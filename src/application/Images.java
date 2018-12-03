@@ -16,21 +16,21 @@ public class Images {
 	public static final Image[] stageMap = new Image[3];
 	
 	static {
-		
-		humanMotionR[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-01.png", 70, 98, false, false);
-		humanMotionL[0] = new Image("resources/BlackPantherDesign/Enemy/Enemy-02.png", 70, 98 , false, false);
+
+		humanMotionR[0] = new Image(ClassLoader.getSystemResource("resources/design/enemy1/enemy1-01.png").toString(), 70, 98, false, false);
+		humanMotionL[0] = new Image(ClassLoader.getSystemResource("resources/design/enemy1/enemy1-02.png").toString(), 70, 98 , false, false);
 		
 		for (int i=0;i<blackTigerBasicAttackL.length;i++) {
-			blackTigerBasicAttackL[i] = new Image("resources/BlackPantherDesign/greenBlackPanther/attack/attackingGreenBlackPanther-0"+(i+1)+".png", 351, 200, false, false);
-			blackTigerBasicAttackR[i] = new Image("resources/BlackPantherDesign/greenBlackPanther/attack/attackingGreenBlackPanther-0"+(i+4)+".png", 351, 200, false, false);
+			blackTigerBasicAttackL[i] = new Image(ClassLoader.getSystemResource("resources/design/bp1/attack/bp1_attack-0"+(i+1)+".png").toString(), 351, 200, false, false);
+			blackTigerBasicAttackR[i] = new Image(ClassLoader.getSystemResource("resources/design/bp1/attack/bp1_attack-0"+(i+4)+".png").toString(), 351, 200, false, false);
 		}
 		for (int i=0;i<blackTigerMotionL.length;i++) {
-			blackTigerMotionL[i] = new Image("BlackPantherDesign/greenBlackPanther/walkingGreenBlackPanther/walkingGreenBlackPanther-0"+(i+1)+".png", 351, 200, false, false);
-			blackTigerMotionR[i] = new Image("BlackPantherDesign/greenBlackPanther/walkingGreenBlackPanther/walkingGreenBlackPanther-0"+(i+4)+".png", 351, 200, false, false);
+			blackTigerMotionL[i] = new Image(ClassLoader.getSystemResource("resources/design/bp1/walk/bp1_walk-0"+(i+1)+".png").toString(), 351, 200, false, false);
+			blackTigerMotionR[i] = new Image(ClassLoader.getSystemResource("resources/design/bp1/walk/bp1_walk-0"+(i+4)+".png").toString(), 351, 200, false, false);
 		}
 		
 		for(int i=0;i<stageMap.length;i++) {
-			stageMap[i] = new Image(("BlackPantherDesign/fullMap/fullMap-0"+(i+1)+".png").toString(),1250,800,false,false);
+			stageMap[i] = new Image(ClassLoader.getSystemResource("resources/design/map/map-0"+(i+1)+".png").toString(),1250,800,false,false);
 		}
 	}
 }
