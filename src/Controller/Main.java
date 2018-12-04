@@ -236,7 +236,7 @@ public class Main extends Application {
             tiger.addVelocity(0,200);
         }
         if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
-			Main.playSound("bp1_attack-01.wav");
+			Music.attackSound();
 
         	Thread t = new Thread(()->{
     			try {
@@ -307,7 +307,7 @@ public class Main extends Application {
 	
 	
 	public static void  playSound(String file) {
-		Media b = new Media(ClassLoader.getSystemResource("resources/design/bp1/attack/"+file).toString());
+		Media b = new Media(ClassLoader.getSystemResource("design/bp1/attack/"+file).toString());
 		MediaPlayer ne = new MediaPlayer(b);
 		ne.setVolume(0.5); 
 		Thread a = new Thread(()-> {

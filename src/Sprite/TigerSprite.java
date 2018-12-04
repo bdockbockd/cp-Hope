@@ -113,6 +113,7 @@ public abstract class TigerSprite extends Sprite{
 			this.face = face;
 			this.setPositionR(0);
 			this.setPositionL(0);
+			this.setAttackable(false);
 			return;
 		}
 		if(face == "LEFT") {
