@@ -10,8 +10,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class StatusBar extends StackPane {
-	private ProgressBar HPBar;
-	private ProgressIndicator attack;
+	private static ProgressBar HPBar;
+	private static ProgressIndicator attack;
 	private ProgressIndicator pounce;
 	private ProgressIndicator spin;
 	public StatusBar(String playerName)
@@ -49,16 +49,16 @@ public class StatusBar extends StackPane {
 		this.setLayoutY(800-150);
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
 	}
-	public void resetProgress()
+	public static void resetProgress()
 	{
 		attack.setProgress(attack.getProgress()+0.02);
 		attackIsReady();
 		/*if(attack.getProgress() == 1) {
 			attack.setStyle(" -fx-progress-color: green;");
 		}*/
-		HPBar.setProgress(HPBar.getProgress()-0.01);
+		HPBar.setProgress(HPBar.getProgress()-0.005);
 	}
-	public boolean attackIsReady() {
+	public static boolean attackIsReady() {
 		if(attack.getProgress() >= 1){
 			System.out.println("attack!");
 			attack.setProgress(0);

@@ -2,6 +2,8 @@ package Enemy;
 
 import java.util.ArrayList;
 
+import Controller.Main;
+import Controller.StatusBar;
 import Sprite.BlackTiger;
 import Sprite.Sprite;
 import application.Images;
@@ -15,6 +17,7 @@ public class BadHuman extends HumanSprite  {
     private long sleepTime;
     public static BlackTiger instanceTiger;
     private boolean isDamaged;
+    private boolean waitToHit = false;
     
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
@@ -179,6 +182,35 @@ public class BadHuman extends HumanSprite  {
 //    t.start();
     }
         
+    public static void checkAttackHuman(BlackTiger tiger) {
+    	for(int i=0; i< BadHuman.badList.size();i++) {
+    		BadHuman enemy = BadHuman.getbadList().get(i);
+    		if(enemy.intersect(tiger)) {
+    			if(!(enemy.waitToHit)) {
+//    				enemy.setTimeSec(time);
+    				enemy.attack(tiger);
+    				Thread a = new Thread (()->{
+    					try {
+    						enemy.waitToHit = true;
+    						Thread.sleep(2000);
+    						enemy.waitToHit = false;
+    					} catch (InterruptedException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
+    				});
+    				a.start();
+    			}
+    		}
+    		
+    	}
+    	
+    }
+
+	private void attack(BlackTiger tiger) {
+		// TODO Auto-generated method stub
+		StatusBar.resetProgress();
+	}
 
 
 	public long getSleepTime() {
@@ -188,6 +220,28 @@ public class BadHuman extends HumanSprite  {
 
 	public void setSleepTime(long sleepTime) {
 		this.sleepTime = sleepTime;
+	}
+
+	public static void removeEnemy() {
+		for(int i =0;i<BadHuman.getbadList().size();i++) {
+			BadHuman enemy = BadHuman.getbadList().get(i);
+			if(BadHuman.getbadList().get(i).isDead()) {
+				enemy.setImage(Images.enemyTomb);
+//				double x = enemy.positionX;
+//				double y = enemy.positionY;
+//				Thread time = new Thread(()-> {
+//					Main.gc.drawImage(Images.enemyTomb, x, y);
+//					try {
+//						Thread.sleep(3000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				});
+//				time.start();
+//				BadHuman.getbadList().remove(i);
+			}
+		}
 	}
     
     

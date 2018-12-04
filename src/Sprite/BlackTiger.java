@@ -1,6 +1,9 @@
 package Sprite;
 
+import Controller.Main;
+import Enemy.BadHuman;
 import application.Images;
+import application.Music;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -27,6 +30,46 @@ public class BlackTiger extends TigerSprite {
     		}
     	}
     }
+    
+    public void attackEnemy() {
+		Music.HITDETECTED = false;
+		if(this.getFace() == "LEFT") {
+			BadHuman enemy;
+			for(int i=0;i<BadHuman.getbadList().size();i++) {
+				enemy = BadHuman.getbadList().get(i);
+				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
+					
+					enemy.setHealth(enemy.getHealth()-this.getDamage());
+//					if(enemy.isDead() == true) {
+//
+//						Enemy.BadHuman.getbadList().remove(i);
+//					}
+					Music.HITDETECTED = true;	
+
+				}
+
+			}
+		} else {
+			BadHuman enemy;
+			for(int i=0;i<BadHuman.getbadList().size();i++) {
+				enemy = BadHuman.getbadList().get(i);
+				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {
+					
+					enemy.setHealth(enemy.getHealth()-this.getDamage());
+//					if(enemy.isDead() == true) {
+////						Enemy.BadHuman.getbadList().get(i)
+//						Main.gc.drawImage(Images.enemyTomb, enemy.getPositionX(), enemy.getPositionY());
+//						Enemy.BadHuman.getbadList().remove(i);
+//					}
+					Music.HITDETECTED = true;
+
+				}
+			}
+		}
+		if(Music.HITDETECTED == true) {
+			Music.playGetHit(0);						
+		}
+	}
     
     public void render(GraphicsContext gc)
     {
