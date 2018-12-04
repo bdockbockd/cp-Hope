@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Enemy.*;
 import Sprite.*;
 import application.Images;
+import application.Music;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,9 +32,9 @@ public class Main extends Application {
     public static ArrayList<String> input2 = new ArrayList<String>();
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
     public static boolean canUpdateBot = true;
+    public static boolean ccheck = true;
     
-    
-//    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
+    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
     static {
     	type2Key.add("W");
@@ -70,7 +71,7 @@ public class Main extends Application {
 //        enemySprite.add(bad1);
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        Main.playBackGround("bgm-01 naruto.mp3");
+        Music.playBackGround();
         lastNanoTime = System.nanoTime();
         
 
@@ -138,9 +139,24 @@ public class Main extends Application {
             	Main.keySpeed(bad1, currentNanoTime);
 
             	bad1.update(elapsedTime);
-
                 tiger1.update(elapsedTime);
-               	tiger1.nextPosition(tiger1.getFace());
+                
+                
+                
+                if(Main.ccheck) {
+                Thread x = new Thread (()-> {
+                	try {
+                		Main.ccheck = false;
+                		tiger1.nextPosition(tiger1.getFace());
+                		Thread.sleep(50);
+                		Main.ccheck = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                });
+                x.start();
+                }
+               	//tiger1.nextPosition(tiger1.getFace());
 
                 
 //                gc.clearRect(0, 0, 1250,800);
@@ -154,14 +170,8 @@ public class Main extends Application {
 								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 							}
 							
-							
-//							((BlackTiger)tiger1).printBoundary();
-//							//147-224 77, 720-800 80
-//							//position + 80, 80
-//							//width 351-105 = 146 height 200-206+149= 73
-//							//-60  ,1250-1205
-							tiger1.printBoundary();
-							
+//							bad1.printBoundary();
+//							tiger1.printBoundary();
 							Main.canUpdateBot = false;
 							Thread.sleep(1000);
 							Main.canUpdateBot = true;
@@ -173,12 +183,27 @@ public class Main extends Application {
 					});
 					delay.start();
 				}
-//				System.out.println(bad1.intersect(tiger1));
-//				tiger1.printBoundary();
+				
+				if(tiger1.isAttackable()) {
+					if(tiger1.getFace() == "LEFT") {
+						for(int i=0;i<BadHuman.getbadList().size();i++) {
+							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryLeft())) {
+								Music.playGetHit(i);
+							}
+						}
+					} else {
+						for(int i=0;i<BadHuman.getbadList().size();i++) {
+							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryRight())) {
+								Music.playGetHit(i);
+							}
+						}
+					}
+				}
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
+					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
 				}
-			
+				
 				
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
@@ -188,9 +213,7 @@ public class Main extends Application {
 //						System.out.println("got enemy"+ i);
 //					} 
 //				}
-//				if(bad1.intersect(tiger1)) {
-//					System.out.print("true");
-//				}
+
 				bad1.render(gc);
 				tiger1.render( gc );
 			}	
@@ -272,8 +295,21 @@ public class Main extends Application {
 	public static void  playBackGround(String file) {
 		Media b = new Media(ClassLoader.getSystemResource("resources/sound/"+file).toString());
 		MediaPlayer ne = new MediaPlayer(b);
-		ne.setVolume(1); 
-		ne.setCycleCount(MediaPlayer.INDEFINITE);
+		ne.setVolume(0.5); 
+		if(file.equals("bgm-01 naruto.mp3")) {
+			ne.setCycleCount(MediaPlayer.INDEFINITE);
+		} else {
+		Thread a = new Thread(()->{
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ne.stop();
+		});
+		a.start();
+		}
 		ne.play();
 	
 	}

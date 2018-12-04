@@ -37,17 +37,24 @@ public class BlackTiger extends TigerSprite {
     	return BlackTiger.name;
     }
     
+    
     @Override
     public Rectangle2D getBoundary()
     {
-        return new Rectangle2D(this.getPositionX(),this.getPositionY(),146,73);
-        
+        return new Rectangle2D(this.getRealX(),this.getRealY(),this.getRealWidth(),this.getRealHeight());    
     }
     
     @Override
     public void printBoundary() {
-    	System.out.println( " Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
-    	        + " Width: [" + 160 + "," + 70 + "]");
+    	System.out.println( "Name:"+this.getName()+" Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
+    	        + " Width: [" + this.getRealWidth() + "," + this.getRealHeight() + "]");
+    }
+    
+    public double getRealWidth() {
+    	return 171.238;
+    }
+    public double getRealHeight() {
+    	return 90.775;
     }
     public double getRealX() {
     	return (this.getPositionX()<0) ? 0 : this.getPositionX()+71;
@@ -59,7 +66,14 @@ public class BlackTiger extends TigerSprite {
     	//150
     }
     
+    public Rectangle2D createBoundaryLeft() {
+		return new Rectangle2D(this.getRealX()-53, this.getRealY()-51, 147, 188);
+    	
+    }
     
+    public Rectangle2D createBoundaryRight() {
+    	return new Rectangle2D(this.getRealX()+this.getRealWidth()+53-147,this.getRealY()-51, 147, 188);
+    }
     
     
 }

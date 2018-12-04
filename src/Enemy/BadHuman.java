@@ -10,7 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class BadHuman extends HumanSprite  {
 
-	private String name;
+	private String name = "enemy";
     private static ArrayList<BadHuman> badList = new ArrayList<BadHuman>();
     private long sleepTime;
     public static BlackTiger instanceTiger;
@@ -35,9 +35,9 @@ public class BadHuman extends HumanSprite  {
 
 	public void nextPosition(String direction) {
     	if(this.getFace().equals("LEFT")) {
-    		this.setImage((this.getImageL())[this.getPositionL()]);
+    		this.setImage((this.getImageL())[0]);
     	} else {
-    		this.setImage((this.getImageR())[this.getPositionR()]);
+    		this.setImage((this.getImageR())[0]);
     	}
     }
     
@@ -80,25 +80,25 @@ public class BadHuman extends HumanSprite  {
     public String getName() {
     	return this.name;
     }
-    
+    @Override
     public Rectangle2D getBoundary()
     {
-        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
+        return new Rectangle2D(this.getRealX(),this.getRealY(),this.getRealWidth(),this.getRealHeight());
     }
     
     @Override
     public void printBoundary() {
-    	System.out.println( " Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
-    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]");
+    	System.out.println( "name: "+this.getName()+" Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
+    	        + " Width: [" + this.getRealWidth() + "," + this.getRealHeight() + "]");
     }
     
-//    public double getRealWidth() {
-//    	
-//    }
-//    
-//    public double getRealHeight() {
-//    	
-//    }
+    public double getRealWidth() {
+    	return 64;
+    }
+    
+    public double getRealHeight() {
+    	return 89;
+    }
     
     public double getRealX() {
     	return this.getPositionX()-100;
@@ -121,6 +121,8 @@ public class BadHuman extends HumanSprite  {
 //        		try {
         			if(tiger.getPositionX()+220 < this.getPositionX()) {
     					this.setFace("LEFT");
+        				this.nextPosition(this.getFace());
+
         				if(tiger.getPositionY()+175 < this.getPositionY() ) {
             				this.setVelocity(-Math.random()*200,-Math.random()*200);
 //	          				try {
@@ -143,6 +145,7 @@ public class BadHuman extends HumanSprite  {
       
         			} else {
         				this.setFace("RIGHT");
+        				this.nextPosition(this.getFace());
         				if(tiger.getPositionY()+175 < this.getPositionY()) {
             				this.setVelocity(Math.random()*200,-Math.random()*200);
 //	          				try {
