@@ -23,7 +23,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+import Controller.*;
 public class Main extends Application {
 	private long lastNanoTime;
 //	private AudioClip sound;
@@ -156,10 +156,6 @@ public class Main extends Application {
                 });
                 x.start();
                 }
-               	//tiger1.nextPosition(tiger1.getFace());
-
-                
-//                gc.clearRect(0, 0, 1250,800);
                 
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
@@ -169,13 +165,11 @@ public class Main extends Application {
 							for(int i =0;i<BadHuman.getbadList().size();i++) {
 								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 							}
-							
 //							bad1.printBoundary();
 //							tiger1.printBoundary();
 							Main.canUpdateBot = false;
 							Thread.sleep(1000);
 							Main.canUpdateBot = true;
-							
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -184,21 +178,7 @@ public class Main extends Application {
 					delay.start();
 				}
 				
-				if(tiger1.isAttackable()) {
-					if(tiger1.getFace() == "LEFT") {
-						for(int i=0;i<BadHuman.getbadList().size();i++) {
-							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryLeft())) {
-								Music.playGetHit(i);
-							}
-						}
-					} else {
-						for(int i=0;i<BadHuman.getbadList().size();i++) {
-							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryRight())) {
-								Music.playGetHit(i);
-							}
-						}
-					}
-				}
+
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
@@ -213,7 +193,6 @@ public class Main extends Application {
 //						System.out.println("got enemy"+ i);
 //					} 
 //				}
-
 				bad1.render(gc);
 				tiger1.render( gc );
 			}	
@@ -244,12 +223,8 @@ public class Main extends Application {
             tiger.addVelocity(0,200);
         }
         if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
-<<<<<<< HEAD
 			Music.attackSound();
-=======
-        	
-			Main.playSound("bp1_attack-01.wav");
->>>>>>> f258c095f44efe3749ea7f19d498d1ea095a70c3
+			tiger.attackEnemy();
 
         	Thread t = new Thread(()->{
     			try {
@@ -296,46 +271,9 @@ public class Main extends Application {
 //        }
 	}
 	
-	public static void  playBackGround(String file) {
-		Media b = new Media(ClassLoader.getSystemResource("resources/sound/"+file).toString());
-		MediaPlayer ne = new MediaPlayer(b);
-		ne.setVolume(0.5); 
-		if(file.equals("bgm-01 naruto.mp3")) {
-			ne.setCycleCount(MediaPlayer.INDEFINITE);
-		} else {
-		Thread a = new Thread(()->{
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ne.stop();
-		});
-		a.start();
-		}
-		ne.play();
-	
-	}
-	
-	
-	public static void  playSound(String file) {
-		Media b = new Media(ClassLoader.getSystemResource("design/bp1/attack/"+file).toString());
-		MediaPlayer ne = new MediaPlayer(b);
-		ne.setVolume(0.5); 
-		Thread a = new Thread(()-> {
-			ne.play();
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		a.start();
-	
-	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 }

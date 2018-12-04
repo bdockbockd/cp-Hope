@@ -8,6 +8,11 @@ public class HumanSprite extends Sprite {
 	
 	public int humanPosition = 0;
 	private boolean isMove;
+	private final double maxHealth = 500;
+	private double health;
+	private double damage;
+	private boolean isDead = false;
+	
 
 	protected boolean attackStage;
 
@@ -19,6 +24,9 @@ public class HumanSprite extends Sprite {
        this.setPositionX(0);
        this.setVelocityY(0);
        this.setPositionY(0);
+       
+       this.health = maxHealth;
+	   this.damage = 10;
     }
     
 //    Sprite briefcase = new Sprite();
@@ -74,6 +82,7 @@ public class HumanSprite extends Sprite {
         if(this.positionY > 720) {
         	this.setPositionY(720);
         }
+        
     }
     
 
@@ -88,6 +97,35 @@ public class HumanSprite extends Sprite {
         return " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
         + " Velocity: [" + this.getVelocityX() + "," + this.getVelocityY() + "]";
     }  
+    
+	//getter & setter
+	public double getMaxHealth() {
+		return this.maxHealth;
+	}
+	public double getHealth() {
+		return this.health;
+	}
+	public void setHealth(double health) {
+		if(health <= 0) {
+			this.setDead(true);
+		}
+		this.health = health;
+	}
+	public double getDamage() {
+		return this.damage;
+	}
+	public void setDamage(double damage) {
+		this.damage = damage;
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
+
 
 
 }
