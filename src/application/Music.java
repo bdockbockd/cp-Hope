@@ -27,7 +27,7 @@ public class Music {
 			Music.ListHIT[index].play();
 			try {
 				
-//				Thread.sleep(300);
+				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
