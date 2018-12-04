@@ -108,6 +108,7 @@ public class HumanSprite extends Sprite {
 	public void setHealth(double health) {
 		if(health <= 0) {
 			this.setDead(true);
+			this.setVelocity(0, 0);
 		}
 		this.health = health;
 	}

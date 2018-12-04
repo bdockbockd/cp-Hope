@@ -1,5 +1,6 @@
 package Sprite;
 
+import Controller.Main;
 import Enemy.BadHuman;
 import application.Images;
 import application.Music;
@@ -33,26 +34,36 @@ public class BlackTiger extends TigerSprite {
     public void attackEnemy() {
 		Music.HITDETECTED = false;
 		if(this.getFace() == "LEFT") {
+			BadHuman enemy;
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
-				if(((Enemy.BadHuman.getbadList()).get(i)).getBoundary().intersects(this.createBoundaryLeft())) {
-					Enemy.BadHuman.getbadList().get(i).setHealth(Enemy.BadHuman.getbadList().get(i).getHealth()-this.getDamage());
-					if(Enemy.BadHuman.getbadList().get(i).isDead() == true) {
-						Enemy.BadHuman.getbadList().remove(i);
-					}
+				enemy = BadHuman.getbadList().get(i);
+				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
 					
+					enemy.setHealth(enemy.getHealth()-this.getDamage());
+//					if(enemy.isDead() == true) {
+//
+//						Enemy.BadHuman.getbadList().remove(i);
+//					}
+					Music.HITDETECTED = true;	
+
 				}
-				Music.HITDETECTED = true;	
 
 			}
 		} else {
+			BadHuman enemy;
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
-				if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(this.createBoundaryRight())) {
-					Enemy.BadHuman.getbadList().get(i).setHealth(Enemy.BadHuman.getbadList().get(i).getHealth()-this.getDamage());
-					if(Enemy.BadHuman.getbadList().get(i).isDead() == true) {
-						Enemy.BadHuman.getbadList().remove(i);
-					}
+				enemy = BadHuman.getbadList().get(i);
+				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {
+					
+					enemy.setHealth(enemy.getHealth()-this.getDamage());
+//					if(enemy.isDead() == true) {
+////						Enemy.BadHuman.getbadList().get(i)
+//						Main.gc.drawImage(Images.enemyTomb, enemy.getPositionX(), enemy.getPositionY());
+//						Enemy.BadHuman.getbadList().remove(i);
+//					}
+					Music.HITDETECTED = true;
+
 				}
-				Music.HITDETECTED = true;
 			}
 		}
 		if(Music.HITDETECTED == true) {

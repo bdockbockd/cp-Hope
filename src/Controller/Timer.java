@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
  
 public class Timer extends StackPane{
-	private static int time;
+	public static int time;
 	private static int milsec;
 	private static int sec;
 	private static int min;

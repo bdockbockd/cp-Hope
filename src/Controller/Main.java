@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -33,6 +34,7 @@ public class Main extends Application {
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
     public static boolean canUpdateBot = true;
     public static boolean ccheck = true;
+    public static GraphicsContext gc;
     
     public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
@@ -54,7 +56,7 @@ public class Main extends Application {
         primaryStage.setScene( theScene );
 
         Canvas canvas = new Canvas(1250,800);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        Main.gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
         
         //StatusBar
@@ -105,7 +107,7 @@ public class Main extends Application {
                         if(input.contains(code)) {
                         	if(code.equals("SPACE")) {
                         		//try
-                        		statusBar.resetProgress();
+//                        		statusBar.resetProgress();
                         		scoreBoard.addScore(100);
                         		tiger1.setCanMovePosition(true);
 
@@ -118,12 +120,12 @@ public class Main extends Application {
                         }
                     }
                 });
-        root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard );
+        root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
         
         
         
         new AnimationTimer()  {
-
+        	
 			@Override
 			public void handle(long currentNanoTime) {
 				// TODO Auto-generated method stub
@@ -177,8 +179,9 @@ public class Main extends Application {
 					});
 					delay.start();
 				}
-				
+//				gc.drawImage(Images.enemyTomb, 300, 300);
 
+				BadHuman.checkAttackHuman(tiger1);
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
@@ -193,6 +196,7 @@ public class Main extends Application {
 //						System.out.println("got enemy"+ i);
 //					} 
 //				}
+				BadHuman.removeEnemy();
 				bad1.render(gc);
 				tiger1.render( gc );
 			}	
