@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Enemy.*;
 import Sprite.*;
 import application.Images;
+import application.Music;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -66,7 +67,7 @@ public class Main extends Application {
 //        enemySprite.add(bad1);
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        Main.playBackGround("bgm-01 naruto.mp3");
+        Music.playBackGround();
         lastNanoTime = System.nanoTime();
         //
 
@@ -163,23 +164,8 @@ public class Main extends Application {
 							
 //							bad1.printBoundary();
 //							tiger1.printBoundary();
-							if(tiger1.isAttackable()) {
-								if(tiger1.getFace() == "LEFT") {
-									for(int i=0;i<BadHuman.getbadList().size();i++) {
-										if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryLeft())) {
-											Main.playBackGround("attack.wav");
-										}
-									}
-								} else {
-									for(int i=0;i<BadHuman.getbadList().size();i++) {
-										if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryRight())) {
-											Main.playBackGround("attack.wav");
-										}
-									}
-								}
-							}
 							Main.canUpdateBot = false;
-							Thread.sleep(300);
+							Thread.sleep(1000);
 							Main.canUpdateBot = true;
 							
 						} catch (InterruptedException e) {
@@ -190,7 +176,21 @@ public class Main extends Application {
 					delay.start();
 				}
 				
-				
+				if(tiger1.isAttackable()) {
+					if(tiger1.getFace() == "LEFT") {
+						for(int i=0;i<BadHuman.getbadList().size();i++) {
+							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryLeft())) {
+								Music.playGetHit(i);
+							}
+						}
+					} else {
+						for(int i=0;i<BadHuman.getbadList().size();i++) {
+							if(((BadHuman.getbadList()).get(i)).getBoundary().intersects(tiger1.createBoundaryRight())) {
+								Music.playGetHit(i);
+							}
+						}
+					}
+				}
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
