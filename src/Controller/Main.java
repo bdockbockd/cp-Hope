@@ -55,6 +55,10 @@ public class Main extends Application {
         Canvas canvas = new Canvas(1250,800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
+        
+        //StatusBar
+        String playerName = "Oufeow";
+        StatusBar statusBar = new StatusBar(playerName);
          
         //create tiger onScreenss
         BlackTiger tiger1 = new BlackTiger();
@@ -68,6 +72,11 @@ public class Main extends Application {
 
         Main.playBackGround("bgm-01 naruto.mp3");
         lastNanoTime = System.nanoTime();
+        
+
+        Timer timerBar = new Timer();
+        Scoreboard scoreBoard = new Scoreboard();
+        
 
         // Input
         theScene.setOnKeyPressed(
@@ -93,7 +102,10 @@ public class Main extends Application {
                     {
                         String code = e.getCode().toString();
                         if(input.contains(code)) {
-                        	if(code.equals("H")) {
+                        	if(code.equals("SPACE")) {
+                        		//try
+                        		statusBar.resetProgress();
+                        		scoreBoard.addScore(100);
                         		tiger1.setCanMovePosition(true);
 
                         		
@@ -105,10 +117,7 @@ public class Main extends Application {
                         }
                     }
                 });
-        root.getChildren().add( canvas );
-//        Label a = new Label("asdadasdasdas");
-//        a.setAlignment(Pos.CENTER);
-//        root.getChildren().add(a);
+        root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard );
         
         
         
@@ -211,7 +220,8 @@ public class Main extends Application {
         if (input.contains("DOWN") && tiger.getPositionY() < 560) {
             tiger.addVelocity(0,200);
         }
-        if(input.contains("H") && tiger.isCanMovePosition() == true) {
+        if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
+        	
 			Main.playSound("bp1_attack-01.wav");
 
         	Thread t = new Thread(()->{
