@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 public class SpecialTiger extends TigerSprite{
 	  private Image image;
 	  private static final String name = "specialTiger";
-	  
 	  public static Image[] tigerImage = Images.bigTigerMotion;
 
 		public SpecialTiger() {
