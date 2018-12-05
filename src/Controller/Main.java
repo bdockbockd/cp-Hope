@@ -50,8 +50,8 @@ public class Main extends Application {
     
 
 
-	@Override
-	public void start(Stage primaryStage) {
+	@Override 
+	public void start(Stage primaryStage) { 
 		
 		primaryStage.setTitle("blackPantherX");
 		Group root = new Group();
@@ -128,9 +128,9 @@ public class Main extends Application {
         Loop = new LoopGame();
 
 		primaryStage.show();
-//        primaryStage.setFullScreen(true);
-
 	}
+	
+	
 	public static void keyActionToSpeed(BlackTiger tiger, long current, GraphicsContext gc) {
 //		System.out.print("The position of the "+ tiger.getClass().getName());
 //		System.out.print("x:"+Double.toString(tiger.getPositionX()));

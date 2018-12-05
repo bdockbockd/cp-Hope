@@ -25,7 +25,7 @@ public class SpecialTiger extends TigerSprite{
 		}
 		
 	    public Image nextPosition() {
-	    	this.tigerPosition = (this.tigerPosition+1)%tigerImage.length;
+	    	this.tigerPosition = (this.tigerPosition+1)%tigerImage.length; 
 	    	return (tigerImage)[tigerPosition];
 	    }
 

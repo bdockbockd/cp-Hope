@@ -3,6 +3,7 @@ package application;
 import Controller.Main;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
+import Sprite.Meat;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -90,6 +91,8 @@ public class LoopGame {
 				BadHuman.removeEnemy();
 //				bad1.render(gc);
 				tiger1.render( gc );
+				Meat meat = new Meat(400,400);
+				meat.render(gc);
 			}	
         }.start();
 	}
