@@ -40,7 +40,7 @@ public class StatusBar extends StackPane {
 		spin.setTranslateX(75+30);
 		spin.setStyle(" -fx-progress-color: black;");
 		
-		ImageView statusBG = new ImageView(new Image(ClassLoader.getSystemResource("design/gameplay/gamestatusbar.png").toString()));
+		ImageView statusBG = new ImageView(new Image(ClassLoader.getSystemResource("design/statusbar/gamestatusbar.png").toString()));
 		HPBar = new ProgressBar(1);
 		HPBar.setPrefSize(460, 18);
 		HPBar.setStyle("-fx-accent: rgb(143,194,103);-fx-border-radius: 9px;-fx-text-box-border: black; -fx-control-inner-background: black; -fx-padding: 0px;-fx-background-insets: 4; -fx-background-color:-fx-box-border,linear-gradient(to bottom, derive(-fx-color,100%), derive(-fx-color,100%));");
