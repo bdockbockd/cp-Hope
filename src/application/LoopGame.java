@@ -93,12 +93,13 @@ public class LoopGame {
 				// check bot attack
 				BadHuman.checkAttackHuman(tiger1);
 				// check bot get damaged
+				BadHuman.removeEnemy();
+
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
 				}
 				//remove bot
-				BadHuman.removeEnemy();
 				
 				StartGame.gc.drawImage((Images.stageMap)[0], 0, 0);
 

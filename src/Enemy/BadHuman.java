@@ -228,24 +228,25 @@ public class BadHuman extends HumanSprite  {
 			BadHuman enemy = BadHuman.getbadList().get(i);
 			if(enemy.isDead()) {
 				enemy.setImage(Images.enemyTomb);
-				Thread t = new Thread(new Runnable() {
-					public void run(){ 
-						while(true) {
-							try {
-								Thread.sleep(3000);
-							}
-							catch(InterruptedException e){
-								e.printStackTrace();
-							}
-							enemy.time ++;
-							if(enemy.time == 3) {
-								BadHuman.getbadList().remove(enemy);
-
-							}
-						}
-					}
-				});
-				t.start();
+				BadHuman.getbadList().remove(enemy);
+//				Thread t = new Thread(new Runnable() {
+//					public void run(){ 
+//						while(true) {
+//							try {
+//								Thread.sleep(3000);
+//							}
+//							catch(InterruptedException e){
+//								e.printStackTrace();
+//							}
+//							enemy.time ++;
+//							if(enemy.time == 3) {
+//								BadHuman.getbadList().remove(enemy);
+//
+//							}
+//						}
+//					}
+//				});
+//				t.start();
 			}
 		}
 	}

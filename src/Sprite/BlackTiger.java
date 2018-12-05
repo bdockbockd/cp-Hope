@@ -13,14 +13,14 @@ public class BlackTiger extends TigerSprite {
 	private static final String name = "blackTiger";
 	public static int stage;
 	// list of list >> stage
-	public static boolean spinAttackDetected;
-	public static boolean jumpAttackDetected;
+	public static boolean spinAttackDetected = false;
+	public static boolean jumpAttackDetected = false;
 	
 	public BlackTiger() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 	}
 	
-    public void nextPosition(String direction, int index) {
+    public void nextPosition(String direction) {
     	if(!this.isAttackable()) {
     		if(this.getFace().equals("LEFT")) {
     			this.setImage((this.getImageL())[this.getPositionL()]);
