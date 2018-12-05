@@ -7,10 +7,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class Scoreboard extends StackPane {
+public class ScoreBoard extends StackPane {
+	
 	private static int score;
 	private static Text scoretxt;
-	public Scoreboard(){
+	
+	public ScoreBoard(){
 		super();
 		score = 0;
 		
@@ -27,17 +29,16 @@ public class Scoreboard extends StackPane {
 	public static int getScore() {
 		return score;
 	}
-	public void setScore(int score)
+	public static void setScore(int newScore)
 	{ 
-		Scoreboard.score = score;
-		update();
+		score = newScore;
 	}
-	public void addScore(int score)
+	public static void addScore(int addScore)
 	{
-		Scoreboard.score += score;
-		update();
+		score += addScore;
 	}
-	public void update() {
+	
+	public static void update() {
 		scoretxt.setText("Score: "+Integer.toString(score));
 	}
 }

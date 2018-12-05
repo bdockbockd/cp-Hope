@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import application.Images;
+import application.Audio;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -29,12 +31,11 @@ import javafx.stage.DirectoryChooser;
 import javafx.util.Pair;
 
 public class HallOfFameMenu extends Scene{
-	private static List<Pair<String, Integer>> ranked = new ArrayList<Pair<String, Integer>>();
-	//private static final Comparator<Pair<String, Integer>> c = reverseOrder(comparing(Pair::getValue));
 	
-	private static Image hallOfFameBG = new Image(ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
+	private static List<Pair<String, Integer>> ranked = new ArrayList<Pair<String, Integer>>();
+	private static Image hallOfFameBG = Images.hallOfFameBG;
 	public static Pane root = new Pane();
-	//public static Image playerNameMenu = new Image(ClassLoader.getSystemResource("GameLebel-01.png").toString());
+	
 	public HallOfFameMenu() {
 		super(root,1250,800);
 		Canvas canvas = new Canvas(1250, 800);
@@ -53,7 +54,7 @@ public class HallOfFameMenu extends Scene{
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND)
 		      {
-		    	  Main.keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  Main.mainMenu();
 		      }
 		});
@@ -62,7 +63,7 @@ public class HallOfFameMenu extends Scene{
 	public void writeNewUser() {      
         PrintWriter fw = null;
         try {
-            fw = new PrintWriter("res/HallOfFame.txt");
+            fw = new PrintWriter("resources/HallOfFame.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("hhhu:100000");
             bw.newLine();
@@ -111,7 +112,7 @@ public class HallOfFameMenu extends Scene{
 	        	bw.newLine();
 	        }
 	        //writeHallOfFame
-	        //bw.write("BEE"+":"+10000);
+	        bw.write("BEE"+":"+(10000+ranked.size()));
 	        bw.close();
 	        fw.close();
 

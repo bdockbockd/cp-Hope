@@ -20,7 +20,6 @@ public class Rectangle {
 		this.height = height; 
 	}
 	
-	
 	 public Rectangle2D getBoundary()
 	    {
 	        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());

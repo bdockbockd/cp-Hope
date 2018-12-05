@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.BadHuman;
 import application.Images;
-import application.Music;
+import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -270,6 +270,12 @@ public abstract class TigerSprite extends Sprite{
 		this.actionState = actionState;
 	}
 
+	public void takeDamage(double damage) {
+		this.health -= damage;
+		if(this.health < 0) {
+			this.health = 0;
+		}
+	}
 	public boolean isDead()
 	{
 		return getHealth()<=0;

@@ -6,11 +6,15 @@ import Controller.Main;
 import Controller.StartGame;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
+import Sprite.HealthPotion;
 import Sprite.Meat;
+import Sprite.Item;
+import Sprite.SuperPotion;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
@@ -32,6 +36,10 @@ public class LoopGame {
 		// scene detect
 		LoopGame.setKey(theScene);
 		BadHuman bad1 = new BadHuman();
+		// item test
+		Meat meat = new Meat(20,20+220);
+		HealthPotion healthPotion = new HealthPotion(900,20+220);
+		SuperPotion superPotion = new SuperPotion(400,220+20);
 		new AnimationTimer()  {
         	
 			@Override
@@ -59,27 +67,29 @@ public class LoopGame {
                 tiger1.update(elapsedTime);
 
 //              // change Position tiger
-//                if(StartGame.ccheck) {
-//                Thread x = new Thread (()-> {
-//                	try {
-//                		StartGame.ccheck = false;
-//                		tiger1.nextPosition(tiger1.getFace());
-//                		Thread.sleep(50);
-//                		StartGame.ccheck = true;
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//                });
-//                x.start();
-//                }
+                if(StartGame.ccheck) {
+                Thread x = new Thread (()-> {
+                	try {
+                		StartGame.ccheck = false;
+                		tiger1.nextPosition(tiger1.getFace());
+                		Thread.sleep(50);
+                		StartGame.ccheck = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                });
+                x.start();
+                }
                
                 // updateBot every 1 sec
-				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
+				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0 ) {
 					Thread delay = new Thread(()->{
 						try {
 							
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
-									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+									if(!BadHuman.getbadList().get(i).isDead()) {
+										((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+									}
 								}
 							
 							StartGame.canUpdateBot = false;
@@ -114,8 +124,10 @@ public class LoopGame {
 				//render tiger
 				bad1.render(StartGame.gc);
 				tiger1.render( StartGame.gc );
-				Meat meat = new Meat(400,400);
-				meat.render(StartGame.gc);
+				Controller.ScoreBoard.update();
+				Controller.StatusBar.resetProgress(tiger1);
+				Sprite.Item.render(StartGame.gc);
+				Sprite.Item.checkItemUse(tiger1);
 			}	
         }.start();
 	}
@@ -177,7 +189,7 @@ public class LoopGame {
             tiger.addVelocity(0,200);
         }
         if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
-			Music.attackSound();
+			Audio.attackSound();
 			tiger.attackEnemy();
 
         	Thread t = new Thread(()->{
@@ -216,6 +228,10 @@ public class LoopGame {
 	                        }
 	                        if(type2Key.contains(code) && !input2.contains(code)) {
 	                        	input2.add(code);
+	                        }
+	                        if(e.getCode() == KeyCode.ESCAPE)
+	                        {
+	                        	Main.gamePause();
 	                        }
 	                    }
 	                });
