@@ -30,9 +30,6 @@ import Controller.*;
 public class Main extends Application {
 	private long lastNanoTime;
 //	private AudioClip sound;
-    public static ArrayList<String> input = new ArrayList<String>();
-    public static final ArrayList<String> type2Key = new ArrayList<String>();
-    public static ArrayList<String> input2 = new ArrayList<String>();
     public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
     public static boolean canUpdateBot = true;
     public static boolean ccheck = true;
@@ -41,13 +38,6 @@ public class Main extends Application {
     public static BlackTiger tiger1 = new BlackTiger();
     
     public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
-    
-    static {
-    	type2Key.add("W");
-    	type2Key.add("A");
-    	type2Key.add("S");
-    	type2Key.add("D");
-    }
 
 
 
@@ -86,128 +76,13 @@ public class Main extends Application {
         Music.playBackGround();
         lastNanoTime = System.nanoTime();
         
-
         Timer timerBar = new Timer();
         Scoreboard scoreBoard = new Scoreboard();
-        
 
-        // Input
-        theScene.setOnKeyPressed(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        String code = e.getCode().toString();
-                        if ( !input.contains(code) ) {
-                            input.add( code );
-//                            System.out.println(code);
-                        }
-                        if(type2Key.contains(code) && !input2.contains(code)) {
-                        	input2.add(code);
-                        }
-                    }
-                });
-
-        theScene.setOnKeyReleased(
-        		new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        String code = e.getCode().toString();
-                        if(input.contains(code)) {
-                        	if(code.equals("SPACE")) {
-                        		//try
-//                        		statusBar.resetProgress();
-                        		scoreBoard.addScore(100);
-                        		tiger1.setCanMovePosition(true);
-
-                        		
-                        	}
-                        	input.remove(code);
-                        }
-                        if(input2.contains(code)) {
-                        	input2.remove(code);
-                        }
-                    }
-                });
         root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
-        
-        
-        Loop = new LoopGame();
-
+        Loop = new LoopGame(theScene);
 		primaryStage.show();
-
 //        primaryStage.setFullScreen(true);
-
-	}
-	public static void keyActionToSpeed(BlackTiger tiger, long current, GraphicsContext gc) {
-//		System.out.print("The position of the "+ tiger.getClass().getName());
-//		System.out.print("x:"+Double.toString(tiger.getPositionX()));
-//		System.out.println("y:"+Double.toString(tiger.getPositionY()));
-		if (input.contains("LEFT") && tiger.getPositionX() >-70) {
-			// x 70
-            tiger.addVelocity(-200,0);
-            tiger.setFace("LEFT");
-        }
-        if (input.contains("RIGHT") && tiger.getPositionX() < 965) {
-            tiger.addVelocity(200,0);
-            tiger.setFace("RIGHT");
-        }
-        if (input.contains("UP") && tiger.getPositionY() > 150) {
-        	// y 50
-            tiger.addVelocity(0,-200);
-
-        }
-        if (input.contains("DOWN") && tiger.getPositionY() < 560) {
-            tiger.addVelocity(0,200);
-        }
-        if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
-			Music.attackSound();
-			tiger.attackEnemy();
-
-        	Thread t = new Thread(()->{
-    			try {
-    	        	tiger.setAttackable(true);
-    	        	tiger.setFace(tiger.getFace());
-    	        	tiger.nextPosition(tiger.getFace());
-//    	        	System.out.print(tiger.getFace());
-    	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(300);
-    	            tiger.switchToWalk();
-
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		});
-    		t.start();
-        }
-	}
-	
-	public static void keySpeed(BadHuman bad, long current) {
-//		System.out.print("The position of the "+ bad.getClass().getName());
-//		System.out.print("x:"+Double.toString(bad.getPositionX()));
-//		System.out.println("y:"+Double.toString(bad.getPositionY()));
-		if (input.contains("A") && bad.getPositionX() >100) {
-            bad.addVelocity(-200,0);
-            bad.setFace("LEFT");
-        }
-		
-        if (input.contains("D") && bad.getPositionX() < 1270) {
-            bad.addVelocity(200,0);
-            bad.setFace("RIGHT");
-        }
-        
-        if (input.contains("W") && bad.getPositionY() > 312) {
-            bad.addVelocity(0,-200);
-        }
-        
-        if (input.contains("S") && bad.getPositionY() < 720) {
-            bad.addVelocity(0,200);
-        }
-//        if(input.contains("H")) {
-//        	bad.setAttackable(true);
-//        }
 	}
 	
 
