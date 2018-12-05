@@ -70,12 +70,14 @@ public class LoopGame {
                 }
                
                 // updateBot every 1 sec
-				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
+				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0 ) {
 					Thread delay = new Thread(()->{
 						try {
 							
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
-									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+									if(!BadHuman.getbadList().get(i).isDead()) {
+										((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+									}
 								}
 							
 							StartGame.canUpdateBot = false;

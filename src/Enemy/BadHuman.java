@@ -17,6 +17,7 @@ public class BadHuman extends HumanSprite  {
     private long sleepTime;
     public static BlackTiger instanceTiger;
     private boolean isDamaged;
+    private boolean isTomb = false;
     private boolean waitToHit = false;
     public int time=0;
     
@@ -223,32 +224,30 @@ public class BadHuman extends HumanSprite  {
 	}
 
 	public static void removeEnemy() {
-		if(BadHuman.getbadList().size() == 0) return;
+		if(BadHuman.getbadList().size()==0) return ;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
-			if(enemy.isDead()) {
+			if(enemy.isDead() && !enemy.isTomb) {
+				enemy.isTomb = true;
 				enemy.setImage(Images.enemyTomb);
 				Thread t = new Thread(new Runnable() {
 					public void run(){ 
-						while(true) {
+						BadHuman enemy1 = enemy;
+
 							try {
 								Thread.sleep(3000);
 							}
 							catch(InterruptedException e){
 								e.printStackTrace();
 							}
-							enemy.time ++;
-							if(enemy.time == 3) {
-								BadHuman.getbadList().remove(enemy);
-
-							}
-						}
+							BadHuman.getbadList().remove(enemy1);
+						
 					}
 				});
 				t.start();
 			}
 		}
-	}
+	} 
     
     
     
