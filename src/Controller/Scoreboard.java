@@ -28,7 +28,7 @@ public class Scoreboard extends StackPane {
 		return score;
 	}
 	public void setScore(int score)
-	{
+	{ 
 		Scoreboard.score = score;
 		update();
 	}
