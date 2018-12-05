@@ -11,6 +11,10 @@ import javafx.scene.image.Image;
 public class BlackTiger extends TigerSprite {
 	
 	private static final String name = "blackTiger";
+	// list of list >> stage
+	public static boolean spinAttackDetected = false;
+	public static boolean jumpAttackDetected = false;
+	
 	public BlackTiger() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 	}
@@ -22,7 +26,21 @@ public class BlackTiger extends TigerSprite {
     		} else {
     			this.setImage((this.getImageR())[this.getPositionR()]);
     		}
-    	} else {
+    	} else if(BlackTiger.spinAttackDetected){
+    		if(this.getFace().equals("LEFT")) {
+        		this.setImage((Images.spinAttackL)[this.getSpinPosition()]);
+    		} else {
+        		this.setImage((Images.spinAttackR)[this.getSpinPosition()]);
+    		}
+    	}else if(BlackTiger.jumpAttackDetected){    
+    		if(this.getFace().equals("LEFT")) {
+        		this.setImage((Images.jumpAttackL)[this.getJumpPosition()]);
+    		} else {
+        		this.setImage((Images.jumpAttackR)[this.getJumpPosition()]);		
+    		}
+    	}
+		else {
+
     		if(this.getFace().equals("LEFT")) {
     			this.setImage(this.getImageL()[this.getSkillPositionL()]);
     		} else {
@@ -80,7 +98,6 @@ public class BlackTiger extends TigerSprite {
     	return BlackTiger.name;
     }
     
-    
     @Override
     public Rectangle2D getBoundary()
     {
@@ -100,12 +117,12 @@ public class BlackTiger extends TigerSprite {
     	return 90.775;
     }
     public double getRealX() {
-    	return (this.getPositionX()<0) ? 0 : this.getPositionX()+71;
+    	return this.getPositionX()+75;
     	//73
     }
   
     public double getRealY() {
-    	return (this.getPositionY()<0) ? 0 : this.getPositionY()-151.1;
+    	return this.getPositionY()+60;
     	//150
     }
     

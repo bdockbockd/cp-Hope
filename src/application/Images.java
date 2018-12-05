@@ -23,19 +23,19 @@ public class Images {
 	public static final Image[] blackTigerBasicAttackL3 = new Image[3];
 	public static final Image[] blackTigerBasicAttackR3 = new Image[3];
 
-	public static final Image[] jumpAttackL = new Image[2];
-	public static final Image[] jumpAttackR = new Image[2];
-	public static final Image[] jumpAttackL2 = new Image[2];
-	public static final Image[] jumpAttackR2 = new Image[2];
-	public static final Image[] jumpAttackL3 = new Image[2];
-	public static final Image[] jumpAttackR3 = new Image[2];
+	public static final Image[] jumpAttackL = new Image[1];
+	public static final Image[] jumpAttackR = new Image[1];
+	public static final Image[] jumpAttackL2 = new Image[1];
+	public static final Image[] jumpAttackR2 = new Image[1];
+	public static final Image[] jumpAttackL3 = new Image[1];
+	public static final Image[] jumpAttackR3 = new Image[1];
 	
-	public static final Image[] spinAttackL = new Image[3];
-	public static final Image[] spinAttackR = new Image[3];
-	public static final Image[] spinAttackL2 = new Image[3];
-	public static final Image[] spinAttackR2 = new Image[3];
-	public static final Image[] spinAttackL3 = new Image[3];
-	public static final Image[] spinAttackR3 = new Image[3];
+	public static final Image[] spinAttackL = new Image[2];
+	public static final Image[] spinAttackR = new Image[2];
+	public static final Image[] spinAttackL2 = new Image[2];
+	public static final Image[] spinAttackR2 = new Image[2];
+	public static final Image[] spinAttackL3 = new Image[2];
+	public static final Image[] spinAttackR3 = new Image[2];
 	
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
@@ -79,22 +79,22 @@ public class Images {
 		}
 		
 		for(int i=0;i<jumpAttackL.length;i++) {
-			jumpAttackL[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackR[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackL2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackL[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackR[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackL2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
 			
 		}
 		
 		for(int i=0;i<spinAttackL.length;i++) {
-			spinAttackL[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			spinAttackR[i] = new Image(ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			spinAttackL2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			spinAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			spinAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
-			spinAttackR3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
+			spinAttackL[i] = new Image(ClassLoader.getSystemResource("design/bp1/spin/bp1_spin-0"+(i+2)+".png").toString(), 351, 200 ,false , false);
+			spinAttackR[i] = new Image(ClassLoader.getSystemResource("design/bp1/spin/bp1_spin-0"+(i+5)+".png").toString(), 351, 200 ,false , false);
+			spinAttackL2[i] = new Image(ClassLoader.getSystemResource("design/bp2/spin/bp2_spin-0"+(i+2)+".png").toString(), 351, 200 ,false , false);
+			spinAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/spin/bp2_spin-0"+(i+5)+".png").toString(), 351, 200 ,false , false);
+			spinAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/spin/bp3_spin-0"+(i+2)+".png").toString(), 351, 200 ,false , false);
+			spinAttackR3[i] = new Image(ClassLoader.getSystemResource("design/bp3/spin/bp3_spin-0"+(i+5)+".png").toString(), 351, 200 ,false , false);
 		}
 		
 		for(int i=0;i<4;i++){
