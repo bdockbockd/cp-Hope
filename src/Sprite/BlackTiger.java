@@ -11,18 +11,37 @@ import javafx.scene.image.Image;
 public class BlackTiger extends TigerSprite {
 	
 	private static final String name = "blackTiger";
+	public static int stage;
+	// list of list >> stage
+	public static boolean spinAttackDetected;
+	public static boolean jumpAttackDetected;
+	
 	public BlackTiger() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 	}
 	
-    public void nextPosition(String direction) {
+    public void nextPosition(String direction, int index) {
     	if(!this.isAttackable()) {
     		if(this.getFace().equals("LEFT")) {
     			this.setImage((this.getImageL())[this.getPositionL()]);
     		} else {
     			this.setImage((this.getImageR())[this.getPositionR()]);
     		}
-    	} else {
+    	} else if(BlackTiger.spinAttackDetected){
+    		if(this.getFace().equals("LEFT")) {
+        		this.setImage((Images.spinAttackL)[1]);
+    		} else {
+        		this.setImage((Images.spinAttackR)[1]);
+    		}
+    	}else if(BlackTiger.jumpAttackDetected){    
+    		if(this.getFace().equals("LEFT")) {
+        		this.setImage((Images.jumpAttackL)[1]);
+    		} else {
+        		this.setImage((Images.jumpAttackR)[1]);		
+    		}
+    	}
+		else {
+
     		if(this.getFace().equals("LEFT")) {
     			this.setImage(this.getImageL()[this.getSkillPositionL()]);
     		} else {
