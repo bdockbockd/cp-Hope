@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -57,6 +58,13 @@ public class Main extends Application {
 		Group root = new Group();
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
         Canvas canvas = new Canvas(1250,800);
         Main.gc = canvas.getGraphicsContext2D();
@@ -128,6 +136,7 @@ public class Main extends Application {
         Loop = new LoopGame();
 
 		primaryStage.show();
+
 //        primaryStage.setFullScreen(true);
 
 	}
