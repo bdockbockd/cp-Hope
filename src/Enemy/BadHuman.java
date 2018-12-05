@@ -7,6 +7,7 @@ import Controller.Main;
 import Controller.StatusBar;
 import Sprite.BlackTiger;
 import Sprite.Sprite;
+import application.Audio;
 import application.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,8 +19,8 @@ public class BadHuman extends HumanSprite  {
     private long sleepTime;
     public static BlackTiger instanceTiger;
     private boolean isDamaged;
-    private boolean waitToHit = false;
     private boolean isTomb = false;
+    private boolean waitToHit = false;
     public int time=0;
     
 	public BadHuman() {
@@ -213,7 +214,8 @@ public class BadHuman extends HumanSprite  {
 
 	private void attack(BlackTiger tiger) {
 		// TODO Auto-generated method stub
-		StatusBar.resetProgress();
+		tiger.takeDamage(this.getDamage());
+		//StatusBar.resetProgress();
 	}
 
 
@@ -227,14 +229,16 @@ public class BadHuman extends HumanSprite  {
 	}
 
 	public static void removeEnemy() {
-		if(BadHuman.getbadList().size() == 0) return;
+		if(BadHuman.getbadList().size()==0) return ;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
 			
 			if(enemy.isDead() && !(enemy.isTomb)) {
-				enemy.setImage(Images.enemyTomb);
+				Audio.ENEMY_DEAD.play();
+				Controller.ScoreBoard.addScore(1000);
+				enemy.isTomb = true;
+				enemy.setImage(Images.enemyTomb);  
 				Thread t = new Thread(()-> {
-					
 							try {
 								Thread.sleep(1000);
 							}

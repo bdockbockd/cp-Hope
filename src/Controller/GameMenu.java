@@ -1,5 +1,7 @@
 package Controller;
 
+import application.Images;
+import application.Audio;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,9 +21,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class GameMenu extends Scene{
+	
 	public static Pane root = new Pane();
 	public static String playerName = "Player";
-	public static Image playerNameMenu = new Image(ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
+	public static Image playerNameMenu = Images.playerNameMenu;
+	
 	public GameMenu() {
 		super(root,1250,800);
 		Canvas canvas = new Canvas(1250, 800);
@@ -43,7 +47,7 @@ public class GameMenu extends Scene{
 		nameField.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.ENTER)
 			{
-				Main.keySound();
+				Audio.SELECTMENU.play();
 				playerName = nameField.getText();
 				System.out.println(playerName + " is ready to play!");
 				Main.startGame(playerName);

@@ -10,7 +10,7 @@ public class HumanSprite extends Sprite {
 	private boolean isMove;
 	private final double maxHealth = 500;
 	private double health;
-	private double damage;
+	private final double damage = 10;
 	private boolean isDead = false;
 	
 
@@ -26,7 +26,6 @@ public class HumanSprite extends Sprite {
        this.setPositionY(0);
        
        this.health = maxHealth;
-	   this.damage = 10;
     }
     
 //    Sprite briefcase = new Sprite();
@@ -115,10 +114,6 @@ public class HumanSprite extends Sprite {
 	public double getDamage() {
 		return this.damage;
 	}
-	public void setDamage(double damage) {
-		this.damage = damage;
-	}
-
 	public boolean isDead() {
 		return isDead;
 	}

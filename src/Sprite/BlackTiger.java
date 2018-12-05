@@ -3,7 +3,7 @@ package Sprite;
 import Controller.Main;
 import Enemy.BadHuman;
 import application.Images;
-import application.Music;
+import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -49,7 +49,7 @@ public class BlackTiger extends TigerSprite {
     }
     
     public void attackEnemy() {
-		Music.HITDETECTED = false;
+		Audio.HITDETECTED = false;
 		if(this.getFace() == "LEFT") {
 			BadHuman enemy;
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
@@ -60,7 +60,7 @@ public class BlackTiger extends TigerSprite {
 //
 //						Enemy.BadHuman.getbadList().remove(i);
 //					}
-					Music.HITDETECTED = true;	
+					Audio.HITDETECTED = true;	
 
 				}
 
@@ -77,13 +77,13 @@ public class BlackTiger extends TigerSprite {
 //						Main.gc.drawImage(Images.enemyTomb, enemy.getPositionX(), enemy.getPositionY());
 //						Enemy.BadHuman.getbadList().remove(i);
 //					}
-					Music.HITDETECTED = true;
+					Audio.HITDETECTED = true;
 
 				}
 			}
 		}
-		if(Music.HITDETECTED == true) {
-			Music.playGetHit(0);						
+		if(Audio.HITDETECTED == true) {
+			Audio.playGetHit(0);						
 		}
 	}
     

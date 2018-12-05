@@ -1,5 +1,6 @@
 package Controller;
 
+import Sprite.BlackTiger;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -10,13 +11,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class StatusBar extends StackPane {
+	
 	private static ProgressBar HPBar;
 	private static ProgressIndicator attack;
 	private ProgressIndicator pounce;
 	private ProgressIndicator spin;
+	
 	public StatusBar(String playerName)
 	{
-		super();
+		super(); 
 		
 		Label playerNameLabel = new Label(playerName);
 		playerNameLabel.setStyle("-fx-base: orange; -fx-text-fill: WHITE;");
@@ -49,14 +52,15 @@ public class StatusBar extends StackPane {
 		this.setLayoutY(800-150);
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
 	}
-	public static void resetProgress()
+	public static void resetProgress(BlackTiger blackTiger)
 	{
-		attack.setProgress(attack.getProgress()+0.02);
-		attackIsReady();
+		//attack.setProgress(attack.getProgress()+0.02);
+		//attackIsReady();
 		/*if(attack.getProgress() == 1) {
 			attack.setStyle(" -fx-progress-color: green;");
 		}*/
-		HPBar.setProgress(HPBar.getProgress()-0.005);
+		HPBar.setProgress(blackTiger.getHealth()/blackTiger.getMaxHealth());
+		//HPBar.setProgress(HPBar.getProgress()-0.005);
 	}
 	public static boolean attackIsReady() {
 		if(attack.getProgress() >= 1){
@@ -72,5 +76,4 @@ public class StatusBar extends StackPane {
 	public boolean spinIsReady() {
 		return spin.getProgress() >= 1;
 	}
-	
 }
