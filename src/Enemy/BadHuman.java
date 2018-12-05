@@ -18,6 +18,7 @@ public class BadHuman extends HumanSprite  {
     public static BlackTiger instanceTiger;
     private boolean isDamaged;
     private boolean waitToHit = false;
+    public int time=0;
     
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
@@ -115,6 +116,7 @@ public class BadHuman extends HumanSprite  {
     
     public void update(double time, BlackTiger tiger)
     {
+    	if(this.isDead()) return;
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
         
@@ -167,9 +169,7 @@ public class BadHuman extends HumanSprite  {
 //								e.printStackTrace();
 //							}
 //          				this.setVelocity(0, 0);
-        				}
-
-        				
+        				}	
         			}
         }
         
@@ -223,23 +223,29 @@ public class BadHuman extends HumanSprite  {
 	}
 
 	public static void removeEnemy() {
+		if(BadHuman.getbadList().size() == 0) return;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
-			if(BadHuman.getbadList().get(i).isDead()) {
+			if(enemy.isDead()) {
 				enemy.setImage(Images.enemyTomb);
-//				double x = enemy.positionX;
-//				double y = enemy.positionY;
-//				Thread time = new Thread(()-> {
-//					Main.gc.drawImage(Images.enemyTomb, x, y);
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				});
-//				time.start();
-//				BadHuman.getbadList().remove(i);
+				Thread t = new Thread(new Runnable() {
+					public void run(){ 
+						while(true) {
+							try {
+								Thread.sleep(3000);
+							}
+							catch(InterruptedException e){
+								e.printStackTrace();
+							}
+							enemy.time ++;
+							if(enemy.time == 3) {
+								BadHuman.getbadList().remove(enemy);
+
+							}
+						}
+					}
+				});
+				t.start();
 			}
 		}
 	}
