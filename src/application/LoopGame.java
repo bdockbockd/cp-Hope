@@ -37,7 +37,6 @@ public class LoopGame {
 			public void handle(long currentNanoTime) {
 		        // Input
                 //drawMap
-				gc.drawImage((Images.stageMap)[0], 0, 0);
 				// TODO Auto-generated method stub
 				// calculate time since last update.
                 double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
@@ -54,7 +53,7 @@ public class LoopGame {
 //            	bad1.update(elapsedTime);
                 //update position from time and velocity
                 tiger1.update(elapsedTime);
-                
+
 //              // change Position tiger
                 if(Main.ccheck) {
                 Thread x = new Thread (()-> {
@@ -101,6 +100,8 @@ public class LoopGame {
 				//remove bot
 				BadHuman.removeEnemy();
 				
+				gc.drawImage((Images.stageMap)[0], 0, 0);
+
 				// render bot
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
