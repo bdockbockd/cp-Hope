@@ -20,7 +20,10 @@ public abstract class TigerSprite extends Sprite{
 	private double health;
 	private double damage;
 	private double armor;
+	private int actionState = 0;
 	private int status; // 1 = normalBP, 2 = superBP, 3 = enragedBP
+	protected int spinPosition;
+	protected int jumpPosition;
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -108,6 +111,7 @@ public abstract class TigerSprite extends Sprite{
 	}
 
 	public void setAttackable(boolean attackable) {
+		this.setActionState(1);
 		this.attackable = attackable;
 		this.setTimesBasicAttack((this.getTimesBasicAttack()+1)%3);
 		if(attackable == true) {
@@ -131,19 +135,27 @@ public abstract class TigerSprite extends Sprite{
 		if(face == "LEFT") {
 			if(this.isAttackable()) {
 				this.setSkillPositionL((timesBasicAttack+1)%3);
+			} else if(this.getActionState() == 2){
+				this.setSpinPosition(0);
+			} else if(this.getActionState() == 3){
+				this.setJumpPosition(0);
 			} else {
 				this.setPositionL((this.getPositionL()+1)%3);
 			}
 		} else {
 			if(this.isAttackable()) {
 				this.setSkillPositionR((timesBasicAttack+1)%3);
+			} else if(this.getActionState() == 2){
+				this.setSpinPosition(0);
+			} else if(this.getActionState() == 3){
+				this.setJumpPosition(0);
 			} else {
 				this.setPositionR((this.getPositionR()+1)%3);
 			}
 		}
 	}
 	
-	
+	// use When want to immediately change
 	public void switchToWalk() {
 		this.setAttackable(false);
 		this.setImageL(Images.blackTigerMotionL);
@@ -155,28 +167,29 @@ public abstract class TigerSprite extends Sprite{
 		}
 	}
 	
-	public void setFace(String face, int duration) {
-
-		if (!(face.equals(this.getFace()))) {
-			this.face = face;
-			this.setPositionR(0);
-			this.setPositionL(0);
-			return;
-		}
-		if(face == "LEFT") {
-			if(this.isAttackable()) {
-				this.setSkillPositionL((timesBasicAttack+1)%3);
-			} else {
-				this.setPositionL((this.getPositionL()+1)%3);
-			}
-		} else {
-			if(this.isAttackable()) {
-				this.setSkillPositionR((timesBasicAttack+1)%3);
-			} else {
-				this.setPositionR((this.getPositionR()+1)%3);
-			}
-		}
-	}
+//	public void setFace(String face, int duration) {
+//
+//		if (!(face.equals(this.getFace()))) {
+//			this.face = face;
+//			this.setPositionR(0);
+//			this.setPositionL(0);
+//			return;
+//		}
+//		if(face == "LEFT") {
+//			if(this.isAttackable()) {
+//				this.setSkillPositionL((timesBasicAttack+1)%3);
+//			} else {
+//				this.setPositionL((this.getPositionL()+1)%3);
+//			}
+//		} else {
+//			if(this.isAttackable()) {
+//				this.setSkillPositionR((timesBasicAttack+1)%3);
+//			} else {
+//				this.setPositionR((this.getPositionR()+1)%3);
+//			}
+//		}
+//	}
+	
 	//getter & setter
 	public double getMaxHealth() {
 		return this.maxHealth;
@@ -222,6 +235,7 @@ public abstract class TigerSprite extends Sprite{
 			setArmor(15);
 		}
 	}
+	
 	public void heal(double heal)
 	{
 		setHealth(getHealth()+heal);
@@ -230,6 +244,32 @@ public abstract class TigerSprite extends Sprite{
 			setHealth(getMaxHealth());
 		}
 	}
+	
+	
+	public int getSpinPosition() {
+		return spinPosition;
+	}
+
+	public void setSpinPosition(int spinPosition) {
+		this.spinPosition = spinPosition;
+	}
+
+	public int getJumpPosition() {
+		return jumpPosition;
+	}
+
+	public void setJumpPosition(int jumpPosition) {
+		this.jumpPosition = jumpPosition;
+	}
+
+	public int getActionState() {
+		return actionState;
+	}
+
+	public void setActionState(int actionState) {
+		this.actionState = actionState;
+	}
+
 	public boolean isDead()
 	{
 		return getHealth()<=0;

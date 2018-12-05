@@ -1,6 +1,7 @@
 package Enemy;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Controller.Main;
 import Controller.StatusBar;
@@ -13,11 +14,12 @@ import javafx.scene.canvas.GraphicsContext;
 public class BadHuman extends HumanSprite  {
 
 	private String name = "enemy";
-    private static ArrayList<BadHuman> badList = new ArrayList<BadHuman>();
+    private static CopyOnWriteArrayList<BadHuman> badList = new CopyOnWriteArrayList<BadHuman>();
     private long sleepTime;
     public static BlackTiger instanceTiger;
     private boolean isDamaged;
     private boolean waitToHit = false;
+    private boolean isTomb = false;
     public int time=0;
     
 	public BadHuman() {
@@ -51,12 +53,12 @@ public class BadHuman extends HumanSprite  {
         double px = Math.random()*1180+100;
         double py = Math.random()*400+305;
         badHuman.setPosition(px, py);
-        
+    
         return badHuman;
     }
     
     public static void generatelistBot(int num) {
-    	ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
+    	CopyOnWriteArrayList<BadHuman> bad = new CopyOnWriteArrayList<BadHuman>();
     	while(num !=0) {
     		bad.add(generateRandom());
     		num--;
@@ -64,11 +66,11 @@ public class BadHuman extends HumanSprite  {
     	BadHuman.setbadList(bad);
     }
     
-    public static ArrayList<BadHuman> getbadList() {
+    public static CopyOnWriteArrayList<BadHuman> getbadList() {
 		return BadHuman.badList;
 	}
 
-	public static void setbadList(ArrayList<BadHuman> list) {
+	public static void setbadList(CopyOnWriteArrayList<BadHuman> list) {
 		BadHuman.badList = list;
 	}
 
@@ -78,7 +80,7 @@ public class BadHuman extends HumanSprite  {
 
 	public void render(GraphicsContext gc)
     {
-        gc.drawImage( this.getImage(), this.getPositionX()-100, this.getPositionY()-100 );
+        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
     }
     
     public String getName() {
@@ -93,7 +95,7 @@ public class BadHuman extends HumanSprite  {
     @Override
     public void printBoundary() {
     	System.out.println( "name: "+this.getName()+" Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
-    	        + " Width: [" + this.getRealWidth() + "," + this.getRealHeight() + "]");
+    	        + " Width: [" + this.getWidth() + "," + this.getHealth() + "]");
     }
     
     public double getRealWidth() {
@@ -105,15 +107,17 @@ public class BadHuman extends HumanSprite  {
     }
     
     public double getRealX() {
-    	return this.getPositionX()-100;
+    	return this.getPositionX();
     	//73
     }
   
     public double getRealY() {
-    	return this.getPositionY()-312;
+    	return this.getPositionY();
     	//150
     }
     
+    
+    //bot update
     public void update(double time, BlackTiger tiger)
     {
     	if(this.isDead()) return;
@@ -124,11 +128,11 @@ public class BadHuman extends HumanSprite  {
         if(this.intersect(tiger) == false) {
 //        Thread t = new Thread(()->{
 //        		try {
-        			if(tiger.getPositionX()+220 < this.getPositionX()) {
+        			if(tiger.getPositionX()+120 < this.getPositionX()) {
     					this.setFace("LEFT");
         				this.nextPosition(this.getFace());
 
-        				if(tiger.getPositionY()+175 < this.getPositionY() ) {
+        				if(tiger.getPositionY()+75 < this.getPositionY() ) {
             				this.setVelocity(-Math.random()*200,-Math.random()*200);
 //	          				try {
 //								Thread.sleep((long) (Math.random()*1000));
@@ -151,7 +155,7 @@ public class BadHuman extends HumanSprite  {
         			} else {
         				this.setFace("RIGHT");
         				this.nextPosition(this.getFace());
-        				if(tiger.getPositionY()+175 < this.getPositionY()) {
+        				if(tiger.getPositionY()+75 < this.getPositionY()) {
             				this.setVelocity(Math.random()*200,-Math.random()*200);
 //	          				try {
 //								Thread.sleep((long) (Math.random()*1000));
@@ -226,33 +230,24 @@ public class BadHuman extends HumanSprite  {
 		if(BadHuman.getbadList().size() == 0) return;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
-			if(enemy.isDead()) {
+			
+			if(enemy.isDead() && !(enemy.isTomb)) {
 				enemy.setImage(Images.enemyTomb);
-				BadHuman.getbadList().remove(enemy);
-//				Thread t = new Thread(new Runnable() {
-//					public void run(){ 
-//						while(true) {
-//							try {
-//								Thread.sleep(3000);
-//							}
-//							catch(InterruptedException e){
-//								e.printStackTrace();
-//							}
-//							enemy.time ++;
-//							if(enemy.time == 3) {
-//								BadHuman.getbadList().remove(enemy);
-//
-//							}
-//						}
-//					}
-//				});
-//				t.start();
+				Thread t = new Thread(()-> {
+					
+							try {
+								Thread.sleep(1000);
+							}
+							catch(InterruptedException e){
+								e.printStackTrace();
+							}
+							BadHuman.getbadList().remove(enemy);
+				});
+				t.start();
 			}
 		}
 	}
-    
-    
-    
+		  
 }
 
 
