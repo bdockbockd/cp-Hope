@@ -31,4 +31,4 @@ public class Human {
 	{
 		return getHealth()<=0;
 	}
-}
+} 

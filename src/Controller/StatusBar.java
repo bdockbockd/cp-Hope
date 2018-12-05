@@ -24,7 +24,7 @@ public class StatusBar extends StackPane {
 		playerNameLabel.setTranslateY(-46);
 		//this.setAlignment(Pos.CENTER);
 		
-		attack = new ProgressIndicator(0);
+		attack = new ProgressIndicator(0); 
 		attack.setTranslateY(26+31);
 		attack.setTranslateX(-84+30);
 		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");

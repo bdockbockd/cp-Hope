@@ -17,7 +17,7 @@ public class Rectangle {
 		this.positionX = x;
 		this.positionY = y;
 		this.width = width;
-		this.height = height;
+		this.height = height; 
 	}
 	
 	

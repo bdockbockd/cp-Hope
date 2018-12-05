@@ -20,7 +20,7 @@ public class Timer extends StackPane{
 		sec = 0;
 		min = 0;
 		
-		timerlb = new Text("TIME "+Integer.toString(min)+":"+Integer.toString(sec) + ":"+Integer.toString(milsec));
+		timerlb = new Text("TIME "+String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+Integer.toString(milsec));
 		timerlb.setFill(Color.WHITE);
 		timerlb.setFont(Font.font("Cornerstone", FontWeight.BOLD, 18));
 		
@@ -50,7 +50,7 @@ public class Timer extends StackPane{
 		milsec = time%10;
 		sec = (time/10)%60;
 		min = time/600;
-		timerlb.setText("TIME "+Integer.toString(min)+":"+Integer.toString(sec) + ":"+Integer.toString(milsec));
+		timerlb.setText("TIME "+String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+Integer.toString(milsec));
 	}
 	public static int getSec()
 	{

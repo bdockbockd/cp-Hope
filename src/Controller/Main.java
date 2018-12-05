@@ -20,7 +20,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -28,66 +30,86 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import Controller.*;
 public class Main extends Application {
-	private long lastNanoTime;
-//	private AudioClip sound;
-    public static ArrayList<Sprite> enemySprite = new ArrayList<Sprite>();
-    public static boolean canUpdateBot = true;
-    public static boolean ccheck = true;
-    public static GraphicsContext gc;
-    public static LoopGame Loop;
-    public static BlackTiger tiger1 = new BlackTiger();
-    
-    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
 
+	public static Stage stage;
+	public static ArrayList<Image> selectMenu = new ArrayList<Image>();
+	public static int selectNumber = 1000000;
+	public static MainMenu mainMenu;
+	public static GameMenu gameMenu;
+	public static StartGame startGame;
+	public static HowToPlayMenu howToPlayMenu;
+	public static HallOfFameMenu hallOfFameMenu;
+	public static QuitMenu quitMenu;
+	public static AudioClip keyboardSound = new AudioClip(ClassLoader.getSystemResource("sound/keyboard.wav").toString());
 
-
-	@Override
 	public void start(Stage primaryStage) {
-		
-		primaryStage.setTitle("Hello Tiger");
-		Group root = new Group();
-        Scene theScene = new Scene( root );
-        primaryStage.setScene( theScene );
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
-
-        Canvas canvas = new Canvas(1250,800);
-        Main.gc = canvas.getGraphicsContext2D();
-        gc.drawImage((Images.stageMap)[0], 0, 0);
-        
-        //StatusBar
-        String playerName = "Oufeow";
-        StatusBar statusBar = new StatusBar(playerName);
-         
-        //create tiger onScreenss
-        tiger1.setPosition(300, 300);
-        
-        Enemy.BadHuman.generatelistBot(5);
-        BadHuman bad1 = Enemy.BadHuman.generateRandom();
-        bad1.setPosition(300, 300);
-//        enemySprite.add(bad1);
-        enemySprite.addAll(Enemy.BadHuman.getbadList());
-
-        Music.playBackGround();
-        lastNanoTime = System.nanoTime();
-        
-        Timer timerBar = new Timer();
-        Scoreboard scoreBoard = new Scoreboard();
-
-        root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
-        Loop = new LoopGame(theScene);
-		primaryStage.show();
-//        primaryStage.setFullScreen(true);
+		try {
+			stage = primaryStage;
+			stage.setTitle("blackPantherX");
+			mainMenu = new MainMenu();
+			gameMenu = new GameMenu();
+			howToPlayMenu = new HowToPlayMenu();
+			hallOfFameMenu = new HallOfFameMenu();
+			quitMenu = new QuitMenu();
+			
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	            @Override
+	            public void handle(WindowEvent t) {
+	                Platform.exit();
+	                System.exit(0);
+	            }
+	        });
+			stage.setScene(mainMenu);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static void mainMenu() {
+		stage.setScene(mainMenu);
+	}
+	public static void gameMenu() {
+		stage.setScene(gameMenu);
+	}
+	public static void howToPlayMenu() {
+		stage.setScene(howToPlayMenu);
+	}
+	public static void hallOfFameMenu() {
+		stage.setScene(hallOfFameMenu);
+	}
+	public static void quitMenu() {
+		MainMenu.pressAble = false;
+		quitMenu.show(stage);
+		//stage.setScene(quitMenu);
+	}
+	public static void startGame(String playerName) {
+		startGame = new StartGame(playerName);
+		stage.setScene(startGame);
+	}
+	public static void gameQuit(){
+	    // get a handle to the stage
+	    //Stage stage = (Stage) closeButton.getScene().getWindow();
+	    // do what you have to do
+	    stage.close();
+	}
+	
+	public static void backMenu(Scene s) {
+		s.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+		      if(key.getCode() == KeyCode.ESCAPE)
+		      {
+		    	  keySound();
+		    	  Main.mainMenu();
+		      }
+		});
+	}
+	public static void keySound() {
+		keyboardSound.setVolume(1);
+  	  	keyboardSound.play();
 	}
 	
 }

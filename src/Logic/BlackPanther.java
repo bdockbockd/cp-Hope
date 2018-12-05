@@ -72,5 +72,5 @@ public class BlackPanther {
 	public boolean isDead()
 	{
 		return getHealth()<=0;
-	}
+	} 
 }
