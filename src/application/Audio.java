@@ -66,4 +66,19 @@ public class Audio {
 //			
 //		}
 	}
+	public static void spinSound() {
+		// TODO Auto-generated method stub
+		Audio.SPIN.play(0.4);
+//		Thread p = new Thread(()->) {
+//			
+//		}
+	}
+	public static void pounceSound() {
+		// TODO Auto-generated method stub
+		Audio.POUNCE.play(0.4);
+//		Thread p = new Thread(()->) {
+//			
+//		}
+	}
+	
 }
