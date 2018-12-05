@@ -49,7 +49,7 @@ public class LoopGame {
                 tiger1.setVelocity(0,0);
                  
                 //update velocity tiger and detect attack hit
-                LoopGame.keyActionToSpeed(tiger1, currentNanoTime, StartGame.gc);
+                LoopGame.keyActionToSpeed(tiger1, currentNanoTime, this);
 //            	LoopGame.keySkill(tiger1, StartGame.gc);
 
             	LoopGame.keySpeed(bad1, currentNanoTime);
@@ -92,7 +92,7 @@ public class LoopGame {
 					});
 					delay.start();
 				}
-
+				
 				// check bot attack
 				BadHuman.checkAttackHuman(tiger1);
 				// check bot get damaged
@@ -146,7 +146,15 @@ public class LoopGame {
         }
 		
 	}
-	public static void keyActionToSpeed(BlackTiger tiger, long current, GraphicsContext gc) {
+	public static void keyActionToSpeed(BlackTiger tiger, long current, AnimationTimer x) {
+		if(input.contains("ESCAPE")){
+			try {
+				x.wait(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
 			Music.attackSound();
 			tiger.attackEnemy();
@@ -184,6 +192,7 @@ public class LoopGame {
 				}
 				BlackTiger.spinAttackDetected = false;
 				tiger1.switchToWalk();
+				
 
 			});
 			delay.start();
