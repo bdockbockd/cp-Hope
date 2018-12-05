@@ -59,19 +59,19 @@ public class LoopGame {
                 tiger1.update(elapsedTime);
 
 //              // change Position tiger
-//                if(StartGame.ccheck) {
-//                Thread x = new Thread (()-> {
-//                	try {
-//                		StartGame.ccheck = false;
-//                		tiger1.nextPosition(tiger1.getFace());
-//                		Thread.sleep(50);
-//                		StartGame.ccheck = true;
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//                });
-//                x.start();
-//                }
+                if(StartGame.ccheck) {
+                Thread x = new Thread (()-> {
+                	try {
+                		StartGame.ccheck = false;
+                		tiger1.nextPosition(tiger1.getFace());
+                		Thread.sleep(50);
+                		StartGame.ccheck = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                });
+                x.start();
+                }
                
                 // updateBot every 1 sec
 				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
@@ -147,16 +147,47 @@ public class LoopGame {
 		
 	}
 	public static void keyActionToSpeed(BlackTiger tiger, long current, GraphicsContext gc) {
-		if(input.contains("X")) {
-			BlackTiger.spinAttackDetected = true;
-			tiger1.setActionState(2);
-			tiger1.setFace(tiger1.getFace());
-			tiger1.nextPosition(tiger1.getFace());
-		} else if(input.contains("C")) {
-			BlackTiger.jumpAttackDetected = true;
-			tiger1.setActionState(3);
-			tiger1.setFace(tiger1.getFace());
-			tiger1.nextPosition(tiger1.getFace());
+		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
+			Music.attackSound();
+			tiger.attackEnemy();
+			
+			Thread delay = new Thread(()-> {
+				BlackTiger.spinAttackDetected = true;
+				tiger1.setActionState(2);
+				tiger1.setFace(tiger1.getFace());
+				tiger1.nextPosition(tiger.getFace());
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				BlackTiger.spinAttackDetected = false;
+				tiger1.switchToWalk();
+			});
+			delay.start();
+			
+		} else if(input.contains("C") && BlackTiger.jumpAttackDetected == false) {
+			Music.attackSound();
+			tiger.attackEnemy();
+			
+			Thread delay = new Thread(()-> {
+				BlackTiger.jumpAttackDetected = true;
+				tiger1.setActionState(3);
+				tiger1.setFace(tiger1.getFace());
+				tiger1.nextPosition(tiger1.getFace());
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				BlackTiger.spinAttackDetected = false;
+				tiger1.switchToWalk();
+
+			});
+			delay.start();
+			
 		}
 
 		if (input.contains("LEFT") && tiger.getRealX() > 0) {

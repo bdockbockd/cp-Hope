@@ -20,19 +20,19 @@ public class BlackTiger extends TigerSprite {
 	}
 	
     public void nextPosition(String direction) {
-    	if(!this.isAttackable()) {
+    	if(this.getActionState() == 0) {
     		if(this.getFace().equals("LEFT")) {
     			this.setImage((this.getImageL())[this.getPositionL()]);
     		} else {
     			this.setImage((this.getImageR())[this.getPositionR()]);
     		}
-    	} else if(BlackTiger.spinAttackDetected){
+    	} else if(this.getActionState() == 2){
     		if(this.getFace().equals("LEFT")) {
         		this.setImage((Images.spinAttackL)[this.getSpinPosition()]);
     		} else {
         		this.setImage((Images.spinAttackR)[this.getSpinPosition()]);
     		}
-    	}else if(BlackTiger.jumpAttackDetected){    
+    	}else if(this.getActionState() == 3){    
     		if(this.getFace().equals("LEFT")) {
         		this.setImage((Images.jumpAttackL)[this.getJumpPosition()]);
     		} else {
@@ -40,7 +40,6 @@ public class BlackTiger extends TigerSprite {
     		}
     	}
 		else {
-
     		if(this.getFace().equals("LEFT")) {
     			this.setImage(this.getImageL()[this.getSkillPositionL()]);
     		} else {
@@ -56,7 +55,6 @@ public class BlackTiger extends TigerSprite {
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
-					
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
 //					if(enemy.isDead() == true) {
 //
