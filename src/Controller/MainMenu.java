@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 
+import application.Images;
+import application.Audio;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,7 +19,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class MainMenu extends Scene{
-	public static ArrayList<Image> selectMenu = new ArrayList<Image>();
+	public static ArrayList<Image> selectMenu = Images.selectMenu;
 	public static int selectNumber = 1000000;
 	public static Pane root = new Pane();
 	public static boolean pressAble = true;
@@ -25,12 +27,6 @@ public class MainMenu extends Scene{
 		super(root,1250,800);
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		
-		
-		for(int i = 0;i < 4;i++)
-		{
-			selectMenu.add(new Image(ClassLoader.getSystemResource("design/mainmenu/mainmenu-0"+(i+1)+".png").toString()));
-		}
 		gc.drawImage(selectMenu.get(0), 0, 0);
 		
 		root.getChildren().add(canvas);
@@ -42,21 +38,21 @@ public class MainMenu extends Scene{
 			}
 			else if(!Main.quitMenu.isShowing()) {
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
-		    	  Main.keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber += 1;
 		      }
 		      if(key.getCode()==KeyCode.UP || key.getCode()==KeyCode.LEFT) {
-		    	  Main.keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber -= 1;
 		      }
 		      if(key.getCode()==KeyCode.ESCAPE)
 		      {
-		    	  Main.keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  Main.quitMenu();
 		      }
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
 		    	  //System.out.println(selectNumber%4);
-		    	  Main.keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  switch(selectNumber%4) {
 		    	  case 0: Main.gameMenu(); break;
 		    	  case 1: Main.howToPlayMenu();break;

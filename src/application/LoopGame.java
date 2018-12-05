@@ -6,7 +6,10 @@ import Controller.Main;
 import Controller.StartGame;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
+import Sprite.HealthPotion;
 import Sprite.Meat;
+import Sprite.Item;
+import Sprite.SuperPotion;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,6 +34,10 @@ public class LoopGame {
 	public LoopGame(Scene theScene) {
 		// scene detect
 		LoopGame.setKey(theScene);
+		// item test
+		Meat meat = new Meat(400,400);
+		HealthPotion healthPotion = new HealthPotion(600,400);
+		SuperPotion superPotion = new SuperPotion(500,400);
 		new AnimationTimer()  {
         	
 			@Override
@@ -109,12 +116,14 @@ public class LoopGame {
 					((BadHuman.getbadList()).get(i)).render(StartGame.gc);
 				}
 
-
-				//render tiger
-//				bad1.render(gc);
 				tiger1.render( StartGame.gc );
-				Meat meat = new Meat(400,400);
-				meat.render(StartGame.gc);
+
+				Sprite.Item.checkItemUse(tiger1);
+				Sprite.Item.render(StartGame.gc);
+				
+				// Update StatusBar & Scoreboard;
+				Controller.StatusBar.resetProgress(tiger1);
+				Controller.ScoreBoard.update();
 			}	
         }.start();
 	}
@@ -138,7 +147,7 @@ public class LoopGame {
             tiger.addVelocity(0,200);
         }
         if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
-			Music.attackSound();
+			Audio.attackSound();
 			tiger.attackEnemy();
 
         	Thread t = new Thread(()->{

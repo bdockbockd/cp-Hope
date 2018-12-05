@@ -3,6 +3,8 @@ package Controller;
 import java.awt.RenderingHints.Key;
 import java.util.ArrayList;
 
+import application.Images;
+import application.Audio;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,15 +18,12 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class QuitMenu extends Popup{
-	public static ArrayList<Image>quitMenu = new ArrayList<Image>();
+	
+	public static ArrayList<Image>quitMenu = Images.quitMenu;
 	public static int selectNumber = 100000;
-	//public static Image playerNameMenu = new Image(ClassLoader.getSystemResource("GameLebel-01.png").toString());
+	
 	public QuitMenu() {
 		super();
-		for(int i = 1;i <= 2;i++)
-		{
-			quitMenu.add(new Image(ClassLoader.getSystemResource("design/quitmenu/quitmenu-0"+i+".png").toString()));
-		}
 		Canvas canvas = new Canvas(600, 300);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(quitMenu.get(0), 0, 0);
@@ -35,7 +34,7 @@ public class QuitMenu extends Popup{
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(Main.quitMenu.isShowing())
 			{
-				Main.keySound();
+				Audio.SELECTMENU.play();
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
 		    	  selectNumber += 1;
 		      }

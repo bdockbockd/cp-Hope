@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 public class Images {
@@ -45,12 +47,17 @@ public class Images {
 	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 67, 66, false ,false);
 	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 67, 66, false ,false);
 	
+	public static final Image playerNameMenu = new Image(ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
+	public static final Image hallOfFameBG = new Image(ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
+	public static final Image howToPlayImage = new Image(ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());
+	public static final ArrayList<Image> selectMenu = new ArrayList<Image>();
+	public static final ArrayList<Image> quitMenu = new ArrayList<Image>();
 	
 	static {
 		for(int i=0;i<stageMap.length;i++) {
 			stageMap[i] = new Image(ClassLoader.getSystemResource("design/map/map-0"+(i+1)+".png").toString(),1250,800,false,false);
 		}
-
+		
 		humanMotionR[0] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-01.png").toString(), 70, 98, false, false);
 		humanMotionL[0] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-02.png").toString(), 70, 98 , false, false);
 		
@@ -88,6 +95,14 @@ public class Images {
 			spinAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
 			spinAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
 			spinAttackR3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(i+1)+".png").toString(), 351, 200 ,false , false);
+		}
+		
+		for(int i=0;i<4;i++){
+			selectMenu.add(new Image(ClassLoader.getSystemResource("design/mainmenu/mainmenu-0"+(i+1)+".png").toString()));
+		}
+		
+		for(int i=1;i<=2;i++){
+			quitMenu.add(new Image(ClassLoader.getSystemResource("design/quitmenu/quitmenu-0"+i+".png").toString()));
 		}
 	
 		

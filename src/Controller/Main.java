@@ -6,7 +6,7 @@ import Enemy.*;
 import Sprite.*;
 import application.Images;
 import application.LoopGame;
-import application.Music;
+import application.Audio;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -40,7 +40,6 @@ public class Main extends Application {
 	public static HowToPlayMenu howToPlayMenu;
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
-	public static AudioClip keyboardSound = new AudioClip(ClassLoader.getSystemResource("sound/keyboard.wav").toString());
 
 	public void start(Stage primaryStage) {
 		try {
@@ -102,14 +101,10 @@ public class Main extends Application {
 		s.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 		      if(key.getCode() == KeyCode.ESCAPE)
 		      {
-		    	  keySound();
+		    	  Audio.SELECTMENU.play();
 		    	  Main.mainMenu();
 		      }
 		});
-	}
-	public static void keySound() {
-		keyboardSound.setVolume(1);
-  	  	keyboardSound.play();
 	}
 	
 }

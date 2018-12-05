@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
+import Sprite.Meat;
 import Sprite.Sprite;
 import application.Images;
 import application.LoopGame;
-import application.Music;
+import application.Audio;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 
 public class StartGame extends Scene {
+	
 	public static Group root = new Group();
 	private long lastNanoTime;
 //	private AudioClip sound;
@@ -42,19 +44,18 @@ public class StartGame extends Scene {
 //        create tiger onScreenss
         tiger1.setPosition(1250/2 - 351/2, 800/2+100);
         
-        Enemy.BadHuman.generatelistBot(50);
+        Enemy.BadHuman.generatelistBot(5);
         BadHuman bad1 = Enemy.BadHuman.generateRandom();
         bad1.setPosition(1250, 800);
         
         //enemySprite.add(bad1);
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        Music.playBackGround();
+        Audio.playBackGround();
         lastNanoTime = System.nanoTime();
-        
 
         Timer timerBar = new Timer();
-        Scoreboard scoreBoard = new Scoreboard();
+        ScoreBoard scoreBoard = new ScoreBoard();
         
         root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
         Loop = new LoopGame(this);

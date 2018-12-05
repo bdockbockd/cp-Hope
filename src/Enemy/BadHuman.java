@@ -6,6 +6,7 @@ import Controller.Main;
 import Controller.StatusBar;
 import Sprite.BlackTiger;
 import Sprite.Sprite;
+import application.Audio;
 import application.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -210,7 +211,8 @@ public class BadHuman extends HumanSprite  {
 
 	private void attack(BlackTiger tiger) {
 		// TODO Auto-generated method stub
-		StatusBar.resetProgress();
+		tiger.takeDamage(this.getDamage());
+		//StatusBar.resetProgress();
 	}
 
 
@@ -228,6 +230,8 @@ public class BadHuman extends HumanSprite  {
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
 			if(enemy.isDead() && !enemy.isTomb) {
+				Audio.ENEMY_DEAD.play();
+				Controller.ScoreBoard.addScore(1000);
 				enemy.isTomb = true;
 				enemy.setImage(Images.enemyTomb);
 				Thread t = new Thread(new Runnable() {
