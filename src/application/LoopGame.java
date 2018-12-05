@@ -29,29 +29,33 @@ public class LoopGame {
 	
 	public LoopGame(Scene theScene) {
 		
+		// scene detect
 		LoopGame.setKey(theScene);
 		new AnimationTimer()  {
         	
 			@Override
 			public void handle(long currentNanoTime) {
 		        // Input
-		       
+                //drawMap
+				gc.drawImage((Images.stageMap)[0], 0, 0);
 				// TODO Auto-generated method stub
 				// calculate time since last update.
                 double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
 
                 lastNanoTime = currentNanoTime;
                 
-                tiger1.setMove(false);
+                // set Velocity tiger
                 tiger1.setVelocity(0,0);
-//                bad1.setVelocity(0, 0);
+                
+                //update velocity tiger and detect attack hit
                 LoopGame.keyActionToSpeed(tiger1, currentNanoTime, gc);
 //            	Main.keySpeed(bad1, currentNanoTime);
 
 //            	bad1.update(elapsedTime);
+                //update position from time and velocity
                 tiger1.update(elapsedTime);
                 
-//                
+//              // change Position tiger
                 if(Main.ccheck) {
                 Thread x = new Thread (()-> {
                 	try {
@@ -66,8 +70,7 @@ public class LoopGame {
                 x.start();
                 }
                
-                
-				gc.drawImage((Images.stageMap)[0], 0, 0);
+                // updateBot every 1 sec
 				if(Main.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
 					Thread delay = new Thread(()->{
 						try {
@@ -76,9 +79,6 @@ public class LoopGame {
 									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 								}
 							
-							
-//							bad1.printBoundary();
-//							tiger1.printBoundary();
 							Main.canUpdateBot = false;
 							Thread.sleep(1000);
 							Main.canUpdateBot = true;
@@ -91,22 +91,23 @@ public class LoopGame {
 				}
 //				gc.drawImage(Images.enemyTomb, 300, 300);
 
+				// check bot attack
 				BadHuman.checkAttackHuman(tiger1);
+				// check bot get damaged
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					
 					((BadHuman.getbadList()).get(i)).update(elapsedTime);
 				}
+				//remove bot
+				BadHuman.removeEnemy();
 				
-				
+				// render bot
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
 					((BadHuman.getbadList()).get(i)).render(gc);
 				}
-//				for(int i =0;i<Main.enemySprite.size();i++) {
-//					if(tiger1.intersect(Main.enemySprite.get(i))) {
-//						System.out.println("got enemy"+ i);
-//					} 
-//				}
-				BadHuman.removeEnemy();
+
+
+				//render tiger
 //				bad1.render(gc);
 				tiger1.render( gc );
 			}	
