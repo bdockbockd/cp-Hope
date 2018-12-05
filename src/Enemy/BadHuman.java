@@ -24,7 +24,7 @@ public class BadHuman extends HumanSprite  {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
 		// TODO Auto-generated constructor stub
 //		Thread a = new Thread(()-> {
-//			try {
+//			try { 
 //				Thread.sleep(3000);
 //				this.update();
 //				

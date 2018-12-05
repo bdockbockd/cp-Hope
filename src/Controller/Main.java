@@ -44,13 +44,13 @@ public class Main extends Application {
     	type2Key.add("S");
     	type2Key.add("D");
     }
-
+    
 
 
 	@Override
 	public void start(Stage primaryStage) {
 		
-		primaryStage.setTitle("Hello Tiger");
+		primaryStage.setTitle("blackPantherX");
 		Group root = new Group();
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
@@ -60,7 +60,7 @@ public class Main extends Application {
         gc.drawImage((Images.stageMap)[0], 0, 0);
         
         //StatusBar
-        String playerName = "Oufeow";
+        String playerName = "Player";
         StatusBar statusBar = new StatusBar(playerName);
          
         //create tiger onScreenss
