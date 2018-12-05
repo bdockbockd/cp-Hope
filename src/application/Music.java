@@ -28,6 +28,17 @@ public class Music {
 	public static void playGetHit(int index) {
 		Thread pa = new Thread(()-> {
 			Music.ListHIT[index].play();
+<<<<<<< HEAD
+			try {
+				
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			Music.GETHIT.stop();
+=======
 //			try {
 //				
 ////				Thread.sleep(300);
@@ -37,6 +48,7 @@ public class Music {
 //				
 //			}
 //			Music.GETHIT.stop();
+>>>>>>> cb5744e6ea6e0cf8d4babf67886bd3f3a61194df
 		});
 		pa.start();
 		
