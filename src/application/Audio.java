@@ -39,8 +39,8 @@ public class Audio {
 	
 	public static void playBackGround() {
 		Audio.BGM.setCycleCount(AudioClip.INDEFINITE);
+		Audio.BGM.setVolume(0.2);
 		Audio.BGM.play();
-		Audio.BGM.setVolume(0.1);
 	}
 	public static void playGetHit(int index) {
 		Thread pa = new Thread(()-> {

@@ -29,6 +29,7 @@ public class StartGame extends Scene {
     public static LoopGame Loop;
     public static BlackTiger tiger1 = new BlackTiger();
     public static String playerName;
+    private static int enemyNumberLimit = 1000;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
 	public StartGame(String playerName) {
@@ -44,7 +45,7 @@ public class StartGame extends Scene {
 //        create tiger onScreenss
         tiger1.setPosition(1250/2 - 351/2, 800/2+100);
         
-        Enemy.BadHuman.generatelistBot(20);
+        Enemy.BadHuman.generatelistBot(enemyNumberLimit);
         BadHuman bad1 = Enemy.BadHuman.generateRandom();
         bad1.setPosition(1250, 800);
         

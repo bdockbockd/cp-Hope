@@ -33,7 +33,7 @@ public class Images {
 	public static final Image[] spinAttackL = new Image[2];
 	public static final Image[] spinAttackR = new Image[2];
 	public static final Image[] spinAttackL2 = new Image[2];
-	public static final Image[] spinAttackR2 = new Image[2];
+	public static final Image[] spinAttackR2 = new Image[2]; 
 	public static final Image[] spinAttackL3 = new Image[2];
 	public static final Image[] spinAttackR3 = new Image[2];
 	
@@ -52,6 +52,7 @@ public class Images {
 	public static final Image howToPlayImage = new Image(ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());
 	public static final ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static final ArrayList<Image> quitMenu = new ArrayList<Image>();
+	public static final ArrayList<Image> gamePause = new ArrayList<Image>();
 	
 	static {
 		for(int i=0;i<stageMap.length;i++) {
@@ -103,6 +104,10 @@ public class Images {
 		
 		for(int i=1;i<=2;i++){
 			quitMenu.add(new Image(ClassLoader.getSystemResource("design/quitmenu/quitmenu-0"+i+".png").toString()));
+		}
+		
+		for(int i=1;i<=2;i++){
+			gamePause.add(new Image(ClassLoader.getSystemResource("design/gamepause/gamepause-0"+i+".png").toString()));
 		}
 	
 		

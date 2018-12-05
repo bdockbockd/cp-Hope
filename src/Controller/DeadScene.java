@@ -1,38 +1,22 @@
 package Controller;
 
-import java.util.ArrayList;
-
-import application.Images;
 import application.Audio;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
-public class MainMenu extends Scene{
+public class DeadScene extends Scene {
 	
-	public static ArrayList<Image> selectMenu = Images.selectMenu;
-	public static int selectNumber = 1000000;
-	public static Pane root = new Pane();
-	public static boolean pressAble = true;
-	
-	public MainMenu() {
-		super(root,1250,800);
+	public DeadScene() {
+		//super(root,1250,800);
+		/*
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.drawImage(selectMenu.get(0), 0, 0);
-		
+		//gc.drawImage(selectMenu.get(0), 0, 0);
 		root.getChildren().add(canvas);
-		
+
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(!Main.quitMenu.isShowing() && pressAble == false)
 			{
@@ -65,6 +49,7 @@ public class MainMenu extends Scene{
 		      gc.drawImage(selectMenu.get(selectNumber%4), 0, 0);
 			}
 		});
+		*/
 	}
-	
+
 }

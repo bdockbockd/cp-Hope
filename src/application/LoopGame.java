@@ -14,6 +14,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
@@ -36,9 +37,9 @@ public class LoopGame {
 		LoopGame.setKey(theScene);
 		BadHuman bad1 = new BadHuman();
 		// item test
-		Meat meat = new Meat(400,400);
-		HealthPotion healthPotion = new HealthPotion(600,400);
-		SuperPotion superPotion = new SuperPotion(500,400);
+		Meat meat = new Meat(20,20+220);
+		HealthPotion healthPotion = new HealthPotion(900,20+220);
+		SuperPotion superPotion = new SuperPotion(400,220+20);
 		new AnimationTimer()  {
         	
 			@Override
@@ -66,19 +67,19 @@ public class LoopGame {
                 tiger1.update(elapsedTime);
 
 //              // change Position tiger
-//                if(StartGame.ccheck) {
-//                Thread x = new Thread (()-> {
-//                	try {
-//                		StartGame.ccheck = false;
-//                		tiger1.nextPosition(tiger1.getFace());
-//                		Thread.sleep(50);
-//                		StartGame.ccheck = true;
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//                });
-//                x.start();
-//                }
+                if(StartGame.ccheck) {
+                Thread x = new Thread (()-> {
+                	try {
+                		StartGame.ccheck = false;
+                		tiger1.nextPosition(tiger1.getFace());
+                		Thread.sleep(50);
+                		StartGame.ccheck = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                });
+                x.start();
+                }
                
                 // updateBot every 1 sec
 				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0 ) {
@@ -227,6 +228,10 @@ public class LoopGame {
 	                        }
 	                        if(type2Key.contains(code) && !input2.contains(code)) {
 	                        	input2.add(code);
+	                        }
+	                        if(e.getCode() == KeyCode.ESCAPE)
+	                        {
+	                        	Main.gamePause();
 	                        }
 	                    }
 	                });

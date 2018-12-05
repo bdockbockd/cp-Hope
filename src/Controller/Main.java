@@ -40,16 +40,18 @@ public class Main extends Application {
 	public static HowToPlayMenu howToPlayMenu;
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
+	public static GamePause gamePause;
 
 	public void start(Stage primaryStage) {
 		try {
 			stage = primaryStage;
-			stage.setTitle("blackPantherX");
+			stage.setTitle("blackPantherX"); 
 			mainMenu = new MainMenu();
 			gameMenu = new GameMenu();
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
+			gamePause = new GamePause();
 			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
@@ -85,6 +87,9 @@ public class Main extends Application {
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
 		//stage.setScene(quitMenu);
+	}
+	public static void gamePause() {
+		gamePause.show(stage);
 	}
 	public static void startGame(String playerName) {
 		startGame = new StartGame(playerName);

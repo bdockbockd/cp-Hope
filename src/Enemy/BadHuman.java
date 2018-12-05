@@ -21,7 +21,6 @@ public class BadHuman extends HumanSprite  {
     private boolean isDamaged;
     private boolean isTomb = false;
     private boolean waitToHit = false;
-    private boolean isTomb = false;
     public int time=0;
     
 	public BadHuman() {
@@ -238,7 +237,7 @@ public class BadHuman extends HumanSprite  {
 				Audio.ENEMY_DEAD.play();
 				Controller.ScoreBoard.addScore(1000);
 				enemy.isTomb = true;
-				enemy.setImage(Images.enemyTomb);
+				enemy.setImage(Images.enemyTomb);  
 				Thread t = new Thread(()-> {
 							try {
 								Thread.sleep(1000);
