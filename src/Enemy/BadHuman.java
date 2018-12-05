@@ -46,13 +46,13 @@ public class BadHuman extends HumanSprite  {
     }
     
     public static BadHuman generateRandom() {
-    	BadHuman bad = new BadHuman();
-    	bad.setImage((Images.humanMotionL)[0]);
+    	BadHuman badHuman = new BadHuman();
+    	badHuman.setImage((Images.humanMotionL)[0]);
         double px = Math.random()*1180+100;
         double py = Math.random()*400+305;
-        bad.setPosition(px, py);
+        badHuman.setPosition(px, py);
         
-        return bad;
+        return badHuman;
     }
     
     public static void generatelistBot(int num) {
