@@ -41,6 +41,7 @@ public class Main extends Application {
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
 	public static GamePause gamePause;
+	public static DeadScene deadScene;
 
 	public void start(Stage primaryStage) {
 		try {
@@ -52,6 +53,7 @@ public class Main extends Application {
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
 			gamePause = new GamePause();
+			deadScene = new DeadScene();
 			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
@@ -90,6 +92,9 @@ public class Main extends Application {
 	}
 	public static void gamePause() {
 		gamePause.show(stage);
+	}
+	public static void deadScene() {
+		deadScene.show(stage);
 	}
 	public static void startGame(String playerName) {
 		startGame = new StartGame(playerName);
