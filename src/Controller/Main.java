@@ -144,7 +144,7 @@ public class Main extends Application {
                 tiger1.update(elapsedTime);
                 
                 
-                
+//                
                 if(Main.ccheck) {
                 Thread x = new Thread (()-> {
                 	try {
@@ -158,15 +158,18 @@ public class Main extends Application {
                 });
                 x.start();
                 }
-                
+               
                 
 				gc.drawImage((Images.stageMap)[0], 0, 0);
-				if(Main.canUpdateBot == true) {
+				if(Main.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
 					Thread delay = new Thread(()->{
 						try {
-							for(int i =0;i<BadHuman.getbadList().size();i++) {
-								((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
-							}
+							
+								for(int i =0;i<BadHuman.getbadList().size();i++) {
+									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+								}
+							
+							
 //							bad1.printBoundary();
 //							tiger1.printBoundary();
 							Main.canUpdateBot = false;

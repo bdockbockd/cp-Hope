@@ -169,9 +169,7 @@ public class BadHuman extends HumanSprite  {
 //								e.printStackTrace();
 //							}
 //          				this.setVelocity(0, 0);
-        				}
-
-        				
+        				}	
         			}
         }
         
@@ -225,13 +223,11 @@ public class BadHuman extends HumanSprite  {
 	}
 
 	public static void removeEnemy() {
+		if(BadHuman.getbadList().size() == 0) return;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
 			if(enemy.isDead()) {
 				enemy.setImage(Images.enemyTomb);
-				if(enemy.time == 3) {
-					BadHuman.getbadList().remove(i);
-				}
 				Thread t = new Thread(new Runnable() {
 					public void run(){ 
 						while(true) {
@@ -243,7 +239,8 @@ public class BadHuman extends HumanSprite  {
 							}
 							enemy.time ++;
 							if(enemy.time == 3) {
-								
+								BadHuman.getbadList().remove(enemy);
+
 							}
 						}
 					}
