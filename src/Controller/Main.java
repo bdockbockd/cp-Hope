@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Enemy.*;
 import Sprite.*;
 import application.Images;
+import application.LoopGame;
 import application.Music;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -35,6 +36,8 @@ public class Main extends Application {
     public static boolean canUpdateBot = true;
     public static boolean ccheck = true;
     public static GraphicsContext gc;
+    public static LoopGame Loop;
+    public static BlackTiger tiger1 = new BlackTiger();
     
     public ArrayList<BadHuman> bad = new ArrayList<BadHuman>();
     
@@ -64,7 +67,6 @@ public class Main extends Application {
         StatusBar statusBar = new StatusBar(playerName);
          
         //create tiger onScreenss
-        BlackTiger tiger1 = new BlackTiger();
         tiger1.setPosition(300, 300);
         
         Enemy.BadHuman.generatelistBot(5);
@@ -123,87 +125,8 @@ public class Main extends Application {
         root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
         
         
-        
-        new AnimationTimer()  {
-        	
-			@Override
-			public void handle(long currentNanoTime) {
-				// TODO Auto-generated method stub
-				// calculate time since last update.
-                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
+        Loop = new LoopGame();
 
-                lastNanoTime = currentNanoTime;
-                
-                tiger1.setMove(false);
-                tiger1.setVelocity(0,0);
-                bad1.setVelocity(0, 0);
-                Main.keyActionToSpeed(tiger1, currentNanoTime, gc);
-            	Main.keySpeed(bad1, currentNanoTime);
-
-            	bad1.update(elapsedTime);
-                tiger1.update(elapsedTime);
-                
-                
-//                
-                if(Main.ccheck) {
-                Thread x = new Thread (()-> {
-                	try {
-                		Main.ccheck = false;
-                		tiger1.nextPosition(tiger1.getFace());
-                		Thread.sleep(50);
-                		Main.ccheck = true;
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-                });
-                x.start();
-                }
-               
-                
-				gc.drawImage((Images.stageMap)[0], 0, 0);
-				if(Main.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
-					Thread delay = new Thread(()->{
-						try {
-							
-								for(int i =0;i<BadHuman.getbadList().size();i++) {
-									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
-								}
-							
-							
-//							bad1.printBoundary();
-//							tiger1.printBoundary();
-							Main.canUpdateBot = false;
-							Thread.sleep(1000);
-							Main.canUpdateBot = true;
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					});
-					delay.start();
-				}
-//				gc.drawImage(Images.enemyTomb, 300, 300);
-
-				BadHuman.checkAttackHuman(tiger1);
-				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					
-					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-				}
-				
-				
-				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).render(gc);
-				}
-//				for(int i =0;i<Main.enemySprite.size();i++) {
-//					if(tiger1.intersect(Main.enemySprite.get(i))) {
-//						System.out.println("got enemy"+ i);
-//					} 
-//				}
-				BadHuman.removeEnemy();
-				bad1.render(gc);
-				tiger1.render( gc );
-			}	
-        }.start();
 		primaryStage.show();
 //        primaryStage.setFullScreen(true);
 
