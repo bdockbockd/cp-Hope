@@ -24,7 +24,6 @@ public class Music {
 		Music.BGM.play();
 		Music.BGM.setVolume(0.1);
 	}
-	
 	public static void playGetHit(int index) {
 		Thread pa = new Thread(()-> {
 			Music.ListHIT[index].play();

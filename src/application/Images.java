@@ -35,14 +35,16 @@ public class Images {
 	public static final Image[] spinAttackL3 = new Image[3];
 	public static final Image[] spinAttackR3 = new Image[3];
 	
-
-
-	
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
+	
+	public static final Image healthPotion = new Image(ClassLoader.getSystemResource("design/item/item-01.png").toString(), 67, 66, false ,false);
+	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 67, 66, false ,false);
+	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 67, 66, false ,false);
+	
 	
 	static {
 		for(int i=0;i<stageMap.length;i++) {

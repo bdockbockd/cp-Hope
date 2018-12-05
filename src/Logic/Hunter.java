@@ -13,5 +13,5 @@ public class Hunter extends Human {
 			return true;
 		}
 		return false;
-	}
+	} 
 }

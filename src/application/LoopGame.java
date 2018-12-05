@@ -3,8 +3,10 @@ package application;
 import java.util.ArrayList;
 
 import Controller.Main;
+import Controller.StartGame;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
+import Sprite.Meat;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -12,8 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
-	public static BlackTiger tiger1 = Main.tiger1;
-	public static GraphicsContext gc = Main.gc;
+	public static BlackTiger tiger1 = StartGame.tiger1;
 	private static long lastNanoTime = System.nanoTime();
     public static ArrayList<String> input = new ArrayList<String>();
     public static final ArrayList<String> type2Key = new ArrayList<String>();
@@ -28,7 +29,6 @@ public class LoopGame {
     }
 	
 	public LoopGame(Scene theScene) {
-		
 		// scene detect
 		LoopGame.setKey(theScene);
 		new AnimationTimer()  {
@@ -47,7 +47,7 @@ public class LoopGame {
                 tiger1.setVelocity(0,0);
                 
                 //update velocity tiger and detect attack hit
-                LoopGame.keyActionToSpeed(tiger1, currentNanoTime, gc);
+                LoopGame.keyActionToSpeed(tiger1, currentNanoTime, StartGame.gc);
 //            	Main.keySpeed(bad1, currentNanoTime);
 
 //            	bad1.update(elapsedTime);
@@ -55,13 +55,13 @@ public class LoopGame {
                 tiger1.update(elapsedTime);
 
 //              // change Position tiger
-                if(Main.ccheck) {
+                if(StartGame.ccheck) {
                 Thread x = new Thread (()-> {
                 	try {
-                		Main.ccheck = false;
+                		StartGame.ccheck = false;
                 		tiger1.nextPosition(tiger1.getFace());
                 		Thread.sleep(50);
-                		Main.ccheck = true;
+                		StartGame.ccheck = true;
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -70,7 +70,7 @@ public class LoopGame {
                 }
                
                 // updateBot every 1 sec
-				if(Main.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
+				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0) {
 					Thread delay = new Thread(()->{
 						try {
 							
@@ -78,9 +78,9 @@ public class LoopGame {
 									((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 								}
 							
-							Main.canUpdateBot = false;
+							StartGame.canUpdateBot = false;
 							Thread.sleep(1000);
-							Main.canUpdateBot = true;
+							StartGame.canUpdateBot = true;
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -100,17 +100,19 @@ public class LoopGame {
 				//remove bot
 				BadHuman.removeEnemy();
 				
-				gc.drawImage((Images.stageMap)[0], 0, 0);
+				StartGame.gc.drawImage((Images.stageMap)[0], 0, 0);
 
 				// render bot
 				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).render(gc);
+					((BadHuman.getbadList()).get(i)).render(StartGame.gc);
 				}
 
 
 				//render tiger
 //				bad1.render(gc);
-				tiger1.render( gc );
+				tiger1.render( StartGame.gc );
+				Meat meat = new Meat(400,400);
+				meat.render(StartGame.gc);
 			}	
         }.start();
 	}
