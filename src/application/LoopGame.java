@@ -168,7 +168,7 @@ public class LoopGame {
 			}
 		}
 		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
-			Music.attackSound();
+			Audio.spinSound();
 			tiger.attackEnemy();
 			
 			Thread delay = new Thread(()-> {
@@ -188,7 +188,7 @@ public class LoopGame {
 			delay.start();
 			
 		} else if(input.contains("C") && BlackTiger.jumpAttackDetected == false) {
-			Music.attackSound();
+			Audio.pounceSound();
 			tiger.attackEnemy();
 			
 			Thread delay = new Thread(()-> {
