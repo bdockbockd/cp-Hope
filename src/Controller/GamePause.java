@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.Audio;
 import application.Images;
+import application.LoopGame;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -15,9 +16,12 @@ public class GamePause extends Popup{
 	
 	public static ArrayList<Image>gamePause = Images.gamePause;
 	public static int selectNumber = 100000;
+	public static boolean isPause;
 	
 	public GamePause() {
 		super();
+		selectNumber = 100000;
+		isPause = false;
 		Canvas canvas = new Canvas(600, 300);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(gamePause.get(0), 0, 0);
@@ -26,8 +30,9 @@ public class GamePause extends Popup{
 		this.setAnchorX(1250/2-200);
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(Main.gamePause.isShowing())
+			if(this.isShowing())
 			{
+//				System.out.println("class: "+isPause);
 				Audio.SELECTMENU.play();
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
 		    	  selectNumber += 1;
@@ -37,22 +42,38 @@ public class GamePause extends Popup{
 		      }
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
 		    	  if(selectNumber%2 == 0){
-		    		  selectNumber = 100000;
-		    		  this.hide();
+		    		  //System.out.println(isPause+" Continue!");
+		    		  continueGame();
+		  			System.out.println("GAME IS PLAYING...");
 		    	  }
 		    	  else {
+		    		  ////Is the game running?
+		    		  //System.out.println("GAME OVER!");
 		    		  this.hide();
+		    		  Timer.stop();
+		    		  Timer.hide();
+		    		  Timer.terminate();
+		    		  ScoreBoard.hide();
 		    		  Main.mainMenu();
+		    		  System.out.println("BACK TO MAIN MENU!");
 		    	  }
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE)
 		      {
-		    	  //MainMenu.pressAble = true;
-		    	  selectNumber = 100000;
+		    	  continueGame();
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);
 			}
 		});
+	}
+	
+	private void continueGame() {
+		selectNumber = 100000;
+		this.hide();
+		Timer.show();
+		Timer.play();
+		ScoreBoard.show();
+		isPause = false;
 	}
 
 }

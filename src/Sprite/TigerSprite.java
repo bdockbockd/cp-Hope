@@ -41,7 +41,7 @@ public abstract class TigerSprite extends Sprite{
 		this.status = 1;
     }
     
-    public void setMove(boolean tf) {
+    public void setMove(boolean tf) { 
     	this.isMove = tf;
     }
     
@@ -122,7 +122,7 @@ public abstract class TigerSprite extends Sprite{
 			this.setImageL(Images.blackTigerMotionL);
 			this.setImageR(Images.blackTigerMotionR);
 		}
-	} 
+	}  
 	
 	@Override
 	public void setFace(String face) {
@@ -170,28 +170,28 @@ public abstract class TigerSprite extends Sprite{
 		}
 	}
 	
-//	public void setFace(String face, int duration) {
-//
-//		if (!(face.equals(this.getFace()))) {
-//			this.face = face;
-//			this.setPositionR(0);
-//			this.setPositionL(0);
-//			return;
-//		}
-//		if(face == "LEFT") {
-//			if(this.isAttackable()) {
-//				this.setSkillPositionL((timesBasicAttack+1)%3);
-//			} else {
-//				this.setPositionL((this.getPositionL()+1)%3);
-//			}
-//		} else {
-//			if(this.isAttackable()) {
-//				this.setSkillPositionR((timesBasicAttack+1)%3);
-//			} else {
-//				this.setPositionR((this.getPositionR()+1)%3);
-//			}
-//		}
-//	}
+	public void setFace(String face, int duration) {
+
+		if (!(face.equals(this.getFace()))) {
+			this.face = face;
+			this.setPositionR(0);
+			this.setPositionL(0);
+			return;
+		}
+		if(face == "LEFT") {
+			if(this.isAttackable()) {
+				this.setSkillPositionL((timesBasicAttack+1)%3);
+			} else {
+				this.setPositionL((this.getPositionL()+1)%3);
+			}
+		} else {
+			if(this.isAttackable()) {
+				this.setSkillPositionR((timesBasicAttack+1)%3);
+			} else {
+				this.setPositionR((this.getPositionR()+1)%3);
+			}
+		}
+	}
 	
 	//getter & setter
 	public double getMaxHealth() {
@@ -291,6 +291,7 @@ public abstract class TigerSprite extends Sprite{
 	public void setSpeedFix(boolean speedFix) {
 		this.speedFix = speedFix;
 	}
+	
 	
 	
 

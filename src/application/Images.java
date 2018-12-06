@@ -53,6 +53,7 @@ public class Images {
 	public static final ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static final ArrayList<Image> quitMenu = new ArrayList<Image>();
 	public static final ArrayList<Image> gamePause = new ArrayList<Image>();
+	public static final ArrayList<Image> deadScene = new ArrayList<Image>();
 	
 	static {
 		for(int i=0;i<stageMap.length;i++) {
@@ -108,6 +109,10 @@ public class Images {
 		
 		for(int i=1;i<=2;i++){
 			gamePause.add(new Image(ClassLoader.getSystemResource("design/gamepause/gamepause-0"+i+".png").toString()));
+		}
+		
+		for(int i=1;i<=2;i++){
+			deadScene.add(new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0"+i+".png").toString()));
 		}
 	
 		

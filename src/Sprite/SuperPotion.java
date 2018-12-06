@@ -15,7 +15,7 @@ public class SuperPotion extends Item {
 	@Override
 	public void itemUse(BlackTiger blackTiger) {
 		System.out.println("SuperPotion!");
-		application.Audio.RAGE.play();
-		Audio.DRINK.play();
+		Audio.EAT.play();
+		Audio.RAGE.play();
 	}
 }

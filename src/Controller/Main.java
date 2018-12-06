@@ -32,7 +32,7 @@ import Controller.*;
 public class Main extends Application {
 
 	public static Stage stage;
-	public static ArrayList<Image> selectMenu = new ArrayList<Image>();
+	//public static ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static int selectNumber = 1000000;
 	public static MainMenu mainMenu;
 	public static GameMenu gameMenu;
@@ -40,7 +40,8 @@ public class Main extends Application {
 	public static HowToPlayMenu howToPlayMenu;
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
-	public static GamePause gamePause;
+	//public static GamePause gamePause;
+	//public static DeadScene deadScene;
 
 	public void start(Stage primaryStage) {
 		try {
@@ -51,11 +52,11 @@ public class Main extends Application {
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
-			gamePause = new GamePause();
 			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent t) {
+	            	HallOfFameMenu.save();
 	                Platform.exit();
 	                System.exit(0);
 	            }
@@ -81,15 +82,19 @@ public class Main extends Application {
 		stage.setScene(howToPlayMenu);
 	}
 	public static void hallOfFameMenu() {
+		HallOfFameMenu.fillText();
 		stage.setScene(hallOfFameMenu);
 	}
 	public static void quitMenu() {
+		quitMenu = new QuitMenu();
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
-		//stage.setScene(quitMenu);
 	}
 	public static void gamePause() {
-		gamePause.show(stage);
+		//gamePause.show(stage);
+	}
+	public static void deadScene() { 
+		//deadScene.show(stage);
 	}
 	public static void startGame(String playerName) {
 		startGame = new StartGame(playerName);

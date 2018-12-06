@@ -12,11 +12,12 @@ import javafx.scene.layout.Pane;
 
 public class HowToPlayMenu extends Scene{
 	
-	public static Pane root = new Pane();
+	public static Pane root;
 	public static Image howToPlayImage = Images.howToPlayImage;
 	
 	public HowToPlayMenu() {
-		super(root,1250,800);
+		super(new Pane(),1250,800);
+		root = (Pane) super.getRoot();
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(howToPlayImage, 0, 0);

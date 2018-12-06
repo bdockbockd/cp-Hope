@@ -1,9 +1,12 @@
 package application;
 
+import java.sql.Time;
 import java.util.ArrayList;
+
 
 import Controller.*;
 import Controller.StartGame;
+import Controller.Timer;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
 import Sprite.HealthPotion;
@@ -27,7 +30,6 @@ public class LoopGame {
     public static DeadScene deadScene;
     public static boolean isDead;
 
-
     static {
     	type2Key.add("W");
     	type2Key.add("A");
@@ -35,7 +37,7 @@ public class LoopGame {
     	type2Key.add("D");
     }
 	
-	public LoopGame(Scene theScene) {
+	public LoopGame(Scene theScene, String playerName) {
 		tiger1 = StartGame.tiger1;
 		lastNanoTime = System.nanoTime();
 		input = new ArrayList<String>();
@@ -50,118 +52,113 @@ public class LoopGame {
 		HealthPotion healthPotion = new HealthPotion(900,20+220);
 		SuperPotion superPotion = new SuperPotion(400,220+20);
 		new AnimationTimer()  {
-        	
 			@Override
 			public void handle(long currentNanoTime) {
 				if(!isDead && !GamePause.isPause) {
 
+					// Input
+					//drawMap
+					// TODO Auto-generated method stub
+					// calculate time since last update.
+					double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
 
-		        // Input
-                //drawMap
-				// TODO Auto-generated method stub
-				// calculate time since last update.
-                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
-
-                lastNanoTime = currentNanoTime;
+					lastNanoTime = currentNanoTime;
                 
-                // set Velocity tiger
-                bad1.setVelocity(0, 0);
-                if(!(tiger1.isSpeedFix())) {
-                    tiger1.setVelocity(0,0);
-                    LoopGame.keyActionToSpeed(tiger1, currentNanoTime, this);
+					// set Velocity tiger
+					bad1.setVelocity(0, 0);
+					if(!(tiger1.isSpeedFix())) {
+						tiger1.setVelocity(0,0);
+						LoopGame.keyActionToSpeed(tiger1, currentNanoTime, this);
 
-                    if(StartGame.ccheck && tiger1.getActionState() == 0) {
-                        Thread x = new Thread (()-> {
-                        	try {
-                        		StartGame.ccheck = false;
-                        		tiger1.nextPosition(tiger1.getFace());
-                        		Thread.sleep(50);
-                        		StartGame.ccheck = true;
-        					} catch (InterruptedException e) {
-        						e.printStackTrace();
-        					}
-                        });
-                        x.start();
-                        }
-                }
+                    // checkPosition Tiger
+						if(StartGame.ccheck && tiger1.getActionState() == 0) {
+							Thread x = new Thread (()-> {
+								try {
+									StartGame.ccheck = false;	
+									tiger1.nextPosition(tiger1.getFace());
+									Thread.sleep(50);
+									StartGame.ccheck = true;
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							});
+							x.start();
+                       	}
+					}
                  
-                //update velocity tiger and detect attack hit
-//            	LoopGame.keySkill(tiger1, StartGame.gc);
+					//update velocity tiger and detect attack hit
+//            		LoopGame.keySkill(tiger1, StartGame.gc);
 
-            	LoopGame.keySpeed(bad1, currentNanoTime);
+					LoopGame.keySpeed(bad1, currentNanoTime);
 
-            	bad1.update(elapsedTime);
-                //update position from time and velocity
-                tiger1.update(elapsedTime);
-
-//              // change Position tiger
+					bad1.update(elapsedTime);
+					//update position from time and velocity	
+					tiger1.update(elapsedTime);
               
                
-                // updateBot every 1 
-				if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0 ) {
-					Thread delay = new Thread(()->{
-						try {
-							
+					// updateBot every 1 
+					if(StartGame.canUpdateBot == true && BadHuman.getbadList().size() != 0 ) {
+						Thread delay = new Thread(()->{
+							try {
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
 									if(!BadHuman.getbadList().get(i).isDead()) {
 										((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
 									}
 								}
-							
-							StartGame.canUpdateBot = false;
-							Thread.sleep(1000);
-							StartGame.canUpdateBot = true;
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					});
-					delay.start();
-				}
+								StartGame.canUpdateBot = false;
+								Thread.sleep(1000);
+								StartGame.canUpdateBot = true;
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						});
+						delay.start();
+					}
 				
-				// check bot attack
-				BadHuman.checkAttackHuman(tiger1);
-				// check bot get damaged
-				BadHuman.removeEnemy();
+					// check bot attack
+					BadHuman.checkAttackHuman(tiger1);
+					// check bot get damaged
+					BadHuman.removeEnemy();
 
-				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).update(elapsedTime);
-				}
-				//remove bot
+					for(int i =0;i<BadHuman.getbadList().size();i++) {
+						((BadHuman.getbadList()).get(i)).update(elapsedTime);
+					}
+					//remove bot
 				
-				StartGame.gc.drawImage((Images.stageMap)[0], 0, 0);
+					StartGame.gc.drawImage((Images.stageMap)[0], 0, 0);
 
-				// render bot
-				for(int i =0;i<BadHuman.getbadList().size();i++) {
-					((BadHuman.getbadList()).get(i)).render(StartGame.gc);
-				}
-//				tiger1.printBoundary();
-				//render tiger
-				bad1.render(StartGame.gc);
-				tiger1.render( StartGame.gc );
-				Controller.ScoreBoard.update();
-				Controller.StatusBar.resetProgress(tiger1);
-				Sprite.Item.render(StartGame.gc);
-				Sprite.Item.checkItemUse(tiger1);
-				
-				//Game Over
-				if(tiger1.isDead()) {
-					isDead = true;
-					Audio.SELECTMENU.play();
-					System.out.println("GAME OVER!");
-					Timer.stop();
-					Timer.hide();
-					Timer.terminate();
-					ScoreBoard.hide();
-					ScoreBoard.addScore(Timer.getSec()*1000);
-					isDead = true;
-					deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
-					deadScene.show(Main.stage);
+					// render bot
+					for(int i =0;i<BadHuman.getbadList().size();i++) {
+						((BadHuman.getbadList()).get(i)).render(StartGame.gc);
+					}
 					
-					//stop doing everthing
+//					tiger1.printBoundary();
+					//render tiger	
+					bad1.render(StartGame.gc);
+					tiger1.render( StartGame.gc );
+					Controller.ScoreBoard.update();
+					Controller.StatusBar.resetProgress(tiger1);
+					Sprite.Item.render(StartGame.gc);
+					Sprite.Item.checkItemUse(tiger1);
+				
+					//Game Over
+					if(tiger1.isDead()) {
+						isDead = true;
+						Audio.SELECTMENU.play();
+						System.out.println("GAME OVER!");
+						Timer.stop();
+						Timer.hide();
+						Timer.terminate();
+						ScoreBoard.hide();
+						ScoreBoard.addScore(Timer.getSec()*1000);
+						isDead = true;
+						deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
+						deadScene.show(Main.stage);
+					
+						//stop doing everthing
+					}	
 				}
-				}
-			}	
+			}
         }.start();
 	}
 	
@@ -193,8 +190,15 @@ public class LoopGame {
 		
 	}
 	public static void keyActionToSpeed(BlackTiger tiger, long current, AnimationTimer x) {
-		if(input.contains("ESCAPE")){
-//			x.stop();
+		
+		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
+			Audio.SELECTMENU.play();
+			GamePause.isPause = true;
+			Timer.stop();
+			Timer.hide();
+			ScoreBoard.hide();
+			System.out.println("GAME IS PAUSED!");
+			gamePause.show(Main.stage);
 		}
 		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
 			Audio.spinSound();
@@ -389,10 +393,10 @@ public class LoopGame {
 	                        if(type2Key.contains(code) && !input2.contains(code)) {
 	                        	input2.add(code);
 	                        }
-	                        if(e.getCode() == KeyCode.ESCAPE)
+	                        /*if(e.getCode() == KeyCode.ESCAPE)
 	                        {
 	                        	Main.gamePause();
-	                        }
+	                        }*/
 	                    }
 	                });
 
@@ -402,7 +406,7 @@ public class LoopGame {
 	                    public void handle(KeyEvent e)
 	                    {
 	                        String code = e.getCode().toString();
-	                        System.out.print(code);
+	                        //System.out.print(code);
 	                        if(input.contains(code)) {
 	                        	if(code.equals("SPACE")) {
 	                        		//try
