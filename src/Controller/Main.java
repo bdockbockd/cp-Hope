@@ -1,45 +1,22 @@
 package Controller;
 	
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-
 import Constant.Audio;
 import Constant.FontRes;
-import Constant.Images;
-import Enemy.*;
-import Sprite.*;
 import UI.GameMenu;
 import UI.HallOfFameMenu;
 import UI.HowToPlayMenu;
 import UI.MainMenu;
 import UI.QuitMenu;
 import UI.StartGame;
-import application.LoopGame;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
-import Controller.*;
+
 public class Main extends Application {
 
 	public static Stage stage;

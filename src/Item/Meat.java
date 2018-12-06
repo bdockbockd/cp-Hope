@@ -3,7 +3,6 @@ package Item;
 import Constant.Audio;
 import Constant.Images;
 import Sprite.BlackPanther;
-import javafx.scene.image.Image;
 
 public class Meat extends Item {
 	private static final int healFactor = 50;

@@ -9,7 +9,7 @@ import Item.HealthPotion;
 import Item.Item;
 import Item.Meat;
 import Item.SuperPotion;
-import Sprite.BlackTiger;
+import Sprite.BlackPanther;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 

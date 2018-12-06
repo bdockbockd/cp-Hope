@@ -3,7 +3,6 @@ package Item;
 import Constant.Audio;
 import Constant.Images;
 import Sprite.BlackPanther;
-import javafx.scene.image.Image;
 
 public class SuperPotion extends Item {
 	

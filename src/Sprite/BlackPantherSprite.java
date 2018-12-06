@@ -1,11 +1,6 @@
 package Sprite;
 
-import java.util.ArrayList;
-
-import Constant.Audio;
 import Constant.Images;
-import Enemy.BadHuman;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

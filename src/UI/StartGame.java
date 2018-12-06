@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.LoopGame;
 import Controller.ScoreBoard;
 import Controller.StatusBar;
 import Controller.Timer;
@@ -11,7 +12,6 @@ import Enemy.BadHuman;
 import Item.Meat;
 import Sprite.BlackPanther;
 import Sprite.Sprite;
-import application.LoopGame;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,10 +22,8 @@ import javafx.scene.input.KeyEvent;
 public class StartGame extends Scene {
 	
 	public static Group root;
-	private long lastNanoTime;
 //	private AudioClip sound;
     public static ArrayList<Sprite> enemySprite;
-    public static boolean ccheck;
     public static GraphicsContext gc;
     public static Canvas canvas;
     public static LoopGame Loop;
@@ -41,7 +39,7 @@ public class StartGame extends Scene {
 	public StartGame(String playerName) {
 		super(new Group(), 1250, 800);
 		root = (Group) super.getRoot();
-		this.playerName = playerName;
+		StartGame.playerName = playerName;
 		enemySprite = new ArrayList<Sprite>();
 		timerBar = new Timer();
 	    scoreBoard = new ScoreBoard();
@@ -62,7 +60,6 @@ public class StartGame extends Scene {
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
         Audio.playBackGround();
-        lastNanoTime = System.nanoTime();
         
 //        Timer.reset();
 //        ScoreBoard.reset();

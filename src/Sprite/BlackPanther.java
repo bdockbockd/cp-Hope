@@ -2,11 +2,9 @@ package Sprite;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.Main;
 import Enemy.BadHuman;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 public class BlackPanther extends BlackPantherSprite {
 	

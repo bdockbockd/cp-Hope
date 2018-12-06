@@ -1,6 +1,5 @@
 package Sprite;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -12,7 +11,6 @@ public abstract class Sprite extends Rectangle {
 	private Image[] imageList;
 	protected String face;
 	private int duration = 3;
-	
 	protected int positionL = 0;
 	protected int positionR = 0;
 	protected int skillPositionL = 0;

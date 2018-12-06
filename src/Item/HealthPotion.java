@@ -3,8 +3,6 @@ package Item;
 import Constant.Audio;
 import Constant.Images;
 import Sprite.BlackPanther;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 public class HealthPotion extends Item {
 	

@@ -1,17 +1,13 @@
+package Controller;
 
 
-import java.sql.Time;
+
+
 import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.*;
 import Enemy.BadHuman;
-import Sprite.BlackTiger;
-import Sprite.HealthPotion;
-import Sprite.Meat;
-import Sprite.Item;
-import Sprite.SuperPotion;
 import Item.HealthPotion;
 import Item.Item;
 import Item.Meat;
@@ -24,11 +20,9 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
-	public static BlackTiger tiger1;
 	public static BlackPanther blackPanther;
 	private static long lastNanoTime ;
     public static ArrayList<String> input;
@@ -52,10 +46,8 @@ public class LoopGame {
     	type2Key.add("D");
     }
 	
-	public LoopGame(Scene theScene, String playerName) {
-		tiger1 = StartGame.tiger1;
 	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
-		this.gc = gc;
+		LoopGame.gc = gc;
 		blackPanther = new BlackPanther();
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
@@ -73,8 +65,6 @@ public class LoopGame {
 		HealthPotion healthPotion = new HealthPotion(900,20+220);
 		SuperPotion superPotion = new SuperPotion(400,220+20);
 		new AnimationTimer()  {
-			
-			
 			@Override
 			public void handle(long currentNanoTime) {
 				if(!isDead && !GamePause.isPause) {
@@ -97,7 +87,6 @@ public class LoopGame {
 					//drawMap
 					// TODO Auto-generated method stub
 					// calculate time since last update.
-					double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
 
 					elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
 					if(elapsedTime > 0.02) {
@@ -113,11 +102,11 @@ public class LoopGame {
 						LoopGame.keyActionToSpeed(blackPanther, currentNanoTime, this);
 
                     // checkPosition Tiger
-						if(StartGame.ccheck && tiger1.getActionState() == 0) {
+						if(CCHECK && blackPanther.getActionState() == 0) {
 							Thread x = new Thread (()-> {
 								try {
-									StartGame.ccheck = false;	
-									tiger1.nextPosition(tiger1.getFace());
+									CCHECK = false;
+									blackPanther.nextPosition(blackPanther.getFace());
 									Thread.sleep(50);
 									CCHECK = true;
 								} catch (InterruptedException e) {
@@ -176,15 +165,14 @@ public class LoopGame {
 					
 //					blackPanther.printBoundary();
 					//render tiger	
-					bad1.render(StartGame.gc);
-					blackPanther.render( StartGame.gc );
+					bad1.render(gc);
+					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
-					Item.render(StartGame.gc);
+					Item.render(gc);
 					Item.checkItemUse(blackPanther);
 				
 					//Game Over
-					if(tiger1.isDead()) {
 					if(blackPanther.isDead()&&!GODMODE) {
 						isDead = true;
 						Audio.SELECTMENU.play();
@@ -203,9 +191,9 @@ public class LoopGame {
 				}
 			}
         }.start();
+
 	}
 	
-	protected static void keySkill(BlackTiger tiger1, GraphicsContext gc) {
 	protected static void keySkill(BlackPanther blackPanther, GraphicsContext gc) {
 		// TODO Auto-generated method stub
 	
@@ -240,10 +228,6 @@ public class LoopGame {
 			tiger.attackEnemy();
 			
 			Thread delay = new Thread(()-> {
-				BlackTiger.spinAttackDetected = true;
-				tiger1.setActionState(2);
-				tiger1.setFace(tiger1.getFace());
-				tiger1.nextPosition(tiger.getFace());
 				BlackPanther.spinAttackDetected = true;
 				blackPanther.setActionState(2);
 				blackPanther.setFace(blackPanther.getFace());
@@ -254,8 +238,6 @@ public class LoopGame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				BlackTiger.spinAttackDetected = false;
-				tiger1.switchToWalk();
 				BlackPanther.spinAttackDetected = false;
 				blackPanther.switchToWalk();
 			});
@@ -265,9 +247,6 @@ public class LoopGame {
 
 		if(input.contains("C") && BlackPanther.jumpAttackDetected == false) {
 		
-			tiger1.setActionState(3);
-			BlackTiger.jumpAttackDetected = true;
-			tiger1.setSpeedFix(true);
 			blackPanther.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
 			blackPanther.setSpeedFix(true);
