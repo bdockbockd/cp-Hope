@@ -240,14 +240,13 @@ public class BadHuman extends HumanSprite  {
 		if(BadHuman.getbadList().size()==0) return ;
 		for(int i =0;i<BadHuman.getbadList().size();i++) {
 			BadHuman enemy = BadHuman.getbadList().get(i);
-			
 			if(enemy.isDead() && !(enemy.isTomb)) {
 				Audio.ENEMY_DEAD.play();
 				Controller.ScoreBoard.addScore(1000);
 				enemy.isTomb = true;
-				enemy.setImage(Images.enemyTomb);  
 				Thread t = new Thread(()-> {
 							try {
+								enemy.setImage(Images.enemyTomb);  
 								Thread.sleep(1000);
 							}
 							catch(InterruptedException e){

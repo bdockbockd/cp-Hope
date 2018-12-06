@@ -7,7 +7,6 @@ import Constant.Images;
 import Controller.Main;
 import Controller.ScoreBoard;
 import Controller.Timer;
-import application.LoopGame;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

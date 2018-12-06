@@ -1,10 +1,16 @@
+Player:150000
 Player:129000
+Player:121000
+Player:73000
 Player:44000
 Player:40000
+Player:40000
+Player:35000
 YED:32000
 YED:31000
 Player:30000
 Player:28000
+Player:23000
 Player:23000
 YED:14000
 YED:9000
