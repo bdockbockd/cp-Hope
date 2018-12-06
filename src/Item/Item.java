@@ -1,8 +1,10 @@
-package Sprite;
+package Item;
 
 
 import java.util.ArrayList;
 
+import Sprite.BlackTiger;
+import Sprite.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -16,7 +18,9 @@ public abstract class Item extends Rectangle{
 		this.image = image;
 		itemList.add(this);
 	}
-	
+//	public static void addItem(Item e) {
+//		itemList.add(e);
+//	}
 	public abstract void itemUse(BlackTiger blackTiger);
 	
 	public static void checkItemUse(BlackTiger blackTiger) {

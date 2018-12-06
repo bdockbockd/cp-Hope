@@ -1,7 +1,8 @@
-package Sprite;
+package Item;
 
-import application.Audio;
-import application.Images;
+import Constant.Audio;
+import Constant.Images;
+import Sprite.BlackTiger;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

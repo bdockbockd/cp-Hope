@@ -1,10 +1,10 @@
 package Sprite;
 
-import application.Images;
+import Constant.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
-public class SpecialTiger extends TigerSprite{
+public class SpecialTiger extends BlackPantherSprite{
 	  private Image image;
 	  private static final String name = "specialTiger";
 	  public static Image[] tigerImage = Images.bigTigerMotion;

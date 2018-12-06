@@ -1,17 +1,16 @@
 package Sprite;
 
+import Constant.Audio;
+import Constant.Images;
 import Controller.Main;
 import Enemy.BadHuman;
-import application.Images;
-import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class BlackTiger extends TigerSprite {
+public class BlackTiger extends BlackPantherSprite {
 	
 	private static final String name = "blackTiger";
-	// list of list >> stage
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
 	

@@ -1,4 +1,4 @@
-package Controller;
+package UI;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,8 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import application.Images;
-import application.Audio;
+import Constant.Audio;
+import Constant.Images;
+import Controller.Main;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

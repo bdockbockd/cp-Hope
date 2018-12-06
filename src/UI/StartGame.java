@@ -1,14 +1,17 @@
-package Controller;
+package UI;
 
 import java.util.ArrayList;
 
+import Constant.Audio;
+import Constant.Images;
+import Controller.LoopGame;
+import Controller.ScoreBoard;
+import Controller.StatusBar;
+import Controller.Timer;
 import Enemy.BadHuman;
+import Item.Meat;
 import Sprite.BlackTiger;
-import Sprite.Meat;
 import Sprite.Sprite;
-import application.Images;
-import application.LoopGame;
-import application.Audio;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;

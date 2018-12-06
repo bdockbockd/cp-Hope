@@ -1,18 +1,20 @@
-package application;
+package Controller;
 
 import java.sql.Time;
 import java.util.ArrayList;
 
-
+import Constant.Audio;
+import Constant.Images;
 import Controller.*;
-import Controller.StartGame;
-import Controller.Timer;
 import Enemy.BadHuman;
+import Item.HealthPotion;
+import Item.Item;
+import Item.Meat;
+import Item.SuperPotion;
 import Sprite.BlackTiger;
-import Sprite.HealthPotion;
-import Sprite.Meat;
-import Sprite.Item;
-import Sprite.SuperPotion;
+import UI.DeadScene;
+import UI.GamePause;
+import UI.StartGame;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -61,7 +63,7 @@ public class LoopGame {
 					// TODO Auto-generated method stub
 					// calculate time since last update.
 					double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
-
+					System.out.println(elapsedTime);
 					lastNanoTime = currentNanoTime;
                 
 					// set Velocity tiger
@@ -138,8 +140,8 @@ public class LoopGame {
 					tiger1.render( StartGame.gc );
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(tiger1);
-					Sprite.Item.render(StartGame.gc);
-					Sprite.Item.checkItemUse(tiger1);
+					Item.render(StartGame.gc);
+					Item.checkItemUse(tiger1);
 				
 					//Game Over
 					if(tiger1.isDead()) {

@@ -2,14 +2,14 @@ package Sprite;
 
 import java.util.ArrayList;
 
+import Constant.Audio;
+import Constant.Images;
 import Enemy.BadHuman;
-import application.Images;
-import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class TigerSprite extends Sprite{
+public abstract class BlackPantherSprite extends Sprite{
 
 	private boolean isMove;
 	protected boolean attackable;
@@ -26,7 +26,7 @@ public abstract class TigerSprite extends Sprite{
 	protected int jumpPosition;
 	protected boolean speedFix = false;
 
-    public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
+    public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
        super(image, imageL, imageR);
        this.setImageList(imageList);
