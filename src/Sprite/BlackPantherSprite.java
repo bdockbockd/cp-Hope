@@ -2,14 +2,14 @@ package Sprite;
 
 import java.util.ArrayList;
 
+import Constant.Audio;
+import Constant.Images;
 import Enemy.BadHuman;
-import application.Images;
-import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class TigerSprite extends Sprite{
+public abstract class BlackPantherSprite extends Sprite{
 
 	private boolean isMove;
 	protected boolean attackable;
@@ -21,12 +21,13 @@ public abstract class TigerSprite extends Sprite{
 	private double damage;
 	private double armor;
 	private int actionState = 0;
-	private int status; // 1 = normalBP, 2 = superBP, 3 = enragedBP
+	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedBP
 	protected int spinPosition;
 	protected int jumpPosition;
-	protected boolean speedFix = false;
+	protected boolean speedFix;
+	private boolean isSuper;
 
-    public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
+    public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
        super(image, imageL, imageR);
        this.setImageList(imageList);
@@ -38,7 +39,9 @@ public abstract class TigerSprite extends Sprite{
        this.health = maxHealth;
 		this.damage = 100;
 		this.armor = 10;
-		this.status = 1;
+		this.status = 0;
+		this.isSuper = false;
+		this.speedFix = false;
     }
     
     public void setMove(boolean tf) { 
@@ -221,22 +224,30 @@ public abstract class TigerSprite extends Sprite{
 	}
 	public int getStatus()
 	{
-		return this.status;
+		if(isSuper) {
+			return 1;
+		}
+		else if(getHealth()/getMaxHealth() <= 0.3) {
+			return 2;
+		}
+		else{
+			return 0;
+		}
 	}
 	public void setStatus(int status)
 	{
 		this.status = status;
-		if(status == 1)
+		if(status == 0)
 		{
 			setDamage(100);
 			setArmor(10);
 		}
-		if(status == 2)
+		else if(status == 1)
 		{
 			setDamage(300);
 			setArmor(20);
 		}
-		if(status == 3)
+		else if(status == 2)
 		{
 			setDamage(150);
 			setArmor(15);

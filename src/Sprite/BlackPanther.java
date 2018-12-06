@@ -1,24 +1,24 @@
 package Sprite;
 
+import Constant.Audio;
+import Constant.Images;
 import Controller.Main;
 import Enemy.BadHuman;
-import application.Images;
-import application.Audio;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class BlackTiger extends TigerSprite {
+public class BlackPanther extends BlackPantherSprite {
 	
 	private static final String name = "blackTiger";
 	// list of list >> stage
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	public static int ATTACKCOOLDOWN = 5;
-	public static int JUMPCOOLDOWN = 5;
-	public static int SPINCOOLDOWN = 5;
+	public static long ATTACKCOOLDOWN = 200; //sec
+	public static long JUMPCOOLDOWN = 5*1000; //sec
+	public static long SPINCOOLDOWN = 5*1000; //sec
 	
-	public BlackTiger() {
+	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 	}
 	
@@ -96,7 +96,7 @@ public class BlackTiger extends TigerSprite {
     }
     
     public String getName() {
-    	return BlackTiger.name;
+    	return BlackPanther.name;
     }
     
     @Override
@@ -156,8 +156,8 @@ public class BlackTiger extends TigerSprite {
 					Thread.sleep(10);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-//					Thread.sleep(2000);
-					BlackTiger.jumpAttackDetected = false;
+					Thread.sleep(JUMPCOOLDOWN);
+					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -186,7 +186,7 @@ public class BlackTiger extends TigerSprite {
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
 //					Thread.sleep(2000);
-					BlackTiger.jumpAttackDetected = false;
+					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

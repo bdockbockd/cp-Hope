@@ -1,9 +1,10 @@
-package Controller;
+package UI;
 
 import java.util.ArrayList;
 
-import application.Audio;
-import application.Images;
+import Constant.Audio;
+import Constant.Images;
+import Controller.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

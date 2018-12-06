@@ -1,11 +1,10 @@
-package Controller;
+package UI;
 
 import java.util.ArrayList;
 
-import application.Images;
-import application.Audio;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
+import Constant.Audio;
+import Constant.Images;
+import Controller.Main;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,10 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 public class MainMenu extends Scene{
 	

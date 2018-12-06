@@ -3,12 +3,12 @@ package Enemy;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import Constant.Audio;
+import Constant.Images;
 import Controller.Main;
 import Controller.StatusBar;
-import Sprite.BlackTiger;
+import Sprite.BlackPanther;
 import Sprite.Sprite;
-import application.Audio;
-import application.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -17,7 +17,7 @@ public class BadHuman extends HumanSprite  {
 	private String name = "enemy";
     private static CopyOnWriteArrayList<BadHuman> badList = new CopyOnWriteArrayList<BadHuman>();
     private long sleepTime;
-    public static BlackTiger instanceTiger;
+    public static BlackPanther instanceTiger;
     private boolean isDamaged;
     private boolean isTomb = false;
     private boolean waitToHit = false;
@@ -123,7 +123,7 @@ public class BadHuman extends HumanSprite  {
     
     
     //bot update
-    public void update(double time, BlackTiger tiger)
+    public void update(double time, BlackPanther tiger)
     {
     	if(this.isDead()) return;
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
@@ -192,7 +192,7 @@ public class BadHuman extends HumanSprite  {
 //    t.start();
     }
         
-    public static void checkAttackHuman(BlackTiger tiger) {
+    public static void checkAttackHuman(BlackPanther tiger) {
     	for(int i=0; i< BadHuman.badList.size();i++) {
     		BadHuman enemy = BadHuman.getbadList().get(i);
     		if(enemy.intersect(tiger)) {
@@ -217,7 +217,7 @@ public class BadHuman extends HumanSprite  {
     	
     }
 
-	private void attack(BlackTiger tiger) {
+	private void attack(BlackPanther tiger) {
 		// TODO Auto-generated method stub
 		tiger.takeDamage(this.getDamage());
 		//StatusBar.resetProgress();

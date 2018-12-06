@@ -1,8 +1,10 @@
-package Sprite;
+package Item;
 
 
 import java.util.ArrayList;
 
+import Sprite.BlackPanther;
+import Sprite.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -17,9 +19,9 @@ public abstract class Item extends Rectangle{
 		itemList.add(this);
 	}
 	
-	public abstract void itemUse(BlackTiger blackTiger);
+	public abstract void itemUse(BlackPanther blackTiger);
 	
-	public static void checkItemUse(BlackTiger blackTiger) {
+	public static void checkItemUse(BlackPanther blackTiger) {
 		for(int i = 0;i < itemList.size();i++){
 			if(itemList.get(i).getBoundary().intersects(blackTiger.getBoundary())) {
 				itemList.get(i).itemUse(blackTiger);

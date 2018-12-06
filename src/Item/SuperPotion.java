@@ -1,7 +1,8 @@
-package Sprite;
+package Item;
 
-import application.Audio;
-import application.Images;
+import Constant.Audio;
+import Constant.Images;
+import Sprite.BlackPanther;
 import javafx.scene.image.Image;
 
 public class SuperPotion extends Item {
@@ -13,7 +14,7 @@ public class SuperPotion extends Item {
 	}
 	
 	@Override
-	public void itemUse(BlackTiger blackTiger) {
+	public void itemUse(BlackPanther blackTiger) {
 		System.out.println("SuperPotion!");
 		Audio.EAT.play();
 		Audio.RAGE.play();

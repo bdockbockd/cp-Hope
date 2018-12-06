@@ -1,4 +1,4 @@
-package application;
+package Constant;
 
 import javafx.scene.media.AudioClip;
 

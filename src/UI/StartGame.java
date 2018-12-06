@@ -1,14 +1,17 @@
-package Controller;
+package UI;
 
 import java.util.ArrayList;
 
+import Constant.Audio;
+import Constant.Images;
+import Controller.ScoreBoard;
+import Controller.StatusBar;
+import Controller.Timer;
 import Enemy.BadHuman;
-import Sprite.BlackTiger;
-import Sprite.Meat;
+import Item.Meat;
+import Sprite.BlackPanther;
 import Sprite.Sprite;
-import application.Images;
 import application.LoopGame;
-import application.Audio;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,14 +25,12 @@ public class StartGame extends Scene {
 	private long lastNanoTime;
 //	private AudioClip sound;
     public static ArrayList<Sprite> enemySprite;
-    public static boolean canUpdateBot;
     public static boolean ccheck;
     public static GraphicsContext gc;
     public static Canvas canvas;
     public static LoopGame Loop;
-    public static BlackTiger tiger1;
     public static String playerName;
-    private static int enemyNumberLimit = 40;
+    private static int ENEMYSTARTNUMBER = 10;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
     //start new game
@@ -40,11 +41,8 @@ public class StartGame extends Scene {
 	public StartGame(String playerName) {
 		super(new Group(), 1250, 800);
 		root = (Group) super.getRoot();
-		StartGame.playerName = playerName;
+		this.playerName = playerName;
 		enemySprite = new ArrayList<Sprite>();
-		canUpdateBot = true;
-		ccheck = true;
-		tiger1 = new BlackTiger();
 		timerBar = new Timer();
 	    scoreBoard = new ScoreBoard();
 	    statusBar = new StatusBar(playerName);
@@ -55,9 +53,8 @@ public class StartGame extends Scene {
         
 
 //        create tiger onScreenss
-        tiger1.setPosition(1250/2 - 351/2, 800/2+100);
         
-        Enemy.BadHuman.generatelistBot(enemyNumberLimit);
+        Enemy.BadHuman.generatelistBot(ENEMYSTARTNUMBER);
         BadHuman bad1 = Enemy.BadHuman.generateRandom();
         bad1.setPosition(1250, 800);
         
@@ -72,7 +69,7 @@ public class StartGame extends Scene {
 //        StatusBar.reset(playerName);
         
         root.getChildren().addAll(canvas,statusBar,timerBar,scoreBoard);
-        Loop = new LoopGame(this,playerName);
+        Loop = new LoopGame(gc,this,playerName);
 	}
 
 }

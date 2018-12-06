@@ -1,7 +1,8 @@
-package Sprite;
+package Item;
 
-import application.Audio;
-import application.Images;
+import Constant.Audio;
+import Constant.Images;
+import Sprite.BlackPanther;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -17,7 +18,7 @@ public class HealthPotion extends Item {
 	}
 	
 	@Override
-	public void itemUse(BlackTiger blackTiger) {
+	public void itemUse(BlackPanther blackTiger) {
 		System.out.println("HealthPotion!");
 		blackTiger.heal(healFactor);
 		Audio.EAT.play();

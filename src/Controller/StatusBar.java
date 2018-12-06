@@ -1,6 +1,6 @@
 package Controller;
 
-import Sprite.BlackTiger;
+import Sprite.BlackPanther;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -55,7 +55,7 @@ public class StatusBar extends StackPane {
 	public static void reset(String playerName) {
 		playerNameLabel.setText(playerName);
 	}
-	public static void resetProgress(BlackTiger blackTiger)
+	public static void resetProgress(BlackPanther blackTiger)
 	{
 		//attack.setProgress(attack.getProgress()+0.02);
 		//attackIsReady();

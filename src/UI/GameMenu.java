@@ -1,7 +1,8 @@
-package Controller;
+package UI;
 
-import application.Images;
-import application.Audio;
+import Constant.Audio;
+import Constant.Images;
+import Controller.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
