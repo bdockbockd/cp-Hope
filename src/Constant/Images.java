@@ -41,7 +41,7 @@ public class Images {
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
-	public static final ArrayList<ArrayList<ArrayList<Image>>> STAGETIGER = new ArrayList<ArrayList<ArrayList<Image>>>();
+	public static final List<List<Image[]>> STAGETIGER = new ArrayList<List<Image[]>>();
 	public static final List<Image[]> STAGE1 = new ArrayList<Image[]>();
 	public static final List<Image[]> STAGE2 = new ArrayList<Image[]>();
 	public static final List<Image[]> STAGE3 = new ArrayList<Image[]>();
@@ -129,9 +129,28 @@ public class Images {
 		STAGE1.add(Images.jumpAttackR);
 		STAGE1.add(Images.spinAttackL);
 		STAGE1.add(Images.spinAttackR);
-
 		
+		STAGE2.add(Images.blackTigerMotionL2);
+		STAGE2.add(Images.blackTigerMotionR2);
+		STAGE2.add(Images.blackTigerBasicAttackL2);
+		STAGE2.add(Images.blackTigerBasicAttackR2);
+		STAGE2.add(Images.jumpAttackL2);
+		STAGE2.add(Images.jumpAttackR2);
+		STAGE2.add(Images.spinAttackL2);
+		STAGE2.add(Images.spinAttackR2);
 		
+		STAGE3.add(Images.blackTigerMotionL3);
+		STAGE3.add(Images.blackTigerMotionR3);
+		STAGE3.add(Images.blackTigerBasicAttackL3);
+		STAGE3.add(Images.blackTigerBasicAttackR3);
+		STAGE3.add(Images.jumpAttackL3);
+		STAGE3.add(Images.jumpAttackR3);
+		STAGE3.add(Images.spinAttackL3);
+		STAGE3.add(Images.spinAttackR3);
+	
+		STAGETIGER.add(STAGE1);
+		STAGETIGER.add(STAGE2);
+		STAGETIGER.add(STAGE3);
 
 	}
 }

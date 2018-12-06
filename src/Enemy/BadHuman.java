@@ -1,14 +1,15 @@
 package Enemy;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.Main;
-import Controller.StatusBar;
-import Sprite.BlackPanther;
-import Sprite.Sprite;
+import Item.HealthPotion;
+import Item.Item;
+import Item.Meat;
+import Item.SuperPotion;
+import Sprite.BlackTiger;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -26,17 +27,6 @@ public class BadHuman extends HumanSprite  {
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
 		// TODO Auto-generated constructor stub
-//		Thread a = new Thread(()-> {
-//			try { 
-//				Thread.sleep(3000);
-//				this.update();
-//				
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		});
-		
 	}
 
 
@@ -231,6 +221,19 @@ public class BadHuman extends HumanSprite  {
 
 	public void setSleepTime(long sleepTime) {
 		this.sleepTime = sleepTime;
+	}
+	
+	public Item genItem(double positionX, double positionY) {
+		int random = (int)(Math.random()*3);
+		if(random == 0)
+		{
+			return new Meat(positionX,positionY);
+			
+		} else if(random == 1) {
+			return new HealthPotion(positionX,positionY);
+		} else {
+			return new SuperPotion(positionX,positionY);
+		}
 	}
 
 	public static void removeEnemy() {

@@ -4,14 +4,8 @@ YED:32000
 YED:31000
 Player:30000
 YED:14000
-Player:14000
-Player:10000
 YED:9000
 Player:9000
-Player:9000
-Player:9000
-lll:9000
 YED:8000
-Player:7000
 YED:4000
 ttt:2000

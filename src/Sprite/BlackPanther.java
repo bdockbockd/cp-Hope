@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 public class BlackPanther extends BlackPantherSprite {
 	
 	private static final String name = "blackTiger";
-	// list of list >> stage
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
 	public static long ATTACKCOOLDOWN = 200; //sec
