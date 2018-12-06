@@ -14,6 +14,9 @@ public class BlackTiger extends TigerSprite {
 	// list of list >> stage
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
+	public static int ATTACKCOOLDOWN = 5;
+	public static int JUMPCOOLDOWN = 5;
+	public static int SPINCOOLDOWN = 5;
 	
 	public BlackTiger() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);

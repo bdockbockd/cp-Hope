@@ -56,7 +56,6 @@ public class Main extends Application {
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
-			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent t) {

@@ -29,6 +29,9 @@ public class LoopGame {
     public static GamePause gamePause;
     public static DeadScene deadScene;
     public static boolean isDead;
+    public static boolean BOTSPAWN;
+    public static boolean GODMODE = true;
+    public static int BOTSPAWNRATE = 2; //BOTPERSEC
 
     static {
     	type2Key.add("W");
@@ -47,14 +50,31 @@ public class LoopGame {
 		BadHuman bad1 = new BadHuman();
 		gamePause = new GamePause();
 		isDead = false;
+		BOTSPAWN = true;
 		// item test
 		Meat meat = new Meat(20,20+220);
 		HealthPotion healthPotion = new HealthPotion(900,20+220);
 		SuperPotion superPotion = new SuperPotion(400,220+20);
 		new AnimationTimer()  {
+			
+			
 			@Override
 			public void handle(long currentNanoTime) {
 				if(!isDead && !GamePause.isPause) {
+					if(BOTSPAWN)
+					{
+						Thread addBot = new Thread(()->{
+							try {
+								BadHuman.addBot();
+								BOTSPAWN = false;
+								Thread.sleep(1000/BOTSPAWNRATE);
+								BOTSPAWN = true;
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						});
+						addBot.start();
+					}
 
 					// Input
 					//drawMap
@@ -142,7 +162,7 @@ public class LoopGame {
 					Sprite.Item.checkItemUse(tiger1);
 				
 					//Game Over
-					if(tiger1.isDead()) {
+					if(tiger1.isDead()&&!GODMODE) {
 						isDead = true;
 						Audio.SELECTMENU.play();
 						System.out.println("GAME OVER!");

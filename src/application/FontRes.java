@@ -7,17 +7,6 @@ import java.io.FileNotFoundException;
 import javafx.scene.text.Font;
 
 public class FontRes {
-
-    public static Font getFont() {
-    	Font font = null;
-		try {
-			font = Font.loadFont(new FileInputStream(new File("resources/Cornerstone.ttf")), 12);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return font;
-	}
     
     public static void load() {
     	try {
