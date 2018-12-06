@@ -89,7 +89,6 @@ public class Main extends Application {
 		quitMenu = new QuitMenu();
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
-		//stage.setScene(quitMenu);
 	}
 	public static void gamePause() {
 		//gamePause.show(stage);

@@ -21,10 +21,11 @@ import javafx.stage.Popup;
 public class DeadScene extends Popup {
 	
 	public static ArrayList<Image>deadScene = Images.deadScene;
-	public static int selectNumber = 100000;
+	public static int selectNumber;
 	
 	public DeadScene(String playerName,int score,String time) {
 		super();
+		selectNumber = 100000;
 		Canvas canvas = new Canvas(1136, 567);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(deadScene.get(0), 0, 0);
@@ -51,8 +52,10 @@ public class DeadScene extends Popup {
 		    	  // -> new StartGame
 		    	  if(selectNumber%2 == 0){
 		    		  selectNumber = 100000;
+		    		  Main.startGame(playerName);
 		    	  }
 		    	  else {
+		    		  selectNumber = 100000;
 		    		  Main.mainMenu();
 		    	  }
 		      }
@@ -60,6 +63,7 @@ public class DeadScene extends Popup {
 		      {
 		    	  this.hide();
 		    	  selectNumber = 100000;
+		    	  Main.gameMenu();
 		      }
 		      gc.drawImage(deadScene.get(selectNumber%2), 0, 0);
 		      scoreFillText(gc,playerName,score,rank,allRank,time);

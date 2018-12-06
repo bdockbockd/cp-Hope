@@ -27,7 +27,7 @@ public class LoopGame {
 	public static BlackTiger tiger1;
 	private static long lastNanoTime ;
     public static ArrayList<String> input;
-    public static final ArrayList<String> type2Key = new ArrayList<String>(); //
+    public static final ArrayList<String> type2Key = new ArrayList<String>();
     public static ArrayList<String> input2;
     public static GamePause gamePause;
     public static DeadScene deadScene;
@@ -43,9 +43,8 @@ public class LoopGame {
 	public LoopGame(Scene theScene, String playerName) {
 		tiger1 = StartGame.tiger1;
 		lastNanoTime = System.nanoTime();
-		ArrayList<String> input = new ArrayList<String>();
-		//ArrayList<String> type2Key = new ArrayList<String>(); 
-		ArrayList<String> input2 = new ArrayList<String>();
+		input = new ArrayList<String>();
+		input2 = new ArrayList<String>();
 		// scene detect
 		LoopGame.setKey(theScene);
 		BadHuman bad1 = new BadHuman();

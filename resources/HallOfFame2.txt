@@ -1,0 +1,3 @@
+Player:40000
+Player:30000
+ttt:2000
