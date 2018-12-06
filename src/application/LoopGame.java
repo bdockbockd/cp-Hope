@@ -2,7 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
-import Controller.Main;
+import Controller.*;
 import Controller.StartGame;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
@@ -18,11 +18,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
-	public static BlackTiger tiger1 = StartGame.tiger1;
-	private static long lastNanoTime = System.nanoTime();
-    public static ArrayList<String> input = new ArrayList<String>();
+	public static BlackTiger tiger1;
+	private static long lastNanoTime ;
+    public static ArrayList<String> input;
     public static final ArrayList<String> type2Key = new ArrayList<String>();
-    public static ArrayList<String> input2 = new ArrayList<String>();
+    public static ArrayList<String> input2;
+    public static GamePause gamePause;
+    public static DeadScene deadScene;
+    public static boolean isDead;
 
 
     static {
@@ -33,9 +36,15 @@ public class LoopGame {
     }
 	
 	public LoopGame(Scene theScene) {
+		tiger1 = StartGame.tiger1;
+		lastNanoTime = System.nanoTime();
+		input = new ArrayList<String>();
+		input2 = new ArrayList<String>();
 		// scene detect
 		LoopGame.setKey(theScene);
 		BadHuman bad1 = new BadHuman();
+		gamePause = new GamePause();
+		isDead = false;
 		// item test
 		Meat meat = new Meat(20,20+220);
 		HealthPotion healthPotion = new HealthPotion(900,20+220);
@@ -44,6 +53,9 @@ public class LoopGame {
         	
 			@Override
 			public void handle(long currentNanoTime) {
+				if(!isDead && !GamePause.isPause) {
+
+
 		        // Input
                 //drawMap
 				// TODO Auto-generated method stub
@@ -131,9 +143,28 @@ public class LoopGame {
 				Controller.StatusBar.resetProgress(tiger1);
 				Sprite.Item.render(StartGame.gc);
 				Sprite.Item.checkItemUse(tiger1);
+				
+				//Game Over
+				if(tiger1.isDead()) {
+					isDead = true;
+					Audio.SELECTMENU.play();
+					System.out.println("GAME OVER!");
+					Timer.stop();
+					Timer.hide();
+					Timer.terminate();
+					ScoreBoard.hide();
+					ScoreBoard.addScore(Timer.getSec()*1000);
+					isDead = true;
+					deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
+					deadScene.show(Main.stage);
+					
+					//stop doing everthing
+				}
+				}
 			}	
         }.start();
 	}
+	
 	protected static void keySkill(BlackTiger tiger1, GraphicsContext gc) {
 		// TODO Auto-generated method stub
 	
@@ -292,6 +323,7 @@ public class LoopGame {
 //			delay.start();
 			
 		}
+		
 
 	    if (input.contains("LEFT") && tiger.getRealX() > 0) {
 			// x 70
