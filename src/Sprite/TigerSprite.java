@@ -24,6 +24,7 @@ public abstract class TigerSprite extends Sprite{
 	private int status; // 1 = normalBP, 2 = superBP, 3 = enragedBP
 	protected int spinPosition;
 	protected int jumpPosition;
+	protected boolean speedFix = false;
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -157,6 +158,8 @@ public abstract class TigerSprite extends Sprite{
 	
 	// use When want to immediately change
 	public void switchToWalk() {
+		this.setActionState(0);
+		this.setSpeedFix(false);
 		this.setAttackable(false);
 		this.setImageL(Images.blackTigerMotionL);
 		this.setImageR(Images.blackTigerMotionR);
@@ -279,6 +282,14 @@ public abstract class TigerSprite extends Sprite{
 	public boolean isDead()
 	{
 		return getHealth()<=0;
+	}
+
+	public boolean isSpeedFix() {
+		return speedFix;
+	}
+
+	public void setSpeedFix(boolean speedFix) {
+		this.speedFix = speedFix;
 	}
 	
 	

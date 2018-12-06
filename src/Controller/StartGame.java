@@ -29,7 +29,7 @@ public class StartGame extends Scene {
     public static LoopGame Loop;
     public static BlackTiger tiger1 = new BlackTiger();
     public static String playerName;
-    private static int enemyNumberLimit = 1000;
+    private static int enemyNumberLimit = 20;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
 	public StartGame(String playerName) {
@@ -42,6 +42,7 @@ public class StartGame extends Scene {
 //        StatusBar
         StatusBar statusBar = new StatusBar(this.playerName);
          
+//        tiger1 = new BlackTiger();
 //        create tiger onScreenss
         tiger1.setPosition(1250/2 - 351/2, 800/2+100);
         
