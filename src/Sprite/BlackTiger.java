@@ -133,5 +133,65 @@ public class BlackTiger extends TigerSprite {
     	return new Rectangle2D(this.getRealX()+this.getRealWidth()+53-147,this.getRealY()-51, 147, 188);
     }
     
-    
+	public void playJump() {
+		if(this.getFace() == "LEFT") {
+			this.setFace("LEFT");
+			this.nextPosition(this.getFace());
+			this.setSpeedFix(true);
+			this.setImage((Images.jumpAttackL)[0]);
+			Thread delay = new Thread(()->{
+				try {
+					this.setVelocity(-1200,-200);
+					Thread.sleep(100);
+					this.setVelocity(-1200,-100);
+					Thread.sleep(50);
+					this.setVelocity(-1200, 100);
+					Thread.sleep(50);
+					this.setVelocity(-1200,200);
+					Thread.sleep(100);
+					this.switchToWalk();
+					Thread.sleep(10);
+					this.setSpeedFix(false);
+//					tiger1.setVelocityX(0);
+//					Thread.sleep(2000);
+					BlackTiger.jumpAttackDetected = false;
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+				}
+			});
+			delay.start();
+		} else {
+			this.nextPosition(this.getFace());
+			this.setFace("RIGHT");
+			this.setImage((Images.jumpAttackR)[0]);
+			this.setSpeedFix(true);
+			Thread delay = new Thread(()->{
+				try {
+					this.setVelocity(1200,-200);
+					Thread.sleep(50);
+					this.setVelocity(1200,-100);
+					Thread.sleep(70);
+					this.setVelocity(1200, 100);
+					Thread.sleep(70);
+					this.setVelocity(1200,200);
+					Thread.sleep(50);
+					this.switchToWalk();
+					Thread.sleep(30);
+					this.setSpeedFix(false);
+//					tiger1.setVelocityX(0);
+//					Thread.sleep(2000);
+					BlackTiger.jumpAttackDetected = false;
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+				}
+			});
+			delay.start();
+		}
+	}
 }

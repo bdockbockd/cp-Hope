@@ -134,17 +134,21 @@ public abstract class TigerSprite extends Sprite{
 			return;
 		}
 		if(face == "LEFT") {
-			if(this.isAttackable()) {
+			if(this.getActionState() == 1) {
 				this.setSkillPositionL((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
 				this.setSpinPosition(0);
 			} else if(this.getActionState() == 3){
+				
+				
+				
+				
 				this.setJumpPosition(0);
 			} else {
 				this.setPositionL((this.getPositionL()+1)%3);
 			}
 		} else {
-			if(this.isAttackable()) {
+			if(this.getActionState() == 1) {
 				this.setSkillPositionR((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
 				this.setSpinPosition(0);
@@ -292,7 +296,7 @@ public abstract class TigerSprite extends Sprite{
 		this.speedFix = speedFix;
 	}
 	
-	
+
 	
 
 }

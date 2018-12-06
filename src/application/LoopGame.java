@@ -191,15 +191,6 @@ public class LoopGame {
 	}
 	public static void keyActionToSpeed(BlackTiger tiger, long current, AnimationTimer x) {
 		
-		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
-			Audio.SELECTMENU.play();
-			GamePause.isPause = true;
-			Timer.stop();
-			Timer.hide();
-			ScoreBoard.hide();
-			System.out.println("GAME IS PAUSED!");
-			gamePause.show(Main.stage);
-		}
 		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
 			Audio.spinSound();
 			tiger.attackEnemy();
@@ -221,113 +212,28 @@ public class LoopGame {
 			delay.start();
 			
 		} 
-//		else if(input.contains("C") && input.contains("RIGHT") ){
-////			BlackTiger.jumpAttackDetected = true;
-//			tiger1.setActionState(3);
-//			tiger1.setFace("RIGHT");
-//			tiger1.nextPosition(tiger.getFace());
-//			tiger1.setSpeedFix(true);
-//			Thread delay = new Thread(()->{
-//				try {
-//					tiger1.setVelocityX(1000);
-//					Thread.sleep(500);
-//					tiger1.setSpeedFix(false);
-////					BlackTiger.jumpAttackDetected = false;
-//					tiger1.switchToWalk();
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			});
-//			delay.start();
-//		} 
-		else if(input.contains("C") && BlackTiger.jumpAttackDetected == false) {
+
+		if(input.contains("C") && BlackTiger.jumpAttackDetected == false) {
 		
 			tiger1.setActionState(3);
 			BlackTiger.jumpAttackDetected = true;
 			tiger1.setSpeedFix(true);
+			tiger.setFace(tiger.getFace());
 
 			Audio.pounceSound();
 			tiger.attackEnemy();
-			
-			if(tiger1.getFace() == "LEFT") {
-				tiger1.setFace("LEFT");
-				tiger1.nextPosition(tiger.getFace());
-//				tiger1.setSpeedFix(true);
-				Thread delay = new Thread(()->{
-					try {
-						tiger1.setVelocity(-1200,-200);
-						Thread.sleep(50);
-						tiger1.setVelocity(-1200,-100);
-						Thread.sleep(70);
-						tiger1.setVelocity(-1200, 100);
-						Thread.sleep(70);
-						tiger1.setVelocity(-1200,200);
-						Thread.sleep(50);
-						tiger1.switchToWalk();
-						Thread.sleep(30);
-						tiger1.setVelocityX(0);
-						Thread.sleep(2000);
-						BlackTiger.jumpAttackDetected = false;
+			tiger.playJump();
 
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-
-					}
-				});
-				delay.start();
-			} else {
-				tiger1.setFace("RIGHT");
-				tiger1.nextPosition(tiger.getFace());
-//				tiger1.setSpeedFix(true);
-				Thread delay = new Thread(()->{
-					try {
-						tiger1.setVelocity(1200,-200);
-						Thread.sleep(50);
-						tiger1.setVelocity(1200,-100);
-						Thread.sleep(70);
-						tiger1.setVelocity(1200, 100);
-						Thread.sleep(70);
-						tiger1.setVelocity(1200,200);
-						Thread.sleep(50);
-						tiger1.switchToWalk();
-						Thread.sleep(30);
-						tiger1.setVelocityX(0);
-						Thread.sleep(2000);
-						BlackTiger.jumpAttackDetected = false;
-
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-
-					}
-				});
-				delay.start();
-			}
-//			Thread delay = new Thread(()-> {
-//				BlackTiger.jumpAttackDetected = true;
-//				tiger1.setActionState(3);
-//				tiger1.setFace(tiger1.getFace());
-//				tiger1.nextPosition(tiger1.getFace());
-//				try {
-////					tiger1.setVelocityX(2000);
-////					tiger1.render(StartGame.gc);
-//					Thread.sleep(300);
-////					Thread.sleep(200);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				BlackTiger.spinAttackDetected = false;
-//				tiger1.switchToWalk();
-//				
-//
-//			});
-//			delay.start();
-			
 		}
-		
+		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
+			Audio.SELECTMENU.play();
+			GamePause.isPause = true;
+			Timer.stop();
+			Timer.hide();
+			ScoreBoard.hide();
+			System.out.println("GAME IS PAUSED!");
+			gamePause.show(Main.stage);
+		}
 
 	    if (input.contains("LEFT") && tiger.getRealX() > 0) {
 			// x 70
