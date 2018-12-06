@@ -58,6 +58,10 @@ public class BadHuman extends HumanSprite  {
         return badHuman;
     }
     
+    public static void addBot() {
+    	BadHuman.getbadList().add(BadHuman.generateRandom());
+    }
+    
     public static void generatelistBot(int num) {
     	CopyOnWriteArrayList<BadHuman> bad = new CopyOnWriteArrayList<BadHuman>();
     	while(num !=0) {
@@ -132,6 +136,7 @@ public class BadHuman extends HumanSprite  {
         			if(tiger.getPositionX()+120 < this.getPositionX()) {
     					this.setFace("LEFT");
         				this.nextPosition(this.getFace());
+        		
 
         				if(tiger.getPositionY()+75 < this.getPositionY() ) {
             				this.setVelocity(-Math.random()*200,-Math.random()*200);

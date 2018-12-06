@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.image.Image;
 
@@ -40,6 +41,11 @@ public class Images {
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
+	public static final ArrayList<ArrayList<ArrayList<Image>>> STAGETIGER = new ArrayList<ArrayList<ArrayList<Image>>>();
+	public static final List<Image[]> STAGE1 = new ArrayList<Image[]>();
+	public static final List<Image[]> STAGE2 = new ArrayList<Image[]>();
+	public static final List<Image[]> STAGE3 = new ArrayList<Image[]>();
+
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
 	
@@ -115,6 +121,16 @@ public class Images {
 			deadScene.add(new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0"+i+".png").toString()));
 		}
 	
+		STAGE1.add(Images.blackTigerMotionL);
+		STAGE1.add(Images.blackTigerMotionR);
+		STAGE1.add(Images.blackTigerBasicAttackL);
+		STAGE1.add(Images.blackTigerBasicAttackR);
+		STAGE1.add(Images.jumpAttackL);
+		STAGE1.add(Images.jumpAttackR);
+		STAGE1.add(Images.spinAttackL);
+		STAGE1.add(Images.spinAttackR);
+
+		
 		
 
 	}

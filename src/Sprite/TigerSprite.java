@@ -24,6 +24,7 @@ public abstract class TigerSprite extends Sprite{
 	private int status; // 1 = normalBP, 2 = superBP, 3 = enragedBP
 	protected int spinPosition;
 	protected int jumpPosition;
+	protected boolean speedFix = false;
 
     public TigerSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -133,17 +134,21 @@ public abstract class TigerSprite extends Sprite{
 			return;
 		}
 		if(face == "LEFT") {
-			if(this.isAttackable()) {
+			if(this.getActionState() == 1) {
 				this.setSkillPositionL((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
 				this.setSpinPosition(0);
 			} else if(this.getActionState() == 3){
+				
+				
+				
+				
 				this.setJumpPosition(0);
 			} else {
 				this.setPositionL((this.getPositionL()+1)%3);
 			}
 		} else {
-			if(this.isAttackable()) {
+			if(this.getActionState() == 1) {
 				this.setSkillPositionR((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
 				this.setSpinPosition(0);
@@ -157,6 +162,8 @@ public abstract class TigerSprite extends Sprite{
 	
 	// use When want to immediately change
 	public void switchToWalk() {
+		this.setActionState(0);
+		this.setSpeedFix(false);
 		this.setAttackable(false);
 		this.setImageL(Images.blackTigerMotionL);
 		this.setImageR(Images.blackTigerMotionR);
@@ -280,8 +287,16 @@ public abstract class TigerSprite extends Sprite{
 	{
 		return getHealth()<=0;
 	}
+
+	public boolean isSpeedFix() {
+		return speedFix;
+	}
+
+	public void setSpeedFix(boolean speedFix) {
+		this.speedFix = speedFix;
+	}
 	
-	
+
 	
 
 }

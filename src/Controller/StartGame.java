@@ -40,7 +40,7 @@ public class StartGame extends Scene {
 	public StartGame(String playerName) {
 		super(new Group(), 1250, 800);
 		root = (Group) super.getRoot();
-		this.playerName = playerName;
+		StartGame.playerName = playerName;
 		enemySprite = new ArrayList<Sprite>();
 		canUpdateBot = true;
 		ccheck = true;
@@ -52,6 +52,7 @@ public class StartGame extends Scene {
 		Canvas canvas = new Canvas(1250, 800);
         gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
+        
 
 //        create tiger onScreenss
         tiger1.setPosition(1250/2 - 351/2, 800/2+100);
