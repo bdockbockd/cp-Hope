@@ -23,7 +23,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
-	public static BlackTiger tiger1;
+	public static BlackTiger blackPanther;
 	private static long lastNanoTime ;
     public static ArrayList<String> input;
     public static final ArrayList<String> type2Key = new ArrayList<String>();
@@ -40,7 +40,7 @@ public class LoopGame {
     }
 	
 	public LoopGame(Scene theScene, String playerName) {
-		tiger1 = StartGame.tiger1;
+		blackPanther = StartGame.tiger1;
 		lastNanoTime = System.nanoTime();
 		input = new ArrayList<String>();
 		input2 = new ArrayList<String>();
@@ -68,16 +68,16 @@ public class LoopGame {
                 
 					// set Velocity tiger
 					bad1.setVelocity(0, 0);
-					if(!(tiger1.isSpeedFix())) {
-						tiger1.setVelocity(0,0);
-						LoopGame.keyActionToSpeed(tiger1, currentNanoTime, this);
+					if(!(blackPanther.isSpeedFix())) {
+						blackPanther.setVelocity(0,0);
+						LoopGame.keyActionToSpeed(blackPanther, currentNanoTime, this);
 
                     // checkPosition Tiger
-						if(StartGame.ccheck && tiger1.getActionState() == 0) {
+						if(StartGame.ccheck && blackPanther.getActionState() == 0) {
 							Thread x = new Thread (()-> {
 								try {
 									StartGame.ccheck = false;	
-									tiger1.nextPosition(tiger1.getFace());
+									blackPanther.nextPosition(blackPanther.getFace());
 									Thread.sleep(50);
 									StartGame.ccheck = true;
 								} catch (InterruptedException e) {
@@ -89,13 +89,13 @@ public class LoopGame {
 					}
                  
 					//update velocity tiger and detect attack hit
-//            		LoopGame.keySkill(tiger1, StartGame.gc);
+//            		LoopGame.keySkill(blackPanther, StartGame.gc);
 
 					LoopGame.keySpeed(bad1, currentNanoTime);
 
 					bad1.update(elapsedTime);
 					//update position from time and velocity	
-					tiger1.update(elapsedTime);
+					blackPanther.update(elapsedTime);
               
                
 					// updateBot every 1 
@@ -104,7 +104,7 @@ public class LoopGame {
 							try {
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
 									if(!BadHuman.getbadList().get(i).isDead()) {
-										((BadHuman.getbadList()).get(i)).update(elapsedTime, tiger1);
+										((BadHuman.getbadList()).get(i)).update(elapsedTime, blackPanther);
 									}
 								}
 								StartGame.canUpdateBot = false;
@@ -118,7 +118,7 @@ public class LoopGame {
 					}
 				
 					// check bot attack
-					BadHuman.checkAttackHuman(tiger1);
+					BadHuman.checkAttackHuman(blackPanther);
 					// check bot get damaged
 					BadHuman.removeEnemy();
 
@@ -134,17 +134,17 @@ public class LoopGame {
 						((BadHuman.getbadList()).get(i)).render(StartGame.gc);
 					}
 					
-//					tiger1.printBoundary();
+//					blackPanther.printBoundary();
 					//render tiger	
 					bad1.render(StartGame.gc);
-					tiger1.render( StartGame.gc );
+					blackPanther.render( StartGame.gc );
 					Controller.ScoreBoard.update();
-					Controller.StatusBar.resetProgress(tiger1);
+					Controller.StatusBar.resetProgress(blackPanther);
 					Item.render(StartGame.gc);
-					Item.checkItemUse(tiger1);
+					Item.checkItemUse(blackPanther);
 				
 					//Game Over
-					if(tiger1.isDead()) {
+					if(blackPanther.isDead()) {
 						isDead = true;
 						Audio.SELECTMENU.play();
 						System.out.println("GAME OVER!");
@@ -164,7 +164,7 @@ public class LoopGame {
         }.start();
 	}
 	
-	protected static void keySkill(BlackTiger tiger1, GraphicsContext gc) {
+	protected static void keySkill(BlackTiger blackPanther, GraphicsContext gc) {
 		// TODO Auto-generated method stub
 	
 		
@@ -199,9 +199,9 @@ public class LoopGame {
 			
 			Thread delay = new Thread(()-> {
 				BlackTiger.spinAttackDetected = true;
-				tiger1.setActionState(2);
-				tiger1.setFace(tiger1.getFace());
-				tiger1.nextPosition(tiger.getFace());
+				blackPanther.setActionState(2);
+				blackPanther.setFace(blackPanther.getFace());
+				blackPanther.nextPosition(tiger.getFace());
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
@@ -209,7 +209,7 @@ public class LoopGame {
 					e.printStackTrace();
 				}
 				BlackTiger.spinAttackDetected = false;
-				tiger1.switchToWalk();
+				blackPanther.switchToWalk();
 			});
 			delay.start();
 			
@@ -217,9 +217,9 @@ public class LoopGame {
 
 		if(input.contains("C") && BlackTiger.jumpAttackDetected == false) {
 		
-			tiger1.setActionState(3);
+			blackPanther.setActionState(3);
 			BlackTiger.jumpAttackDetected = true;
-			tiger1.setSpeedFix(true);
+			blackPanther.setSpeedFix(true);
 			tiger.setFace(tiger.getFace());
 
 			Audio.pounceSound();
@@ -320,7 +320,7 @@ public class LoopGame {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
-	                        		tiger1.setCanMovePosition(true);
+	                        		blackPanther.setCanMovePosition(true);
 	
 	                        	} else if(code.equals("X")) {
 	                        		BlackTiger.spinAttackDetected = false;
