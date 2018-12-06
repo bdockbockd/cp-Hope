@@ -90,12 +90,16 @@ public class Timer extends StackPane{
 		}
 		//timerlb = new Text("TIME "+timerString);
 	}
-	public static int getSec()
-	{
+	public static int getSec(){
 		return sec;
 	}
-	public static int getMin()
-	{
+	public static int getMin(){
 		return min;
+	}
+	public static int getMilSec() {
+		return milsec;
+	}
+	public static int getTime() {
+		return time;
 	}
 }

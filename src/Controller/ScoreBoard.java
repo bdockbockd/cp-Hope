@@ -17,7 +17,6 @@ public class ScoreBoard extends StackPane {
 	public ScoreBoard(){
 		super();
 		score = 0;
-		
 		isHide = false;
 		scoretxt = new Text("Score: "+Integer.toString(score));
 		scoretxt.setFill(Color.WHITE);
@@ -34,9 +33,11 @@ public class ScoreBoard extends StackPane {
 	}
 	public static void hide() {
 		isHide = true;
+		update();
 	}
 	public static void show() {
 		isHide = false;
+		update();
 	}
 	public static void reset() {
 		setScore(0);
@@ -47,15 +48,17 @@ public class ScoreBoard extends StackPane {
 	public static void setScore(int newScore)
 	{ 
 		score = newScore;
+		update();
 	}
 	public static void addScore(int addScore)
 	{
 		score += addScore;
+		update();
 	}
 	
 	public static void update() {
 		scoretxt.setText("Score: "+Integer.toString(score));
-		if(isHide()) {
+		if(isHide) {
 			scoretxt.setText(null);
 		}
 	}

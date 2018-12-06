@@ -34,18 +34,23 @@ import javafx.util.Pair;
 
 public class HallOfFameMenu extends Scene{
 	
-	private static List<Pair<String, Integer>> playerDataList = new ArrayList<Pair<String, Integer>>();
+	private static List<Pair<String, Integer>> playerDataList;
 	private static Image hallOfFameBG = Images.hallOfFameBG;
-	public static Pane root = new Pane();
-	private static Canvas canvas = new Canvas(1250, 800);
-	private static GraphicsContext gc = canvas.getGraphicsContext2D();
+	public static Pane root;
+	private static Canvas canvas;
+	private static GraphicsContext gc;
+	//private static File file = new File("resources/HallOfFame.txt");
 	
 	public HallOfFameMenu() {
-		super(root,1250,800);
-//		Canvas canvas = new Canvas(1250, 800);
-//		GraphicsContext gc = canvas.getGraphicsContext2D();
+		super(new Pane(),1250,800);
+		root = (Pane) super.getRoot();
+		canvas = new Canvas(1250, 800);
+		gc = canvas.getGraphicsContext2D();
+		playerDataList = new ArrayList<Pair<String, Integer>>();
+		
 		readHallOfFame();
-		//FillText(gc);
+		fillText();
+
 		root.getChildren().addAll(canvas);
 		Main.backMenu(this);
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
@@ -113,16 +118,16 @@ public class HallOfFameMenu extends Scene{
         });
 	}
 	
-	public void readHallOfFame() {
+	public static void readHallOfFame() {
 		try (BufferedReader reader = new BufferedReader(new FileReader(new File("resources/HallOfFame.txt")))) {
 	        String line;
-	        
 	        while ((line = reader.readLine()) != null)
 	        {
 	        	int colonIndex = line.lastIndexOf(":");
 	        	String playerName = line.substring(0, colonIndex);
 	        	int score = Integer.parseInt(line.substring(colonIndex+1, line.length()));
 	        	addList(playerName, score);
+	        	//System.out.println(playerName+":"+score);
 	        }
 	        sortList();
 	    } catch (IOException e) {

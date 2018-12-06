@@ -22,12 +22,14 @@ import javafx.scene.text.Text;
 
 public class GameMenu extends Scene{
 	
-	public static Pane root = new Pane();
-	public static String playerName = "Player";
+	public static Pane root;
+	public static String playerName;
 	public static Image playerNameMenu = Images.playerNameMenu;
 	
 	public GameMenu() {
-		super(root,1250,800);
+		super(new Pane(),1250,800);
+		root = (Pane) super.getRoot();
+		playerName = "Player";
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(playerNameMenu, 0, 0);

@@ -14,18 +14,17 @@ public class StatusBar extends StackPane {
 	
 	private static ProgressBar HPBar;
 	private static ProgressIndicator attack;
-	private ProgressIndicator pounce;
-	private ProgressIndicator spin;
+	private static ProgressIndicator pounce;
+	private static ProgressIndicator spin;
+	private static Label playerNameLabel;
 	
 	public StatusBar(String playerName)
 	{
 		super();  
-		
-		Label playerNameLabel = new Label(playerName);
-		playerNameLabel.setStyle("-fx-base: orange; -fx-text-fill: WHITE;");
+		playerNameLabel = new Label(playerName);
+		playerNameLabel.setStyle("-fx-text-fill: WHITE;");
 		playerNameLabel.setFont(Font.font("Cornerstone", FontWeight.BLACK, 24));
 		playerNameLabel.setTranslateY(-46);
-		//this.setAlignment(Pos.CENTER);
 		
 		attack = new ProgressIndicator(0); 
 		attack.setTranslateY(26+31);
@@ -48,9 +47,13 @@ public class StatusBar extends StackPane {
 		HPBar.setPrefSize(460, 18);
 		HPBar.setStyle("-fx-accent: rgb(143,194,103);-fx-border-radius: 9px;-fx-text-box-border: black; -fx-control-inner-background: black; -fx-padding: 0px;-fx-background-insets: 4; -fx-background-color:-fx-box-border,linear-gradient(to bottom, derive(-fx-color,100%), derive(-fx-color,100%));");
 		HPBar.setTranslateY(-23);
+		
 		this.setLayoutX(1250/2-300);
 		this.setLayoutY(800-150);
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
+	}
+	public static void reset(String playerName) {
+		playerNameLabel.setText(playerName);
 	}
 	public static void resetProgress(BlackTiger blackTiger)
 	{

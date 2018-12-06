@@ -21,12 +21,16 @@ import javafx.stage.Stage;
 public class MainMenu extends Scene{
 	
 	public static ArrayList<Image> selectMenu = Images.selectMenu;
-	public static int selectNumber = 1000000;
-	public static Pane root = new Pane();
-	public static boolean pressAble = true;
+	public static int selectNumber;
+	public static Pane root;
+	public static boolean pressAble;
 	
 	public MainMenu() {
-		super(root,1250,800);
+		super(new Pane(),1250,800);
+		selectNumber = 1000000;
+		root = (Pane) super.getRoot();
+		pressAble = true;
+
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(selectMenu.get(0), 0, 0);

@@ -32,7 +32,7 @@ import Controller.*;
 public class Main extends Application {
 
 	public static Stage stage;
-	public static ArrayList<Image> selectMenu = new ArrayList<Image>();
+	//public static ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static int selectNumber = 1000000;
 	public static MainMenu mainMenu;
 	public static GameMenu gameMenu;
@@ -48,12 +48,10 @@ public class Main extends Application {
 			stage = primaryStage;
 			stage.setTitle("blackPantherX"); 
 			mainMenu = new MainMenu();
-			gameMenu = new GameMenu();
-			howToPlayMenu = new HowToPlayMenu();
-			hallOfFameMenu = new HallOfFameMenu();
+			//gameMenu = new GameMenu();
+			//howToPlayMenu = new HowToPlayMenu();
+			//hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
-			//gamePause = new GamePause();
-			//deadScene = new DeadScene();
 			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
@@ -75,19 +73,24 @@ public class Main extends Application {
 	}
 	
 	public static void mainMenu() {
+		mainMenu = new MainMenu();
 		stage.setScene(mainMenu);
 	}
 	public static void gameMenu() {
+		gameMenu = new GameMenu();
 		stage.setScene(gameMenu);
 	}
 	public static void howToPlayMenu() {
+		howToPlayMenu = new HowToPlayMenu();
 		stage.setScene(howToPlayMenu);
 	}
 	public static void hallOfFameMenu() {
+		hallOfFameMenu = new HallOfFameMenu();
+		//HallOfFameMenu.fillText();
 		stage.setScene(hallOfFameMenu);
-		HallOfFameMenu.fillText();
 	}
 	public static void quitMenu() {
+		quitMenu = new QuitMenu();
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
 		//stage.setScene(quitMenu);

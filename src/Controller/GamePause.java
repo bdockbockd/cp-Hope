@@ -16,10 +16,12 @@ public class GamePause extends Popup{
 	
 	public static ArrayList<Image>gamePause = Images.gamePause;
 	public static int selectNumber = 100000;
-	public static boolean isPause = false;
+	public static boolean isPause;
 	
 	public GamePause() {
 		super();
+		selectNumber = 100000;
+		isPause = false;
 		Canvas canvas = new Canvas(600, 300);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(gamePause.get(0), 0, 0);
@@ -41,27 +43,30 @@ public class GamePause extends Popup{
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
 		    	  if(selectNumber%2 == 0){
 		    		  //System.out.println(isPause+" Continue!");
-		    		  Timer.play();
-		    		  selectNumber = 100000;
-		    		  this.hide();
+		    		  continueGame();
+		  			System.out.println("GAME IS PLAYING...");
 		    	  }
 		    	  else {
+		    		  continueGame();
 		    		  System.out.println("BACK TO MAIN MENU!");
-		    		  selectNumber = 100000;
-		    		  this.hide();
-		    		  Main.mainMenu();
 		    	  }
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE)
 		      {
-		    	  Timer.play();
-		    	  this.hide();
-		    	  //System.out.println(isPause+" Continue!");
-		    	  selectNumber = 100000;
+		    	  continueGame();
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);
 			}
 		});
+	}
+	
+	private void continueGame() {
+		selectNumber = 100000;
+		this.hide();
+		Timer.show();
+		Timer.play();
+		ScoreBoard.show();
+		isPause = false;
 	}
 
 }
