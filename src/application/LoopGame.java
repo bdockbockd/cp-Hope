@@ -152,6 +152,7 @@ public class LoopGame {
 						System.out.println("GAME OVER!");
 						Timer.stop();
 						Timer.hide();
+						Timer.terminate();
 						ScoreBoard.hide();
 						ScoreBoard.addScore(Timer.getSec()*1000);
 						isDead = true;

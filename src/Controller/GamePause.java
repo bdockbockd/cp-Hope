@@ -47,7 +47,14 @@ public class GamePause extends Popup{
 		  			System.out.println("GAME IS PLAYING...");
 		    	  }
 		    	  else {
-		    		  continueGame();
+		    		  ////Is the game running?
+		    		  //System.out.println("GAME OVER!");
+		    		  this.hide();
+		    		  Timer.stop();
+		    		  Timer.hide();
+		    		  Timer.terminate();
+		    		  ScoreBoard.hide();
+		    		  Main.mainMenu();
 		    		  System.out.println("BACK TO MAIN MENU!");
 		    	  }
 		      }

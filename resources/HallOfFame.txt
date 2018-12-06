@@ -1,4 +1,5 @@
 lol:60000
+Player:46000
 lol:42000
 ou:40000
 kazp:40000
@@ -10,8 +11,15 @@ Player:27000
 Player:22000
 kazp:16000
 kazp:13000
+Player:13000
 kaz:12000
 Player:12000
 lol:11000
 Player:7000
+Player:7000
+Player:7000
+Player:7000
+Player:6000
 Player:5000
+Player:4000
+Player:4000

@@ -16,6 +16,7 @@ public class Timer extends StackPane{
 	private static String timerString;
 	private static boolean isStop;
 	private static boolean isHide;
+	private static boolean isTerminate;
 	public Timer(){
 		super();
 		time = 0;
@@ -25,6 +26,7 @@ public class Timer extends StackPane{
 		
 		isStop = false;
 		isHide = false;
+		isTerminate = false;
 		
 		timerString = String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+(milsec);
 		timerlb = new Text("TIME "+timerString);
@@ -38,7 +40,7 @@ public class Timer extends StackPane{
 		
 		Thread t = new Thread(new Runnable() {
 			public void run(){ 
-				while(true) {
+				while(!isTerminate) {
 					try {
 						Thread.sleep(100);
 					}
@@ -55,6 +57,9 @@ public class Timer extends StackPane{
 		t.start();
 	}
 	
+	public static void terminate() {
+		isTerminate = true;
+	}
 	public static boolean isStop() {
 		return isStop;
 	}
