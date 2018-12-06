@@ -1,9 +1,15 @@
 package application;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
+import Controller.DeadScene;
+import Controller.GamePause;
 import Controller.Main;
+import Controller.MainMenu;
+import Controller.ScoreBoard;
 import Controller.StartGame;
+import Controller.Timer;
 import Enemy.BadHuman;
 import Sprite.BlackTiger;
 import Sprite.HealthPotion;
@@ -23,7 +29,9 @@ public class LoopGame {
     public static ArrayList<String> input = new ArrayList<String>();
     public static final ArrayList<String> type2Key = new ArrayList<String>();
     public static ArrayList<String> input2 = new ArrayList<String>();
-
+    public static GamePause gamePause;
+    public static DeadScene deadScene;
+    public static boolean isDead = false;
 
     static {
     	type2Key.add("W");
@@ -32,10 +40,11 @@ public class LoopGame {
     	type2Key.add("D");
     }
 	
-	public LoopGame(Scene theScene) {
+	public LoopGame(Scene theScene, String playerName) {
 		// scene detect
 		LoopGame.setKey(theScene);
 		BadHuman bad1 = new BadHuman();
+		gamePause = new GamePause();
 		// item test
 		Meat meat = new Meat(20,20+220);
 		HealthPotion healthPotion = new HealthPotion(900,20+220);
@@ -128,6 +137,19 @@ public class LoopGame {
 				Controller.StatusBar.resetProgress(tiger1);
 				Sprite.Item.render(StartGame.gc);
 				Sprite.Item.checkItemUse(tiger1);
+				
+				//Game Over
+				if(tiger1.isDead() && !isDead) {
+					Audio.SELECTMENU.play();
+					System.out.println("GAME OVER!");
+					Timer.stop();
+					Timer.hide();
+					ScoreBoard.hide();
+					isDead = true;
+					deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
+					deadScene.show(Main.stage);
+					//stop doing everthing
+				}
 			}	
         }.start();
 	}
@@ -159,14 +181,35 @@ public class LoopGame {
 		
 	}
 	public static void keyActionToSpeed(BlackTiger tiger, long current, AnimationTimer x) {
-		if(input.contains("ESCAPE")){
-			try {
-				x.wait(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
+			//x.stop();
+//			try {
+//				System.out.println("Game Pause");
+//				GamePause.isPause = true;
+//				gamePause.show(Main.stage);
+//				//x.wait(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			Audio.SELECTMENU.play();
+			GamePause.isPause = true;
+			Timer.stop();
+			Timer.hide();
+			ScoreBoard.hide();
+			System.out.println("GAME IS PAUSED!");
+			gamePause.show(Main.stage);
 		}
+		if(GamePause.isPause && !gamePause.isShowing())
+		{
+			GamePause.isPause = false;
+			Timer.play();
+			Timer.show();
+			ScoreBoard.show();
+			System.out.println("GAME IS PLAYING...");
+		}
+		
 		if(input.contains("X") && BlackTiger.spinAttackDetected == false) {
 			Audio.spinSound();
 			tiger.attackEnemy();
@@ -269,10 +312,10 @@ public class LoopGame {
 	                        if(type2Key.contains(code) && !input2.contains(code)) {
 	                        	input2.add(code);
 	                        }
-	                        if(e.getCode() == KeyCode.ESCAPE)
+	                        /*if(e.getCode() == KeyCode.ESCAPE)
 	                        {
 	                        	Main.gamePause();
-	                        }
+	                        }*/
 	                    }
 	                });
 
@@ -282,7 +325,7 @@ public class LoopGame {
 	                    public void handle(KeyEvent e)
 	                    {
 	                        String code = e.getCode().toString();
-	                        System.out.print(code);
+	                        //System.out.print(code);
 	                        if(input.contains(code)) {
 	                        	if(code.equals("SPACE")) {
 	                        		//try

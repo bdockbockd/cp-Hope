@@ -28,7 +28,7 @@ public class BlackTiger extends TigerSprite {
     		}
     	} else if(this.getActionState() == 2){
     		if(this.getFace().equals("LEFT")) {
-        		this.setImage((Images.spinAttackL)[this.getSpinPosition()]);
+        		this.setImage((Images.spinAttackL)[this.getSpinPosition()]); 
     		} else {
         		this.setImage((Images.spinAttackR)[this.getSpinPosition()]);
     		}

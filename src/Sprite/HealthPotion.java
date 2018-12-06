@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public class HealthPotion extends Item {
 	
-	private static final int healFactor = 100;
+	private static final int healFactor = 500;
 	
 	public HealthPotion(double x, double y){
 		super(x, y, Images.healthPotion);
@@ -20,6 +20,6 @@ public class HealthPotion extends Item {
 	public void itemUse(BlackTiger blackTiger) {
 		System.out.println("HealthPotion!");
 		blackTiger.heal(healFactor);
-		Audio.DRINK.play();
+		Audio.EAT.play();
 	}
 }

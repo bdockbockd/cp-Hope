@@ -13,19 +13,26 @@ public class Timer extends StackPane{
 	private static int sec;
 	private static int min;
 	private static Text timerlb;
+	private static String timerString;
+	private static boolean isStop;
+	private static boolean isHide;
 	public Timer(){
 		super();
 		time = 0;
 		milsec = 0;
 		sec = 0;
-		min = 0;
+		min = 0; 
 		
-		timerlb = new Text("TIME "+String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+Integer.toString(milsec));
+		isStop = false;
+		isHide = false;
+		
+		timerString = String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+(milsec);
+		timerlb = new Text("TIME "+timerString);
 		timerlb.setFill(Color.WHITE);
 		timerlb.setFont(Font.font("Cornerstone", FontWeight.BOLD, 18));
 		
 		this.setAlignment(Pos.CENTER);
-		this.setLayoutX(1250/2-45);
+		this.setLayoutX(1250-130);
 		this.setLayoutY(20);
 		this.getChildren().addAll(timerlb);
 		
@@ -38,7 +45,9 @@ public class Timer extends StackPane{
 					catch(InterruptedException e){
 						e.printStackTrace();
 					}
-					time++;
+					if(!isStop()) {
+						time++;
+					}
 					convert();
 				}
 			}
@@ -46,11 +55,40 @@ public class Timer extends StackPane{
 		t.start();
 	}
 	
+	public static boolean isStop() {
+		return isStop;
+	}
+	public static boolean isHide() {
+		return isHide;
+	}
+	public static void hide() {
+		isHide = true;
+	}
+	public static void show() {
+		isHide = false;
+	}
+	public static void stop() {
+		isStop = true;
+	}
+	public static void play() {
+		isStop = false;
+	}
+	public static void reset() {
+		time = 0;
+	}
+	public static String getString() {
+		return timerString;
+	}
 	private void convert(){
 		milsec = time%10;
 		sec = (time/10)%60;
 		min = time/600;
-		timerlb.setText("TIME "+String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+Integer.toString(milsec));
+		timerString = String.format("%02d",min)+":"+String.format("%02d",sec) + ":"+(milsec);
+		timerlb.setText("TIME "+timerString);
+		if(isHide()) {
+			timerlb.setText(null);
+		}
+		//timerlb = new Text("TIME "+timerString);
 	}
 	public static int getSec()
 	{

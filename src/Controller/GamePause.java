@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import application.Audio;
 import application.Images;
+import application.LoopGame;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ public class GamePause extends Popup{
 	
 	public static ArrayList<Image>gamePause = Images.gamePause;
 	public static int selectNumber = 100000;
+	public static boolean isPause = false;
 	
 	public GamePause() {
 		super();
@@ -26,8 +28,9 @@ public class GamePause extends Popup{
 		this.setAnchorX(1250/2-200);
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(Main.gamePause.isShowing())
+			if(this.isShowing())
 			{
+//				System.out.println("class: "+isPause);
 				Audio.SELECTMENU.play();
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
 		    	  selectNumber += 1;
@@ -37,17 +40,23 @@ public class GamePause extends Popup{
 		      }
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
 		    	  if(selectNumber%2 == 0){
+		    		  //System.out.println(isPause+" Continue!");
+		    		  Timer.play();
 		    		  selectNumber = 100000;
 		    		  this.hide();
 		    	  }
 		    	  else {
+		    		  System.out.println("BACK TO MAIN MENU!");
+		    		  selectNumber = 100000;
 		    		  this.hide();
 		    		  Main.mainMenu();
 		    	  }
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE)
 		      {
-		    	  //MainMenu.pressAble = true;
+		    	  Timer.play();
+		    	  this.hide();
+		    	  //System.out.println(isPause+" Continue!");
 		    	  selectNumber = 100000;
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);

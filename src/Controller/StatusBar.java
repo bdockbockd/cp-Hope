@@ -19,7 +19,7 @@ public class StatusBar extends StackPane {
 	
 	public StatusBar(String playerName)
 	{
-		super(); 
+		super();  
 		
 		Label playerNameLabel = new Label(playerName);
 		playerNameLabel.setStyle("-fx-base: orange; -fx-text-fill: WHITE;");

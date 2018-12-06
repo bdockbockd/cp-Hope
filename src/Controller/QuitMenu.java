@@ -32,7 +32,7 @@ public class QuitMenu extends Popup{
 		this.setAnchorX(1250/2-200);
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(Main.quitMenu.isShowing())
+			if(this.isShowing())
 			{
 				Audio.SELECTMENU.play();
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {

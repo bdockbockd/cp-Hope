@@ -40,8 +40,8 @@ public class Main extends Application {
 	public static HowToPlayMenu howToPlayMenu;
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
-	public static GamePause gamePause;
-	public static DeadScene deadScene;
+	//public static GamePause gamePause;
+	//public static DeadScene deadScene;
 
 	public void start(Stage primaryStage) {
 		try {
@@ -52,12 +52,13 @@ public class Main extends Application {
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
-			gamePause = new GamePause();
-			deadScene = new DeadScene();
+			//gamePause = new GamePause();
+			//deadScene = new DeadScene();
 			
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent t) {
+	            	HallOfFameMenu.save();
 	                Platform.exit();
 	                System.exit(0);
 	            }
@@ -84,6 +85,7 @@ public class Main extends Application {
 	}
 	public static void hallOfFameMenu() {
 		stage.setScene(hallOfFameMenu);
+		HallOfFameMenu.fillText();
 	}
 	public static void quitMenu() {
 		MainMenu.pressAble = false;
@@ -91,10 +93,10 @@ public class Main extends Application {
 		//stage.setScene(quitMenu);
 	}
 	public static void gamePause() {
-		gamePause.show(stage);
+		//gamePause.show(stage);
 	}
-	public static void deadScene() {
-		deadScene.show(stage);
+	public static void deadScene() { 
+		//deadScene.show(stage);
 	}
 	public static void startGame(String playerName) {
 		startGame = new StartGame(playerName);

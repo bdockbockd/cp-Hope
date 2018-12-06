@@ -29,7 +29,7 @@ public class StartGame extends Scene {
     public static LoopGame Loop;
     public static BlackTiger tiger1 = new BlackTiger();
     public static String playerName;
-    private static int enemyNumberLimit = 1000;
+    private static int enemyNumberLimit = 40;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
 	public StartGame(String playerName) {
@@ -40,7 +40,7 @@ public class StartGame extends Scene {
         gc.drawImage((Images.stageMap)[0], 0, 0);
         
 //        StatusBar
-        StatusBar statusBar = new StatusBar(this.playerName);
+        StatusBar statusBar = new StatusBar(playerName);
          
 //        create tiger onScreenss
         tiger1.setPosition(1250/2 - 351/2, 800/2+100);
@@ -59,7 +59,7 @@ public class StartGame extends Scene {
         ScoreBoard scoreBoard = new ScoreBoard();
         
         root.getChildren().addAll( canvas,statusBar,timerBar,scoreBoard);
-        Loop = new LoopGame(this);
+        Loop = new LoopGame(this,playerName);
 	}
 
 }
