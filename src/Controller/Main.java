@@ -1,5 +1,8 @@
 package Controller;
 	
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import Enemy.*;
@@ -7,6 +10,7 @@ import Sprite.*;
 import application.Images;
 import application.LoopGame;
 import application.Audio;
+import application.FontRes;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -28,6 +32,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 import Controller.*;
 public class Main extends Application {
 
@@ -40,11 +45,10 @@ public class Main extends Application {
 	public static HowToPlayMenu howToPlayMenu;
 	public static HallOfFameMenu hallOfFameMenu;
 	public static QuitMenu quitMenu;
-	//public static GamePause gamePause;
-	//public static DeadScene deadScene;
 
 	public void start(Stage primaryStage) {
 		try {
+			FontRes.load();
 			stage = primaryStage;
 			stage.setTitle("blackPantherX"); 
 			mainMenu = new MainMenu();
@@ -89,12 +93,6 @@ public class Main extends Application {
 		quitMenu = new QuitMenu();
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
-	}
-	public static void gamePause() {
-		//gamePause.show(stage);
-	}
-	public static void deadScene() { 
-		//deadScene.show(stage);
 	}
 	public static void startGame(String playerName) {
 		startGame = new StartGame(playerName);
