@@ -56,6 +56,7 @@ public class Images {
 	public static final Image playerNameMenu = new Image(ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
 	public static final Image hallOfFameBG = new Image(ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
 	public static final Image howToPlayImage = new Image(ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());
+	public static final Image STATUSBAR = new Image(ClassLoader.getSystemResource("design/statusbar/gamestatusbar.png").toString());
 	public static final ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static final ArrayList<Image> quitMenu = new ArrayList<Image>();
 	public static final ArrayList<Image> gamePause = new ArrayList<Image>();
