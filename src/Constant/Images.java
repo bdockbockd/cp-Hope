@@ -9,6 +9,8 @@ public class Images {
 //	public static final Image startscreen = new Image(ClassLoader.getSystemResource("map-01.png").toString(),1250,800,false,false);
 
 //	public static final Image[] blackTigerMotion = new Image[3];
+	public static final Image spacePic = new Image(ClassLoader.getSystemResource("transparent.png").toString(), 67, 66 , false, false);
+			
 	public static final Image[] blackTigerMotionL = new Image[3];
 	public static final Image[] blackTigerMotionR = new Image[3];	
 	public static final Image[] blackTigerBasicAttackL = new Image[3];
@@ -41,10 +43,10 @@ public class Images {
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
-	public static final List<List<Image[]>> STAGETIGER = new ArrayList<List<Image[]>>();
-	public static final List<Image[]> STAGE1 = new ArrayList<Image[]>();
-	public static final List<Image[]> STAGE2 = new ArrayList<Image[]>();
-	public static final List<Image[]> STAGE3 = new ArrayList<Image[]>();
+	public static final ArrayList<ArrayList<Image[]>> STAGETIGER = new ArrayList<ArrayList<Image[]>>();
+	public static final ArrayList<Image[]> STAGE1 = new ArrayList<Image[]>();
+	public static final ArrayList<Image[]> STAGE2 = new ArrayList<Image[]>();
+	public static final ArrayList<Image[]> STAGE3 = new ArrayList<Image[]>();
 
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
@@ -94,7 +96,6 @@ public class Images {
 			jumpAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
-			
 		}
 		
 		for(int i=0;i<spinAttackL.length;i++) {
@@ -121,7 +122,7 @@ public class Images {
 		for(int i=1;i<=2;i++){
 			deadScene.add(new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0"+i+".png").toString()));
 		}
-	
+		
 		STAGE1.add(Images.blackTigerMotionL);
 		STAGE1.add(Images.blackTigerMotionR);
 		STAGE1.add(Images.blackTigerBasicAttackL);
@@ -153,5 +154,6 @@ public class Images {
 		STAGETIGER.add(STAGE2);
 		STAGETIGER.add(STAGE3);
 
+		
 	}
 }

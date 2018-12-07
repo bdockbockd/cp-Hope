@@ -52,6 +52,8 @@ public class LoopGame {
     public static final String GODMODE_OFF_KEY = "O";
     public static final String GETSCORE_KEY = "P";
 
+    public static Thread DELAYBOT;
+
     static {
     	type2Key.add("W");
     	type2Key.add("A");
@@ -75,9 +77,7 @@ public class LoopGame {
 		CANUPDATEBOT = true;
 		CCHECK = true;
 		// item test
-		Meat meat = new Meat(20,20+220);
-		HealthPotion healthPotion = new HealthPotion(900,20+220);
-		SuperPotion superPotion = new SuperPotion(400,220+20);
+//	
 		new AnimationTimer()  {
 			@Override
 			public void handle(long currentNanoTime) {
@@ -86,7 +86,7 @@ public class LoopGame {
 					{
 						Thread addBot = new Thread(()->{
 							try {
-								BadHuman.addBot();
+//								BadHuman.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
@@ -128,7 +128,7 @@ public class LoopGame {
 								}
 							});
 							x.start();
-                       	}
+                       }
 					}
                  
 					//update velocity tiger and detect attack hit
@@ -143,7 +143,8 @@ public class LoopGame {
                
 					// updateBot every 1 
 					if(CANUPDATEBOT == true && BadHuman.getbadList().size() != 0) {
-						Thread delay = new Thread(()->{
+						
+						DELAYBOT = new Thread(()->{
 							try {
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
 									if(!BadHuman.getbadList().get(i).isDead()) {
@@ -151,13 +152,14 @@ public class LoopGame {
 									}
 								}
 								CANUPDATEBOT = false;
-								Thread.sleep(1000);
+								Thread.sleep(3000);
 								CANUPDATEBOT = true;
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
 						});
-						delay.start();
+						DELAYBOT.start();
+						
 					}
 				
 					// check bot attack
@@ -194,8 +196,9 @@ public class LoopGame {
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
-					Item.render(gc);
 					Item.checkItemUse(blackPanther);
+					blackPanther.checkStatus();
+					Item.render(gc);
 				
 					//Game Over
 					try {
@@ -292,15 +295,16 @@ public class LoopGame {
 
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 		
-			blackPanther.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
 			blackPanther.setSpeedFix(true);
-			tiger.setFace(tiger.getFace());
-
+			blackPanther.setActionState(3);
+			String direction = tiger.getFace();
+			tiger.setFace(direction);
+			tiger.nextPosition(direction);
+			tiger.playJump(direction);
 			Audio.pounceSound();
 			tiger.attackEnemy();
-			tiger.playJump();
-
+			//set Speed Fix in here
 		}
 		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
 			Audio.SELECTMENU.play();
@@ -322,7 +326,6 @@ public class LoopGame {
             tiger.addVelocity(200,0);
             tiger.setFace("RIGHT");
             tiger.setActionState(0);
-
         }
 	    if (input.contains("UP") && tiger.getRealY() > 210) {
         	// y 50
@@ -333,7 +336,6 @@ public class LoopGame {
 		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
             tiger.addVelocity(0,200);
             tiger.setActionState(0);
-
 		}
         if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
 			Audio.attackSound();
@@ -341,14 +343,16 @@ public class LoopGame {
 
         	Thread t = new Thread(()->{
     			try {
+    				//setImageList
     	        	tiger.setAttackable(true);
+    	        	//setImage
     	        	tiger.setFace(tiger.getFace());
+    	        	//movePosition
     	        	tiger.nextPosition(tiger.getFace());
-//    	        	System.out.print(tiger.getFace());
     	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(300);
-    	            tiger.switchToWalk();
-
+    	            Thread.sleep(500);
+    	            tiger.setCanMovePosition(true);
+    	            tiger.setActionState(0);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -395,7 +399,7 @@ public class LoopGame {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
-	                        		blackPanther.setCanMovePosition(true);
+//	                        		blackPanther.setCanMovePosition(true);
 	
 	                        	} else if(code.equals(SPIN_KEY)) {
 	                        		BlackPanther.spinAttackDetected = false;

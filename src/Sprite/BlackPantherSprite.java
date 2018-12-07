@@ -1,11 +1,15 @@
 package Sprite;
 
+import java.util.List;
+
 import Constant.Images;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class BlackPantherSprite extends Sprite{
+public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
+	private static final String name = "BlackPantherSprite";
 	private boolean isMove;
 	protected boolean attackable;
 	protected int timesBasicAttack;
@@ -15,13 +19,14 @@ public abstract class BlackPantherSprite extends Sprite{
 	private double health;
 	private double damage;
 	private double armor;
-	private int actionState = 0;
-	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedBP
+	protected int actionState = 0;
 	protected int spinPosition;
 	protected int jumpPosition;
 	protected boolean speedFix;
+
 	private boolean isSuper;
 	protected boolean isGod;
+
 
     public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -35,8 +40,6 @@ public abstract class BlackPantherSprite extends Sprite{
        this.health = maxHealth;
 		this.damage = 100;
 		this.armor = 10;
-		this.status = 0;
-		this.isSuper = false;
 		this.speedFix = false;
 		this.isGod = false;
     }
@@ -91,8 +94,6 @@ public abstract class BlackPantherSprite extends Sprite{
 	public boolean isAttackable() {
 		return attackable;
 	}
-	
-
 
 	public int getTimesBasicAttack() {
 		return timesBasicAttack;
@@ -111,6 +112,7 @@ public abstract class BlackPantherSprite extends Sprite{
 		this.canMovePosition = canMovePosition;
 	}
 
+	//change to IMAGELIST
 	public void setAttackable(boolean attackable) {
 		this.setActionState(1);
 		this.attackable = attackable;
@@ -124,6 +126,8 @@ public abstract class BlackPantherSprite extends Sprite{
 		}
 	}  
 	
+	
+	//SET Position
 	@Override
 	public void setFace(String face) {
 		if (!(face.equals(this.getFace()))) {
@@ -139,10 +143,6 @@ public abstract class BlackPantherSprite extends Sprite{
 			} else if(this.getActionState() == 2){
 				this.setSpinPosition(0);
 			} else if(this.getActionState() == 3){
-				
-				
-				
-				
 				this.setJumpPosition(0);
 			} else {
 				this.setPositionL((this.getPositionL()+1)%3);
@@ -160,7 +160,7 @@ public abstract class BlackPantherSprite extends Sprite{
 		}
 	}
 	
-	// use When want to immediately change
+	// use When want to immediately change change Image List and Image
 	public void switchToWalk() {
 		this.setActionState(0);
 		this.setSpeedFix(false);
@@ -174,28 +174,42 @@ public abstract class BlackPantherSprite extends Sprite{
 		}
 	}
 	
-	public void setFace(String face, int duration) {
-
-		if (!(face.equals(this.getFace()))) {
-			this.face = face;
-			this.setPositionR(0);
-			this.setPositionL(0);
-			return;
-		}
-		if(face == "LEFT") {
-			if(this.isAttackable()) {
-				this.setSkillPositionL((timesBasicAttack+1)%3);
-			} else {
-				this.setPositionL((this.getPositionL()+1)%3);
-			}
-		} else {
-			if(this.isAttackable()) {
-				this.setSkillPositionR((timesBasicAttack+1)%3);
-			} else {
-				this.setPositionR((this.getPositionR()+1)%3);
-			}
-		}
-	}
+	  public double getRealWidth() {
+	    	return 171.238;
+	    }
+	    public double getRealHeight() {
+	    	return 90.775;
+	    }
+	    public double getRealX() {
+	    	return this.getPositionX()+75;
+	    	//73
+	    }
+	  
+	    public double getRealY() {
+	    	return this.getPositionY()+60;
+	    	//150
+	    }
+	    
+	    public Rectangle2D createBoundaryLeft() {
+			return new Rectangle2D(this.getRealX()-53, this.getRealY()-51, 147, 188);
+	    	
+	    }
+	    
+	    public Rectangle2D createBoundaryRight() {
+	    	return new Rectangle2D(this.getRealX()+this.getRealWidth()+53-147,this.getRealY()-51, 147, 188);
+	    }
+	    @Override
+	    public Rectangle2D getBoundary()
+	    {
+	        return new Rectangle2D(this.getRealX(),this.getRealY(),this.getRealWidth(),this.getRealHeight());    
+	    }
+	    
+	    @Override
+	    public void printBoundary() {
+	    	System.out.println( "Name:"+this.getName()+" Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
+	    	        + " Width: [" + this.getRealWidth() + "," + this.getRealHeight() + "]");
+	    }
+	
 	
 	//getter & setter
 	public double getMaxHealth() {
@@ -218,37 +232,6 @@ public abstract class BlackPantherSprite extends Sprite{
 	}
 	public void setArmor(double armor) {
 		this.armor = armor;
-	}
-	public int getStatus()
-	{
-		if(isSuper) {
-			return 1;
-		}
-		else if(getHealth()/getMaxHealth() <= 0.3) {
-			return 2;
-		}
-		else{
-			return 0;
-		}
-	}
-	public void setStatus(int status)
-	{
-		this.status = status;
-		if(status == 0)
-		{
-			setDamage(100);
-			setArmor(10);
-		}
-		else if(status == 1)
-		{
-			setDamage(300);
-			setArmor(20);
-		}
-		else if(status == 2)
-		{
-			setDamage(150);
-			setArmor(15);
-		}
 	}
 	
 	public void heal(double heal)
@@ -282,6 +265,7 @@ public abstract class BlackPantherSprite extends Sprite{
 	}
 
 	public void setActionState(int actionState) {
+		if(this.getActionState() == actionState) return;
 		this.actionState = actionState;
 	}
 
@@ -305,6 +289,11 @@ public abstract class BlackPantherSprite extends Sprite{
 	public void setSpeedFix(boolean speedFix) {
 		this.speedFix = speedFix;
 	}
+
+	public String getName() {
+		return name;
+	}
+
 	
 	public boolean isGod() {
 		return isGod;

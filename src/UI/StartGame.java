@@ -24,12 +24,12 @@ public class StartGame extends Scene {
 	public static Group root;
 
 //	private AudioClip sound;
-    public static ArrayList<Sprite> enemySprite;
+//    public static ArrayList<Sprite> enemySprite;
     public static GraphicsContext gc;
     public static Canvas canvas;
     public static LoopGame Loop;
     public static String playerName;
-    private static int ENEMYSTARTNUMBER = 10;
+    private static int ENEMYSTARTNUMBER = 30;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
     //start new game
@@ -41,7 +41,7 @@ public class StartGame extends Scene {
 		super(new Group(), 1250, 800);
 		root = (Group) super.getRoot();
 		StartGame.playerName = playerName;
-		enemySprite = new ArrayList<Sprite>();
+//		enemySprite = new ArrayList<Sprite>();
 		timerBar = new Timer();
 	    scoreBoard = new ScoreBoard();
 	    statusBar = new StatusBar(playerName);
@@ -58,7 +58,7 @@ public class StartGame extends Scene {
         bad1.setPosition(1250, 800);
         
         //enemySprite.add(bad1);
-        enemySprite.addAll(Enemy.BadHuman.getbadList());
+//        enemySprite.addAll(Enemy.BadHuman.getbadList());
 
         Audio.GAME_BGM.play();
         

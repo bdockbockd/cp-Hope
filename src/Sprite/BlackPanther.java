@@ -1,10 +1,15 @@
 package Sprite;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Constant.Audio;
 import Constant.Images;
 import Enemy.BadHuman;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 
 public class BlackPanther extends BlackPantherSprite {
 	
@@ -14,36 +19,57 @@ public class BlackPanther extends BlackPantherSprite {
 	//public static long ATTACK_COOLDOWN = 100; //sec
 	//public static long JUMP_COOLDOWN = 1*1000; //sec
 	//public static long SPIN_COOLDOWN = 5*1000; //sec
+
+
+//	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
+	public static int STATUS = 0;
+	public static boolean ISSUPER = false;
+//	private static Image[][] STATUSTIGER = BlackPanther.IMAGESTAGEDEFAULT;
 	
 	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
+		checkStatus();
 	}
+
+	public void switchToWalk() {
+		this.setActionState(0);
+	}
+	@Override
+	public void setAttackable(boolean attackable) {
+		this.setActionState(1);
+		this.attackable = attackable;
+		this.setTimesBasicAttack((this.getTimesBasicAttack()+1)%3);
+
+	}  
 	
     public void nextPosition(String direction) {
+    	//Motion
     	if(this.getActionState() == 0) {
     		if(this.getFace().equals("LEFT")) {
-    			this.setImage((this.getImageL())[this.getPositionL()]);
+    			this.setImage((this.getStageTiger().get(0))[this.getPositionL()]);
     		} else {
-    			this.setImage((this.getImageR())[this.getPositionR()]);
+    			this.setImage((this.getStageTiger().get(1))[this.getPositionR()]);
     		}
+    		//
     	} else if(this.getActionState() == 2){
     		if(this.getFace().equals("LEFT")) {
-        		this.setImage((Images.spinAttackL)[this.getSpinPosition()]); 
+        		this.setImage(((this.getStageTiger()).get(6))[this.getSpinPosition()]); 
     		} else {
-        		this.setImage((Images.spinAttackR)[this.getSpinPosition()]);
+        		this.setImage(((this.getStageTiger()).get(7))[this.getSpinPosition()]);
     		}
     	}else if(this.getActionState() == 3){    
     		if(this.getFace().equals("LEFT")) {
-        		this.setImage((Images.jumpAttackL)[this.getJumpPosition()]);
+        		this.setImage(((this.getStageTiger()).get(4))[this.getJumpPosition()]);
     		} else {
-        		this.setImage((Images.jumpAttackR)[this.getJumpPosition()]);		
+        		this.setImage(((this.getStageTiger()).get(5))[this.getJumpPosition()]);		
     		}
     	}
 		else {
+			// attack
     		if(this.getFace().equals("LEFT")) {
-    			this.setImage(this.getImageL()[this.getSkillPositionL()]);
+    			this.setImage(this.getStageTiger().get(2)[this.getSkillPositionL()]);
     		} else {
-    			this.setImage((this.getImageR())[this.getSkillPositionR()]);
+    			this.setImage(this.getStageTiger().get(3)[this.getSkillPositionR()]);
     		}
     	}
     }
@@ -55,30 +81,22 @@ public class BlackPanther extends BlackPantherSprite {
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
+					if(!(enemy.isDead())) {
+						
+					}
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-//					if(enemy.isDead() == true) {
-//
-//						Enemy.BadHuman.getbadList().remove(i);
-//					}
+						
 					Audio.HITDETECTED = true;	
-
 				}
-
 			}
 		} else {
 			BadHuman enemy;
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
 				enemy = BadHuman.getbadList().get(i);
-				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {
-					
+				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {				
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-//					if(enemy.isDead() == true) {
-////						Enemy.BadHuman.getbadList().get(i)
-//						Main.gc.drawImage(Images.enemyTomb, enemy.getPositionX(), enemy.getPositionY());
-//						Enemy.BadHuman.getbadList().remove(i);
-//					}
-					Audio.HITDETECTED = true;
 
+					Audio.HITDETECTED = true;
 				}
 			}
 		}
@@ -87,61 +105,11 @@ public class BlackPanther extends BlackPantherSprite {
 		}
 	}
     
-    public void render(GraphicsContext gc)
-    {
-        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY());
-    }
-    
-    public String getName() {
-    	return BlackPanther.name;
-    }
-    
-    @Override
-    public Rectangle2D getBoundary()
-    {
-        return new Rectangle2D(this.getRealX(),this.getRealY(),this.getRealWidth(),this.getRealHeight());    
-    }
-    
-    @Override
-    public void printBoundary() {
-    	System.out.println( "Name:"+this.getName()+" Position: [" + this.getRealX() + "," + this.getRealY() + "]" 
-    	        + " Width: [" + this.getRealWidth() + "," + this.getRealHeight() + "]");
-    }
-    
-    public double getRealWidth() {
-    	return 171.238;
-    }
-    public double getRealHeight() {
-    	return 90.775;
-    }
-    public double getRealX() {
-    	return this.getPositionX()+75;
-    	//73
-    }
-  
-    public double getRealY() {
-    	return this.getPositionY()+60;
-    	//150
-    }
-    
-    public Rectangle2D createBoundaryLeft() {
-		return new Rectangle2D(this.getRealX()-53, this.getRealY()-51, 147, 188);
-    	
-    }
-    
-    public Rectangle2D createBoundaryRight() {
-    	return new Rectangle2D(this.getRealX()+this.getRealWidth()+53-147,this.getRealY()-51, 147, 188);
-    }
-    
-	public void playJump() {
-		if(this.getFace() == "LEFT") {
-			this.setFace("LEFT");
-			this.nextPosition(this.getFace());
-			this.setSpeedFix(true);
-			this.setImage((Images.jumpAttackL)[0]);
+	public void playJump(String direction) {
+		if(direction.equals("LEFT")) {
 			Thread delay = new Thread(()->{
 				try {
-					this.setVelocity(-1200,-200);
+					this.setActionState(3);
 					Thread.sleep(100);
 					this.setVelocity(-1200,-100);
 					Thread.sleep(50);
@@ -149,6 +117,7 @@ public class BlackPanther extends BlackPantherSprite {
 					Thread.sleep(50);
 					this.setVelocity(-1200,200);
 					Thread.sleep(100);
+					this.setSpeedFix(false);
 					this.switchToWalk();
 					Thread.sleep(10);
 					this.setSpeedFix(false);
@@ -164,13 +133,9 @@ public class BlackPanther extends BlackPantherSprite {
 			});
 			delay.start();
 		} else {
-			this.nextPosition(this.getFace());
-			this.setFace("RIGHT");
-			this.setImage((Images.jumpAttackR)[0]);
-			this.setSpeedFix(true);
 			Thread delay = new Thread(()->{
 				try {
-					this.setVelocity(1200,-200);
+					this.setActionState(3);
 					Thread.sleep(50);
 					this.setVelocity(1200,-100);
 					Thread.sleep(70);
@@ -179,10 +144,9 @@ public class BlackPanther extends BlackPantherSprite {
 					this.setVelocity(1200,200);
 					Thread.sleep(50);
 					this.switchToWalk();
-					Thread.sleep(30);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-//					Thread.sleep(2000);
+//					Thread.sleep();
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
@@ -194,4 +158,47 @@ public class BlackPanther extends BlackPantherSprite {
 			delay.start();
 		}
 	}
+
+	// STATUS PART
+	public int getStatus()
+	{
+		if(ISSUPER) {
+			return 1;
+		}
+		else if(getHealth()/getMaxHealth() <= 0.3) {
+			return 2;
+		}
+		else{
+			return 0;
+		}
+	}
+	public void setStatus()
+	{
+		BlackPanther.STATUS = getStatus();
+		if(BlackPanther.STATUS == 0)
+		{
+			setDamage(100);
+			setArmor(10);
+		}
+		else if(BlackPanther.STATUS == 1)
+		{
+			setDamage(300);
+			setArmor(20);
+		}
+		else if(BlackPanther.STATUS == 2)
+		{
+			setDamage(150);
+			setArmor(15);
+		}
+	}
+	
+	public void checkStatus() {
+		this.setStatus();
+	}
+	
+	public ArrayList<Image[]> getStageTiger() {
+		return (Images.STAGETIGER).get(this.getStatus());
+	}
+
+	
 }
