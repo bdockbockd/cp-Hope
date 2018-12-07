@@ -11,14 +11,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class BlackPanther extends BlackPantherSprite implements HasStatus {
-	
+
 	private static final String name = "BlackPantherX";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
 	public static long ATTACKCOOLDOWN = 200; //sec
-	public static long JUMPCOOLDOWN = 1000; //sec
+	public static long JUMPCOOLDOWN = 500; //sec
 	public static long SPINCOOLDOWN = 5*1000; //sec
-
 	
 //	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
 	public static int STATUS = 0;
@@ -80,10 +79,11 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
+					if(!(enemy.isDead())) {
+						
+					}
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-//					if(enemy.isDead() == true) {
-//						Enemy.BadHuman.getbadList().remove(i);
-//					}
+						
 					Audio.HITDETECTED = true;	
 				}
 			}
@@ -93,11 +93,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {				
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-//					if(enemy.isDead() == true) {
-////						Enemy.BadHuman.getbadList().get(i)
-//						Main.gc.drawImage(Images.enemyTomb, enemy.getPositionX(), enemy.getPositionY());
-//						Enemy.BadHuman.getbadList().remove(i);
-//					}
+
 					Audio.HITDETECTED = true;
 				}
 			}
@@ -107,14 +103,11 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 		}
 	}
     
-	public void playJump() {
-		if(this.getFace() == "LEFT") {
-			this.setFace("LEFT");
-			this.nextPosition(this.getFace());
-			this.setSpeedFix(true);
+	public void playJump(String direction) {
+		if(direction.equals("LEFT")) {
 			Thread delay = new Thread(()->{
 				try {
-					this.setVelocity(-1200,-200);
+					this.setActionState(3);
 					Thread.sleep(100);
 					this.setVelocity(-1200,-100);
 					Thread.sleep(50);
@@ -122,6 +115,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					Thread.sleep(50);
 					this.setVelocity(-1200,200);
 					Thread.sleep(100);
+					this.setSpeedFix(false);
 					this.switchToWalk();
 					Thread.sleep(10);
 					this.setSpeedFix(false);
@@ -137,12 +131,9 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 			});
 			delay.start();
 		} else {
-			this.nextPosition(this.getFace());
-			this.setFace("RIGHT");
-			this.setSpeedFix(true);
 			Thread delay = new Thread(()->{
 				try {
-					this.setVelocity(1200,-200);
+					this.setActionState(3);
 					Thread.sleep(50);
 					this.setVelocity(1200,-100);
 					Thread.sleep(70);
@@ -151,10 +142,9 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					this.setVelocity(1200,200);
 					Thread.sleep(50);
 					this.switchToWalk();
-					Thread.sleep(30);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-//					Thread.sleep(2000);
+					Thread.sleep(JUMPCOOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {

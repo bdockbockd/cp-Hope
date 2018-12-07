@@ -9,6 +9,8 @@ public class Images {
 //	public static final Image startscreen = new Image(ClassLoader.getSystemResource("map-01.png").toString(),1250,800,false,false);
 
 //	public static final Image[] blackTigerMotion = new Image[3];
+	public static final Image spacePic = new Image(ClassLoader.getSystemResource("transparent.png").toString(), 67, 66 , false, false);
+			
 	public static final Image[] blackTigerMotionL = new Image[3];
 	public static final Image[] blackTigerMotionR = new Image[3];	
 	public static final Image[] blackTigerBasicAttackL = new Image[3];
@@ -119,39 +121,6 @@ public class Images {
 		for(int i=1;i<=2;i++){
 			deadScene.add(new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0"+i+".png").toString()));
 		}
-	
-		
-//		STAGE1[0] = blackTigerMotionL;
-//		STAGE1[1] = blackTigerMotionR;
-//		STAGE1[2] = blackTigerBasicAttackL;
-//		STAGE1[3] = blackTigerBasicAttackR;
-//		STAGE1[4] = jumpAttackL;
-//		STAGE1[5] = jumpAttackR;
-//		STAGE1[6] = spinAttackL;
-//		STAGE1[7] = spinAttackR;
-//		
-//		STAGE2[0] = blackTigerMotionL2;
-//		STAGE2[1] = blackTigerMotionR2;
-//		STAGE2[2] = blackTigerBasicAttackL2;
-//		STAGE2[3] = blackTigerBasicAttackR2;
-//		STAGE2[4] = jumpAttackL2;
-//		STAGE2[5] = jumpAttackR2;
-//		STAGE2[6] = spinAttackL2;
-//		STAGE2[7] = spinAttackR2;
-//		
-//		STAGE3[0] = blackTigerMotionL3;
-//		STAGE3[1] = blackTigerMotionR3;
-//		STAGE3[2] = blackTigerBasicAttackL3;
-//		STAGE3[3] = blackTigerBasicAttackR3;
-//		STAGE3[4] = jumpAttackL3;
-//		STAGE3[5] = jumpAttackR3;
-//		STAGE3[6] = spinAttackL3;
-//		STAGE3[7] = spinAttackR3;
-//		
-//		STAGETIGER[0] = STAGE1;
-//		STAGETIGER[1] = STAGE2;
-//		STAGETIGER[2] = STAGE3;
-
 		
 		STAGE1.add(Images.blackTigerMotionL);
 		STAGE1.add(Images.blackTigerMotionR);
@@ -184,5 +153,6 @@ public class Images {
 		STAGETIGER.add(STAGE2);
 		STAGETIGER.add(STAGE3);
 
+		
 	}
 }
