@@ -60,7 +60,7 @@ public class StartGame extends Scene {
         //enemySprite.add(bad1);
         enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        Audio.playBackGround();
+        Audio.GAME_BGM.play();
         
 //        Timer.reset();
 //        ScoreBoard.reset();

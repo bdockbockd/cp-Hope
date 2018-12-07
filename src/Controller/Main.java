@@ -49,7 +49,7 @@ public class Main extends Application {
 	            	gameQuit();
 	            }
 	        });
-			stage.setScene(mainMenu);
+			mainMenu();
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -61,6 +61,7 @@ public class Main extends Application {
 	}
 	
 	public static void mainMenu() {
+		Audio.MENU_BGM.play();
 		stage.setScene(mainMenu);
 	}
 	public static void gameMenu() {
@@ -87,6 +88,7 @@ public class Main extends Application {
 		quitMenu.show(stage);
 	}
 	public static void startGame(String playerName) {
+		Audio.MENU_BGM.stop();
 		startGame = new StartGame(playerName);
 		stage.setScene(startGame);
 	}
