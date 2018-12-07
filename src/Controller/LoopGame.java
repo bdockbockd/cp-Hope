@@ -389,7 +389,7 @@ public class LoopGame {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
-//	                        		blackPanther.setCanMovePosition(true);
+	                        		blackPanther.switchToWalk();
 	
 	                        	} else if(code.equals(SPIN_KEY)) {
 	                        		BlackPanther.spinAttackDetected = false;
