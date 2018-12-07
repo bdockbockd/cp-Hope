@@ -1,5 +1,6 @@
 package Controller;
 
+import Constant.Images;
 import Sprite.BlackPanther;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -32,17 +33,17 @@ public class StatusBar extends StackPane {
 		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
 		
 		
-		pounce = new ProgressIndicator(0.5);
+		pounce = new ProgressIndicator(0);
 		pounce.setTranslateY(26+31);
 		pounce.setTranslateX(30);
 		pounce.setStyle(" -fx-progress-color: black;");
 		
-		spin = new ProgressIndicator(0.7);
+		spin = new ProgressIndicator(0);
 		spin.setTranslateY(26+31);
 		spin.setTranslateX(75+30);
 		spin.setStyle(" -fx-progress-color: black;");
 		
-		ImageView statusBG = new ImageView(new Image(ClassLoader.getSystemResource("design/statusbar/gamestatusbar.png").toString()));
+		ImageView statusBG = new ImageView(Images.STATUSBAR);
 		HPBar = new ProgressBar(1);
 		HPBar.setPrefSize(460, 18);
 		HPBar.setStyle("-fx-accent: rgb(143,194,103);-fx-border-radius: 9px;-fx-text-box-border: black; -fx-control-inner-background: black; -fx-padding: 0px;-fx-background-insets: 4; -fx-background-color:-fx-box-border,linear-gradient(to bottom, derive(-fx-color,100%), derive(-fx-color,100%));");
@@ -57,6 +58,9 @@ public class StatusBar extends StackPane {
 	}
 	public static void resetProgress(BlackPanther blackPanther)
 	{
+		attack.setProgress(attack.getProgress()+0.1);
+		pounce.setProgress(pounce.getProgress()+0.02);
+		spin.setProgress(spin.getProgress()+0.01);
 		//attack.setProgress(attack.getProgress()+0.02);
 		//attackIsReady();
 		/*if(attack.getProgress() == 1) {
@@ -73,10 +77,18 @@ public class StatusBar extends StackPane {
 		}
 		return attack.getProgress() >= 1;
 	}
-	public boolean pounceIsReady() {
+	public static boolean pounceIsReady() {
+		if(pounce.getProgress() >= 1){
+			pounce.setProgress(0);
+			return true;
+		}
 		return pounce.getProgress() >= 1;
 	}
-	public boolean spinIsReady() {
+	public static boolean spinIsReady() {
+		if(spin.getProgress() >= 1){
+			spin.setProgress(0);
+			return true;
+		}
 		return spin.getProgress() >= 1;
 	}
 }

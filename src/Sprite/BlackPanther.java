@@ -12,9 +12,9 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	private static final String name = "BlackPanther";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	public static long ATTACK_COOLDOWN = 100; //sec
-	public static long JUMP_COOLDOWN = 1*1000; //sec
-	public static long SPIN_COOLDOWN = 5*1000; //sec
+	//public static long ATTACK_COOLDOWN = 100; //sec
+	//public static long JUMP_COOLDOWN = 1*1000; //sec
+	//public static long SPIN_COOLDOWN = 5*1000; //sec
 	
 //	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
 	public static int STATUS = 0;
