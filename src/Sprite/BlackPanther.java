@@ -1,13 +1,10 @@
 package Sprite;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Constant.Audio;
 import Constant.Images;
 import Enemy.BadHuman;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class BlackPanther extends BlackPantherSprite implements HasStatus{
@@ -22,13 +19,22 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 //	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
 	public static int STATUS = 0;
 	public static boolean ISSUPER = false;
+	private boolean isGod;
 //	private static Image[][] STATUSTIGER = BlackPanther.IMAGESTAGEDEFAULT;
 	
 	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 		checkStatus();
 	}
-
+	public void takeDamage(double damage) {
+		if(!isGod) {
+			this.setHealth(this.getHealth()-damage);
+		}
+	}
+	public boolean isDead()
+	{
+		return (getHealth()<=0 && !isGod);
+	}
 	public void switchToWalk() {
 		this.setActionState(0);
 	}
@@ -120,7 +126,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					Thread.sleep(10);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-					Thread.sleep(JUMP_COOLDOWN);
+					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
@@ -144,7 +150,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					this.switchToWalk();
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-					Thread.sleep(JUMPCOOLDOWN);
+					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
