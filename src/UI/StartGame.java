@@ -68,7 +68,7 @@ public class StartGame extends Scene {
 //        StatusBar.reset(playerName);
         
         root.getChildren().addAll(canvas,statusBar,timerBar,scoreBoard);
-        Loop = new LoopGame(gc,this,playerName, blackPanther);
+        Loop = new LoopGame(gc,this,playerName,blackPanther);
 	}
 
 }

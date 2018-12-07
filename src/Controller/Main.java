@@ -2,6 +2,7 @@ package Controller;
 	
 import Constant.Audio;
 import Constant.FontRes;
+import Exception.ExitGameException;
 import Exception.HallOfFameException;
 import UI.GameMenu;
 import UI.HallOfFameMenu;
@@ -45,9 +46,7 @@ public class Main extends Application {
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent t) {
-	            	HallOfFameMenu.save();
-	                Platform.exit();
-	                System.exit(0);
+	            	gameQuit();
 	            }
 	        });
 			stage.setScene(mainMenu);
@@ -75,7 +74,7 @@ public class Main extends Application {
 			HallOfFameMenu.fillText();
 		} catch (HallOfFameException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Hall of fame");
+			alert.setTitle("blackPantherX");
 			alert.setHeaderText("Hall of fame is updated!");
 			alert.showAndWait();
 			//e.printStackTrace();
@@ -95,7 +94,18 @@ public class Main extends Application {
 	    // get a handle to the stage
 	    //Stage stage = (Stage) closeButton.getScene().getWindow();
 	    // do what you have to do
-	    stage.close();
+		try {
+			HallOfFameMenu.save();
+		} catch (ExitGameException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("blackPantherX");
+			alert.setHeaderText("THANK FOR PLAYING!");
+			alert.setContentText("BEEBER & OUFEOW");
+			alert.showAndWait();
+//			e.printStackTrace();
+		}
+        Platform.exit();
+        System.exit(0);
 	}
 	
 	public static void backMenu(Scene s) {

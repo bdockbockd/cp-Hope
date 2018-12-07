@@ -15,6 +15,7 @@ import java.util.List;
 import Constant.Audio;
 import Constant.Images;
 import Controller.Main;
+import Exception.ExitGameException;
 import Exception.HallOfFameException;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -81,7 +82,7 @@ public class HallOfFameMenu extends Scene{
 		throw new HallOfFameException("lol");
 	}
 	
-	public static void save() {      
+	public static void save() throws ExitGameException {      
 		try {
 			PrintWriter fw = new PrintWriter("resources/HallOfFame.txt");
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -95,6 +96,7 @@ public class HallOfFameMenu extends Scene{
 		} catch (IOException e) {
 	        e.printStackTrace();
 	    }
+		throw new ExitGameException();
     }
 	
 	public static int getSize() {
