@@ -11,9 +11,9 @@ public class BlackPanther extends BlackPantherSprite {
 	private static final String name = "BlackPanther";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	public static long ATTACK_COOLDOWN = 100; //sec
-	public static long JUMP_COOLDOWN = 1*1000; //sec
-	public static long SPIN_COOLDOWN = 5*1000; //sec
+	//public static long ATTACK_COOLDOWN = 100; //sec
+	//public static long JUMP_COOLDOWN = 1*1000; //sec
+	//public static long SPIN_COOLDOWN = 5*1000; //sec
 	
 	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
@@ -153,7 +153,7 @@ public class BlackPanther extends BlackPantherSprite {
 					Thread.sleep(10);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-					Thread.sleep(JUMP_COOLDOWN);
+//					Thread.sleep(0);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {

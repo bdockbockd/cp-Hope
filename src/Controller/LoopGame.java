@@ -255,7 +255,7 @@ public class LoopGame {
 	}
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
-		if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false) {
+		if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
 			Audio.spinSound();
 			tiger.attackEnemy();
 			
@@ -290,7 +290,7 @@ public class LoopGame {
 		}
 		
 
-		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false) {
+		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 		
 			blackPanther.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
@@ -335,7 +335,7 @@ public class LoopGame {
             tiger.setActionState(0);
 
 		}
-        if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true) {
+        if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
 			Audio.attackSound();
 			tiger.attackEnemy();
 

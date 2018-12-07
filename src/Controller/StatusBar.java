@@ -59,7 +59,7 @@ public class StatusBar extends StackPane {
 	public static void resetProgress(BlackPanther blackPanther)
 	{
 		attack.setProgress(attack.getProgress()+0.1);
-		pounce.setProgress(pounce.getProgress()+0.01);
+		pounce.setProgress(pounce.getProgress()+0.02);
 		spin.setProgress(spin.getProgress()+0.01);
 		//attack.setProgress(attack.getProgress()+0.02);
 		//attackIsReady();
@@ -77,10 +77,18 @@ public class StatusBar extends StackPane {
 		}
 		return attack.getProgress() >= 1;
 	}
-	public boolean pounceIsReady() {
+	public static boolean pounceIsReady() {
+		if(pounce.getProgress() >= 1){
+			pounce.setProgress(0);
+			return true;
+		}
 		return pounce.getProgress() >= 1;
 	}
-	public boolean spinIsReady() {
+	public static boolean spinIsReady() {
+		if(spin.getProgress() >= 1){
+			spin.setProgress(0);
+			return true;
+		}
 		return spin.getProgress() >= 1;
 	}
 }
