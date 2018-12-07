@@ -12,8 +12,6 @@ import javafx.scene.image.Image;
 public abstract class Item extends Rectangle implements DisappearObject   {
 	
 	public static ArrayList<Item> itemList = new ArrayList<Item>();
-	public static double spaceX = 2000;
-	public static double spaceY = 2000;
 	private Image disappearImage = Images.spacePic;
 	private Image constantImage;
 	private Image image;
@@ -73,14 +71,12 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 		
 	}
 	
-	public abstract void itemUse(BlackPanther blackTiger);
+	public abstract void itemUse(BlackPanther blackPanther);
 	
-	
-	public static void checkItemUse(BlackPanther blackTiger) {
+	public static void checkItemUse(BlackPanther blackPanther) {
 		for(int i = 0;i < itemList.size();i++){
-			if(itemList.get(i).getBoundary().intersects(blackTiger.getBoundary())) {
-				itemList.get(i).itemUse(blackTiger);
-				
+			if(itemList.get(i).getBoundary().intersects(blackPanther.getBoundary())) {
+				itemList.get(i).itemUse(blackPanther);
 				itemList.remove(itemList.get(i));
 			}
 		}

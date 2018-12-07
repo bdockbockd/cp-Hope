@@ -10,14 +10,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class BlackPanther extends BlackPantherSprite implements HasStatus {
-
-	private static final String name = "BlackPantherX";
+public class BlackPanther extends BlackPantherSprite implements HasStatus{
+	
+	private static final String name = "BlackPanther";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	public static long ATTACKCOOLDOWN = 200; //sec
-	public static long JUMPCOOLDOWN = 500; //sec
-	public static long SPINCOOLDOWN = 5*1000; //sec
+	public static long ATTACK_COOLDOWN = 100; //sec
+	public static long JUMP_COOLDOWN = 1*1000; //sec
+	public static long SPIN_COOLDOWN = 5*1000; //sec
 	
 //	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
 	public static int STATUS = 0;
@@ -120,7 +120,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					Thread.sleep(10);
 					this.setSpeedFix(false);
 //					tiger1.setVelocityX(0);
-					Thread.sleep(JUMPCOOLDOWN);
+					Thread.sleep(JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {

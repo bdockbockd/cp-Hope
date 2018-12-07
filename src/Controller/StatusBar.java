@@ -55,14 +55,14 @@ public class StatusBar extends StackPane {
 	public static void reset(String playerName) {
 		playerNameLabel.setText(playerName);
 	}
-	public static void resetProgress(BlackPanther blackTiger)
+	public static void resetProgress(BlackPanther blackPanther)
 	{
 		//attack.setProgress(attack.getProgress()+0.02);
 		//attackIsReady();
 		/*if(attack.getProgress() == 1) {
 			attack.setStyle(" -fx-progress-color: green;");
 		}*/
-		HPBar.setProgress(blackTiger.getHealth()/blackTiger.getMaxHealth());
+		HPBar.setProgress(blackPanther.getHealth()/blackPanther.getMaxHealth());
 		//HPBar.setProgress(HPBar.getProgress()-0.005);
 	}
 	public static boolean attackIsReady() {

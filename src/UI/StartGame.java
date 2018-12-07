@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 public class StartGame extends Scene {
 	
 	public static Group root;
+
 //	private AudioClip sound;
 //    public static ArrayList<Sprite> enemySprite;
     public static GraphicsContext gc;
@@ -59,7 +60,7 @@ public class StartGame extends Scene {
         //enemySprite.add(bad1);
 //        enemySprite.addAll(Enemy.BadHuman.getbadList());
 
-        Audio.playBackGround();
+        Audio.GAME_BGM.play();
         
 //        Timer.reset();
 //        ScoreBoard.reset();

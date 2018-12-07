@@ -2,6 +2,8 @@ package Controller;
 	
 import Constant.Audio;
 import Constant.FontRes;
+import Exception.ExitGameException;
+import Exception.HallOfFameException;
 import UI.GameMenu;
 import UI.HallOfFameMenu;
 import UI.HowToPlayMenu;
@@ -14,6 +16,8 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -42,12 +46,10 @@ public class Main extends Application {
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent t) {
-	            	HallOfFameMenu.save();
-	                Platform.exit();
-	                System.exit(0);
+	            	gameQuit();
 	            }
 	        });
-			stage.setScene(mainMenu);
+			mainMenu();
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -59,6 +61,7 @@ public class Main extends Application {
 	}
 	
 	public static void mainMenu() {
+		Audio.MENU_BGM.play();
 		stage.setScene(mainMenu);
 	}
 	public static void gameMenu() {
@@ -67,8 +70,16 @@ public class Main extends Application {
 	public static void howToPlayMenu() {
 		stage.setScene(howToPlayMenu);
 	}
-	public static void hallOfFameMenu() {
-		HallOfFameMenu.fillText();
+	public static void hallOfFameMenu(){
+		try {
+			HallOfFameMenu.fillText();
+		} catch (HallOfFameException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("blackPantherX");
+			alert.setHeaderText("Hall of fame is updated!");
+			alert.showAndWait();
+			//e.printStackTrace();
+		}
 		stage.setScene(hallOfFameMenu);
 	}
 	public static void quitMenu() {
@@ -77,6 +88,7 @@ public class Main extends Application {
 		quitMenu.show(stage);
 	}
 	public static void startGame(String playerName) {
+		Audio.MENU_BGM.stop();
 		startGame = new StartGame(playerName);
 		stage.setScene(startGame);
 	}
@@ -84,7 +96,18 @@ public class Main extends Application {
 	    // get a handle to the stage
 	    //Stage stage = (Stage) closeButton.getScene().getWindow();
 	    // do what you have to do
-	    stage.close();
+		try {
+			HallOfFameMenu.save();
+		} catch (ExitGameException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("blackPantherX");
+			alert.setHeaderText("THANK FOR PLAYING!");
+			alert.setContentText("BEEBER & OUFEOW");
+			alert.showAndWait();
+//			e.printStackTrace();
+		}
+        Platform.exit();
+        System.exit(0);
 	}
 	
 	public static void backMenu(Scene s) {

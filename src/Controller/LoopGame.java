@@ -4,10 +4,13 @@ package Controller;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import Constant.Audio;
 import Constant.Images;
 import Enemy.BadHuman;
+import Exception.GameOverException;
 import Item.HealthPotion;
 import Item.Item;
 import Item.Meat;
@@ -20,7 +23,10 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Pair;
 
 public class LoopGame {
 	public static BlackPanther blackPanther;
@@ -32,22 +38,23 @@ public class LoopGame {
     public static DeadScene deadScene;
     public static boolean isDead;
     public static boolean BOTSPAWN = true;
-    public static boolean GODMODE = false;
-    public static int BOTSPAWNRATE = 5; //BOTPERSEC
+    public static final int BOTSPAWNRATE = 3; //BOTPERSEC
     public static boolean CANUPDATEBOT;
     public static boolean CCHECK;
     public static double elapsedTime;
     public static GraphicsContext gc;
     public static Thread DELAYBOT;
+    public static String playerName;
 
-    static {
-    	type2Key.add("W");
-    	type2Key.add("A");
-    	type2Key.add("S");
-    	type2Key.add("D");
-    }
+    public static final String ATTACK_KEY = "Z";
+    public static final String JUMP_KEY = "X";
+    public static final String SPIN_KEY = "C";
+    public static final String GODMODE_ON_KEY = "I";
+    public static final String GODMODE_OFF_KEY = "O";
+    public static final String GETSCORE_KEY = "P";
 	
 	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
+		LoopGame.playerName = playerName;
 		LoopGame.gc = gc;
 		blackPanther = new BlackPanther();
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
@@ -149,6 +156,7 @@ public class LoopGame {
 				
 					// check bot attack
 					BadHuman.checkAttackHuman(blackPanther);
+					
 					// check bot get damaged
 					BadHuman.removeEnemy();
 
@@ -160,6 +168,16 @@ public class LoopGame {
 					gc.drawImage((Images.stageMap)[blackPanther.getStatus()], 0, 0);
 
 					// render bot
+					Collections.sort(BadHuman.getbadList(), new Comparator<BadHuman>() {
+			            @Override
+			            public int compare(final BadHuman o1, final BadHuman o2) {
+			            	if (o1.getPositionY() < o2.getPositionY()) {
+			                    return -1;
+			                } else {
+			                    return 1;
+			                }
+			            }
+			        });
 					for(int i =0;i<BadHuman.getbadList().size();i++) {
 						((BadHuman.getbadList()).get(i)).render(StartGame.gc);
 					}
@@ -175,25 +193,32 @@ public class LoopGame {
 					Item.render(gc);
 				
 					//Game Over
-					if(blackPanther.isDead()&&!GODMODE) {
-						isDead = true;
-						Audio.SELECTMENU.play();
-						System.out.println("GAME OVER!");
-						Timer.stop();
-						Timer.hide();
-						Timer.terminate();
-						ScoreBoard.hide();
-						ScoreBoard.addScore(Timer.getSec()*1000);
-						isDead = true;
+					try {
+						gameOverCheck();
+					} catch (GameOverException e) {
+						//stop ever thing must be implement here!
 						deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
 						deadScene.show(Main.stage);
-					
-						//stop doing everthing
-					}	
+						//e.printStackTrace();
+					}
 				}
 			}
         }.start();
 
+	}
+	
+	protected static void gameOverCheck() throws GameOverException {
+		if(blackPanther.isDead()) {
+			isDead = true;
+			Audio.GAME_BGM.stop();
+			Audio.DEAD.play(1);
+			Timer.stop();
+			Timer.hide();
+			Timer.terminate();
+			ScoreBoard.hide();
+			ScoreBoard.addScore(Timer.getSec()*1000);
+			throw new GameOverException();
+		}	
 	}
 	
 	protected static void keySkill(BlackPanther blackPanther, GraphicsContext gc) {
@@ -225,7 +250,7 @@ public class LoopGame {
 	}
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
-		if(input.contains("X") && BlackPanther.spinAttackDetected == false) {
+		if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false) {
 			Audio.spinSound();
 			tiger.attackEnemy();
 			
@@ -246,8 +271,21 @@ public class LoopGame {
 			delay.start();
 			
 		} 
+		
+		if(input.contains(GODMODE_ON_KEY)) {
+			blackPanther.enableGodMode();
+			System.out.println("enableGodMode!");
+		}
+		else if(input.contains(GODMODE_OFF_KEY)) {
+			blackPanther.disableGodMode();
+			System.out.println("disableGodMode!");
+		}
+		if(input.contains(GETSCORE_KEY)) {
+			ScoreBoard.addScore(10000);
+		}
+		
 
-		if(input.contains("C") && BlackPanther.jumpAttackDetected == false) {
+		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false) {
 		
 			BlackPanther.jumpAttackDetected = true;
 			blackPanther.setSpeedFix(true);
@@ -291,7 +329,7 @@ public class LoopGame {
             tiger.addVelocity(0,200);
             tiger.setActionState(0);
 		}
-        if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
+        if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true) {
 			Audio.attackSound();
 			tiger.attackEnemy();
 
@@ -349,13 +387,13 @@ public class LoopGame {
 	                        String code = e.getCode().toString();
 	                        //System.out.print(code);
 	                        if(input.contains(code)) {
-	                        	if(code.equals("SPACE")) {
+	                        	if(code.equals(ATTACK_KEY)) {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
 //	                        		blackPanther.setCanMovePosition(true);
 	
-	                        	} else if(code.equals("X")) {
+	                        	} else if(code.equals(SPIN_KEY)) {
 	                        		BlackPanther.spinAttackDetected = false;
 	                        	}
 	                        	input.remove(code);

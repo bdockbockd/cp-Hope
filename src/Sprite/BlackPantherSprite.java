@@ -37,6 +37,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 		this.damage = 100;
 		this.armor = 10;
 		this.speedFix = false;
+		this.isGod = false;
     }
     
     public void setMove(boolean tf) { 
@@ -265,14 +266,16 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	}
 
 	public void takeDamage(double damage) {
-		this.health -= damage;
-		if(this.health < 0) {
-			this.health = 0;
+		if(!isGod) {
+			this.health -= damage;
+			if(this.health < 0) {
+				this.health = 0;
+			}
 		}
 	}
 	public boolean isDead()
 	{
-		return getHealth()<=0;
+		return (getHealth()<=0 && !isGod);
 	}
 
 	public boolean isSpeedFix() {
@@ -287,6 +290,18 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 		return name;
 	}
 
+	
+	public boolean isGod() {
+		return isGod;
+	}
+	
+	public void enableGodMode() {
+		isGod = true;
+	}
+	
+	public void disableGodMode() {
+		isGod = false;
+	}
 	
 
 	

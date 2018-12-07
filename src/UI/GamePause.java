@@ -35,14 +35,16 @@ public class GamePause extends Popup{
 			if(this.isShowing())
 			{
 //				System.out.println("class: "+isPause);
-				Audio.SELECTMENU.play();
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber += 1;
 		      }
 		      if(key.getCode()==KeyCode.UP || key.getCode()==KeyCode.LEFT) {
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber -= 1;
 		      }
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
+		    	  Audio.SELECTMENU.play();
 		    	  if(selectNumber%2 == 0){
 		    		  //System.out.println(isPause+" Continue!");
 		    		  continueGame();
@@ -62,6 +64,7 @@ public class GamePause extends Popup{
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE)
 		      {
+		    	  Audio.SELECTMENU.play();
 		    	  continueGame();
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);

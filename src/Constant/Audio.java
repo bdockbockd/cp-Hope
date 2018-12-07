@@ -3,7 +3,7 @@ package Constant;
 import javafx.scene.media.AudioClip;
 
 public class Audio {
-	public static final AudioClip BGM = new AudioClip(ClassLoader.getSystemResource("sound/bgm-01 naruto.wav").toString());
+	public static final AudioClip GAME_BGM = new AudioClip(ClassLoader.getSystemResource("sound/bgm-01 naruto.wav").toString());
 	public static final AudioClip GETHIT = new AudioClip(ClassLoader.getSystemResource("sound/attack.wav").toString());
 	public static final AudioClip SELECTMENU = new AudioClip(ClassLoader.getSystemResource("sound/selectmenu.wav").toString());
 	public static final AudioClip MENU_BGM = new AudioClip(ClassLoader.getSystemResource("sound/bgm-03 menu.wav").toString());
@@ -31,17 +31,17 @@ public class Audio {
 
 	
 	static {
+		Audio.SELECTMENU.setVolume(0.2);
+		Audio.GAME_BGM.setCycleCount(AudioClip.INDEFINITE);
+		Audio.GAME_BGM.setVolume(0.2);
+		Audio.MENU_BGM.setCycleCount(AudioClip.INDEFINITE);
+		Audio.MENU_BGM.setVolume(0.2);
 		for(int i =0; i<=10;i++){
 			ListHIT[i] = GETHIT;
 //			AudioAvailable
 		}
 	}
 	
-	public static void playBackGround() {
-		Audio.BGM.setCycleCount(AudioClip.INDEFINITE);
-		Audio.BGM.setVolume(0.2);
-		Audio.BGM.play();
-	}
 	public static void playGetHit(int index) {
 		Thread pa = new Thread(()-> {
 			Audio.ListHIT[index].play();
