@@ -12,7 +12,8 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	private static final String name = "BlackPanther";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	public static long ATTACK_COOLDOWN = 100; //sec
+	public static final long ATTACK_COOLDOWN_CONSTANT = 400; //sec
+	public static long ATTACK_COOLDOWN_VALUE = 400;
 	public static long JUMP_COOLDOWN = 1*1000; //sec
 	public static long SPIN_COOLDOWN = 5*1000; //sec
 	
@@ -183,16 +184,19 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		BlackPanther.STATUS = getStatus();
 		if(BlackPanther.STATUS == 0)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(100);
 			setArmor(10);
 		}
 		else if(BlackPanther.STATUS == 1)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/4;
 			setDamage(300);
 			setArmor(20);
 		}
 		else if(BlackPanther.STATUS == 2)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(150);
 			setArmor(15);
 		}

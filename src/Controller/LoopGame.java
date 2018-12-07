@@ -339,7 +339,7 @@ public class LoopGame {
     	        	//movePosition
     	        	tiger.nextPosition(tiger.getFace());
     	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(500);
+    	            Thread.sleep(BlackPanther.ATTACK_COOLDOWN_VALUE);
     	            tiger.switchToWalk();
     	            tiger.setCanMovePosition(true);
     	            tiger.setActionState(0);
