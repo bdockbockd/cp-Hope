@@ -32,15 +32,18 @@ public class LoopGame {
     public static DeadScene deadScene;
     public static boolean isDead;
     public static boolean BOTSPAWN = true;
-    public static final boolean GODMODE = false;
     public static final int BOTSPAWNRATE = 3; //BOTPERSEC
     public static boolean CANUPDATEBOT;
     public static boolean CCHECK;
     public static double elapsedTime;
     public static GraphicsContext gc;
+
     public static final String ATTACK_KEY = "Z";
     public static final String JUMP_KEY = "X";
     public static final String SPIN_KEY = "C";
+    public static final String GODMODE_ON_KEY = "I";
+    public static final String GODMODE_OFF_KEY = "O";
+    public static final String GETSCORE_KEY = "P";
 
     static {
     	type2Key.add("W");
@@ -49,9 +52,9 @@ public class LoopGame {
     	type2Key.add("D");
     }
 	
-	public LoopGame(GraphicsContext gc, Scene theScene, String playerName, BlackPanther blackPanther) {
+	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
 		LoopGame.gc = gc;
-		LoopGame.blackPanther = blackPanther;
+		blackPanther = new BlackPanther();
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
 		input = new ArrayList<String>();
@@ -151,6 +154,7 @@ public class LoopGame {
 				
 					// check bot attack
 					BadHuman.checkAttackHuman(blackPanther);
+					
 					// check bot get damaged
 					BadHuman.removeEnemy();
 
@@ -171,15 +175,15 @@ public class LoopGame {
 					bad1.render(gc);
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
-					Controller.StatusBar.resetProgress();
+					Controller.StatusBar.resetProgress(blackPanther);
 					Item.render(gc);
 					Item.checkItemUse(blackPanther);
 				
 					//Game Over
-					if(blackPanther.isDead()&&!GODMODE) {
+					if(blackPanther.isDead()) {
 						isDead = true;
 						Audio.SELECTMENU.play();
-						System.out.println("GAME OVER!");
+						//System.out.println("GAME OVER!");
 						Timer.stop();
 						Timer.hide();
 						Timer.terminate();
@@ -247,6 +251,19 @@ public class LoopGame {
 			delay.start();
 			
 		} 
+		
+		if(input.contains(GODMODE_ON_KEY)) {
+			blackPanther.enableGodMode();
+			System.out.println("enableGodMode!");
+		}
+		else if(input.contains(GODMODE_OFF_KEY)) {
+			blackPanther.disableGodMode();
+			System.out.println("disableGodMode!");
+		}
+		if(input.contains(GETSCORE_KEY)) {
+			ScoreBoard.addScore(10000);
+		}
+		
 
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false) {
 		

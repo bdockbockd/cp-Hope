@@ -38,6 +38,8 @@ public class HallOfFameMenu extends Scene{
 	public static Pane root;
 	private static Canvas canvas;
 	private static GraphicsContext gc;
+	private static boolean isUpdate;
+	private static final int HALLOFFAMENUMBER = 7;
 	//private static File file = new File("resources/HallOfFame.txt");
 	
 	public HallOfFameMenu() {
@@ -46,6 +48,7 @@ public class HallOfFameMenu extends Scene{
 		canvas = new Canvas(1250, 800);
 		gc = canvas.getGraphicsContext2D();
 		playerDataList = new ArrayList<Pair<String, Integer>>();
+		isUpdate = false;
 		
 		readHallOfFame();
 		try {
@@ -76,10 +79,13 @@ public class HallOfFameMenu extends Scene{
 		gc.drawImage(hallOfFameBG, 0, 0);
 		gc.setFont(Font.font("Cornerstone", FontWeight.SEMI_BOLD, 36));
 		gc.setFill(Color.GHOSTWHITE);
-		for(int i = 0;i < 7 && i < playerDataList.size();i++){
+		for(int i = 0;i < HALLOFFAMENUMBER && i < playerDataList.size();i++){
 			gc.fillText("Rank "+(i+1)+": "+playerDataList.get(i).getKey()+" "+playerDataList.get(i).getValue(), 434, 218+84*i);
 		}
-		throw new HallOfFameException("lol");
+		if(isUpdate == true) {
+			isUpdate = false;
+			throw new HallOfFameException("Hall of Fame is update!");
+		}
 	}
 	
 	public static void save() throws ExitGameException {      
@@ -112,6 +118,9 @@ public class HallOfFameMenu extends Scene{
 		int rank = playerDataList.size();
 		for(int i = playerDataList.size()-1;i>=0&&score>playerDataList.get(i).getValue();i--){
 			rank = i;
+		}
+		if(rank+1 <= HALLOFFAMENUMBER) {
+			isUpdate = true;
 		}
 		addList(playerName, score);
 		return rank+1;

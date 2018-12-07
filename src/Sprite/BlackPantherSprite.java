@@ -21,6 +21,7 @@ public abstract class BlackPantherSprite extends Sprite{
 	protected int jumpPosition;
 	protected boolean speedFix;
 	private boolean isSuper;
+	protected boolean isGod;
 
     public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
@@ -37,6 +38,7 @@ public abstract class BlackPantherSprite extends Sprite{
 		this.status = 0;
 		this.isSuper = false;
 		this.speedFix = false;
+		this.isGod = false;
     }
     
     public void setMove(boolean tf) { 
@@ -284,14 +286,16 @@ public abstract class BlackPantherSprite extends Sprite{
 	}
 
 	public void takeDamage(double damage) {
-		this.health -= damage;
-		if(this.health < 0) {
-			this.health = 0;
+		if(!isGod) {
+			this.health -= damage;
+			if(this.health < 0) {
+				this.health = 0;
+			}
 		}
 	}
 	public boolean isDead()
 	{
-		return getHealth()<=0;
+		return (getHealth()<=0 && !isGod);
 	}
 
 	public boolean isSpeedFix() {
@@ -300,6 +304,18 @@ public abstract class BlackPantherSprite extends Sprite{
 
 	public void setSpeedFix(boolean speedFix) {
 		this.speedFix = speedFix;
+	}
+	
+	public boolean isGod() {
+		return isGod;
+	}
+	
+	public void enableGodMode() {
+		isGod = true;
+	}
+	
+	public void disableGodMode() {
+		isGod = false;
 	}
 	
 
