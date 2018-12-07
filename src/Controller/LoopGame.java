@@ -45,6 +45,7 @@ public class LoopGame {
     public static GraphicsContext gc;
     public static Thread DELAYBOT;
     public static String playerName;
+    public static boolean botHit;
 
     public static final String ATTACK_KEY = "Z";
     public static final String JUMP_KEY = "X";
@@ -133,13 +134,13 @@ public class LoopGame {
 					blackPanther.update(elapsedTime);
               
                
-					// updateBot every 1 
+					// updateBot random every 1 (VELOCITYXY)
 					if(CANUPDATEBOT == true && BadHuman.getbadList().size() != 0) {
 						
 						DELAYBOT = new Thread(()->{
 							try {
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
-									if(!BadHuman.getbadList().get(i).isDead()) {
+									if(!BadHuman.getbadList().get(i).isDead() && !(BadHuman.getbadList().get(i).isKnockBack())) {
 										((BadHuman.getbadList()).get(i)).update(elapsedTime, blackPanther);
 									}
 								}
@@ -160,7 +161,11 @@ public class LoopGame {
 					// check bot get damaged
 					BadHuman.removeEnemy();
 
+					//update bot all times 
 					for(int i =0;i<BadHuman.getbadList().size();i++) {
+						if(BadHuman.getbadList().get(i).isKnockBack()) {
+							BadHuman.getbadList().get(i).KnockBack(blackPanther.getFace());
+						} 
 						((BadHuman.getbadList()).get(i)).update(elapsedTime);
 					}
 					//remove bot

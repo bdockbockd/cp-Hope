@@ -27,6 +27,7 @@ public class BadHuman extends HumanSprite  {
     private boolean isTomb = false;
     private boolean waitToHit = false;
     public int time=0;
+    private boolean knockBack = false;
     
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
@@ -130,8 +131,6 @@ public class BadHuman extends HumanSprite  {
         			if(tiger.getPositionX()+120 < this.getPositionX()) {
     					this.setFace("LEFT");
         				this.nextPosition(this.getFace());
-        		
-
         				if(tiger.getPositionY()+75 < this.getPositionY() ) {
             				this.setVelocity(-Math.random()*200,-Math.random()*200);
 //	          				try {
@@ -260,6 +259,56 @@ public class BadHuman extends HumanSprite  {
 				});
 				t.start();
 			}
+		}
+	}
+
+
+	public boolean isKnockBack() {
+		return knockBack;
+	}
+
+
+	public void setKnockBack(boolean knockBack) {
+		this.knockBack = knockBack;
+	}
+
+
+	public void KnockBack(String direction) {
+		// TODO Auto-generated method stub
+		double veX = this.getVelocityX();
+		double veY = this.getVelocityY();
+		
+		if(direction == "LEFT" ) {
+		Thread knock = new Thread(()->{
+			try {
+				this.setVelocityX(-700);
+				Thread.sleep(50);
+				this.setVelocityX(700);
+				Thread.sleep(50);
+				this.setKnockBack(false);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.setVelocity(veX, veY);
+		});
+		knock.start();
+		} else {
+			Thread knock = new Thread(()->{
+				try {
+					this.setVelocityX(700);
+					Thread.sleep(50);
+					this.setVelocityX(-700);
+					Thread.sleep(50);
+					this.setKnockBack(false);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.setVelocity(veX, veY);
+			});
+			
+			knock.start();
 		}
 	}
 		  

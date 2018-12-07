@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.LoopGame;
 import Enemy.BadHuman;
 import javafx.scene.image.Image;
 
@@ -81,13 +82,28 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
     
     public void attackEnemy() {
 		Audio.HITDETECTED = false;
+		LoopGame.botHit = false;
 		if(this.getFace() == "LEFT") {
 			BadHuman enemy;
 			for(int i=0;i<BadHuman.getbadList().size();i++) {
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
+					enemy.setKnockBack(true);
+					LoopGame.botHit = true;
 					if(!(enemy.isDead())) {
-						
+						Thread knockBack = new Thread(()->{
+							LoopGame.CANUPDATEBOT = false;
+							try {
+								Thread.sleep(50);
+								Thread.sleep(50);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							LoopGame.CANUPDATEBOT = true;
+							
+						});
+						knockBack.start();
 					}
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
 						
