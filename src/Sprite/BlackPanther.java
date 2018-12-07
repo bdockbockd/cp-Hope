@@ -110,6 +110,8 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	}
     
 	public void playJump(String direction) {
+		this.setFace(direction);
+		this.nextPosition(direction);
 		if(direction.equals("LEFT")) {
 			Thread delay = new Thread(()->{
 				try {

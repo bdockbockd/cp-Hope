@@ -182,7 +182,6 @@ public class LoopGame {
 						((BadHuman.getbadList()).get(i)).render(StartGame.gc);
 					}
 					
-//					blackPanther.printBoundary();
 					//render tiger	
 					bad1.render(gc);
 					blackPanther.render(gc);
@@ -291,8 +290,6 @@ public class LoopGame {
 			blackPanther.setSpeedFix(true);
 			blackPanther.setActionState(3);
 			String direction = tiger.getFace();
-			tiger.setFace(direction);
-			tiger.nextPosition(direction);
 			tiger.playJump(direction);
 			Audio.pounceSound();
 			tiger.attackEnemy();
@@ -343,6 +340,7 @@ public class LoopGame {
     	        	tiger.nextPosition(tiger.getFace());
     	            tiger.setCanMovePosition(false);
     	            Thread.sleep(500);
+    	            tiger.switchToWalk();
     	            tiger.setCanMovePosition(true);
     	            tiger.setActionState(0);
 				} catch (InterruptedException e) {
