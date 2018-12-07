@@ -2,6 +2,7 @@ package Controller;
 	
 import Constant.Audio;
 import Constant.FontRes;
+import Exception.HallOfFameException;
 import UI.GameMenu;
 import UI.HallOfFameMenu;
 import UI.HowToPlayMenu;
@@ -14,6 +15,8 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -67,8 +70,16 @@ public class Main extends Application {
 	public static void howToPlayMenu() {
 		stage.setScene(howToPlayMenu);
 	}
-	public static void hallOfFameMenu() {
-		HallOfFameMenu.fillText();
+	public static void hallOfFameMenu(){
+		try {
+			HallOfFameMenu.fillText();
+		} catch (HallOfFameException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Hall of fame");
+			alert.setHeaderText("Hall of fame is updated!");
+			alert.showAndWait();
+			//e.printStackTrace();
+		}
 		stage.setScene(hallOfFameMenu);
 	}
 	public static void quitMenu() {

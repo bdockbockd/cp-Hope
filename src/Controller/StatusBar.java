@@ -17,10 +17,12 @@ public class StatusBar extends StackPane {
 	private static ProgressIndicator pounce;
 	private static ProgressIndicator spin;
 	private static Label playerNameLabel;
+	private static BlackPanther blackPanther;
 	
-	public StatusBar(String playerName)
+	public StatusBar(String playerName,BlackPanther blackPanther)
 	{
 		super();  
+		this.blackPanther = blackPanther;
 		playerNameLabel = new Label(playerName);
 		playerNameLabel.setStyle("-fx-text-fill: WHITE;");
 		playerNameLabel.setFont(Font.font("Cornerstone", FontWeight.BLACK, 24));
@@ -55,14 +57,14 @@ public class StatusBar extends StackPane {
 	public static void reset(String playerName) {
 		playerNameLabel.setText(playerName);
 	}
-	public static void resetProgress(BlackPanther blackTiger)
+	public static void resetProgress()
 	{
 		//attack.setProgress(attack.getProgress()+0.02);
 		//attackIsReady();
 		/*if(attack.getProgress() == 1) {
 			attack.setStyle(" -fx-progress-color: green;");
 		}*/
-		HPBar.setProgress(blackTiger.getHealth()/blackTiger.getMaxHealth());
+		HPBar.setProgress(blackPanther.getHealth()/blackPanther.getMaxHealth());
 		//HPBar.setProgress(HPBar.getProgress()-0.005);
 	}
 	public static boolean attackIsReady() {

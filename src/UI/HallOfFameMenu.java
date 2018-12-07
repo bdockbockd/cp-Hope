@@ -15,9 +15,12 @@ import java.util.List;
 import Constant.Audio;
 import Constant.Images;
 import Controller.Main;
+import Exception.HallOfFameException;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -44,7 +47,18 @@ public class HallOfFameMenu extends Scene{
 		playerDataList = new ArrayList<Pair<String, Integer>>();
 		
 		readHallOfFame();
-		fillText();
+		try {
+			fillText();
+		} catch (HallOfFameException e) {
+			// TODO Auto-generated catch block
+			//Alert alert = new Alert(AlertType.INFORMATION);
+			//alert.setTitle("Hall of fame");
+			//alert.setHeaderText("Hall of fame is updated!");
+			//alert.showAndWait();
+			//alert.setContentText("Could not find file blabla.txt!");
+			//e.printStackTrace();
+			//System.out.println("Hall of Fame fillText initialize!");
+		}
 
 		root.getChildren().addAll(canvas);
 		Main.backMenu(this);
@@ -57,13 +71,14 @@ public class HallOfFameMenu extends Scene{
 		});
 	}
 	
-	public static void fillText() {
+	public static void fillText() throws HallOfFameException {
 		gc.drawImage(hallOfFameBG, 0, 0);
 		gc.setFont(Font.font("Cornerstone", FontWeight.SEMI_BOLD, 36));
 		gc.setFill(Color.GHOSTWHITE);
 		for(int i = 0;i < 7 && i < playerDataList.size();i++){
 			gc.fillText("Rank "+(i+1)+": "+playerDataList.get(i).getKey()+" "+playerDataList.get(i).getValue(), 434, 218+84*i);
 		}
+		throw new HallOfFameException("lol");
 	}
 	
 	public static void save() {      

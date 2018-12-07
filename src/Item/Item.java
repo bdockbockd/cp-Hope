@@ -19,12 +19,12 @@ public abstract class Item extends Rectangle{
 		itemList.add(this);
 	}
 	
-	public abstract void itemUse(BlackPanther blackTiger);
+	public abstract void itemUse(BlackPanther blackPanther);
 	
-	public static void checkItemUse(BlackPanther blackTiger) {
+	public static void checkItemUse(BlackPanther blackPanther) {
 		for(int i = 0;i < itemList.size();i++){
-			if(itemList.get(i).getBoundary().intersects(blackTiger.getBoundary())) {
-				itemList.get(i).itemUse(blackTiger);
+			if(itemList.get(i).getBoundary().intersects(blackPanther.getBoundary())) {
+				itemList.get(i).itemUse(blackPanther);
 				itemList.remove(itemList.get(i));
 			}
 		}

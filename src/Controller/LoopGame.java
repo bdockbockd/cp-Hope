@@ -32,12 +32,15 @@ public class LoopGame {
     public static DeadScene deadScene;
     public static boolean isDead;
     public static boolean BOTSPAWN = true;
-    public static boolean GODMODE = false;
-    public static int BOTSPAWNRATE = 5; //BOTPERSEC
+    public static final boolean GODMODE = false;
+    public static final int BOTSPAWNRATE = 3; //BOTPERSEC
     public static boolean CANUPDATEBOT;
     public static boolean CCHECK;
     public static double elapsedTime;
     public static GraphicsContext gc;
+    public static final String KEY_ATTACK = "Z";
+    public static final String KEY_JUMP = "X";
+    public static final String KEY_SPIN = "C";
 
     static {
     	type2Key.add("W");
@@ -46,9 +49,9 @@ public class LoopGame {
     	type2Key.add("D");
     }
 	
-	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
+	public LoopGame(GraphicsContext gc, Scene theScene, String playerName,BlackPanther blackPanther) {
 		LoopGame.gc = gc;
-		blackPanther = new BlackPanther();
+		LoopGame.blackPanther = blackPanther;
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
 		input = new ArrayList<String>();
@@ -168,7 +171,7 @@ public class LoopGame {
 					bad1.render(gc);
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
-					Controller.StatusBar.resetProgress(blackPanther);
+					Controller.StatusBar.resetProgress();
 					Item.render(gc);
 					Item.checkItemUse(blackPanther);
 				
@@ -223,7 +226,7 @@ public class LoopGame {
 	}
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
-		if(input.contains("X") && BlackPanther.spinAttackDetected == false) {
+		if(input.contains(KEY_SPIN) && BlackPanther.spinAttackDetected == false) {
 			Audio.spinSound();
 			tiger.attackEnemy();
 			
@@ -245,7 +248,7 @@ public class LoopGame {
 			
 		} 
 
-		if(input.contains("C") && BlackPanther.jumpAttackDetected == false) {
+		if(input.contains(KEY_JUMP) && BlackPanther.jumpAttackDetected == false) {
 		
 			blackPanther.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
@@ -290,7 +293,7 @@ public class LoopGame {
             tiger.setActionState(0);
 
 		}
-        if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
+        if(input.contains(KEY_ATTACK) && tiger.isCanMovePosition() == true) {
 			Audio.attackSound();
 			tiger.attackEnemy();
 
@@ -346,13 +349,13 @@ public class LoopGame {
 	                        String code = e.getCode().toString();
 	                        //System.out.print(code);
 	                        if(input.contains(code)) {
-	                        	if(code.equals("SPACE")) {
+	                        	if(code.equals(KEY_ATTACK)) {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
 	                        		blackPanther.setCanMovePosition(true);
 	
-	                        	} else if(code.equals("X")) {
+	                        	} else if(code.equals(KEY_SPIN)) {
 	                        		BlackPanther.spinAttackDetected = false;
 	                        	}
 	                        	input.remove(code);
