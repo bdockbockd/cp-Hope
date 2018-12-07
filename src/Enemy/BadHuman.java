@@ -3,13 +3,17 @@ package Enemy;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.sound.midi.ControllerEventListener;
+
 import Constant.Audio;
 import Constant.Images;
+import Controller.LoopGame;
 import Item.HealthPotion;
 import Item.Item;
 import Item.Meat;
 import Item.SuperPotion;
 import Sprite.BlackPanther;
+import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -223,17 +227,16 @@ public class BadHuman extends HumanSprite  {
 		this.sleepTime = sleepTime;
 	}
 	
-	public Item genItem(double positionX, double positionY) {
+	public void genItem(double positionX, double positionY) {
 		int random = (int)(Math.random()*3);
 		if(random == 0)
 		{
-			return new Meat(positionX,positionY);
-			
+			new Meat(positionX,positionY);
 		} else if(random == 1) {
-			return new HealthPotion(positionX,positionY);
-		} else {
-			return new SuperPotion(positionX,positionY);
-		}
+			new HealthPotion(positionX,positionY);
+		} else if(random == 2){
+	     	 new SuperPotion(positionX,positionY);
+		} 
 	}
 
 	public static void removeEnemy() {
@@ -247,12 +250,13 @@ public class BadHuman extends HumanSprite  {
 				Thread t = new Thread(()-> {
 							try {
 								enemy.setImage(Images.enemyTomb);  
+								enemy.genItem(enemy.getPositionX(), enemy.getPositionY());
 								Thread.sleep(1000);
+								BadHuman.getbadList().remove(enemy);
 							}
 							catch(InterruptedException e){
 								e.printStackTrace();
 							}
-							BadHuman.getbadList().remove(enemy);
 				});
 				t.start();
 			}

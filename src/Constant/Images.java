@@ -41,10 +41,10 @@ public class Images {
 	public static final Image[] humanMotionL = new Image[1];
 	public static final Image[] humanMotionR = new Image[1];
 	public static final Image[] stageMap = new Image[3];
-	public static final List<List<Image[]>> STAGETIGER = new ArrayList<List<Image[]>>();
-	public static final List<Image[]> STAGE1 = new ArrayList<Image[]>();
-	public static final List<Image[]> STAGE2 = new ArrayList<Image[]>();
-	public static final List<Image[]> STAGE3 = new ArrayList<Image[]>();
+	public static final ArrayList<ArrayList<Image[]>> STAGETIGER = new ArrayList<ArrayList<Image[]>>();
+	public static final ArrayList<Image[]> STAGE1 = new ArrayList<Image[]>();
+	public static final ArrayList<Image[]> STAGE2 = new ArrayList<Image[]>();
+	public static final ArrayList<Image[]> STAGE3 = new ArrayList<Image[]>();
 
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
@@ -93,7 +93,6 @@ public class Images {
 			jumpAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
-			
 		}
 		
 		for(int i=0;i<spinAttackL.length;i++) {
@@ -121,6 +120,39 @@ public class Images {
 			deadScene.add(new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0"+i+".png").toString()));
 		}
 	
+		
+//		STAGE1[0] = blackTigerMotionL;
+//		STAGE1[1] = blackTigerMotionR;
+//		STAGE1[2] = blackTigerBasicAttackL;
+//		STAGE1[3] = blackTigerBasicAttackR;
+//		STAGE1[4] = jumpAttackL;
+//		STAGE1[5] = jumpAttackR;
+//		STAGE1[6] = spinAttackL;
+//		STAGE1[7] = spinAttackR;
+//		
+//		STAGE2[0] = blackTigerMotionL2;
+//		STAGE2[1] = blackTigerMotionR2;
+//		STAGE2[2] = blackTigerBasicAttackL2;
+//		STAGE2[3] = blackTigerBasicAttackR2;
+//		STAGE2[4] = jumpAttackL2;
+//		STAGE2[5] = jumpAttackR2;
+//		STAGE2[6] = spinAttackL2;
+//		STAGE2[7] = spinAttackR2;
+//		
+//		STAGE3[0] = blackTigerMotionL3;
+//		STAGE3[1] = blackTigerMotionR3;
+//		STAGE3[2] = blackTigerBasicAttackL3;
+//		STAGE3[3] = blackTigerBasicAttackR3;
+//		STAGE3[4] = jumpAttackL3;
+//		STAGE3[5] = jumpAttackR3;
+//		STAGE3[6] = spinAttackL3;
+//		STAGE3[7] = spinAttackR3;
+//		
+//		STAGETIGER[0] = STAGE1;
+//		STAGETIGER[1] = STAGE2;
+//		STAGETIGER[2] = STAGE3;
+
+		
 		STAGE1.add(Images.blackTigerMotionL);
 		STAGE1.add(Images.blackTigerMotionR);
 		STAGE1.add(Images.blackTigerBasicAttackL);

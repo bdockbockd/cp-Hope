@@ -21,10 +21,12 @@ public abstract class Item extends Rectangle{
 	
 	public abstract void itemUse(BlackPanther blackTiger);
 	
+	
 	public static void checkItemUse(BlackPanther blackTiger) {
 		for(int i = 0;i < itemList.size();i++){
 			if(itemList.get(i).getBoundary().intersects(blackTiger.getBoundary())) {
 				itemList.get(i).itemUse(blackTiger);
+				
 				itemList.remove(itemList.get(i));
 			}
 		}

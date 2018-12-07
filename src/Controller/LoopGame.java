@@ -61,9 +61,7 @@ public class LoopGame {
 		CANUPDATEBOT = true;
 		CCHECK = true;
 		// item test
-		Meat meat = new Meat(20,20+220);
-		HealthPotion healthPotion = new HealthPotion(900,20+220);
-		SuperPotion superPotion = new SuperPotion(400,220+20);
+//	
 		new AnimationTimer()  {
 			@Override
 			public void handle(long currentNanoTime) {
@@ -72,7 +70,7 @@ public class LoopGame {
 					{
 						Thread addBot = new Thread(()->{
 							try {
-								BadHuman.addBot();
+//								BadHuman.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
@@ -114,7 +112,7 @@ public class LoopGame {
 								}
 							});
 							x.start();
-                       	}
+                       }
 					}
                  
 					//update velocity tiger and detect attack hit
@@ -137,7 +135,7 @@ public class LoopGame {
 									}
 								}
 								CANUPDATEBOT = false;
-								Thread.sleep(1000);
+								Thread.sleep(3000);
 								CANUPDATEBOT = true;
 							} catch (InterruptedException e) {
 								e.printStackTrace();
@@ -169,8 +167,11 @@ public class LoopGame {
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
-					Item.render(gc);
 					Item.checkItemUse(blackPanther);
+					System.out.println(BlackPanther.ISSUPER);
+					blackPanther.checkStatus();
+
+					Item.render(gc);
 				
 					//Game Over
 					if(blackPanther.isDead()&&!GODMODE) {
@@ -254,6 +255,7 @@ public class LoopGame {
 
 			Audio.pounceSound();
 			tiger.attackEnemy();
+			//set Speed Fix in here
 			tiger.playJump();
 
 		}
@@ -277,7 +279,16 @@ public class LoopGame {
             tiger.addVelocity(200,0);
             tiger.setFace("RIGHT");
             tiger.setActionState(0);
-
+//            if(tiger.getActionState() != 0) {
+//            	int times;
+//            	Thread a = new Thread(()->{
+//            		While(tiger)
+//            		tiger.setActionState(1);
+//            	});
+//            	a.start();
+//            } else {
+//            	tiger.setActionState(0);
+//            }
         }
 	    if (input.contains("UP") && tiger.getRealY() > 210) {
         	// y 50
@@ -288,7 +299,6 @@ public class LoopGame {
 		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
             tiger.addVelocity(0,200);
             tiger.setActionState(0);
-
 		}
         if(input.contains("SPACE") && tiger.isCanMovePosition() == true) {
 			Audio.attackSound();
@@ -296,14 +306,15 @@ public class LoopGame {
 
         	Thread t = new Thread(()->{
     			try {
+    				//setImageList
     	        	tiger.setAttackable(true);
+    	        	//setImage
     	        	tiger.setFace(tiger.getFace());
+    	        	//movePosition
     	        	tiger.nextPosition(tiger.getFace());
-//    	        	System.out.print(tiger.getFace());
     	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(300);
-    	            tiger.switchToWalk();
-
+    	            Thread.sleep(400);
+    	            tiger.setActionState(0);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
