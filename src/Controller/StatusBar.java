@@ -58,7 +58,7 @@ public class StatusBar extends StackPane {
 	}
 	public static void resetProgress(BlackPanther blackPanther)
 	{
-		attack.setProgress(attack.getProgress()+0.1);
+		attack.setProgress(attack.getProgress()+0.2);
 		pounce.setProgress(pounce.getProgress()+0.02);
 		spin.setProgress(spin.getProgress()+0.01);
 		//attack.setProgress(attack.getProgress()+0.02);
