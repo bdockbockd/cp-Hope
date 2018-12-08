@@ -43,7 +43,6 @@ public class LoopGame {
     public static boolean CCHECK;
     public static double elapsedTime;
     public static GraphicsContext gc;
-    public static Thread DELAYBOT;
     public static String playerName;
     public static boolean botHit;
 
@@ -53,7 +52,9 @@ public class LoopGame {
     public static final String GODMODE_ON_KEY = "I";
     public static final String GODMODE_OFF_KEY = "O";
     public static final String GETSCORE_KEY = "P";
-	
+
+    public static Thread DELAYBOT;
+
 	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
 		LoopGame.playerName = playerName;
 		LoopGame.gc = gc;

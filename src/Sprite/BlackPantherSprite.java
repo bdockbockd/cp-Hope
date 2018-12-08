@@ -24,6 +24,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	protected int jumpPosition;
 	protected boolean speedFix;
 
+
     public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
     {
        super(image, imageL, imageR);
