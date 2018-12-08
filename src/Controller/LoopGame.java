@@ -165,7 +165,7 @@ public class LoopGame {
 					//update bot all times 
 					for(int i =0;i<BadHuman.getbadList().size();i++) {
 						if(BadHuman.getbadList().get(i).isKnockBack()) {
-							BadHuman.getbadList().get(i).KnockBack(blackPanther.getFace());
+//							BadHuman.getbadList().get(i).KnockBack(blackPanther.getFace());
 						} 
 						((BadHuman.getbadList()).get(i)).update(elapsedTime);
 					}

@@ -91,19 +91,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					enemy.setKnockBack(true);
 					LoopGame.botHit = true;
 					if(!(enemy.isDead())) {
-						Thread knockBack = new Thread(()->{
-							LoopGame.CANUPDATEBOT = false;
-							try {
-								Thread.sleep(50);
-								Thread.sleep(50);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							LoopGame.CANUPDATEBOT = true;
-							
-						});
-						knockBack.start();
+						 enemy.knockBack(this.getFace());
 					}
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
 						
@@ -116,7 +104,10 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 				enemy = BadHuman.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {				
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-
+					LoopGame.botHit = true;
+					if(!(enemy.isDead())) {
+						 enemy.knockBack(this.getFace());
+					}
 					Audio.HITDETECTED = true;
 				}
 			}
@@ -206,7 +197,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		}
 		else if(BlackPanther.STATUS == 1)
 		{
-			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/4;
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/8;
 			setDamage(300);
 			setArmor(20);
 		}

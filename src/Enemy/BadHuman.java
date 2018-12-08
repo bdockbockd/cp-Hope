@@ -273,11 +273,17 @@ public class BadHuman extends HumanSprite  {
 	}
 
 
-	public void KnockBack(String direction) {
+	public void knockBack(String direction) {
 		// TODO Auto-generated method stub
+		if(this.isTomb || this.isDead())
+		{
+			this.setVelocity(0, 0);
+			return;
+		}
 		double veX = this.getVelocityX();
 		double veY = this.getVelocityY();
-		
+		LoopGame.CANUPDATEBOT = false;
+
 		if(direction == "LEFT" ) {
 		Thread knock = new Thread(()->{
 			try {
@@ -286,11 +292,16 @@ public class BadHuman extends HumanSprite  {
 				this.setVelocityX(700);
 				Thread.sleep(50);
 				this.setKnockBack(false);
+				LoopGame.CANUPDATEBOT = true;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.setVelocity(veX, veY);
+			if(this.isTomb) {
+				this.setVelocity(0, 0);
+			} else {
+				this.setVelocity(veX, veY);
+			}
 		});
 		knock.start();
 		} else {
@@ -301,12 +312,16 @@ public class BadHuman extends HumanSprite  {
 					this.setVelocityX(-700);
 					Thread.sleep(50);
 					this.setKnockBack(false);
+					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				this.setVelocity(veX, veY);
-			});
+				if(this.isTomb) {
+					this.setVelocity(0, 0);
+				} else {
+					this.setVelocity(veX, veY);
+				}			});
 			
 			knock.start();
 		}
