@@ -1,3 +1,10 @@
+Player:43000
+Player:16000
 Player:15000
 Player:13000
+Player:12000
+Player:12000
+Player:11000
+Player:10000
+Player:9000
 Player:9000

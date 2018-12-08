@@ -7,31 +7,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.sun.javafx.tk.CompletionListener;
+import com.sun.javafx.tk.RenderJob;
+
 import Constant.Audio;
 import Constant.Images;
 import Enemy.BadHuman;
 import Exception.GameOverException;
-import Item.HealthPotion;
 import Item.Item;
-import Item.Meat;
-import Item.SuperPotion;
 import Sprite.BlackPanther;
 import UI.DeadScene;
 import UI.GamePause;
 import UI.StartGame;
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Pair;
 
 public class LoopGame {
 	public static BlackPanther blackPanther;
 	private static long lastNanoTime ;
-    public static ArrayList<String> input;
     public static final ArrayList<String> type2Key = new ArrayList<String>();
     public static ArrayList<String> input2;
     public static GamePause gamePause;
@@ -46,32 +49,13 @@ public class LoopGame {
     public static String playerName;
     public static boolean botHit;
 
-    public static final String ATTACK_KEY = "Z";
-    public static final String JUMP_KEY = "X";
-    public static final String SPIN_KEY = "C";
-    public static final String GODMODE_ON_KEY = "I";
-    public static final String GODMODE_OFF_KEY = "O";
-    public static final String GETSCORE_KEY = "P";
-
     public static Thread DELAYBOT;
 
 	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
-		LoopGame.playerName = playerName;
-		LoopGame.gc = gc;
-		blackPanther = new BlackPanther();
-		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
-		lastNanoTime = System.nanoTime();
-		input = new ArrayList<String>();
-		input2 = new ArrayList<String>();
-		// scene detect
-		LoopGame.setKey(theScene);
-		BadHuman bad1 = new BadHuman();
-		gamePause = new GamePause();
-		isDead = false;
-		CANUPDATEBOT = true;
-		CCHECK = true;
-		// item test
-//	
+		
+		
+		LoopGame.startGame(gc,theScene,playerName);
+		
 		new AnimationTimer()  {
 			@Override
 			public void handle(long currentNanoTime) {
@@ -93,7 +77,6 @@ public class LoopGame {
 
 					// Input
 					//drawMap
-					// TODO Auto-generated method stub
 					// calculate time since last update.
 
 					elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
@@ -104,10 +87,9 @@ public class LoopGame {
 					lastNanoTime = currentNanoTime;
                 
 					// set Velocity tiger
-					bad1.setVelocity(0, 0);
-					if(!(blackPanther.isSpeedFix())) {
+					if(!(blackPanther.isSkillOn())) {
 						blackPanther.setVelocity(0,0);
-						LoopGame.keyActionToSpeed(blackPanther, currentNanoTime, this);
+						KeyControlBlackPanther.keyActionToSpeed(blackPanther, currentNanoTime, this);
 
                     // checkPosition Tiger
 						if(CCHECK && blackPanther.getActionState() == 0) {
@@ -124,13 +106,7 @@ public class LoopGame {
 							x.start();
                        }
 					}
-                 
-					//update velocity tiger and detect attack hit
-//            		LoopGame.keySkill(blackPanther, StartGame.gc);
-
-					LoopGame.keySpeed(bad1, currentNanoTime);
-
-					bad1.update(elapsedTime);
+					
 					//update position from time and velocity	
 					blackPanther.update(elapsedTime);
               
@@ -189,7 +165,6 @@ public class LoopGame {
 					}
 					
 					//render tiger	
-					bad1.render(gc);
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
@@ -226,151 +201,34 @@ public class LoopGame {
 		}	
 	}
 	
-	protected static void keySkill(BlackPanther blackPanther, GraphicsContext gc) {
-		// TODO Auto-generated method stub
-	
-		
-	}
-	protected static void keySpeed(BadHuman bad1, long currentNanoTime) {
-		// TODO Auto-generated method stub
-//		bad1.printBoundary();
-		if (input.contains("A")) {
-			// x 70
-            bad1.addVelocity(-200,0);
-            bad1.setFace("LEFT");
-        }
-        if (input.contains("D")) {
-            bad1.addVelocity(200,0);
-            bad1.setFace("RIGHT");
-        }
-        if (input.contains("W")) {
-        	// y 50
-            bad1.addVelocity(0,-200);
-
-        }
-        if (input.contains("S")) {
-            bad1.addVelocity(0,200);
-        }
-		
-	}
-	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
-		
-		if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
-			Audio.spinSound();
-			tiger.attackEnemy();
-			
-			Thread delay = new Thread(()-> {
-				BlackPanther.spinAttackDetected = true;
-				blackPanther.setActionState(2);
-				blackPanther.setFace(blackPanther.getFace());
-				blackPanther.nextPosition(tiger.getFace());
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				BlackPanther.spinAttackDetected = false;
-				blackPanther.switchToWalk();
-			});
-			delay.start();
-			
-		} 
-		
-		if(input.contains(GODMODE_ON_KEY)) {
-			blackPanther.enableGodMode();
-			System.out.println("enableGodMode!");
-		}
-		else if(input.contains(GODMODE_OFF_KEY)) {
-			blackPanther.disableGodMode();
-			System.out.println("disableGodMode!");
-		}
-		if(input.contains(GETSCORE_KEY)) {
-			ScoreBoard.addScore(10000);
-		}
-		
-
-		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
-		
-			BlackPanther.jumpAttackDetected = true;
-			blackPanther.setSpeedFix(true);
-			blackPanther.setActionState(3);
-			String direction = tiger.getFace();
-			tiger.playJump(direction);
-			Audio.pounceSound();
-			tiger.attackEnemy();
-			//set Speed Fix in here
-		}
-		if(input.contains("ESCAPE") && !gamePause.isShowing() && !GamePause.isPause){
-			Audio.SELECTMENU.play();
-			GamePause.isPause = true;
-			Timer.stop();
-			Timer.hide();
-			ScoreBoard.hide();
-			System.out.println("GAME IS PAUSED!");
-			gamePause.show(Main.stage);
-		}
-
-	    if (input.contains("LEFT") && tiger.getRealX() > 0) {
-			// x 70
-            tiger.addVelocity(-200,0);
-            tiger.setFace("LEFT");
-            tiger.setActionState(0);
-        }
-	    if (input.contains("RIGHT") && tiger.getRealX() < 1230 - tiger.getRealWidth()) {
-            tiger.addVelocity(200,0);
-            tiger.setFace("RIGHT");
-            tiger.setActionState(0);
-        }
-	    if (input.contains("UP") && tiger.getRealY() > 210) {
-        	// y 50
-            tiger.addVelocity(0,-200);
-            tiger.setActionState(0);
-
-        }
-		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
-            tiger.addVelocity(0,200);
-            tiger.setActionState(0);
-		}
-        if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
-			Audio.attackSound();
-			tiger.attackEnemy();
-
-        	Thread t = new Thread(()->{
-    			try {
-    				//setImageList
-    	        	tiger.setAttackable(true);
-    	        	//setImage
-    	        	tiger.setFace(tiger.getFace());
-    	        	//movePosition
-    	        	tiger.nextPosition(tiger.getFace());
-    	            tiger.setCanMovePosition(false);
-    	            Thread.sleep(BlackPanther.ATTACK_COOLDOWN_VALUE);
-    	            tiger.switchToWalk();
-    	            tiger.setCanMovePosition(true);
-    	            tiger.setActionState(0);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		});
-    		t.start();
-        }
-	}
-	
-	public static void startGame() {
-		
+	public static void startGame(GraphicsContext gc, Scene theScene, String playerName) {
+		LoopGame.playerName = playerName;
+		LoopGame.gc = gc;
+		blackPanther = new BlackPanther();
+		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
+		lastNanoTime = System.nanoTime();
+		KeyControlBlackPanther.input = new ArrayList<String>();
+		input2 = new ArrayList<String>();
+		// scene detect
+		LoopGame.setKey(theScene);
+		gamePause = new GamePause();
+		isDead = false;
+		CANUPDATEBOT = true;
+		CCHECK = true;
 	}
 	
 	public static void setKey(Scene theScene) {
+
+		
+		
 		 theScene.setOnKeyPressed(
 	                new EventHandler<KeyEvent>()
 	                {
 	                    public void handle(KeyEvent e)
 	                    {
 	                        String code = e.getCode().toString();
-	                        if ( !input.contains(code) ) {
-	                            input.add( code );
+	                        if ( !KeyControlBlackPanther.input.contains(code) ) {
+	                            KeyControlBlackPanther.input.add( code );
 //	                            System.out.println(code);
 	                        }
 	                        if(type2Key.contains(code) && !input2.contains(code)) {
@@ -390,17 +248,17 @@ public class LoopGame {
 	                    {
 	                        String code = e.getCode().toString();
 	                        //System.out.print(code);
-	                        if(input.contains(code)) {
-	                        	if(code.equals(ATTACK_KEY)) {
+	                        if(KeyControlBlackPanther.input.contains(code)) {
+	                        	if(code.equals(KeyControlBlackPanther.ATTACK_KEY)) {
 	                        		//try
 //	                        		statusBar.resetProgress();
 //	                        		scoreBoard.addScore(100);
 	                        		blackPanther.switchToWalk();
 	
-	                        	} else if(code.equals(SPIN_KEY)) {
-	                        		BlackPanther.spinAttackDetected = false;
+	                        	} else if(code.equals(KeyControlBlackPanther.SPIN_KEY)) {
+//	                        		BlackPanther.spinAttackDetected = false;
 	                        	}
-	                        	input.remove(code);
+	                        	KeyControlBlackPanther.input.remove(code);
 	                        }
 	                        if(input2.contains(code)) {
 	                        	input2.remove(code);

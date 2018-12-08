@@ -131,10 +131,10 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					Thread.sleep(50);
 					this.setVelocity(-1200,200);
 					Thread.sleep(100);
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 					this.switchToWalk();
 					Thread.sleep(10);
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 //					tiger1.setVelocityX(0);
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
@@ -158,7 +158,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					this.setVelocity(1200,200);
 					Thread.sleep(50);
 					this.switchToWalk();
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 //					tiger1.setVelocityX(0);
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
@@ -216,6 +216,16 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	public ArrayList<Image[]> getStageTiger() {
 		return (Images.STAGETIGER).get(this.getStatus());
 	}
-
+	public boolean isGod() {
+		return isGod;
+	}
+	
+	public void enableGodMode() {
+		isGod = true;
+	}
+	
+	public void disableGodMode() {
+		isGod = false;
+	}
 	
 }
