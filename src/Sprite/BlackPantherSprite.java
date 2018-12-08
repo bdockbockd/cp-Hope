@@ -73,6 +73,18 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
     {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        if(this.positionX < 0) {
+        	this.setPositionX(0);
+        }
+        if(this.positionX > 1250-this.getWidth()){
+        	this.setPositionX(1250-this.getWidth());
+        }
+        if(this.positionY < 210) {
+        	this.setPositionY(210);
+        }
+        if(this.positionY > 800-this.getHeight()) {
+        	this.setPositionY(800-this.getHeight());
+        }
     }
     
 
@@ -129,7 +141,6 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	@Override
 	public void setFace(String face) {
 		if(face.equals("OPPOSITE")) {
-			this.setActionState(2);
 			if(this.getFace() == "LEFT") {
 				this.face = "RIGHT";
 				this.setFace("RIGHT");
@@ -147,6 +158,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 			this.setAttackable(false);
 			return;
 		}
+		
 		if(face == "LEFT") {
 			if(this.getActionState() == 1) {
 				this.setSkillPositionL((timesBasicAttack+1)%3);

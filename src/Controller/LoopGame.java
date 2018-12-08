@@ -113,7 +113,6 @@ public class LoopGame {
                
 					// updateBot random every 1 (VELOCITYXY)
 					if(CANUPDATEBOT == true && BadHuman.getbadList().size() != 0) {
-						
 						DELAYBOT = new Thread(()->{
 							try {
 								for(int i =0;i<BadHuman.getbadList().size();i++) {
@@ -122,7 +121,7 @@ public class LoopGame {
 									}
 								}
 								CANUPDATEBOT = false;
-								Thread.sleep(3000);
+								Thread.sleep(4000);
 								CANUPDATEBOT = true;
 							} catch (InterruptedException e) {
 								e.printStackTrace();

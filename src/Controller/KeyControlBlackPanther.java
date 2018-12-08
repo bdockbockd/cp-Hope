@@ -21,57 +21,6 @@ public class KeyControlBlackPanther {
 
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
-//		if(input.contains(SPIN_KEY) && input.contains(JUMP_KEY) && StatusBar.spinIsReady() && StatusBar.pounceIsReady() && StatusBar.spinIsReady() ) {
-//			if(BlackPanther.jumpAttackDetected == false && BlackPanther.spinAttackDetected == false) {
-//				Audio.spinSound();
-//				tiger.setSkillOn(true);
-//
-//				Thread delay = new Thread(()-> {
-//					BlackPanther.spinAttackDetected = true;
-//					BlackPanther.jumpAttackDetected = true;		
-//					// action state mixed
-//					tiger.setActionState(2);
-//					tiger.setFace(tiger.getFace());
-//					try {
-//						int loop = 5;
-//						while(loop!=0) {
-//							tiger.attackEnemy();
-//						
-//							tiger.setVelocity(-500, -250);
-//							Thread.sleep(120);
-//							
-//							tiger.setFace(tiger.getFace());
-//							tiger.nextPosition(tiger.getFace());
-//							tiger.setVelocity(-500, 250);
-//							Thread.sleep(120);
-//							
-//							tiger.setFace("OPPOSITE");
-//							tiger.nextPosition(tiger.getFace());	
-//							tiger.setVelocity(500, 250);
-//							Thread.sleep(120);
-//							
-//							tiger.setFace(tiger.getFace());
-//							tiger.nextPosition(tiger.getFace());
-//							tiger.setVelocity(500, -250);
-//							Thread.sleep(120);
-//							
-//							tiger.setFace("OPPOSITE");
-//							tiger.nextPosition(tiger.getFace());	
-//
-//			        		loop--;
-//						}
-//
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					BlackPanther.spinAttackDetected = false;
-//					BlackPanther.jumpAttackDetected = false;
-//					tiger.setSkillOn(false);
-//					tiger.switchToWalk();
-//				});
-//				delay.start();
-//			}
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 		
 			BlackPanther.jumpAttackDetected = true;
@@ -80,46 +29,59 @@ public class KeyControlBlackPanther {
 			String direction = tiger.getFace();
 			tiger.playJump(direction);
 			Audio.pounceSound();
-			tiger.attackEnemy();
+			tiger.attackEnemy(3);
+			return;
 			//set Speed Fix in here
 		} else if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
 			
+//			if(tiger.getStatus() == 1) {
+//				return;
+//			}
+			tiger.setActionState(2);
+			tiger.attackEnemy(2);
+
 			Audio.spinSound();
 			tiger.setSkillOn(true);
 
 			Thread delay = new Thread(()-> {
 				BlackPanther.spinAttackDetected = true;
-				tiger.setActionState(2);
 				tiger.setFace(tiger.getFace());
+				tiger.nextPosition(tiger.getFace());	
 				try {
-					int loop = 5;
+					int loop = 6;
 					while(loop!=0) {
-						tiger.setActionState(2);
-						tiger.attackEnemy();
+//						tiger.setActionState(1);
+						tiger.attackEnemy(2);
 						
-						tiger.setVelocity(-500, -250);
-						Thread.sleep(120);
+						tiger.setVelocity(-1000, -1000);
+						Thread.sleep(30);
 						tiger.setFace(tiger.getFace());
+						tiger.attackEnemy(2);
 						tiger.setActionState(2);
 						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(-500, 250);
-						Thread.sleep(120);
+						tiger.setVelocity(-1000, 1000);
+						Thread.sleep(30);
 						tiger.setFace("OPPOSITE");
+						tiger.attackEnemy(2);
+
 						tiger.setActionState(2);
 
 						tiger.nextPosition(tiger.getFace());	
 		
-						tiger.setVelocity(500, 250);
-						Thread.sleep(120);
+						tiger.setVelocity(1000, 1000);
+						
+						Thread.sleep(30);
 						tiger.setFace(tiger.getFace());
+						tiger.attackEnemy(2);
 						tiger.setActionState(2);
 
 						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(500, -250);
-						Thread.sleep(120);
+						tiger.setVelocity(1000, -1000);
+						Thread.sleep(30);
 						tiger.setFace("OPPOSITE");
-						tiger.setActionState(2);
+						tiger.attackEnemy(2);
 
+//						tiger.setActionState(2);
 						tiger.nextPosition(tiger.getFace());	
 
 		        		loop--;
@@ -134,7 +96,6 @@ public class KeyControlBlackPanther {
 				tiger.switchToWalk();
 			});
 			delay.start();
-			
 		} 
 		
 		if(input.contains(GODMODE_ON_KEY)) {
@@ -183,7 +144,7 @@ public class KeyControlBlackPanther {
 		}
         if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
 			Audio.attackSound();
-			tiger.attackEnemy();
+			tiger.attackEnemy(1);
 
         	Thread t = new Thread(()->{
     			try {

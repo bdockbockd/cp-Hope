@@ -28,10 +28,6 @@ public class HumanSprite extends Sprite {
        this.health = maxHealth;
     }
     
-//    Sprite briefcase = new Sprite();
-//    briefcase.setImage("briefcase.png");
-//    briefcase.setPosition(200, 0);
-
     public void setImage(String filename)
     {
         Image i = new Image(filename);
@@ -70,10 +66,10 @@ public class HumanSprite extends Sprite {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
         if(this.positionX < 0) {
-        	this.setPositionX(0);
+//        	this.setPositionX(0);
         }
         if(this.positionX > 1250-this.getWidth()){
-        	this.setPositionX(1250-this.getWidth());
+//        	this.setPositionX(1250-this.getWidth());
         }
         if(this.positionY < 210) {
         	this.setPositionY(210);
