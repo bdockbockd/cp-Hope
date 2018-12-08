@@ -86,7 +86,7 @@ public class LoopGame {
 					{
 						Thread addBot = new Thread(()->{
 							try {
-//								BadHuman.addBot();
+								BadHuman.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
