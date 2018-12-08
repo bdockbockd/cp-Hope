@@ -12,15 +12,16 @@ import javafx.scene.image.Image;
 public abstract class Item extends Rectangle implements DisappearObject   {
 	
 	public static ArrayList<Item> itemList = new ArrayList<Item>();
-	private Image disappearImage = Images.spacePic;
+	private Image transparentImage;
 	private Image constantImage;
 	private Image image;
 	private int timeCount;
 	
-	public Item(double x, double y,Image image) {
+	public Item(double x, double y,Image image, Image transparentImage) {
 		super(x, y, image.getWidth(), image.getHeight());
 		this.constantImage = image;
 		this.image = image;
+		this.transparentImage = transparentImage;
 		
 		itemList.add(this);
 		Thread disappear = new Thread(()-> {
@@ -30,31 +31,31 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 					if(this.timeCount>=3) {
 						Thread.sleep(1000);
 					} else if (this.timeCount == 2){
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(250);
 						this.image = this.constantImage;
 						Thread.sleep(250);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(250);
 						this.image = this.constantImage;
 						Thread.sleep(250);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 					} else {
 						this.image = this.constantImage;
 						Thread.sleep(125);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(125);
 						this.image = this.constantImage;
 						Thread.sleep(125);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(125);
 						this.image = this.constantImage;
 						Thread.sleep(125);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(125);
 						this.image = this.constantImage;
 						Thread.sleep(125);
-						this.image = this.disappearImage;
+						this.image = this.transparentImage;
 						Thread.sleep(125);
 						this.image = this.constantImage;
 					}

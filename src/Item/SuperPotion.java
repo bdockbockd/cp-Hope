@@ -6,27 +6,30 @@ import Sprite.BlackPanther;
 
 public class SuperPotion extends Item {
 	
-	private static final int duration = 1500; //15 sec
-	
+	private static final int duration = 15; //15 sec
+	private int durationLeft = 15;
 	public SuperPotion(double x, double y){
-		super(x, y, Images.superPotion);
+		super(x, y, Images.superPotion, Images.superPotionD);
 	}
 	
 	@Override
 	public void itemUse(BlackPanther blackTiger) {
 		System.out.println("SuperPotion!");		
 		if(BlackPanther.ISSUPER == true) {
-			return;
+			this.durationLeft = -1;
 		}
 		Thread delay = new Thread(()->{
-			int times = 0;
 			BlackPanther.ISSUPER = true;
+			this.durationLeft = duration;
 			while(true){
 				try {
 					Thread.sleep(1000);
-					times+=1;
-					if(times==15) {
+					this.durationLeft = this.durationLeft-1;
+					if(durationLeft == 0) {
 						break;
+					}  
+					if(durationLeft == -1) {
+						this.durationLeft = 15;
 					}
 					
 				} catch (InterruptedException e) {
@@ -40,4 +43,9 @@ public class SuperPotion extends Item {
 		Audio.EAT.play();
 		Audio.RAGE.play();
 	}
+
+	public int getDurationLeft() {
+		return durationLeft;
+	}
+	
 }

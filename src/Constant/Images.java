@@ -51,10 +51,13 @@ public class Images {
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
 	
-	public static final Image healthPotion = new Image(ClassLoader.getSystemResource("design/item/item-01.png").toString(), 67, 66, false ,false);
-	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 67, 66, false ,false);
-	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 67, 66, false ,false);
-	
+	public static final Image healthPotion = new Image(ClassLoader.getSystemResource("design/item/item-01.png").toString(), 65, 49, false ,false);
+	public static final Image healthPotionD = new Image(ClassLoader.getSystemResource("design/item/item-04.png").toString(), 65, 49, false ,false);
+	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 65, 49, false ,false);
+	public static final Image superPotionD = new Image(ClassLoader.getSystemResource("design/item/item-05.png").toString(), 65, 49, false ,false);
+	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 65, 49, false ,false);
+	public static final Image meatD = new Image(ClassLoader.getSystemResource("design/item/item-06.png").toString(), 65, 49, false ,false);
+
 	public static final Image playerNameMenu = new Image(ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
 	public static final Image hallOfFameBG = new Image(ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
 	public static final Image howToPlayImage = new Image(ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());

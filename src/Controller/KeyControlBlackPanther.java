@@ -21,58 +21,58 @@ public class KeyControlBlackPanther {
 
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
-		if(input.contains(SPIN_KEY) && input.contains(JUMP_KEY) && StatusBar.spinIsReady() && StatusBar.pounceIsReady() && StatusBar.spinIsReady() ) {
-			if(BlackPanther.jumpAttackDetected == false && BlackPanther.spinAttackDetected == false) {
-				Audio.spinSound();
-				tiger.setSkillOn(true);
-
-				Thread delay = new Thread(()-> {
-					BlackPanther.spinAttackDetected = true;
-					BlackPanther.jumpAttackDetected = true;		
-					// action state mixed
-					tiger.setActionState(2);
-					tiger.setFace(tiger.getFace());
-					try {
-						int loop = 5;
-						while(loop!=0) {
-							tiger.attackEnemy();
-						
-							tiger.setVelocity(-500, -250);
-							Thread.sleep(120);
-							
-							tiger.setFace(tiger.getFace());
-							tiger.nextPosition(tiger.getFace());
-							tiger.setVelocity(-500, 250);
-							Thread.sleep(120);
-							
-							tiger.setFace("OPPOSITE");
-							tiger.nextPosition(tiger.getFace());	
-							tiger.setVelocity(500, 250);
-							Thread.sleep(120);
-							
-							tiger.setFace(tiger.getFace());
-							tiger.nextPosition(tiger.getFace());
-							tiger.setVelocity(500, -250);
-							Thread.sleep(120);
-							
-							tiger.setFace("OPPOSITE");
-							tiger.nextPosition(tiger.getFace());	
-
-			        		loop--;
-						}
-
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					BlackPanther.spinAttackDetected = false;
-					BlackPanther.jumpAttackDetected = false;
-					tiger.setSkillOn(false);
-					tiger.switchToWalk();
-				});
-				delay.start();
-			}
-		} else if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
+//		if(input.contains(SPIN_KEY) && input.contains(JUMP_KEY) && StatusBar.spinIsReady() && StatusBar.pounceIsReady() && StatusBar.spinIsReady() ) {
+//			if(BlackPanther.jumpAttackDetected == false && BlackPanther.spinAttackDetected == false) {
+//				Audio.spinSound();
+//				tiger.setSkillOn(true);
+//
+//				Thread delay = new Thread(()-> {
+//					BlackPanther.spinAttackDetected = true;
+//					BlackPanther.jumpAttackDetected = true;		
+//					// action state mixed
+//					tiger.setActionState(2);
+//					tiger.setFace(tiger.getFace());
+//					try {
+//						int loop = 5;
+//						while(loop!=0) {
+//							tiger.attackEnemy();
+//						
+//							tiger.setVelocity(-500, -250);
+//							Thread.sleep(120);
+//							
+//							tiger.setFace(tiger.getFace());
+//							tiger.nextPosition(tiger.getFace());
+//							tiger.setVelocity(-500, 250);
+//							Thread.sleep(120);
+//							
+//							tiger.setFace("OPPOSITE");
+//							tiger.nextPosition(tiger.getFace());	
+//							tiger.setVelocity(500, 250);
+//							Thread.sleep(120);
+//							
+//							tiger.setFace(tiger.getFace());
+//							tiger.nextPosition(tiger.getFace());
+//							tiger.setVelocity(500, -250);
+//							Thread.sleep(120);
+//							
+//							tiger.setFace("OPPOSITE");
+//							tiger.nextPosition(tiger.getFace());	
+//
+//			        		loop--;
+//						}
+//
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					BlackPanther.spinAttackDetected = false;
+//					BlackPanther.jumpAttackDetected = false;
+//					tiger.setSkillOn(false);
+//					tiger.switchToWalk();
+//				});
+//				delay.start();
+//			}
+		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 		
 			BlackPanther.jumpAttackDetected = true;
 			tiger.setSkillOn(true);
