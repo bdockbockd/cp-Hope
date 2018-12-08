@@ -1,18 +1,25 @@
 package Enemy;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import Constant.Images;
+import Sprite.BlackPanther;
 import Sprite.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class HumanSprite extends Sprite {
+public abstract class HumanSprite extends Sprite {
 	
+    private String name = "HumanSprite";
 	public int humanPosition = 0;
 	private boolean isMove;
 	private final double maxHealth = 500;
 	private double health;
 	private final double damage = 10;
 	private boolean isDead = false;
-	
+    private boolean isTomb = false;
+    private boolean waitToHit = false;
+
 
 	protected boolean attackStage;
 
@@ -26,8 +33,37 @@ public class HumanSprite extends Sprite {
        this.setPositionY(0);
        
        this.health = maxHealth;
+    }    
+    public void update(double time)
+    {
+        this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
+        this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        if(this.positionX < 0) {
+//        	this.setPositionX(0);
+        }
+        if(this.positionX > 1250-this.getWidth()){
+//        	this.setPositionX(1250-this.getWidth());
+        }
+        if(this.positionY < 210) {
+        	this.setPositionY(210);
+        }
+        if(this.positionY > 800-this.getHeight()) {
+        	this.setPositionY(800-this.getHeight());
+        }
+        
     }
     
+	 public void attack(BlackPanther tiger) {
+		// TODO Auto-generated method stub
+		tiger.takeDamage(this.getDamage());
+	}
+
+    public void render(GraphicsContext gc)
+    {
+        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
+    }
+    
+    // getter and setter
     public void setImage(String filename)
     {
         Image i = new Image(filename);
@@ -60,32 +96,6 @@ public class HumanSprite extends Sprite {
         this.setVelocity(x+ this.getVelocityX(), y + this.getVelocityY());
         this.setMove(true);
     }
-
-    public void update(double time)
-    {
-        this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
-        this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
-        if(this.positionX < 0) {
-//        	this.setPositionX(0);
-        }
-        if(this.positionX > 1250-this.getWidth()){
-//        	this.setPositionX(1250-this.getWidth());
-        }
-        if(this.positionY < 210) {
-        	this.setPositionY(210);
-        }
-        if(this.positionY > 800-this.getHeight()) {
-        	this.setPositionY(800-this.getHeight());
-        }
-        
-    }
-    
-
-    public void render(GraphicsContext gc)
-    {
-        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
-    }
-
     
     public String toString()
     {
@@ -113,11 +123,25 @@ public class HumanSprite extends Sprite {
 	public boolean isDead() {
 		return isDead;
 	}
-
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
 	}
 
+	public boolean isWaitToHit() {
+		return waitToHit;
+	}
+	public void setWaitToHit(boolean waitToHit) {
+		this.waitToHit = waitToHit;
+	}
+//	public void nextPosition(String direction) {
+//	public void update(double time, BlackPanther tiger)
+//    public static void checkAttackHuman(BlackPanther tiger) {
+	public boolean isTomb() {
+		return isTomb;
+	}
+	public void setTomb(boolean isTomb) {
+		this.isTomb = isTomb;
+	}
 
 
 }

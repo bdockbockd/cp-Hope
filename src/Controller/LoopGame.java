@@ -64,7 +64,7 @@ public class LoopGame {
 					{
 						Thread addBot = new Thread(()->{
 							try {
-								BadHuman.addBot();
+								EnemyGen.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
@@ -112,12 +112,12 @@ public class LoopGame {
               
                
 					// updateBot random every 1 (VELOCITYXY)
-					if(CANUPDATEBOT == true && BadHuman.getbadList().size() != 0) {
+					if(CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0) {
 						DELAYBOT = new Thread(()->{
 							try {
-								for(int i =0;i<BadHuman.getbadList().size();i++) {
-									if(!BadHuman.getbadList().get(i).isDead() && !(BadHuman.getbadList().get(i).isKnockBack())) {
-										((BadHuman.getbadList()).get(i)).update(elapsedTime, blackPanther);
+								for(int i =0;i<EnemyGen.getbadList().size();i++) {
+									if(!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) {
+										((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
 									}
 								}
 								CANUPDATEBOT = false;
@@ -132,24 +132,24 @@ public class LoopGame {
 					}
 				
 					// check bot attack
-					BadHuman.checkAttackHuman(blackPanther);
+					EnemyGen.checkAttackHuman(blackPanther);
 					
 					// check bot get damaged
-					BadHuman.removeEnemy();
+					EnemyGen.removeEnemy();
 
 					//update bot all times 
-					for(int i =0;i<BadHuman.getbadList().size();i++) {
-						if(BadHuman.getbadList().get(i).isKnockBack()) {
-//							BadHuman.getbadList().get(i).KnockBack(blackPanther.getFace());
+					for(int i =0;i<EnemyGen.getbadList().size();i++) {
+						if(EnemyGen.getbadList().get(i).isKnockBack()) {
+//							EnemyGen.getbadList().get(i).KnockBack(blackPanther.getFace());
 						} 
-						((BadHuman.getbadList()).get(i)).update(elapsedTime);
+						((EnemyGen.getbadList()).get(i)).update(elapsedTime);
 					}
 					//remove bot
 					
 					gc.drawImage((Images.stageMap)[blackPanther.getStatus()], 0, 0);
 
 					// render bot
-					Collections.sort(BadHuman.getbadList(), new Comparator<BadHuman>() {
+					Collections.sort(EnemyGen.getbadList(), new Comparator<BadHuman>() {
 			            @Override
 			            public int compare(final BadHuman o1, final BadHuman o2) {
 			            	if (o1.getPositionY() < o2.getPositionY()) {
@@ -159,8 +159,8 @@ public class LoopGame {
 			                }
 			            }
 			        });
-					for(int i =0;i<BadHuman.getbadList().size();i++) {
-						((BadHuman.getbadList()).get(i)).render(StartGame.gc);
+					for(int i =0;i<EnemyGen.getbadList().size();i++) {
+						((EnemyGen.getbadList()).get(i)).render(StartGame.gc);
 					}
 					
 					//render tiger	
