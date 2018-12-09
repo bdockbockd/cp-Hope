@@ -1,26 +1,14 @@
 package Enemy;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
-import javax.sound.midi.ControllerEventListener;
 
-import Constant.Audio;
 import Constant.Images;
 import Controller.LoopGame;
-import Item.HealthPotion;
-import Item.Item;
-import Item.Meat;
-import Item.SuperPotion;
 import Sprite.BlackPanther;
-import javafx.application.Platform;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
 
 public class BadHuman extends HumanSprite  {
 
     public int time=0;
-    private boolean knockBack = false;
 	double veKnockX, veKnockY, veKnockBackX, veKnockBackY;
 
     
@@ -29,10 +17,11 @@ public class BadHuman extends HumanSprite  {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	
 	public void nextPosition(String direction) {
     	if(this.getFace().equals("LEFT")) {
     		this.setImage((this.getImageL())[0]);
+    		this.setFace(direction);
     	} else {
     		this.setImage((this.getImageR())[0]);
     	}
@@ -45,7 +34,7 @@ public class BadHuman extends HumanSprite  {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 
-        if(this.intersect(tiger) == false && Math.random() > 0.5) {
+//        if(this.intersect(tiger) == false) {
         			if(tiger.getPositionX()+120 < this.getPositionX()) {
     					this.setFace("LEFT");
         				this.nextPosition(this.getFace());
@@ -67,16 +56,8 @@ public class BadHuman extends HumanSprite  {
 
         				}	
         			}
-        }
+//        }
     }
-
-	public boolean isKnockBack() {
-		return knockBack;
-	}
-	
-	public void setKnockBack(boolean knockBack) {
-		this.knockBack = knockBack;
-	}
 
 	public void knockBack(String direction, int stateSkill, boolean isBotHigher) {
 		// TODO Auto-generated method stub

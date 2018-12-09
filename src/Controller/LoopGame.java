@@ -1,18 +1,13 @@
 package Controller;
 
-
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.sun.javafx.tk.CompletionListener;
-import com.sun.javafx.tk.RenderJob;
-
 import Constant.Audio;
 import Constant.Images;
-import Enemy.BadHuman;
+import Enemy.GunMan;
+import Enemy.HumanSprite;
 import Exception.GameOverException;
 import Item.Item;
 import Sprite.BlackPanther;
@@ -20,23 +15,14 @@ import UI.DeadScene;
 import UI.GamePause;
 import UI.StartGame;
 import javafx.animation.AnimationTimer;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 
 public class LoopGame {
 	public static BlackPanther blackPanther;
 	private static long lastNanoTime ;
-    public static final ArrayList<String> type2Key = new ArrayList<String>();
-    public static ArrayList<String> input2;
     public static GamePause gamePause;
     public static DeadScene deadScene;
     public static boolean isDead;
@@ -55,6 +41,8 @@ public class LoopGame {
 		
 		
 		LoopGame.startGame(gc,theScene,playerName);
+		GunMan a = new GunMan();
+		a.setPosition(100, 300);
 		
 		new AnimationTimer()  {
 			@Override
@@ -64,7 +52,7 @@ public class LoopGame {
 					{
 						Thread addBot = new Thread(()->{
 							try {
-								EnemyGen.addBot();
+//								EnemyGen.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
@@ -89,6 +77,8 @@ public class LoopGame {
 					// set Velocity tiger
 					if(!(blackPanther.isSkillOn())) {
 						blackPanther.setVelocity(0,0);
+						a.setVelocity(0, 0);
+						KeyControlBot.keySpeed(a, currentNanoTime);
 						KeyControlBlackPanther.keyActionToSpeed(blackPanther, currentNanoTime, this);
 
                     // checkPosition Tiger
@@ -121,7 +111,7 @@ public class LoopGame {
 									}
 								}
 								CANUPDATEBOT = false;
-								Thread.sleep(4000);
+								Thread.sleep(1000);
 								CANUPDATEBOT = true;
 							} catch (InterruptedException e) {
 								e.printStackTrace();
@@ -149,9 +139,9 @@ public class LoopGame {
 					gc.drawImage((Images.stageMap)[blackPanther.getStatus()], 0, 0);
 
 					// render bot
-					Collections.sort(EnemyGen.getbadList(), new Comparator<BadHuman>() {
+					Collections.sort(EnemyGen.getbadList(), new Comparator<HumanSprite>() {
 			            @Override
-			            public int compare(final BadHuman o1, final BadHuman o2) {
+			            public int compare(final HumanSprite o1, final HumanSprite o2) {
 			            	if (o1.getPositionY() < o2.getPositionY()) {
 			                    return -1;
 			                } else {
@@ -170,6 +160,9 @@ public class LoopGame {
 					Item.checkItemUse(blackPanther);
 					blackPanther.checkStatus();
 					Item.render(gc);
+					
+					a.update(elapsedTime);
+					a.render(gc);
 				
 					//Game Over
 					try {
@@ -207,7 +200,7 @@ public class LoopGame {
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
 		KeyControlBlackPanther.input = new ArrayList<String>();
-		input2 = new ArrayList<String>();
+		KeyControlBot.input2 = new ArrayList<String>();
 		// scene detect
 		LoopGame.setKey(theScene);
 		gamePause = new GamePause();
@@ -230,8 +223,8 @@ public class LoopGame {
 	                            KeyControlBlackPanther.input.add( code );
 //	                            System.out.println(code);
 	                        }
-	                        if(type2Key.contains(code) && !input2.contains(code)) {
-	                        	input2.add(code);
+	                        if(!KeyControlBot.input2.contains(code)) {
+	                        	KeyControlBot.input2.add(code);
 	                        }
 	                        /*if(e.getCode() == KeyCode.ESCAPE)
 	                        {
@@ -259,8 +252,8 @@ public class LoopGame {
 	                        	}
 	                        	KeyControlBlackPanther.input.remove(code);
 	                        }
-	                        if(input2.contains(code)) {
-	                        	input2.remove(code);
+	                        if(KeyControlBot.input2.contains(code)) {
+	                        	KeyControlBot.input2.remove(code);
 	                        }
 	                    }
 	                });

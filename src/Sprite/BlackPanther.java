@@ -7,6 +7,7 @@ import Constant.Images;
 import Controller.EnemyGen;
 import Controller.LoopGame;
 import Enemy.BadHuman;
+import Enemy.HumanSprite;
 import javafx.scene.image.Image;
 
 public class BlackPanther extends BlackPantherSprite implements HasStatus{
@@ -85,7 +86,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		Audio.HITDETECTED = false;
 		LoopGame.botHit = false;
 		if(this.getFace() == "LEFT") {
-			BadHuman enemy;
+			HumanSprite enemy;
 			for(int i=0;i<EnemyGen.getbadList().size();i++) {
 				enemy = EnemyGen.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
@@ -100,7 +101,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 				}
 			}
 		} else {
-			BadHuman enemy;
+			HumanSprite enemy;
 			for(int i=0;i<EnemyGen.getbadList().size();i++) {
 				enemy = EnemyGen.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {				

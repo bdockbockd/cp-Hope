@@ -4,36 +4,59 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import Constant.Audio;
 import Constant.Images;
-import Enemy.BadHuman;
-import Enemy.HumanSprite;
+import Enemy.*;
 import Sprite.BlackPanther;
 
 public class EnemyGen {
-    private static CopyOnWriteArrayList<BadHuman> badList = new CopyOnWriteArrayList<BadHuman>();
+    private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
     public static BlackPanther instanceTiger;
     // addBOt
+    
 
-	   public static BadHuman generateRandom() {
-	    	BadHuman badHuman = new BadHuman();
-	    	badHuman.setImage((Images.humanMotionL)[0]);
+	   public static HumanSprite generateRandom() {
 	    	double px,py;
 	    	if(Math.random() < 0.5) {
-		        px = Math.random()*400+1180;
+		        px = 1300;
 	    	} else {
-	    		px = 0-Math.random()*400;
+	    		px = -250;
 	    	}
 	        py = Math.random()*600+215;
-	        badHuman.setPosition(px, py);
-	    
-	        return badHuman;
+	        
+	        
+		    double random = Math.random();
+	    	HumanSprite enemy;
+		    if(random > 0.8) {
+		    	enemy = new GunMan();
+		    } else if(random > 0.6) {
+		    	enemy = new TrapMan();
+		    } else if (random > 0.4) {
+		    	enemy = new SwordMan();
+		    } else {
+		    	enemy = new BadHuman();
+		    }
+	        enemy.setPosition(px, py);
+		    EnemyGen.setInitialImage(enemy);
+	        return enemy;
 	    }
 	    
-	    public static void addBot() {
+	    private static void setInitialImage(HumanSprite enemy) {
+		// TODO Auto-generated method stub
+	    	if(enemy instanceof GunMan) {
+	    		if(enemy.getPositionX() == 1300) {
+	    			enemy.setImage((Images.GUNMANL)[0]);
+	    		} else {
+	    			enemy.setImage((Images.GUNMANR)[0]);
+	    			
+	    		}
+	    	}
+	    }
+
+		public static void addBot() {
 	    	EnemyGen.getbadList().add(EnemyGen.generateRandom());
 	    }
 	    
 	    public static void generatelistBot(int num) {
-	    	CopyOnWriteArrayList<BadHuman> bad = new CopyOnWriteArrayList<BadHuman>();
+	    	CopyOnWriteArrayList<HumanSprite> bad = new CopyOnWriteArrayList<HumanSprite>();
 	    	while(num !=0) {
 	    		bad.add(generateRandom());
 	    		num--;
@@ -87,11 +110,11 @@ public class EnemyGen {
 			}
 		}
 	
-	    public static CopyOnWriteArrayList<BadHuman> getbadList() {
+	    public static CopyOnWriteArrayList<HumanSprite> getbadList() {
 			return EnemyGen.badList;
 		}
 
-		public static void setbadList(CopyOnWriteArrayList<BadHuman> list) {
+		public static void setbadList(CopyOnWriteArrayList<HumanSprite> list) {
 			EnemyGen.badList = list;
 		}
 }

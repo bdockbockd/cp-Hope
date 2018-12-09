@@ -71,19 +71,35 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
     public void update(double time)
     {
+    	System.out.print(this.getActionState());
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
-        if(this.positionX < 0) {
-        	this.setPositionX(0);
-        }
-        if(this.positionX > 1250-this.getWidth()){
-        	this.setPositionX(1250-this.getWidth());
-        }
-        if(this.positionY < 210) {
-        	this.setPositionY(210);
-        }
-        if(this.positionY > 800-this.getHeight()) {
-        	this.setPositionY(800-this.getHeight());
+        if(this.getActionState() >1) {
+	        if(this.positionX < -20) {
+	        	this.setPositionX(-20);
+	        }
+	        if(this.positionX > 1250-this.getWidth()+10){
+	        	this.setPositionX(1250-this.getWidth()+10);
+	        }
+	        if(this.positionY < 210) {
+	        	this.setPositionY(210);
+	        }
+	        if(this.positionY > 800-this.getHeight()) {
+	        	this.setPositionY(800-this.getHeight());
+	        }
+        } else if(this.getActionState() <=1) {
+            if(this.positionX < 0-this.getRealWidth()) {
+            	this.setPositionX(0-this.getRealWidth());
+            }
+            if(this.positionX > 1230-this.getRealWidth()){
+            	this.setPositionX(1250-this.getRealWidth());
+            }
+            if(this.positionY < 210) {
+            	this.setPositionY(210);
+            }
+            if(this.positionY > 800-this.getRealHeight()) {
+            	this.setPositionY(800-this.getRealHeight());
+            }
         }
     }
     

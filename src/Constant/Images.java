@@ -49,6 +49,8 @@ public class Images {
 	public static final Image[] TRAPITEM = new Image[2]; // Item left and right//56
 	public static final Image[] GUNMANL = new Image[2];//2
 	public static final Image[] GUNMANR = new Image[2];//1
+	public static final Image[] BULLET = new Image[2];
+
 	
 	public static final Image[] stageMap = new Image[3];
 	
@@ -87,9 +89,9 @@ public class Images {
 			TRAPMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+1)+".png").toString(), 70, 98, false, false);
 			TRAPMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+3)+".png").toString(), 70, 98 , false, false);
 			TRAPITEM[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+5)+".png").toString(), 58, 37 , false, false);
-			GUNMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-0"+(i+1)+".png").toString(), 120, 135, false, false);
-			GUNMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-0"+(i+3)+".png").toString(), 120, 135 , false, false);
-
+			GUNMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-01.png").toString(), 120, 135, false, false);
+			GUNMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-02.png").toString(), 120, 135 , false, false);
+			BULLET[i] = new Image(ClassLoader.getSystemResource("design/enemy4/bullet-0"+(i+1)+".png").toString(), 68, 24, false ,false);
 		}
 		
 		for (int i=0;i<blackTigerBasicAttackL.length;i++) {

@@ -130,9 +130,9 @@ public abstract class Sprite extends Rectangle {
 			return;
 		}
 		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%3);
+			this.setPositionL((this.getPositionL()+1)%2);
 		} else {
-			this.setPositionR((this.getPositionR()+1)%3);
+			this.setPositionR((this.getPositionR()+1)%2);
 		}
 
 	}

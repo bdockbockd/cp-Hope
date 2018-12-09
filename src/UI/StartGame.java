@@ -9,16 +9,11 @@ import Controller.LoopGame;
 import Controller.ScoreBoard;
 import Controller.StatusBar;
 import Controller.Timer;
-import Enemy.BadHuman;
-import Item.Meat;
-import Sprite.BlackPanther;
-import Sprite.Sprite;
-import javafx.event.EventHandler;
+import Enemy.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 
 public class StartGame extends Scene {
 	
@@ -55,7 +50,7 @@ public class StartGame extends Scene {
 //        create tiger onScreenss
         
         EnemyGen.generatelistBot(ENEMYSTARTNUMBER);
-        BadHuman bad1 = EnemyGen.generateRandom();
+        HumanSprite bad1 = EnemyGen.generateRandom();
         bad1.setPosition(1250, 800);
         
         //enemySprite.add(bad1);

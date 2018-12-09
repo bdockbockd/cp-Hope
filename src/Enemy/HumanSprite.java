@@ -19,6 +19,8 @@ public abstract class HumanSprite extends Sprite {
 	private boolean isDead = false;
     private boolean isTomb = false;
     private boolean waitToHit = false;
+    private boolean knockBack = false;
+
 
 
 	protected boolean attackStage;
@@ -142,6 +144,15 @@ public abstract class HumanSprite extends Sprite {
 	public void setTomb(boolean isTomb) {
 		this.isTomb = isTomb;
 	}
-
+	
+	public boolean isKnockBack() {
+		return knockBack;
+	}
+	public void setKnockBack(boolean knockBack) {
+		this.knockBack = knockBack;
+	}
+	
+	public abstract void update(double time, BlackPanther tiger);
+	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
 
 }
