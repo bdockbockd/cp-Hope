@@ -3,6 +3,7 @@ package Enemy;
 import Sprite.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class HumanSprite extends Sprite {
 	
@@ -85,7 +86,7 @@ public class HumanSprite extends Sprite {
     }
     
 
-    public void render(GraphicsContext gc)
+    public void render(GraphicsContext gc)//not used?
     {
         gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
     }

@@ -5,6 +5,8 @@ oufeow:1001000
 Player:364000
 Player:253000
 Player:194000
+Player:150000
+ ou:36000
 Player:9000
 Player:6000
 Player:6000
