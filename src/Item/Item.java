@@ -107,7 +107,14 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 					itemList.remove(i);
 					System.out.println("bullet removed");
 				}
+			} else if(itemList.get(i) instanceof Trap){
+				((Trap)itemList.get(i)).updateTrap(elapsedTime);
+				if(itemList.get(i).getPositionX() > 1250 || itemList.get(i).getPositionX() < 0) {
+					itemList.remove(i);
+					System.out.println("Trap removed");
+				}
 			}
+			
 		}
 	}
-}
+	}

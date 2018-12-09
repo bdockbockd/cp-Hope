@@ -4,6 +4,7 @@ import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;
 import Item.Bullet;
+import Item.Trap;
 import Sprite.BlackPanther;
 import UI.GamePause;
 
@@ -15,10 +16,21 @@ public class TrapMan extends BadHuman {
 		this.setImageL(Images.TRAPMANL);
 		this.setImageR(Images.TRAPMANR);
 		this.setImageList(Images.TRAPMANR);
+		this.isReadyToTrap = true;
 	}
+	
+	public void nextPosition(String direction) {
+    	if(this.getFace().equals("LEFT")) {
+    		this.setImage((this.getImageL())[this.positionL]);
+    	} else {
+    		this.setImage((this.getImageR())[this.positionR]);
+    	}
+    }
 	
 	public void update(double time) {
 		if(this.isDead()) {
+			this.setVelocity(0, 0);
+			this.setImage(Images.enemyTomb);
 			return;
 		}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
@@ -41,13 +53,16 @@ public class TrapMan extends BadHuman {
 		public void update(double time, BlackPanther tiger) {
 			if(this.isDead()) {
 				this.setVelocity(0, 0);
+				this.setImage(Images.enemyTomb);
 				this.update(time);
 				return;
 			}
 			if(this.isReadyToTrap) {
-				Thread delayToFire = new Thread(()->{
+				Thread delayToThrow = new Thread(()->{
 					try {
 						this.isReadyToTrap = false;
+						this.setFace(this.getFace());
+						this.nextPosition(this.getFace());
 						Thread.sleep(1000);
 						this.throwTrap();
 						this.isReadyToTrap = true;
@@ -56,9 +71,8 @@ public class TrapMan extends BadHuman {
 						e.printStackTrace();
 					}
 				});
-				delayToFire.start();
+				delayToThrow.start();
 			}
-//			this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 	        if( (this.getPositionY() > tiger.getPositionY())) {
 	        	if(this.getPositionX() < 100) {
 	        		this.setVelocityX(200);
@@ -77,14 +91,12 @@ public class TrapMan extends BadHuman {
 		}
 		
 		public void throwTrap() {
-			if(this.isDead() || GamePause.isPause == true || GamePause.isReGame == true || EnemyGen.getbadList().size() == 0) {
-				return;
-			}
-			Audio.ENEMY_FIRE.play();
+			System.out.print("THROW");
+			Audio.ENEMY_TRAP.play();
 			if(this.getFace() == "LEFT") {
-				new Bullet(this.getPositionX()-100, this.getPositionY(), (Images.BULLET)[0]);
+				new Trap(this.getPositionX()-100, this.getPositionY(), (Images.TRAPITEM)[0]);
 			} else {
-				new Bullet(this.getPositionX()+100, this.getPositionY(), (Images.BULLET)[1]);
+				new Trap(this.getPositionX()+100, this.getPositionY(), (Images.TRAPITEM)[1]);
 			}
 		}
 		

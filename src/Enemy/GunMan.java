@@ -24,6 +24,11 @@ public class GunMan extends BadHuman {
 	//update all time
 	@Override
 	public void update(double time) {
+		if(this.isDead()) {
+			this.setVelocity(0, 0);
+			this.setImage(Images.enemyTomb);
+			return;
+		}
 	        this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
 	        this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 	        if(this.getPositionX() > 5 && this.getPositionX() < 500) {
@@ -44,6 +49,7 @@ public class GunMan extends BadHuman {
 	public void update(double time, BlackPanther tiger) {
 		if(this.isDead()) {
 			this.setVelocity(0, 0);
+			this.setImage(Images.enemyTomb);
 			this.update(time);
 			return;
 		}

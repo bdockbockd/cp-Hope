@@ -9,12 +9,15 @@ Player:194000
 Player:140000
 Player:131000
 Player:95000
+Player:79000
 Player:70000
 Player:63000
+Player:58000
 Player:58000
 Player:49000
 Player:49000
 Player:48000
+Player:45000
 Player:45000
 Player:40000
 Player:34000

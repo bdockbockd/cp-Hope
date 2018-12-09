@@ -40,6 +40,7 @@ public abstract class HumanSprite extends Sprite {
     {
     	if(this.isDead) {
     		this.setVelocity(0, 0);
+    		this.setImage(Images.enemyTomb);
     		return;
     	}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);

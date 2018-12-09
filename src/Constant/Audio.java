@@ -20,7 +20,9 @@ public class Audio {
 	//Enemy
 	public static final AudioClip ENEMY_DEAD = new AudioClip(ClassLoader.getSystemResource("design/enemy1/enemy1dead.wav").toString());
 	public static final AudioClip ENEMY_FIRE = new AudioClip(ClassLoader.getSystemResource("design/enemy4/enemy4.wav").toString());
-
+	public static final AudioClip ENEMY_TRAP = new AudioClip(ClassLoader.getSystemResource("design/enemy3/enemy3.wav").toString());
+	
+	
 	//Item
 	public static final AudioClip EAT = new AudioClip(ClassLoader.getSystemResource("design/item/eat.wav").toString());
 	public static final AudioClip DRINK = new AudioClip(ClassLoader.getSystemResource("design/item/drink.wav").toString());
