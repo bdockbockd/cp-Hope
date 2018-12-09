@@ -58,6 +58,10 @@ public class GunMan extends BadHuman {
         }
 	}
 	
+	public void fireBullet() {
+		
+	}
+	
 	public boolean isFire() {
 		return isFire;
 	}

@@ -9,7 +9,7 @@ public class SuperPotion extends Item {
 	private static final int duration = 15; //15 sec
 	private int durationLeft = 15;
 	public SuperPotion(double x, double y){
-		super(x, y, Images.superPotion, Images.superPotionD);
+		super(x, y, Images.superPotion, Images.superPotionD,false);
 	}
 	
 	@Override

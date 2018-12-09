@@ -100,7 +100,8 @@ public class LoopGame {
 					//update position from time and velocity	
 					blackPanther.update(elapsedTime);
               
-               
+					// update Item
+					Item.update(elapsedTime);
 					// updateBot random every 1 (VELOCITYXY)
 					if(CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0) {
 						DELAYBOT = new Thread(()->{

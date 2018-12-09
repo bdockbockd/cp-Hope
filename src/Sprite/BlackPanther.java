@@ -140,7 +140,6 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 //					tiger1.setVelocityX(0);
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
-
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

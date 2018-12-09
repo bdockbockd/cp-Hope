@@ -17,7 +17,6 @@ public class BadHuman extends HumanSprite  {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	public void nextPosition(String direction) {
     	if(this.getFace().equals("LEFT")) {
     		this.setImage((this.getImageL())[0]);
