@@ -9,9 +9,7 @@ import Sprite.BlackPanther;
 
 public class EnemyGen {
     private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
-    public static BlackPanther instanceTiger;
-    // addBOt
-    
+    public static BlackPanther instanceTiger;    
 
 	   public static HumanSprite generateRandom() {
 	    	double px,py;
@@ -30,7 +28,7 @@ public class EnemyGen {
 		    } else if(random > 0.6) {
 		    	enemy = new TrapMan();
 		    } else if (random > 0.4) {
-		    	enemy = new SwordMan();
+		    	enemy = new TrapMan();
 		    } else {
 		    	enemy = new BadHuman();
 		    }
@@ -41,12 +39,12 @@ public class EnemyGen {
 	    
 	    private static void setInitialImage(HumanSprite enemy) {
 		// TODO Auto-generated method stub
-	    	if(enemy instanceof GunMan) {
+	    	if(enemy instanceof GunMan || enemy instanceof TrapMan) {
 	    		if(enemy.getPositionX() == 1300) {
-	    			enemy.setImage((Images.GUNMANL)[0]);
+	    			enemy.setImage((enemy.getImageL())[0]);
 	    			enemy.setFace("LEFT");
 	    		} else {
-	    			enemy.setImage((Images.GUNMANR)[0]);
+	    			enemy.setImage((enemy.getImageR())[0]);
 	    			enemy.setFace("RIGHT");
 	    		}
 	    	}
@@ -73,7 +71,6 @@ public class EnemyGen {
 	    				enemy.setFace(enemy.getFace());
 	    				enemy.nextPosition(enemy.getFace());
 	    				enemy.attack(tiger);
-//	    				enemy.setFace(enemy.getFace());
 	    				Thread a = new Thread (()->{
 	    					try {
 	    						enemy.setWaitToHit(true);
@@ -96,15 +93,15 @@ public class EnemyGen {
 			for(int i =0;i<EnemyGen.getbadList().size();i++) {
 				HumanSprite enemy = EnemyGen.getbadList().get(i);
 				if(enemy.isDead() && !(enemy.isTomb())) {
-					Audio.ENEMY_DEAD.play();
-					Controller.ScoreBoard.addScore(1000);
 					enemy.setTomb(true);
+					Audio.ENEMY_DEAD.play();
+					enemy.setImage(Images.enemyTomb);  
+					Controller.ScoreBoard.addScore(1000);
 					Thread t = new Thread(()-> {
 								try {
-									enemy.setImage(Images.enemyTomb);  
-									ItemGen.genItem(enemy.getPositionX(), enemy.getPositionY());
 									Thread.sleep(1000);
 									EnemyGen.getbadList().remove(enemy);
+									ItemGen.genItem(enemy.getPositionX(), enemy.getPositionY());
 								}
 								catch(InterruptedException e){
 									e.printStackTrace();

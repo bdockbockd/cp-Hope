@@ -18,8 +18,4 @@ public class SwordMan extends BadHuman {
     		this.setImage((this.getImageR())[0]);
     	}
     }
-	
-	public void update() {
-		
-	}
 }

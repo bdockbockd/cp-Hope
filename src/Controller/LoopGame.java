@@ -8,6 +8,7 @@ import Constant.Audio;
 import Constant.Images;
 import Enemy.GunMan;
 import Enemy.HumanSprite;
+import Enemy.TrapMan;
 import Exception.GameOverException;
 import Item.Item;
 import Sprite.BlackPanther;
@@ -41,7 +42,7 @@ public class LoopGame {
 		
 		
 		LoopGame.startGame(gc,theScene,playerName);
-		GunMan a = new GunMan();
+		TrapMan a = new TrapMan();
 		a.setPosition(100, 300);
 		
 		new AnimationTimer()  {

@@ -35,7 +35,9 @@ public class KeyControlBlackPanther {
 			BlackPanther.jumpAttackDetected = true;
 			tiger.setSkillOn(true);
 			String direction = tiger.getFace();
-			tiger.playJump(KeyControlBlackPanther.getKeyCombination());
+			tiger.playJump(direction);
+
+//			tiger.playJump(KeyControlBlackPanther.getKeyCombination());
 			Audio.pounceSound();
 			tiger.attackEnemy(3);
 			return;

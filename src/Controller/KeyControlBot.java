@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enemy.BadHuman;
 import Enemy.HumanSprite;
+import Enemy.TrapMan;
 
 
 public class KeyControlBot {
@@ -29,6 +30,12 @@ public class KeyControlBot {
         }
         if (input2.contains("S")) {
             bad1.addVelocity(0,200);
+        }
+        
+        if(input2.contains("E")) {
+        	if(bad1 instanceof TrapMan) {
+        		((TrapMan)bad1).throwTrap();
+        	}
         }
 		
 	}

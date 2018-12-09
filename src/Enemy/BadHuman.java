@@ -27,7 +27,9 @@ public class BadHuman extends HumanSprite  {
     //bot update
     public void update(double time, BlackPanther tiger)
     {
-    	if(this.isDead()) return;
+    	if(this.isDead()) {
+    		return;
+    	}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 

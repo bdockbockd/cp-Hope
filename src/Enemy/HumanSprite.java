@@ -38,6 +38,10 @@ public abstract class HumanSprite extends Sprite {
     }    
     public void update(double time)
     {
+    	if(this.isDead) {
+    		this.setVelocity(0, 0);
+    		return;
+    	}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
         if(this.positionX < 0) {
@@ -135,9 +139,6 @@ public abstract class HumanSprite extends Sprite {
 	public void setWaitToHit(boolean waitToHit) {
 		this.waitToHit = waitToHit;
 	}
-//	public void nextPosition(String direction) {
-//	public void update(double time, BlackPanther tiger)
-//    public static void checkAttackHuman(BlackPanther tiger) {
 	public boolean isTomb() {
 		return isTomb;
 	}
