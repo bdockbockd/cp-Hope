@@ -9,52 +9,35 @@ import javafx.scene.image.Image;
 public class Bullet extends Item implements Moveable {
     private double velocityX = 0, velocityY =0;
 
-	public Bullet(double x, double y, Image image, Image transparentImage, GunMan enemy) {
-		super(x, y, image, transparentImage, true, enemy);
-		
-		Thread appear = new Thread(()->{
-			itemList.add(this);
-			while(true) {
-				this.setVelocityX(100);
-				if(this.intersect(LoopGame.blackPanther)) {
-//					LoopGame.blackPanther
-					enemy.attack(LoopGame.blackPanther);
-					break;
-				} 
-				if(this.getPositionX() > 1250 || this.getPositionX() < 0) {
-					break;
-				}
-			}
-			itemList.remove(this);
-		});
-		appear.start();
+	public Bullet(double x, double y, Image image) {
+		super(x,y,image);
+		if(x<600) {
+			this.setVelocityX(500);
+		} else {
+			this.setVelocityX(-500);
+		}
+		itemList.add(this);		
 	}
 
 	//getter and setter
 	@Override
 	public void itemUse(BlackPanther blackPanther) {
-		// TODO Auto-generated method stub
 		
+		blackPanther.setHealth(blackPanther.getHealth()-10);
+
 	}
-	@Override
 	public double getVelocityX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.velocityX;
 	}
-	@Override
+	
 	public void setVelocityX(double velocityX) {
-		// TODO Auto-generated method stub
-		
+		this.velocityX = velocityX;
 	}
-	@Override
 	public double getVelocityY() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
 	public void setVelocityY(double velocityY) {
-		// TODO Auto-generated method stub
-		
+		this.velocityY = velocityY;
 	}
 	
 	public void updateBullet(double time){

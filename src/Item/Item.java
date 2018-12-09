@@ -2,11 +2,9 @@ package Item;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Constant.Images;
-import Controller.LoopGame;
-import Enemy.GunMan;
-import Enemy.HumanSprite;
 import Sprite.BlackPanther;
 import Sprite.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,20 +12,24 @@ import javafx.scene.image.Image;
 
 public abstract class Item extends Rectangle implements DisappearObject   {
 	
-	public static ArrayList<Item> itemList = new ArrayList<Item>();
+	public static CopyOnWriteArrayList<Item> itemList = new CopyOnWriteArrayList<Item>();
 	private Image transparentImage;
 	private Image constantImage;
 	private Image image;
 	private int timeCount;
+	public Item(double x, double y, Image image) {
+		super(x,y, image.getWidth(), image.getHeight());
+		this.image = image;
+	}
 	
-	public Item(double x, double y,Image image, Image transparentImage, boolean isSpecialItem, GunMan enemy) {
+	public Item(double x, double y,Image image, Image transparentImage) {
 		super(x, y, image.getWidth(), image.getHeight());
 		this.constantImage = image;
 		this.image = image;
 		this.transparentImage = transparentImage;
 		
 		itemList.add(this);
-		Thread disappear = new Thread(()-> {
+		Thread disAppear = new Thread(()-> {
 			this.timeCount = TIMES;
 			while(this.timeCount!=0) {
 				try {
@@ -71,13 +73,7 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 			}
 			Item.itemList.remove(this);
 		});
-		
-		if(isSpecialItem) {
-//			appear.start();
-		} else {
-			disappear.start();
-		}
-		
+		disAppear.start();		
 	}
 	
 	public abstract void itemUse(BlackPanther blackPanther);
@@ -98,6 +94,12 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 	
 	public static void render(GraphicsContext gc) {
 		for(int i = 0;i < itemList.size();i++){
+			System.out.print(itemList.size());
+//			if(itemList.get(i) instanceof Bullet) {
+//				gc.drawImage(Images.BULLET[0],itemList.get(i).getPositionX() , itemList.get(i).getPositionY());
+//
+//			} 
+			
 			gc.drawImage(itemList.get(i).getImage(), itemList.get(i).getPositionX(), itemList.get(i).getPositionY());
 		}
 	}
@@ -107,6 +109,10 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 		for(int i = 0;i < itemList.size();i++){
 			if(itemList.get(i) instanceof Bullet) {
 				((Bullet)itemList.get(i)).updateBullet(elapsedTime);
+				if(itemList.get(i).getPositionX() > 1250 || itemList.get(i).getPositionX() < 0) {
+					itemList.remove(i);
+					System.out.println("bullet removed");
+				}
 			}
 		}
 	}

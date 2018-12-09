@@ -44,9 +44,10 @@ public class EnemyGen {
 	    	if(enemy instanceof GunMan) {
 	    		if(enemy.getPositionX() == 1300) {
 	    			enemy.setImage((Images.GUNMANL)[0]);
+	    			enemy.setFace("LEFT");
 	    		} else {
 	    			enemy.setImage((Images.GUNMANR)[0]);
-	    			
+	    			enemy.setFace("RIGHT");
 	    		}
 	    	}
 	    }

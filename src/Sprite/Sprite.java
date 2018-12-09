@@ -106,13 +106,9 @@ public abstract class Sprite extends Rectangle implements Moveable{
 	public abstract void update(double time);
 	public abstract void render(GraphicsContext gc);
 
-
-
 	public Image[] getImageList() {
 		return imageList;
 	}
-
-
 
 	public void setImageList(Image[] imageList) {
 		this.imageList = imageList;
