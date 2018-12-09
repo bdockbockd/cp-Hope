@@ -206,6 +206,7 @@ public class LoopGame {
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
 		KeyControlBlackPanther.input = new ArrayList<String>();
+		KeyControlBlackPanther.directionInput = new ArrayList<String>();
 		KeyControlBot.input2 = new ArrayList<String>();
 		// scene detect
 		LoopGame.setKey(theScene);
@@ -226,15 +227,13 @@ public class LoopGame {
 	                        String code = e.getCode().toString();
 	                        if ( !KeyControlBlackPanther.input.contains(code) ) {
 	                            KeyControlBlackPanther.input.add( code );
-//	                            System.out.println(code);
 	                        }
 	                        if(!KeyControlBot.input2.contains(code)) {
 	                        	KeyControlBot.input2.add(code);
 	                        }
-	                        /*if(e.getCode() == KeyCode.ESCAPE)
-	                        {
-	                        	Main.gamePause();
-	                        }*/
+	                        if(!KeyControlBlackPanther.directionInput.contains(code) && Controller.KeyControlBlackPanther.DIRECTION_KEY.contains(code)) {
+	                        	KeyControlBlackPanther.directionInput.add(code);
+	                        }
 	                    }
 	                });
 
@@ -244,12 +243,8 @@ public class LoopGame {
 	                    public void handle(KeyEvent e)
 	                    {
 	                        String code = e.getCode().toString();
-	                        //System.out.print(code);
 	                        if(KeyControlBlackPanther.input.contains(code)) {
 	                        	if(code.equals(KeyControlBlackPanther.ATTACK_KEY)) {
-	                        		//try
-//	                        		statusBar.resetProgress();
-//	                        		scoreBoard.addScore(100);
 	                        		blackPanther.switchToWalk();
 	
 	                        	} else if(code.equals(KeyControlBlackPanther.SPIN_KEY)) {

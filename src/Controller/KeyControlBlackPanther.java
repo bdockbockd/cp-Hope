@@ -10,6 +10,15 @@ import javafx.animation.AnimationTimer;
 public class KeyControlBlackPanther {
 	
     public static ArrayList<String> input;
+    public static ArrayList<String> directionInput;
+    public final static ArrayList<String> DIRECTION_KEY = new ArrayList<String>();
+    
+    static {
+    	DIRECTION_KEY.add("UP");
+    	DIRECTION_KEY.add("DOWN");
+    	DIRECTION_KEY.add("LEFT");
+    	DIRECTION_KEY.add("RIGHT");
+    }
     
     public static final String ATTACK_KEY = "Z";
     public static final String JUMP_KEY = "X";
@@ -26,7 +35,7 @@ public class KeyControlBlackPanther {
 			BlackPanther.jumpAttackDetected = true;
 			tiger.setSkillOn(true);
 			String direction = tiger.getFace();
-			tiger.playJump(direction);
+			tiger.playJump(KeyControlBlackPanther.getKeyCombination());
 			Audio.pounceSound();
 			tiger.attackEnemy(3);
 			return;
@@ -131,11 +140,13 @@ public class KeyControlBlackPanther {
 	    if (input.contains("UP") && tiger.getRealY() > 210) {
         	// y 50
             tiger.addVelocity(0,-200);
+            tiger.setFace(tiger.getFace());
             tiger.setActionState(0);
 
         }
 		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
             tiger.addVelocity(0,200);
+            tiger.setFace(tiger.getFace());
             tiger.setActionState(0);
 		}
         if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
@@ -163,4 +174,66 @@ public class KeyControlBlackPanther {
     		t.start();
         }
 	}
+	
+	public static int getKeyCombination() {
+		if(directionInput.size() == 1) {
+			if(input.contains("LEFT")) {
+				return 1;
+			} else if(directionInput.contains("RIGHT")) {
+				return 2;
+
+			} else if(directionInput.contains("UP")) {
+				return 3;
+
+			} else if(directionInput.contains("DOWN")){
+				return 4;
+
+			}
+		} else if(directionInput.size() == 2) {
+			if(directionInput.contains("LEFT") && directionInput.contains("RIGHT")) {
+				return 0;
+
+			} else if(directionInput.contains("LEFT") && directionInput.contains("UP")) {
+				return 13;
+
+			} else if(directionInput.contains("LEFT") && directionInput.contains("DOWN")) {
+				return 14;
+
+			} if(directionInput.contains("RIGHT") && directionInput.contains("UP")) {
+				return 23;
+
+			} else if(directionInput.contains("RIGHT") && directionInput.contains("DOWN")) {
+				return 24;
+
+			} else if(directionInput.contains("UP") && directionInput.contains("DOWN")) {
+				return 0;
+
+			}
+			
+		}else if(directionInput.size() == 3) {
+			if(directionInput.contains("LEFT") && directionInput.contains("RIGHT") && directionInput.contains("UP")) {
+				return 3;
+
+			} else if(directionInput.contains("LEFT")&& directionInput.contains("RIGHT") && directionInput.contains("DOWN")) {
+				return 4;
+
+			} else if(directionInput.contains("RIGHT") && directionInput.contains("UP") && directionInput.contains("DOWN") ) {
+				return 2;
+
+			} else {
+				return 1;
+			}
+				
+		} else {
+			
+			return 0;
+		}
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
 }
