@@ -40,21 +40,34 @@ public class Images {
 	public static final Image[] spinAttackL3 = new Image[2];
 	public static final Image[] spinAttackR3 = new Image[2];
 	
-	public static final Image[] humanMotionL = new Image[1];
-	public static final Image[] humanMotionR = new Image[1];
+	public static final Image[] humanMotionL = new Image[2]; // 13
+	public static final Image[] humanMotionR = new Image[2];// 24
+	public static final Image[] SWORDMANL = new Image[2]; // 24
+	public static final Image[] SWORDMANR = new Image[2]; // 13
+	public static final Image[] TRAPMANL = new Image[2];// 24
+	public static final Image[] TRAPMANR = new  Image[2];// 13
+	public static final Image[] TRAPITEM = new Image[2]; // Item left and right//56
+	public static final Image[] GUNMANL = new Image[2];//2
+	public static final Image[] GUNMANR = new Image[2];//1
+	public static final Image[] BULLET = new Image[2];
+
+	
 	public static final Image[] stageMap = new Image[3];
+	
 	public static final ArrayList<ArrayList<Image[]>> STAGETIGER = new ArrayList<ArrayList<Image[]>>();
 	public static final ArrayList<Image[]> STAGE1 = new ArrayList<Image[]>();
 	public static final ArrayList<Image[]> STAGE2 = new ArrayList<Image[]>();
 	public static final ArrayList<Image[]> STAGE3 = new ArrayList<Image[]>();
-
 	
 	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70 , 98, false, false);
 	
-	public static final Image healthPotion = new Image(ClassLoader.getSystemResource("design/item/item-01.png").toString(), 67, 66, false ,false);
-	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 67, 66, false ,false);
-	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 67, 66, false ,false);
-	
+	public static final Image healthPotion = new Image(ClassLoader.getSystemResource("design/item/item-01.png").toString(), 65, 49, false ,false);
+	public static final Image healthPotionD = new Image(ClassLoader.getSystemResource("design/item/item-04.png").toString(), 65, 49, false ,false);
+	public static final Image superPotion = new Image(ClassLoader.getSystemResource("design/item/item-02.png").toString(), 65, 49, false ,false);
+	public static final Image superPotionD = new Image(ClassLoader.getSystemResource("design/item/item-05.png").toString(), 65, 49, false ,false);
+	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 65, 49, false ,false);
+	public static final Image meatD = new Image(ClassLoader.getSystemResource("design/item/item-06.png").toString(), 65, 49, false ,false);
+
 	public static final Image playerNameMenu = new Image(ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
 	public static final Image hallOfFameBG = new Image(ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
 	public static final Image howToPlayImage = new Image(ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());
@@ -68,9 +81,18 @@ public class Images {
 		for(int i=0;i<stageMap.length;i++) {
 			stageMap[i] = new Image(ClassLoader.getSystemResource("design/map/map-0"+(i+1)+".png").toString(),1250,800,false,false);
 		}
-		
-		humanMotionR[0] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-01.png").toString(), 70, 98, false, false);
-		humanMotionL[0] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-02.png").toString(), 70, 98 , false, false);
+		for(int i =0; i<humanMotionL.length;i++) {
+			humanMotionL[i] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-0"+(i+1)+".png").toString(), 70, 98, false, false);
+			humanMotionR[i] = new Image(ClassLoader.getSystemResource("design/enemy1/enemy1-0"+(i+3)+".png").toString(), 70, 98 , false, false);
+			SWORDMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy2/enemy2-0"+(i+1)+".png").toString(), 70, 99, false, false);
+			SWORDMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy2/enemy2-0"+(i+3)+".png").toString(), 70, 99 , false, false);
+			TRAPMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+1)+".png").toString(), 70, 98, false, false);
+			TRAPMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+3)+".png").toString(), 70, 98 , false, false);
+			TRAPITEM[i] = new Image(ClassLoader.getSystemResource("design/enemy3/enemy3-0"+(i+5)+".png").toString(), 58, 37 , false, false);
+			GUNMANL[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-01.png").toString(), 120, 135, false, false);
+			GUNMANR[i] = new Image(ClassLoader.getSystemResource("design/enemy4/enemy4-02.png").toString(), 120, 135 , false, false);
+			BULLET[i] = new Image(ClassLoader.getSystemResource("design/enemy4/bullet-0"+(i+1)+".png").toString(), 68, 24, false ,false);
+		}
 		
 		for (int i=0;i<blackTigerBasicAttackL.length;i++) {
 			blackTigerBasicAttackL[i] = new Image(ClassLoader.getSystemResource("design/bp1/attack/bp1_attack-0"+(i+1)+".png").toString(), 351, 200, false, false);

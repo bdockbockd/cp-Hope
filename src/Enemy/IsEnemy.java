@@ -1,4 +1,4 @@
-package Sprite;
+package Enemy;
 
 public interface IsEnemy {
 	

@@ -38,7 +38,7 @@ public class Main extends Application {
 			FontRes.load();
 			stage = primaryStage;
 			stage.setTitle("blackPantherX"); 
-			mainMenu = new MainMenu();
+			mainMenu = new MainMenu();	
 			gameMenu = new GameMenu();
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();

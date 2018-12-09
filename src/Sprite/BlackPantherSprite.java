@@ -12,20 +12,19 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	private static final String name = "BlackPantherSprite";
 	private boolean isMove;
 	protected boolean attackable;
-	protected int timesBasicAttack;
 	protected boolean canMovePosition = true;
 
 	private final double maxHealth = 1000;
 	private double health;
 	private double damage;
 	private double armor;
+	
+	protected int timesBasicAttack;
 	protected int actionState = 0;
-	protected int spinPosition;
-	protected int jumpPosition;
-	protected boolean speedFix;
-
-	private boolean isSuper;
-	protected boolean isGod;
+	protected int spinPosition = 0;
+	protected int jumpPosition = 0;
+	protected boolean skillOn;
+	
 
 
     public BlackPantherSprite(Image image, Image[] imageList, Image[] imageL, Image[] imageR)
@@ -40,8 +39,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
        this.health = maxHealth;
 		this.damage = 100;
 		this.armor = 10;
-		this.speedFix = false;
-		this.isGod = false;
+		this.skillOn = false;
     }
     
     public void setMove(boolean tf) { 
@@ -73,8 +71,36 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
     public void update(double time)
     {
+    	System.out.print(this.getActionState());
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
+        if(this.getActionState() >1) {
+	        if(this.positionX < -20) {
+	        	this.setPositionX(-20);
+	        }
+	        if(this.positionX > 1250-this.getWidth()+10){
+	        	this.setPositionX(1250-this.getWidth()+10);
+	        }
+	        if(this.positionY < 210) {
+	        	this.setPositionY(210);
+	        }
+	        if(this.positionY > 800-this.getHeight()) {
+	        	this.setPositionY(800-this.getHeight());
+	        }
+        } else if(this.getActionState() <=1) {
+            if(this.positionX < 0-this.getRealWidth()) {
+            	this.setPositionX(0-this.getRealWidth());
+            }
+            if(this.positionX > 1230-this.getRealWidth()){
+            	this.setPositionX(1250-this.getRealWidth());
+            }
+            if(this.positionY < 210) {
+            	this.setPositionY(210);
+            }
+            if(this.positionY > 800-this.getRealHeight()) {
+            	this.setPositionY(800-this.getRealHeight());
+            }
+        }
     }
     
 
@@ -130,18 +156,30 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	//SET Position
 	@Override
 	public void setFace(String face) {
-		if (!(face.equals(this.getFace()))) {
+		if(face.equals("OPPOSITE")) {
+			if(this.getFace() == "LEFT") {
+				this.face = "RIGHT";
+				this.setFace("RIGHT");
+				return;
+			} else {
+				this.face = "LEFT";
+				this.setFace("LEFT");
+				return;
+			}
+		}
+		else if (!(face.equals(this.getFace()))) {
 			this.face = face;
 			this.setPositionR(0);
 			this.setPositionL(0);
 			this.setAttackable(false);
 			return;
 		}
+		
 		if(face == "LEFT") {
 			if(this.getActionState() == 1) {
 				this.setSkillPositionL((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
-				this.setSpinPosition(0);
+				this.setSpinPosition((this.getSpinPosition()+1)%2);
 			} else if(this.getActionState() == 3){
 				this.setJumpPosition(0);
 			} else {
@@ -151,7 +189,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 			if(this.getActionState() == 1) {
 				this.setSkillPositionR((timesBasicAttack+1)%3);
 			} else if(this.getActionState() == 2){
-				this.setSpinPosition(0);
+				this.setSpinPosition((this.getSpinPosition()+1)%2);
 			} else if(this.getActionState() == 3){
 				this.setJumpPosition(0);
 			} else {
@@ -163,7 +201,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	// use When want to immediately change change Image List and Image
 	public void switchToWalk() {
 		this.setActionState(0);
-		this.setSpeedFix(false);
+		this.setSkillOn(false);
 		this.setAttackable(false);
 		this.setImageL(Images.blackTigerMotionL);
 		this.setImageR(Images.blackTigerMotionR);
@@ -219,6 +257,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 		return this.health;
 	}
 	public void setHealth(double health) {
+		if(health<0) health = 0;
 		this.health = health;
 	}
 	public double getDamage() {
@@ -269,42 +308,16 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 		this.actionState = actionState;
 	}
 
-	public void takeDamage(double damage) {
-		if(!isGod) {
-			this.health -= damage;
-			if(this.health < 0) {
-				this.health = 0;
-			}
-		}
-	}
-	public boolean isDead()
-	{
-		return (getHealth()<=0 && !isGod);
+	public boolean isSkillOn() {
+		return skillOn;
 	}
 
-	public boolean isSpeedFix() {
-		return speedFix;
-	}
-
-	public void setSpeedFix(boolean speedFix) {
-		this.speedFix = speedFix;
+	public void setSkillOn(boolean skillOn) {
+		this.skillOn = skillOn;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	
-	public boolean isGod() {
-		return isGod;
-	}
-	
-	public void enableGodMode() {
-		isGod = true;
-	}
-	
-	public void disableGodMode() {
-		isGod = false;
 	}
 	
 

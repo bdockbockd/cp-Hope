@@ -29,7 +29,6 @@ public class MainMenu extends Scene{
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(selectMenu.get(0), 0, 0);
-		
 		root.getChildren().add(canvas);
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {

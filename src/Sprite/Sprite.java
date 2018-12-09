@@ -3,7 +3,7 @@ package Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class Sprite extends Rectangle {
+public abstract class Sprite extends Rectangle implements Moveable{
 	
 	private Image image;
 	private Image[] imageL;
@@ -130,9 +130,9 @@ public abstract class Sprite extends Rectangle {
 			return;
 		}
 		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%3);
+			this.setPositionL((this.getPositionL()+1)%2);
 		} else {
-			this.setPositionR((this.getPositionR()+1)%3);
+			this.setPositionR((this.getPositionR()+1)%2);
 		}
 
 	}

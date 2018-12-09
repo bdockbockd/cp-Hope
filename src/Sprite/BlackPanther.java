@@ -1,36 +1,44 @@
 package Sprite;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.EnemyGen;
+import Controller.LoopGame;
 import Enemy.BadHuman;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
+import Enemy.HumanSprite;
 import javafx.scene.image.Image;
 
-
-public class BlackPanther extends BlackPantherSprite {
+public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	
 	private static final String name = "BlackPanther";
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
-	//public static long ATTACK_COOLDOWN = 100; //sec
-	//public static long JUMP_COOLDOWN = 1*1000; //sec
-	//public static long SPIN_COOLDOWN = 5*1000; //sec
-
-
+	public static final long ATTACK_COOLDOWN_CONSTANT = 400; //sec
+	public static long ATTACK_COOLDOWN_VALUE = 400;
+	public static long JUMP_COOLDOWN = 1*1000; //sec
+	public static long SPIN_COOLDOWN = 5*1000; //sec
+	
 //	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
 	public static int STATUS = 0;
 	public static boolean ISSUPER = false;
+	private boolean isGod;
 //	private static Image[][] STATUSTIGER = BlackPanther.IMAGESTAGEDEFAULT;
 	
 	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
 		checkStatus();
 	}
-
+	public void takeDamage(double damage) {
+		if(!isGod) {
+			this.setHealth(this.getHealth()-damage);
+		}
+	}
+	public boolean isDead()
+	{
+		return (getHealth()<=0 && !isGod);
+	}
 	public void switchToWalk() {
 		this.setActionState(0);
 	}
@@ -74,15 +82,18 @@ public class BlackPanther extends BlackPantherSprite {
     	}
     }
     
-    public void attackEnemy() {
+    public void attackEnemy(int actionState) {
 		Audio.HITDETECTED = false;
+		LoopGame.botHit = false;
 		if(this.getFace() == "LEFT") {
-			BadHuman enemy;
-			for(int i=0;i<BadHuman.getbadList().size();i++) {
-				enemy = BadHuman.getbadList().get(i);
+			HumanSprite enemy;
+			for(int i=0;i<EnemyGen.getbadList().size();i++) {
+				enemy = EnemyGen.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryLeft())) {
+					enemy.setKnockBack(true);
+					LoopGame.botHit = true;
 					if(!(enemy.isDead())) {
-						
+						 enemy.knockBack(this.getFace(), actionState, (enemy.getPositionY() > this.getPositionY()));
 					}
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
 						
@@ -90,12 +101,15 @@ public class BlackPanther extends BlackPantherSprite {
 				}
 			}
 		} else {
-			BadHuman enemy;
-			for(int i=0;i<BadHuman.getbadList().size();i++) {
-				enemy = BadHuman.getbadList().get(i);
+			HumanSprite enemy;
+			for(int i=0;i<EnemyGen.getbadList().size();i++) {
+				enemy = EnemyGen.getbadList().get(i);
 				if(enemy.getBoundary().intersects(this.createBoundaryRight())) {				
 					enemy.setHealth(enemy.getHealth()-this.getDamage());
-
+					LoopGame.botHit = true;
+					if(!(enemy.isDead())) {
+						 enemy.knockBack(this.getFace(), actionState, (enemy.getPositionY() > this.getPositionY()));
+					}
 					Audio.HITDETECTED = true;
 				}
 			}
@@ -106,6 +120,8 @@ public class BlackPanther extends BlackPantherSprite {
 	}
     
 	public void playJump(String direction) {
+		this.setFace(direction);
+		this.nextPosition(direction);
 		if(direction.equals("LEFT")) {
 			Thread delay = new Thread(()->{
 				try {
@@ -117,14 +133,13 @@ public class BlackPanther extends BlackPantherSprite {
 					Thread.sleep(50);
 					this.setVelocity(-1200,200);
 					Thread.sleep(100);
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 					this.switchToWalk();
 					Thread.sleep(10);
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 //					tiger1.setVelocityX(0);
-//					Thread.sleep(0);
+					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
-
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -144,9 +159,9 @@ public class BlackPanther extends BlackPantherSprite {
 					this.setVelocity(1200,200);
 					Thread.sleep(50);
 					this.switchToWalk();
-					this.setSpeedFix(false);
+					this.setSkillOn(false);
 //					tiger1.setVelocityX(0);
-//					Thread.sleep();
+					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
@@ -177,16 +192,19 @@ public class BlackPanther extends BlackPantherSprite {
 		BlackPanther.STATUS = getStatus();
 		if(BlackPanther.STATUS == 0)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(100);
 			setArmor(10);
 		}
 		else if(BlackPanther.STATUS == 1)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/8;
 			setDamage(300);
 			setArmor(20);
 		}
 		else if(BlackPanther.STATUS == 2)
 		{
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(150);
 			setArmor(15);
 		}
@@ -199,6 +217,16 @@ public class BlackPanther extends BlackPantherSprite {
 	public ArrayList<Image[]> getStageTiger() {
 		return (Images.STAGETIGER).get(this.getStatus());
 	}
-
+	public boolean isGod() {
+		return isGod;
+	}
+	
+	public void enableGodMode() {
+		isGod = true;
+	}
+	
+	public void disableGodMode() {
+		isGod = false;
+	}
 	
 }
