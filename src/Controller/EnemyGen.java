@@ -64,12 +64,16 @@ public class EnemyGen {
 	    	}
 	    	EnemyGen.setbadList(bad);
 	    }
+	    
 	    public static void checkAttackHuman(BlackPanther tiger) {
 	    	for(int i=0; i< EnemyGen.badList.size();i++) {
 	    		HumanSprite enemy = EnemyGen.getbadList().get(i);
 	    		if(enemy.intersect(tiger)) {
 	    			if(!(enemy.isWaitToHit())) {
+	    				enemy.setFace(enemy.getFace());
+	    				enemy.nextPosition(enemy.getFace());
 	    				enemy.attack(tiger);
+//	    				enemy.setFace(enemy.getFace());
 	    				Thread a = new Thread (()->{
 	    					try {
 	    						enemy.setWaitToHit(true);

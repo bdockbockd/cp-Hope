@@ -103,8 +103,7 @@ public abstract class Sprite extends Rectangle implements Moveable{
 		 return this.image;
 	}
 	
-	public abstract void update(double time);
-	public abstract void render(GraphicsContext gc);
+
 
 	public Image[] getImageList() {
 		return imageList;
@@ -126,11 +125,14 @@ public abstract class Sprite extends Rectangle implements Moveable{
 			return;
 		}
 		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%2);
+			this.setPositionL((this.getPositionL()+1)%(this.imageL.length));
 		} else {
-			this.setPositionR((this.getPositionR()+1)%2);
+			this.setPositionR((this.getPositionR()+1)%(this.imageL.length));
 		}
-
 	}
+	
+	public abstract void update(double time);
+	public abstract void render(GraphicsContext gc);
+	public abstract void nextPosition(String direction);
 	
 }

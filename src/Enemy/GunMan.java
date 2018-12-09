@@ -2,8 +2,11 @@ package Enemy;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.EnemyGen;
+import Controller.LoopGame;
 import Item.Bullet;
 import Sprite.BlackPanther;
+import UI.GamePause;
 import javafx.scene.media.AudioClip;
 
 public class GunMan extends BadHuman {
@@ -14,25 +17,8 @@ public class GunMan extends BadHuman {
 		this.setImageL(Images.GUNMANL);
 		this.setImageR(Images.GUNMANR);
 		this.setImageList(Images.GUNMANL);
-		Thread fire = new Thread(()-> {
-			while(true) {
-				if(this.isDead()) {
-					break;
-				} else {
-					try {
-						Thread.sleep(2000);
-
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					this.fireBullet();
-					Audio.ENEMY_FIRE.play();
-
-				}
-			}
-		});
-		fire.start();
+		this.isReadyToFire = true;
+//		fire.start();
 	}
 	
 	//update all time
@@ -51,20 +37,6 @@ public class GunMan extends BadHuman {
 	        if(this.positionY > 800-this.getHeight()-30) {
 	        	this.setPositionY(800-this.getHeight()-30);
 	        }
-//			if(this.isReadyToFire) {
-//				Thread delayToFire = new Thread(()->{
-//					try {
-//						this.isReadyToFire = false;
-//						Thread.sleep(3000);
-//						this.isReadyToFire = true;
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				});
-//				delayToFire.start();
-//			}
-//	        this.printBoundary();
 	    }
 	
 	//update every one time
@@ -72,8 +44,22 @@ public class GunMan extends BadHuman {
 	public void update(double time, BlackPanther tiger) {
 		if(this.isDead()) {
 			this.setVelocity(0, 0);
-			this.update(0.016);
+			this.update(time);
 			return;
+		}
+		if(this.isReadyToFire) {
+			Thread delayToFire = new Thread(()->{
+				try {
+					this.isReadyToFire = false;
+					Thread.sleep(1000);
+					this.fireBullet();
+					this.isReadyToFire = true;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			delayToFire.start();
 		}
 //		this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
         if( (this.getPositionY() > tiger.getPositionY())) {
@@ -94,6 +80,10 @@ public class GunMan extends BadHuman {
 	}
 	
 	public void fireBullet() {
+		if(this.isDead() || GamePause.isPause == true || GamePause.isReGame == true || EnemyGen.getbadList().size() == 0) {
+			return;
+		}
+		Audio.ENEMY_FIRE.play();
 		if(this.getFace() == "LEFT") {
 			new Bullet(this.getPositionX()-100, this.getPositionY(), (Images.BULLET)[0]);
 		} else {

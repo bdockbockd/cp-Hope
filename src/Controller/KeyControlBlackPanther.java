@@ -49,13 +49,13 @@ public class KeyControlBlackPanther {
 						tiger.update(0.016);
 						tiger.attackEnemy(2);
 						
-						tiger.setVelocity(-1000, -1000);
+						tiger.setVelocity(-1000, 0);
 						Thread.sleep(30);
 						tiger.setFace(tiger.getFace());
 						tiger.attackEnemy(2);
 						tiger.setActionState(2);
 						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(-1000, 1000);
+						tiger.setVelocity(1000, 0);
 						Thread.sleep(30);
 						tiger.setFace("OPPOSITE");
 						tiger.attackEnemy(2);
@@ -64,7 +64,7 @@ public class KeyControlBlackPanther {
 
 						tiger.nextPosition(tiger.getFace());	
 		
-						tiger.setVelocity(1000, 1000);
+						tiger.setVelocity(-1000, 0);
 						
 						Thread.sleep(30);
 						tiger.setFace(tiger.getFace());
@@ -72,7 +72,7 @@ public class KeyControlBlackPanther {
 						tiger.setActionState(2);
 
 						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(1000, -1000);
+						tiger.setVelocity(1000, 0);
 						Thread.sleep(30);
 						tiger.setFace("OPPOSITE");
 						tiger.attackEnemy(2);

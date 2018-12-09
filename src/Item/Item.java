@@ -94,12 +94,6 @@ public abstract class Item extends Rectangle implements DisappearObject   {
 	
 	public static void render(GraphicsContext gc) {
 		for(int i = 0;i < itemList.size();i++){
-			System.out.print(itemList.size());
-//			if(itemList.get(i) instanceof Bullet) {
-//				gc.drawImage(Images.BULLET[0],itemList.get(i).getPositionX() , itemList.get(i).getPositionY());
-//
-//			} 
-			
 			gc.drawImage(itemList.get(i).getImage(), itemList.get(i).getPositionX(), itemList.get(i).getPositionY());
 		}
 	}

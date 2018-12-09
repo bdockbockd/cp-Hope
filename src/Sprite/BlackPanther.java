@@ -47,10 +47,9 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		this.setActionState(1);
 		this.attackable = attackable;
 		this.setTimesBasicAttack((this.getTimesBasicAttack()+1)%3);
+	} 
 
-	}  
-	
-    public void nextPosition(String direction) {
+	public void nextPosition(String direction) {
     	//Motion
     	if(this.getActionState() == 0) {
     		if(this.getFace().equals("LEFT")) {
@@ -58,7 +57,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
     		} else {
     			this.setImage((this.getStageTiger().get(1))[this.getPositionR()]);
     		}
-    		//
+    		
     	} else if(this.getActionState() == 2){
     		if(this.getFace().equals("LEFT")) {
         		this.setImage(((this.getStageTiger()).get(6))[this.getSpinPosition()]); 

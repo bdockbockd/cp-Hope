@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.EnemyGen;
 import Controller.Main;
 import Controller.ScoreBoard;
 import Controller.Timer;
@@ -12,13 +13,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Popup;
 
 public class GamePause extends Popup{
-	
 	public static ArrayList<Image>gamePause = Images.gamePause;
 	public static int selectNumber = 100000;
 	public static boolean isPause;
+	public static boolean isReGame = false;
 	
 	public GamePause() {
 		super();
@@ -58,6 +60,11 @@ public class GamePause extends Popup{
 		    		  Timer.hide();
 		    		  Timer.terminate();
 		    		  ScoreBoard.hide();
+		    		  EnemyGen.getbadList().clear();
+		    		  Item.Item.itemList.clear();
+		    		  Audio.ENEMY_FIRE.stop();
+		    		  Audio.GAME_BGM.stop();
+//		    		  Audio.ENEMY_FIRE.stop();
 		    		  Main.mainMenu();
 		    		  System.out.println("BACK TO MAIN MENU!");
 		    	  }

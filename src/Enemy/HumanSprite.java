@@ -154,5 +154,6 @@ public abstract class HumanSprite extends Sprite {
 	
 	public abstract void update(double time, BlackPanther tiger);
 	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
+	public abstract void nextPosition(String direction);
 
 }

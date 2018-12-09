@@ -11,7 +11,6 @@ public class BadHuman extends HumanSprite  {
     public int time=0;
 	double veKnockX, veKnockY, veKnockBackX, veKnockBackY;
 
-    
 	public BadHuman() {
 		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
 		// TODO Auto-generated constructor stub
@@ -20,7 +19,6 @@ public class BadHuman extends HumanSprite  {
 	public void nextPosition(String direction) {
     	if(this.getFace().equals("LEFT")) {
     		this.setImage((this.getImageL())[0]);
-    		this.setFace(direction);
     	} else {
     		this.setImage((this.getImageR())[0]);
     	}
@@ -34,35 +32,30 @@ public class BadHuman extends HumanSprite  {
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 
 //        if(this.intersect(tiger) == false) {
-        			if(tiger.getPositionX()+120 < this.getPositionX()) {
-    					this.setFace("LEFT");
-        				this.nextPosition(this.getFace());
-        				if(tiger.getPositionY()+75 < this.getPositionY() ) {
-            				this.setVelocity(-Math.random()*200,-Math.random()*200);
-        				} else {
-        					this.setVelocity(-Math.random()*200,Math.random()*200);
+    			if(tiger.getPositionX()+120 < this.getPositionX()) {
+					this.setFace("LEFT");
+    				this.nextPosition(this.getFace());
+    				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+        				this.setVelocity(-Math.random()*200,-Math.random()*200);
+    				} else {
+    					this.setVelocity(-Math.random()*200,Math.random()*200);
+    				}
+  
+    			} else {
+    				this.setFace("RIGHT");
+    				this.nextPosition(this.getFace());
+    				if(tiger.getPositionY()+75 < this.getPositionY()) {
+        				this.setVelocity(Math.random()*200,-Math.random()*200);
+    				} else {
+    					this.setVelocity(Math.random()*200,Math.random()*200);
 
-        				}
-      
-        			} else {
-        				this.setFace("RIGHT");
-        				this.nextPosition(this.getFace());
-        				if(tiger.getPositionY()+75 < this.getPositionY()) {
-            				this.setVelocity(Math.random()*200,-Math.random()*200);
-
-        				} else {
-        					this.setVelocity(Math.random()*200,Math.random()*200);
-
-        				}	
-        			}
-//        }
+    				}	
+    			}
     }
 
 	public void knockBack(String direction, int stateSkill, boolean isBotHigher) {
-		// TODO Auto-generated method stub
 		double veX = this.getVelocityX();
 		double veY = this.getVelocityY();
-//		System.out.print(stateSkill);
 		if(stateSkill == 2) {
 			veKnockX = Math.random()*500 + 6000;
 			veKnockBackX = -Math.random()*500;
@@ -73,15 +66,13 @@ public class BadHuman extends HumanSprite  {
 				veKnockY = -(Math.random()*300 + 2000);
 				veKnockBackY = (Math.random()*300);
 			 }
-			
 		} else {
 			veKnockX = Math.random()*300 +700;
 			veKnockBackX = -(veKnockX - 500);
 			veKnockY = ((Math.random()>0.5) ? -1 : 1)*(Math.random()*300+100);
 			veKnockBackY = -(veKnockY - 100);
 		}
-		if(this.isTomb() || this.isDead())
-		{
+		if(this.isTomb() || this.isDead()){
 			this.setVelocity(0, 0);
 			return;
 		}

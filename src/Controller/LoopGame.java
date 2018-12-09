@@ -23,7 +23,7 @@ import javafx.scene.input.KeyEvent;
 public class LoopGame {
 	public static BlackPanther blackPanther;
 	private static long lastNanoTime ;
-    public static GamePause gamePause;
+    public static GamePause gamePause = new GamePause();
     public static DeadScene deadScene;
     public static boolean isDead;
     public static boolean BOTSPAWN = true;
@@ -112,7 +112,7 @@ public class LoopGame {
 									}
 								}
 								CANUPDATEBOT = false;
-								Thread.sleep(1000);
+								Thread.sleep(3000);
 								CANUPDATEBOT = true;
 							} catch (InterruptedException e) {
 								e.printStackTrace();
@@ -131,7 +131,6 @@ public class LoopGame {
 					//update bot all times 
 					for(int i =0;i<EnemyGen.getbadList().size();i++) {
 						if(EnemyGen.getbadList().get(i).isKnockBack()) {
-//							EnemyGen.getbadList().get(i).KnockBack(blackPanther.getFace());
 						} 
 						((EnemyGen.getbadList()).get(i)).update(elapsedTime);
 					}
@@ -173,6 +172,8 @@ public class LoopGame {
 						//stop ever thing must be implement here!
 						deadScene = new DeadScene(playerName,ScoreBoard.getScore(),Timer.getString());
 						deadScene.show(Main.stage);
+						Item.itemList.clear();
+						EnemyGen.getbadList().clear();
 						//e.printStackTrace();
 					}
 				}
@@ -186,6 +187,8 @@ public class LoopGame {
 			isDead = true;
 			Audio.GAME_BGM.stop();
 			Audio.DEAD.play(1);
+			Audio.ENEMY_FIRE.stop();
+			EnemyGen.getbadList().clear();
 			Timer.stop();
 			Timer.hide();
 			Timer.terminate();
@@ -198,6 +201,7 @@ public class LoopGame {
 	public static void startGame(GraphicsContext gc, Scene theScene, String playerName) {
 		LoopGame.playerName = playerName;
 		LoopGame.gc = gc;
+		gamePause = new GamePause();
 		blackPanther = new BlackPanther();
 		blackPanther.setPosition(1250/2 - 351/2, 800/2+100);
 		lastNanoTime = System.nanoTime();
@@ -205,7 +209,6 @@ public class LoopGame {
 		KeyControlBot.input2 = new ArrayList<String>();
 		// scene detect
 		LoopGame.setKey(theScene);
-		gamePause = new GamePause();
 		isDead = false;
 		CANUPDATEBOT = true;
 		CCHECK = true;
