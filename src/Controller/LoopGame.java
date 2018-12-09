@@ -161,6 +161,7 @@ public class LoopGame {
 					Item.checkItemUse(blackPanther);
 					blackPanther.checkStatus();
 					Item.render(gc);
+				
 					
 					a.update(elapsedTime);
 					a.render(gc);

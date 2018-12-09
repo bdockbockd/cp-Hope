@@ -71,7 +71,6 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
     public void update(double time)
     {
-    	System.out.print(this.getActionState());
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
         if(this.getActionState() >1) {

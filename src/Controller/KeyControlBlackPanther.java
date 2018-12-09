@@ -22,10 +22,9 @@ public class KeyControlBlackPanther {
 	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
 		
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
-			
+			tiger.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
 			tiger.setSkillOn(true);
-			tiger.setActionState(3);
 			String direction = tiger.getFace();
 			tiger.playJump(direction);
 			Audio.pounceSound();
@@ -33,10 +32,7 @@ public class KeyControlBlackPanther {
 			return;
 			//set Speed Fix in here
 		} else if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
-			
-//			if(tiger.getStatus() == 1) {
-//				return;
-//			}
+
 			tiger.setActionState(2);
 			tiger.attackEnemy(2);
 			
@@ -51,7 +47,6 @@ public class KeyControlBlackPanther {
 					int loop = 6;
 					while(loop!=0) {
 						tiger.update(0.016);
-//						tiger.setActionState(1);
 						tiger.attackEnemy(2);
 						
 						tiger.setVelocity(-1000, -1000);

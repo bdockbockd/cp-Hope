@@ -1,16 +1,38 @@
 package Enemy;
 
+import Constant.Audio;
 import Constant.Images;
+import Item.Bullet;
 import Sprite.BlackPanther;
+import javafx.scene.media.AudioClip;
 
 public class GunMan extends BadHuman {
-	private boolean isFire;
+	private boolean isReadyToFire;
 	
 	public GunMan() {
 		this.setImage((Images.GUNMANR)[0]);
 		this.setImageL(Images.GUNMANL);
 		this.setImageR(Images.GUNMANR);
 		this.setImageList(Images.GUNMANL);
+		Thread fire = new Thread(()-> {
+			while(true) {
+				if(this.isDead()) {
+					break;
+				} else {
+					try {
+						Thread.sleep(2000);
+
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					this.fireBullet();
+					Audio.ENEMY_FIRE.play();
+
+				}
+			}
+		});
+		fire.start();
 	}
 	
 	//update all time
@@ -29,6 +51,19 @@ public class GunMan extends BadHuman {
 	        if(this.positionY > 800-this.getHeight()-30) {
 	        	this.setPositionY(800-this.getHeight()-30);
 	        }
+//			if(this.isReadyToFire) {
+//				Thread delayToFire = new Thread(()->{
+//					try {
+//						this.isReadyToFire = false;
+//						Thread.sleep(3000);
+//						this.isReadyToFire = true;
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				});
+//				delayToFire.start();
+//			}
 //	        this.printBoundary();
 	    }
 	
@@ -59,13 +94,17 @@ public class GunMan extends BadHuman {
 	}
 	
 	public void fireBullet() {
-		
+		if(this.getFace() == "LEFT") {
+			new Bullet(this.getPositionX()-100, this.getPositionY(), (Images.BULLET)[0]);
+		} else {
+			new Bullet(this.getPositionX()+100, this.getPositionY(), (Images.BULLET)[1]);
+		}
 	}
 	
-	public boolean isFire() {
-		return isFire;
+	public boolean isReadyToFire() {
+		return this.isReadyToFire;
 	}
-	public void setFire(boolean isFire) {
-		this.isFire = isFire;
+	public void setFire(boolean isReady) {
+		this.isReadyToFire = isReady;
 	}
 }

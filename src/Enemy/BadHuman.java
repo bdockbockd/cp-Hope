@@ -62,7 +62,7 @@ public class BadHuman extends HumanSprite  {
 		// TODO Auto-generated method stub
 		double veX = this.getVelocityX();
 		double veY = this.getVelocityY();
-		System.out.print(stateSkill);
+//		System.out.print(stateSkill);
 		if(stateSkill == 2) {
 			veKnockX = Math.random()*500 + 6000;
 			veKnockBackX = -Math.random()*500;

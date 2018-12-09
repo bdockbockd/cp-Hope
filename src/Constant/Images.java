@@ -117,7 +117,7 @@ public class Images {
 			jumpAttackL2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackR2[i] = new Image(ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
 			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(2)+".png").toString(), 351, 200 ,false , false);
-			jumpAttackL3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
+			jumpAttackR3[i] = new Image(ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0"+(4)+".png").toString(), 351, 200 ,false , false);
 		}
 		
 		for(int i=0;i<spinAttackL.length;i++) {

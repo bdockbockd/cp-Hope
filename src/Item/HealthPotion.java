@@ -9,10 +9,10 @@ public class HealthPotion extends Item {
 	private static final int healFactor = 500;
 	
 	public HealthPotion(double x, double y){
-		super(x, y, Images.healthPotion, Images.healthPotionD, false);
+		super(x, y, Images.healthPotion, Images.healthPotionD);
 	}
 	public HealthPotion() {
-		super(0, 0, Images.healthPotion, Images.healthPotionD, false);
+		super(0, 0, Images.healthPotion, Images.healthPotionD);
 	}
 	
 	@Override
