@@ -198,7 +198,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		}
 		else if(BlackPanther.STATUS == 1)
 		{
-			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/8;
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/2;
 			setDamage(300);
 			setArmor(20);
 		}

@@ -25,9 +25,8 @@ public class LoopGame {
 	private static long lastNanoTime ;
     public static GamePause gamePause;
     public static DeadScene deadScene;
-    public static boolean isDead;
     public static boolean BOTSPAWN = true;
-    public static final int BOTSPAWNRATE = 3; //BOTPERSEC
+    public static final int BOTSPAWNRATE = 1; //BOTPERSEC
     public static boolean CANUPDATEBOT;
     public static boolean CCHECK;
     public static double elapsedTime;
@@ -47,12 +46,12 @@ public class LoopGame {
 		new AnimationTimer()  {
 			@Override
 			public void handle(long currentNanoTime) {
-				if(!isDead && !GamePause.isPause) {
+				if(!blackPanther.isDead() && !GamePause.isPause) {
 					if(BOTSPAWN)
 					{
 						Thread addBot = new Thread(()->{
 							try {
-//								EnemyGen.addBot();
+								EnemyGen.addBot();
 								BOTSPAWN = false;
 								Thread.sleep(1000/BOTSPAWNRATE);
 								BOTSPAWN = true;
@@ -183,7 +182,6 @@ public class LoopGame {
 	
 	protected static void gameOverCheck() throws GameOverException {
 		if(blackPanther.isDead()) {
-			isDead = true;
 			Audio.GAME_BGM.stop();
 			Audio.DEAD.play(1);
 			Timer.stop();
@@ -206,7 +204,6 @@ public class LoopGame {
 		// scene detect
 		LoopGame.setKey(theScene);
 		gamePause = new GamePause();
-		isDead = false;
 		CANUPDATEBOT = true;
 		CCHECK = true;
 	}

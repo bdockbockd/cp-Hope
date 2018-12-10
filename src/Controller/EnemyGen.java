@@ -25,11 +25,11 @@ public class EnemyGen {
 	        
 		    double random = Math.random();
 	    	HumanSprite enemy;
-		    if(random > 0.8) {
+		    if(random > 0.95) {
 		    	enemy = new GunMan();
-		    } else if(random > 0.6) {
+		    } else if(random > 0.80) {
 		    	enemy = new TrapMan();
-		    } else if (random > 0.4) {
+		    } else if (random > 0.60) {
 		    	enemy = new SwordMan();
 		    } else {
 		    	enemy = new BadHuman();

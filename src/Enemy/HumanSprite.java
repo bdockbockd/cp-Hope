@@ -133,9 +133,15 @@ public abstract class HumanSprite extends Sprite {
 	public boolean isWaitToHit() {
 		return waitToHit;
 	}
-	public void setWaitToHit(boolean waitToHit) {
+	public void setWaitToHit(boolean waitToHit) { //change of this by Ou
+		if(this.waitToHit != waitToHit)
+		{
+			this.setFace(this.getFace());
+	        this.nextPosition(this.getFace());
+		}
 		this.waitToHit = waitToHit;
 	}
+	
 //	public void nextPosition(String direction) {
 //	public void update(double time, BlackPanther tiger)
 //    public static void checkAttackHuman(BlackPanther tiger) {

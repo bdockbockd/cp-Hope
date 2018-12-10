@@ -58,16 +58,31 @@ public class StatusBar extends StackPane {
 	}
 	public static void resetProgress(BlackPanther blackPanther)
 	{
-		attack.setProgress(attack.getProgress()+0.2);
-		pounce.setProgress(pounce.getProgress()+0.02);
-		spin.setProgress(spin.getProgress()+0.01);
-		//attack.setProgress(attack.getProgress()+0.02);
-		//attackIsReady();
-		/*if(attack.getProgress() == 1) {
-			attack.setStyle(" -fx-progress-color: green;");
-		}*/
+		double attackRate = 0;
+		double pounceRate = 0;
+		double spinRate = 0;
+		if(blackPanther.getStatus() == 0)
+		{
+			attackRate = 0.2;
+			pounceRate = 0.015;
+			spinRate = 0.01;
+		}
+		else if(blackPanther.getStatus() == 1)
+		{
+			attackRate = 0.3;
+			pounceRate = 0.020;
+			spinRate = 0.03;
+		}
+		else if(blackPanther.getStatus() == 2)
+		{
+			attackRate = 0.25;
+			pounceRate = 0.02;
+			spinRate = 0.02;
+		}
+		attack.setProgress(attack.getProgress()+attackRate);
+		pounce.setProgress(pounce.getProgress()+pounceRate);
+		spin.setProgress(spin.getProgress()+spinRate);
 		HPBar.setProgress(blackPanther.getHealth()/blackPanther.getMaxHealth());
-		//HPBar.setProgress(HPBar.getProgress()-0.005);
 	}
 	public static boolean attackIsReady() {
 		if(attack.getProgress() >= 1){

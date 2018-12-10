@@ -1,5 +1,6 @@
 package Sprite;
 
+import Enemy.HumanSprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -10,7 +11,6 @@ public abstract class Sprite extends Rectangle implements Moveable{
 	private Image[] imageR;
 	private Image[] imageList;
 	protected String face;
-	private int duration = 3;
 	protected int positionL = 0;
 	protected int positionR = 0;
 	protected int skillPositionL = 0;
@@ -119,18 +119,24 @@ public abstract class Sprite extends Rectangle implements Moveable{
 	}
 
 	public void setFace(String face) {
-		if (!(face.equals(this.getFace()))) {
-			this.face = face;
-			this.setPositionR(0);
-			this.setPositionL(0);
-			return;
-		}
-		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%2);
-		} else {
-			this.setPositionR((this.getPositionR()+1)%2);
-		}
-
-	}
+		  if (!(face.equals(this.getFace()))) {
+		   this.face = face;
+		   this.setPositionR(0);
+		   this.setPositionL(0);
+		   return;
+		  }
+		  if(face == "LEFT") {
+		   this.setPositionL((this.getPositionL()+1)%(this.imageL.length));
+		  } else {
+		   this.setPositionR((this.getPositionR()+1)%(this.imageR.length));
+		  }
+	 }
 	
+	public void nextPosition(String direction) {
+	     if(this.getFace().equals("LEFT")) {
+	      this.setImage((this.getImageL())[this.getPositionL()]);
+	     } else {
+	      this.setImage((this.getImageR())[this.getPositionR()]);
+	     }
+	}
 }

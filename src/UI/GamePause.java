@@ -32,9 +32,7 @@ public class GamePause extends Popup{
 		this.setAnchorX(1250/2-200);
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(this.isShowing())
-			{
-//				System.out.println("class: "+isPause);
+			if(this.isShowing()){
 		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
 		    	  Audio.SELECTMENU.play();
 		    	  selectNumber += 1;
@@ -46,25 +44,16 @@ public class GamePause extends Popup{
 		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
 		    	  Audio.SELECTMENU.play();
 		    	  if(selectNumber%2 == 0){
-		    		  //System.out.println(isPause+" Continue!");
 		    		  continueGame();
-		  			System.out.println("GAME IS PLAYING...");
 		    	  }
 		    	  else {
-		    		  ////Is the game running?
-		    		  //System.out.println("GAME OVER!");
 		    		  this.hide();
-		    		  Timer.stop();
-		    		  Timer.hide();
-		    		  Timer.terminate();
-		    		  ScoreBoard.hide();
-		    		  Main.mainMenu();
-		    		  System.out.println("BACK TO MAIN MENU!");
+		    		  endGame();
 		    	  }
 		      }
-		      else if(key.getCode() == KeyCode.ESCAPE)
-		      {
+		      else if(key.getCode() == KeyCode.ESCAPE){
 		    	  Audio.SELECTMENU.play();
+		    	  Audio.GAME_BGM.play();
 		    	  continueGame();
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);
@@ -79,6 +68,15 @@ public class GamePause extends Popup{
 		Timer.play();
 		ScoreBoard.show();
 		isPause = false;
+	}
+	
+	private void endGame() {
+		Timer.stop();
+		Timer.hide();
+		Timer.terminate();
+		ScoreBoard.hide();
+		Audio.GAME_BGM.stop();
+		Main.mainMenu();
 	}
 
 }
