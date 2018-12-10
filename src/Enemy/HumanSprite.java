@@ -61,9 +61,9 @@ public abstract class HumanSprite extends Sprite {
         
     }
     
-	 public void attack(BlackPanther tiger) {
+	 public void attack(BlackPanther blackPanther) {
 		// TODO Auto-generated method stub
-		tiger.takeDamage(this.getDamage());
+		blackPanther.takeDamage(this.getDamage());
 	}
 
     public void render(GraphicsContext gc)
@@ -160,7 +160,7 @@ public abstract class HumanSprite extends Sprite {
 		this.knockBack = knockBack;
 	}
 	
-	public abstract void update(double time, BlackPanther tiger);
+	public abstract void update(double time, BlackPanther blackPanther);
 	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
 
 }

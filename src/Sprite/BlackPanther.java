@@ -136,7 +136,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					this.switchToWalk();
 					Thread.sleep(10);
 					this.setSkillOn(false);
-//					tiger1.setVelocityX(0);
+//					blackPanther1.setVelocityX(0);
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 				} catch (InterruptedException e) {
@@ -159,7 +159,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 					Thread.sleep(50);
 					this.switchToWalk();
 					this.setSkillOn(false);
-//					tiger1.setVelocityX(0);
+//					blackPanther1.setVelocityX(0);
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 

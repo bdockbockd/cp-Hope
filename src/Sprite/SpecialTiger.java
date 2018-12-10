@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
 public class SpecialTiger extends BlackPantherSprite{
 	  private Image image;
 	  private static final String name = "specialTiger";
-	  public static Image[] tigerImage = Images.bigTigerMotion;
+	  public static Image[] blackPantherImage = Images.bigTigerMotion;
 
 		public SpecialTiger() {
-			super(tigerImage[0]);
+			super(blackPantherImage[0]);
 		}
 		
 		public void setImage(Image image) {
@@ -25,8 +25,8 @@ public class SpecialTiger extends BlackPantherSprite{
 		}
 		
 	    public Image nextPosition() {
-	    	this.tigerPosition = (this.tigerPosition+1)%tigerImage.length; 
-	    	return (tigerImage)[tigerPosition];
+	    	this.blackPantherPosition = (this.blackPantherPosition+1)%blackPantherImage.length; 
+	    	return (blackPantherImage)[blackPantherPosition];
 	    }
 
 		public String getName() {

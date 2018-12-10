@@ -33,7 +33,7 @@ public class BadHuman extends HumanSprite  {
         }
     }
     //bot update
-    public void update(double time, BlackPanther tiger)
+    public void update(double time, BlackPanther blackPanther)
     {
     	if(this.isDead()) {
     		return;
@@ -41,11 +41,11 @@ public class BadHuman extends HumanSprite  {
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
 
-//        if(this.intersect(tiger) == false) {
-    			if(tiger.getPositionX()+120 < this.getPositionX()) {
+//        if(this.intersect(blackPanther) == false) {
+    			if(blackPanther.getPositionX()+120 < this.getPositionX()) {
 					this.setFace("LEFT");
     				this.nextPosition(this.getFace());
-    				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+    				if(blackPanther.getPositionY()+75 < this.getPositionY() ) {
         				this.setVelocity(-Math.random()*200,-Math.random()*200);
     				} else {
     					this.setVelocity(-Math.random()*200,Math.random()*200);
@@ -54,7 +54,7 @@ public class BadHuman extends HumanSprite  {
     			} else {
     				this.setFace("RIGHT");
     				this.nextPosition(this.getFace());
-    				if(tiger.getPositionY()+75 < this.getPositionY()) {
+    				if(blackPanther.getPositionY()+75 < this.getPositionY()) {
         				this.setVelocity(Math.random()*200,-Math.random()*200);
     				} else {
     					this.setVelocity(Math.random()*200,Math.random()*200);

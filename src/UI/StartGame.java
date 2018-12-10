@@ -47,7 +47,7 @@ public class StartGame extends Scene {
         gc.drawImage((Images.stageMap)[0], 0, 0);
         
 
-//        create tiger onScreenss
+//        create blackPanther onScreenss
         
         EnemyGen.generatelistBot(ENEMYSTARTNUMBER);
         HumanSprite bad1 = EnemyGen.generateRandom();

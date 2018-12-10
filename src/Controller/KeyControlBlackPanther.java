@@ -28,68 +28,68 @@ public class KeyControlBlackPanther {
     public static final String GETSCORE_KEY = "P";
 
 
-	public static void keyActionToSpeed(BlackPanther tiger, long current, AnimationTimer x) {
+	public static void keyActionToSpeed(BlackPanther blackPanther, long current, AnimationTimer x) {
 		
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
-			tiger.setActionState(3);
+			blackPanther.setActionState(3);
 			BlackPanther.jumpAttackDetected = true;
-			tiger.setSkillOn(true);
-			String direction = tiger.getFace();
-			tiger.playJump(direction);
+			blackPanther.setSkillOn(true);
+			String direction = blackPanther.getFace();
+			blackPanther.playJump(direction);
 
-//			tiger.playJump(KeyControlBlackPanther.getKeyCombination());
+//			blackPanther.playJump(KeyControlBlackPanther.getKeyCombination());
 			Audio.pounceSound();
-			tiger.attackEnemy(3);
+			blackPanther.attackEnemy(3);
 			return;
 			//set Speed Fix in here
 		} else if(input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
 
-			tiger.setActionState(2);
-			tiger.attackEnemy(2);
+			blackPanther.setActionState(2);
+			blackPanther.attackEnemy(2);
 			
 			Audio.spinSound();
-			tiger.setSkillOn(true);
+			blackPanther.setSkillOn(true);
 
 			Thread delay = new Thread(()-> {
 				BlackPanther.spinAttackDetected = true;
-				tiger.setFace(tiger.getFace());
-				tiger.nextPosition(tiger.getFace());	
+				blackPanther.setFace(blackPanther.getFace());
+				blackPanther.nextPosition(blackPanther.getFace());	
 				try {
 					int loop = 6;
 					while(loop!=0) {
-						tiger.update(0.016);
-						tiger.attackEnemy(2);
+						blackPanther.update(0.016);
+						blackPanther.attackEnemy(2);
 						
-						tiger.setVelocity(-1000, 0);
+						blackPanther.setVelocity(-1000, 0);
 						Thread.sleep(30);
-						tiger.setFace(tiger.getFace());
-						tiger.attackEnemy(2);
-						tiger.setActionState(2);
-						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(1000, 0);
+						blackPanther.setFace(blackPanther.getFace());
+						blackPanther.attackEnemy(2);
+						blackPanther.setActionState(2);
+						blackPanther.nextPosition(blackPanther.getFace());
+						blackPanther.setVelocity(1000, 0);
 						Thread.sleep(30);
-						tiger.setFace("OPPOSITE");
-						tiger.attackEnemy(2);
+						blackPanther.setFace("OPPOSITE");
+						blackPanther.attackEnemy(2);
 
-						tiger.setActionState(2);
+						blackPanther.setActionState(2);
 
-						tiger.nextPosition(tiger.getFace());	
+						blackPanther.nextPosition(blackPanther.getFace());	
 		
-						tiger.setVelocity(-1000, 0);
+						blackPanther.setVelocity(-1000, 0);
 						
 						Thread.sleep(30);
-						tiger.setFace(tiger.getFace());
-						tiger.attackEnemy(2);
-						tiger.setActionState(2);
+						blackPanther.setFace(blackPanther.getFace());
+						blackPanther.attackEnemy(2);
+						blackPanther.setActionState(2);
 
-						tiger.nextPosition(tiger.getFace());
-						tiger.setVelocity(1000, 0);
+						blackPanther.nextPosition(blackPanther.getFace());
+						blackPanther.setVelocity(1000, 0);
 						Thread.sleep(30);
-						tiger.setFace("OPPOSITE");
-						tiger.attackEnemy(2);
+						blackPanther.setFace("OPPOSITE");
+						blackPanther.attackEnemy(2);
 
-//						tiger.setActionState(2);
-						tiger.nextPosition(tiger.getFace());	
+//						blackPanther.setActionState(2);
+						blackPanther.nextPosition(blackPanther.getFace());	
 
 		        		loop--;
 					}
@@ -99,18 +99,18 @@ public class KeyControlBlackPanther {
 					e.printStackTrace();
 				}
 				BlackPanther.spinAttackDetected = false;
-				tiger.setSkillOn(false);
-				tiger.switchToWalk();
+				blackPanther.setSkillOn(false);
+				blackPanther.switchToWalk();
 			});
 			delay.start();
 		} 
 		
 		if(input.contains(GODMODE_ON_KEY)) {
-			tiger.enableGodMode();
+			blackPanther.enableGodMode();
 			System.out.println("enableGodMode!");
 		}
 		else if(input.contains(GODMODE_OFF_KEY)) {
-			tiger.disableGodMode();
+			blackPanther.disableGodMode();
 			System.out.println("disableGodMode!");
 		}
 		if(input.contains(GETSCORE_KEY)) {
@@ -128,46 +128,46 @@ public class KeyControlBlackPanther {
 			LoopGame.gamePause.show(Main.stage);
 		}
 
-	    if (input.contains("LEFT") && tiger.getRealX() > 0) {
+	    if (input.contains("LEFT") && blackPanther.getRealX() > 0) {
 			// x 70
-            tiger.addVelocity(-200,0);
-            tiger.setFace("LEFT");
-            tiger.setActionState(0);
+            blackPanther.addVelocity(-200,0);
+            blackPanther.setFace("LEFT");
+            blackPanther.setActionState(0);
         }
-	    if (input.contains("RIGHT") && tiger.getRealX() < 1230 - tiger.getRealWidth()) {
-            tiger.addVelocity(200,0);
-            tiger.setFace("RIGHT");
-            tiger.setActionState(0);
+	    if (input.contains("RIGHT") && blackPanther.getRealX() < 1230 - blackPanther.getRealWidth()) {
+            blackPanther.addVelocity(200,0);
+            blackPanther.setFace("RIGHT");
+            blackPanther.setActionState(0);
         }
-	    if (input.contains("UP") && tiger.getRealY() > 210) {
+	    if (input.contains("UP") && blackPanther.getRealY() > 210) {
         	// y 50
-            tiger.addVelocity(0,-200);
-            tiger.setFace(tiger.getFace());
-            tiger.setActionState(0);
+            blackPanther.addVelocity(0,-200);
+            blackPanther.setFace(blackPanther.getFace());
+            blackPanther.setActionState(0);
 
         }
-		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
-            tiger.addVelocity(0,200);
-            tiger.setFace(tiger.getFace());
-            tiger.setActionState(0);
+		else if (input.contains("DOWN") && blackPanther.getRealY() < 800-blackPanther.getRealHeight()) {
+            blackPanther.addVelocity(0,200);
+            blackPanther.setFace(blackPanther.getFace());
+            blackPanther.setActionState(0);
 		}
-        if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {
+        if(input.contains(ATTACK_KEY) && blackPanther.isCanMovePosition() == true && StatusBar.attackIsReady()) {
 			Audio.attackSound();
-			tiger.attackEnemy(1);
+			blackPanther.attackEnemy(1);
 
         	Thread t = new Thread(()->{
     			try {
     				//setImageList
-    	        	tiger.setAttackable(true);
+    	        	blackPanther.setAttackable(true);
     	        	//setImage
-    	        	tiger.setFace(tiger.getFace());
+    	        	blackPanther.setFace(blackPanther.getFace());
     	        	//movePosition
-    	        	tiger.nextPosition(tiger.getFace());
-    	            tiger.setCanMovePosition(false);
+    	        	blackPanther.nextPosition(blackPanther.getFace());
+    	            blackPanther.setCanMovePosition(false);
     	            Thread.sleep(BlackPanther.ATTACK_COOLDOWN_VALUE);
-    	            tiger.switchToWalk();
-    	            tiger.setCanMovePosition(true);
-    	            tiger.setActionState(0);
+    	            blackPanther.switchToWalk();
+    	            blackPanther.setCanMovePosition(true);
+    	            blackPanther.setActionState(0);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

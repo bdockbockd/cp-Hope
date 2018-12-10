@@ -74,7 +74,7 @@ public class LoopGame {
 					//System.out.println(elapsedTime);
 					lastNanoTime = currentNanoTime;
                 
-					// set Velocity tiger
+					// set Velocity blackPanther
 					if(!(blackPanther.isSkillOn())) {
 						blackPanther.setVelocity(0,0);
 						a.setVelocity(0, 0);
@@ -153,7 +153,7 @@ public class LoopGame {
 						((EnemyGen.getbadList()).get(i)).render(StartGame.gc);
 					}
 					
-					//render tiger	
+					//render blackPanther	
 					blackPanther.render(gc);
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
