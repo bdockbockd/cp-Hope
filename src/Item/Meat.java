@@ -5,7 +5,7 @@ import Constant.Images;
 import Sprite.BlackPanther;
 
 public class Meat extends Item {
-	private static final int healFactor = 50;
+	private static final int healFactor = 70;
 	
 	public Meat(double x, double y){
 		super(x, y, Images.meat, Images.meatD);

@@ -1,5 +1,5 @@
 package Controller;
-	
+
 import Constant.Audio;
 import Constant.FontRes;
 import Exception.ExitGameException;
@@ -24,7 +24,7 @@ import javafx.scene.input.KeyEvent;
 public class Main extends Application {
 
 	public static Stage stage;
-	//public static ArrayList<Image> selectMenu = new ArrayList<Image>();
+	// public static ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static int selectNumber = 1000000;
 	public static MainMenu mainMenu;
 	public static GameMenu gameMenu;
@@ -37,40 +37,43 @@ public class Main extends Application {
 		try {
 			FontRes.load();
 			stage = primaryStage;
-			stage.setTitle("blackPantherX"); 
-			mainMenu = new MainMenu();	
+			stage.setTitle("blackPantherX");
+			mainMenu = new MainMenu();
 			gameMenu = new GameMenu();
 			howToPlayMenu = new HowToPlayMenu();
 			hallOfFameMenu = new HallOfFameMenu();
 			quitMenu = new QuitMenu();
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-	            @Override
-	            public void handle(WindowEvent t) {
-	            	gameQuit();
-	            }
-	        });
+				@Override
+				public void handle(WindowEvent t) {
+					gameQuit();
+				}
+			});
 			mainMenu();
 			stage.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	public static void mainMenu() {
 		Audio.MENU_BGM.play();
 		stage.setScene(mainMenu);
 	}
+
 	public static void gameMenu() {
 		stage.setScene(gameMenu);
 	}
+
 	public static void howToPlayMenu() {
 		stage.setScene(howToPlayMenu);
 	}
-	public static void hallOfFameMenu(){
+
+	public static void hallOfFameMenu() {
 		try {
 			HallOfFameMenu.fillText();
 		} catch (HallOfFameException e) {
@@ -78,24 +81,27 @@ public class Main extends Application {
 			alert.setTitle("blackPantherX");
 			alert.setHeaderText("Hall of fame is updated!");
 			alert.showAndWait();
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		stage.setScene(hallOfFameMenu);
 	}
+
 	public static void quitMenu() {
 		quitMenu = new QuitMenu();
 		MainMenu.pressAble = false;
 		quitMenu.show(stage);
 	}
+
 	public static void startGame(String playerName) {
 		Audio.MENU_BGM.stop();
 		startGame = new StartGame(playerName);
 		stage.setScene(startGame);
 	}
-	public static void gameQuit(){
-	    // get a handle to the stage
-	    //Stage stage = (Stage) closeButton.getScene().getWindow();
-	    // do what you have to do
+
+	public static void gameQuit() {
+		// get a handle to the stage
+		// Stage stage = (Stage) closeButton.getScene().getWindow();
+		// do what you have to do
 		try {
 			HallOfFameMenu.save();
 		} catch (ExitGameException e) {
@@ -104,20 +110,18 @@ public class Main extends Application {
 			alert.setHeaderText("THANK FOR PLAYING!");
 			alert.setContentText("BEEBER & OUFEOW");
 			alert.showAndWait();
-//			e.printStackTrace();
 		}
-        Platform.exit();
-        System.exit(0);
+		Platform.exit();
+		System.exit(0);
 	}
-	
+
 	public static void backMenu(Scene s) {
 		s.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-		      if(key.getCode() == KeyCode.ESCAPE)
-		      {
-		    	  Audio.SELECTMENU.play();
-		    	  Main.mainMenu();
-		      }
+			if (key.getCode() == KeyCode.ESCAPE) {
+				Audio.SELECTMENU.play();
+				Main.mainMenu();
+			}
 		});
 	}
-	
+
 }

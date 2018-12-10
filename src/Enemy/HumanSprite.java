@@ -24,7 +24,7 @@ public abstract class HumanSprite extends Sprite {
 	private boolean isFollowing = false;
 	private boolean isGreedy = false;
 
-	public static double BOT_GREEDY_RATE = 0.9;
+	public static double BOT_GREEDY_RATE = 1.0;
 	public static double BOT_FOLLOWING_RATE = 0.4;
 	public static double BOT_STEADY_RATE = 0.2;
 	public static double MAX_RANDOM_SPEED = 200;

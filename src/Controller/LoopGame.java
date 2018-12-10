@@ -38,15 +38,12 @@ public class LoopGame {
 	public LoopGame(GraphicsContext gc, Scene theScene, String playerName) {
 
 		LoopGame.startGame(gc, theScene, playerName);
-		TrapMan a = new TrapMan();
-		a.setPosition(100, 300);
 
 		new AnimationTimer() {
 			@Override
 			public void handle(long currentNanoTime) {
 				if (!blackPanther.isDead() && !GamePause.isPause) {
-					// update bot Quantity
-					EnemyGen.checkQuantityBot();
+
 					// Input
 					// drawMap
 					// calculate time since last update.
@@ -57,73 +54,14 @@ public class LoopGame {
 					}
 					// System.out.println(elapsedTime);
 					lastNanoTime = currentNanoTime;
-
-					// set Velocity blackPanther
-					if (!(blackPanther.isSkillOn())) {
-						blackPanther.setVelocity(0, 0);
-						a.setVelocity(0, 0);
-						KeyControlBot.keySpeed(a, currentNanoTime);
-						KeyControlBlackPanther.keyActionToSpeed(blackPanther, currentNanoTime, this);
-
-						// checkPosition blackPanther
-						if (CCHECK && blackPanther.getActionState() == 0) {
-							Thread x = new Thread(() -> {
-								try {
-									CCHECK = false;
-									blackPanther.nextPosition(blackPanther.getFace());
-									Thread.sleep(50);
-									CCHECK = true;
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-							});
-							x.start();
-						}
-					}
-
-					// update position from time and velocity
-					blackPanther.update(elapsedTime);
-
-					// updateBot random every 1 (VELOCITYXY)
-					if (CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0 && !gamePause.isShowing()) {
-						for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
-							if (!EnemyGen.getbadList().get(i).isDead()
-									&& !(EnemyGen.getbadList().get(i).isKnockBack())) {
-								((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
-							}
-						}
-						DELAYBOT = new Thread(() -> {
-							try {
-								CANUPDATEBOT = false;
-								Thread.sleep(3000);
-								CANUPDATEBOT = true;
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						});
-						DELAYBOT.start();
-
-					}
-
-					// check bot attack
-					EnemyGen.checkAttackHuman(blackPanther);
-
-					// check bot get damaged and remove death
-					EnemyGen.removeEnemy();
-
-					// update Item
-					Item.update(elapsedTime);
-
-					// update bot all times
-					for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
-						if (EnemyGen.getbadList().get(i).isKnockBack()) {
-						}
-						((EnemyGen.getbadList()).get(i)).update(elapsedTime);
-					}
+					LoopGame.updateBlackPanther(currentNanoTime, this);
+					LoopGame.updateBotAndItem();
+					EnemyGen.modifiyBotLevel();
+					Controller.ScoreBoard.update();
+					Controller.StatusBar.resetProgress(blackPanther);
 
 					gc.drawImage((Images.stageMap)[blackPanther.getStatus()], 0, 0);
 
-					// render bot
 					Collections.sort(EnemyGen.getbadList(), new Comparator<HumanSprite>() {
 						@Override
 						public int compare(final HumanSprite o1, final HumanSprite o2) {
@@ -134,20 +72,10 @@ public class LoopGame {
 							}
 						}
 					});
-					for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
-						((EnemyGen.getbadList()).get(i)).render(StartGame.gc);
-					}
-
-					// render blackPanther
+					
 					blackPanther.render(gc);
-					Controller.ScoreBoard.update();
-					Controller.StatusBar.resetProgress(blackPanther);
-					Item.checkItemUse(blackPanther);
-					blackPanther.checkStatus();
+					EnemyGen.renderBotList(gc);
 					Item.render(gc);
-
-					a.update(elapsedTime);
-					a.render(gc);
 
 					// Game Over
 					try {
@@ -196,6 +124,74 @@ public class LoopGame {
 		gamePause = new GamePause();
 		CANUPDATEBOT = true;
 		CCHECK = true;
+	}
+
+	public static void updateBlackPanther(long currentNanoTime, AnimationTimer animation) {
+		// set Velocity blackPanther
+		blackPanther.checkStatus();
+
+		if (!(blackPanther.isSkillOn())) {
+			blackPanther.setVelocity(0, 0);
+			KeyControlBlackPanther.keyActionToSpeed(blackPanther, currentNanoTime, animation);
+
+			// checkPosition blackPanther
+			if (CCHECK && blackPanther.getActionState() == 0) {
+				Thread x = new Thread(() -> {
+					try {
+						CCHECK = false;
+						blackPanther.nextPosition(blackPanther.getFace());
+						Thread.sleep(50);
+						CCHECK = true;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				});
+				x.start();
+			}
+		}
+
+		// update position from time and velocity
+		blackPanther.update(elapsedTime);
+	}
+
+	public static void updateBotAndItem() {
+		Item.checkItemUse(blackPanther);
+
+		// update Item
+		Item.update(elapsedTime);
+		// update bot Quantity
+		EnemyGen.checkQuantityBot();
+		// updateBot random every 3 (VELOCITYXY)
+		if (CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0 && !gamePause.isShowing()) {
+			for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
+				if (!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) {
+					((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
+				}
+			}
+			DELAYBOT = new Thread(() -> {
+				try {
+					CANUPDATEBOT = false;
+					Thread.sleep(3000);
+					CANUPDATEBOT = true;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+			DELAYBOT.start();
+		}
+
+		// check bot attack
+		EnemyGen.checkAttackHuman(blackPanther);
+
+		// check bot get damaged and remove death
+		EnemyGen.removeEnemy();
+
+		// update bot all times
+		for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
+			if (EnemyGen.getbadList().get(i).isKnockBack()) {
+			}
+			((EnemyGen.getbadList()).get(i)).update(elapsedTime);
+		}
 	}
 
 	public static void setKey(Scene theScene) {

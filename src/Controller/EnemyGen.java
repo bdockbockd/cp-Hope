@@ -6,13 +6,14 @@ import Constant.Audio;
 import Constant.Images;
 import Enemy.*;
 import Sprite.BlackPanther;
+import javafx.scene.canvas.GraphicsContext;
 
 public class EnemyGen {
-	
-    public static boolean BOTSPAWN = true;
-    public static final int BOTSPAWNRATE = 1; //BOTPERSEC
+
+	public static boolean BOTSPAWN = true;
+	public static final int BOTSPAWNRATE = 1; // BOTPERSEC
 	public static final int ENEMYSTARTNUMBER = 0;
-    public static int enemyMaximumNumber = 20;
+	public static int enemyMaximumNumber = 20;
 	private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
 	public static BlackPanther instanceTiger;
 
@@ -91,7 +92,7 @@ public class EnemyGen {
 				enemy.setTomb(true);
 				Audio.ENEMY_DEAD.play();
 				enemy.setImage(Images.enemyTomb);
-				Controller.ScoreBoard.addScore(1000);
+				Controller.ScoreBoard.addScore(enemy);
 				Thread t = new Thread(() -> {
 					try {
 						Thread.sleep(1000);
@@ -127,11 +128,11 @@ public class EnemyGen {
 
 	public static HumanSprite randomType() {
 		double random = Math.random();
-		if (random > 0.9) {
+		if (random > 0.88) {
 			return new GunMan();
-		} else if (random > 0.85) {
+		} else if (random > 0.80) {
 			return new TrapMan();
-		} else if (random > 0.50) {
+		} else if (random > 0.40) {
 			return new SwordMan();
 		} else {
 			return new BadHuman();
@@ -139,43 +140,50 @@ public class EnemyGen {
 	}
 
 	public static void modifiyBotLevel() {
-		if(Timer.getSec() == 20) {
+		if (Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-		    HumanSprite.BOT_GREEDY_RATE = 0.8;
-		    HumanSprite.BOT_FOLLOWING_RATE = 0.4;
-		    HumanSprite.BOT_STEADY_RATE = 0.15;
-		} else if(Timer.getSec() == 50) {
+			HumanSprite.BOT_GREEDY_RATE = 0.8;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.4;
+			HumanSprite.BOT_STEADY_RATE = 0.15;
+		} else if (Timer.getSec() == 50) {
 			enemyMaximumNumber += 5;
-		    HumanSprite.BOT_GREEDY_RATE = 0.75;
-		    HumanSprite.BOT_FOLLOWING_RATE = 0.3;
-		    HumanSprite.BOT_STEADY_RATE = 0.10;
-		} else if(Timer.getMin() == 1 && Timer.getSec() == 20) {
+			HumanSprite.BOT_GREEDY_RATE = 0.75;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.3;
+			HumanSprite.BOT_STEADY_RATE = 0.10;
+		} else if (Timer.getMin() == 1 && Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-		    HumanSprite.BOT_GREEDY_RATE = 0.65;
-		    HumanSprite.BOT_FOLLOWING_RATE = 0.2;
-		    HumanSprite.BOT_STEADY_RATE = 0.05;
-		} else if(Timer.getMin() == 2 ) {
-		    HumanSprite.BOT_GREEDY_RATE = 0.60;
-		    HumanSprite.BOT_FOLLOWING_RATE = 0.1;
-		    HumanSprite.BOT_STEADY_RATE = 0;		}
+			HumanSprite.BOT_GREEDY_RATE = 0.65;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.2;
+			HumanSprite.BOT_STEADY_RATE = 0.05;
+		} else if (Timer.getMin() == 2) {
+			enemyMaximumNumber += 5;
+			HumanSprite.BOT_GREEDY_RATE = 0.60;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.1;
+			HumanSprite.BOT_STEADY_RATE = 0;
+		}
 	}
-	
+
 	public static void checkQuantityBot() {
-		if(EnemyGen.BOTSPAWN)
-		{
-			if(EnemyGen.getbadList().size() < EnemyGen.enemyMaximumNumber) {
+		if (EnemyGen.BOTSPAWN) {
+			if (EnemyGen.getbadList().size() < EnemyGen.enemyMaximumNumber) {
 				EnemyGen.addBot();
 			}
-			Thread addBot = new Thread(()->{
+			Thread addBot = new Thread(() -> {
 				try {
 					EnemyGen.BOTSPAWN = false;
-					Thread.sleep(1000/EnemyGen.BOTSPAWNRATE);
+					Thread.sleep(1000 / EnemyGen.BOTSPAWNRATE);
 					EnemyGen.BOTSPAWN = true;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			});
 			addBot.start();
+		}
+	}
+	
+	public static void renderBotList(GraphicsContext gc) {
+		for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
+			((EnemyGen.getbadList()).get(i)).render(gc);
 		}
 	}
 }

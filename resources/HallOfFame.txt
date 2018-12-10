@@ -1,6 +1,16 @@
+Player:150000
+Player:143000
 oozygrub:129000
 Player:113000
+Player:112000
+Player:111000
+Player:110000
+Player:106000
+Player:79000
 Player:75000
+Player:66000
+Player:65000
+Player:51000
 Jelly:30000
 Peter:20000
 Adam:20000
