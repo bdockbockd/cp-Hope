@@ -34,8 +34,6 @@ public class LoopGame {
     public static double elapsedTime;
     public static GraphicsContext gc;
     public static boolean botHit;
-//    public static AnimationTimer animation;
-    
 
     public static Thread DELAYBOT;
 
@@ -108,7 +106,7 @@ public class LoopGame {
 					// updateBot random every 1 (VELOCITYXY)
 					if(CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0 && !gamePause.isShowing()) {
 						for(int i =0;i<EnemyGen.getbadList().size();i++) {
-							if(!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack()) ) {
+							if(!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) { 
 								((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
 							}
 						}
