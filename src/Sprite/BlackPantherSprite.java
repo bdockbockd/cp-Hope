@@ -14,7 +14,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	protected boolean attackable;
 	protected boolean canMovePosition = true;
 
-	private final double maxHealth = 1000;
+	private final double maxHealth = 1500;
 	private double health;
 	private double damage;
 	private double armor;

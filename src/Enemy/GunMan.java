@@ -47,7 +47,7 @@ public class GunMan extends BadHuman {
 	
 	//update every one time
 	@Override
-	public void update(double time, BlackPanther tiger) {
+	public void update(double time, BlackPanther blackPanther) {
 		if(this.isDead()) {
 			this.setVelocity(0, 0);
 			this.setImage(Images.enemyTomb);
@@ -57,17 +57,17 @@ public class GunMan extends BadHuman {
 
 		double random = Math.random();
 		if(random > HumanSprite.BOT_GREEDY_CHANCE + 0.5) {
-			this.updateBotTypeGreedy(tiger);
+			this.updateBotTypeGreedy(blackPanther);
 		} else if(random > HumanSprite.BOT_FOLLOWING_CHANCE) {
-			this.updateBotTypeFollowing(tiger);
+			this.updateBotTypeFollowing(blackPanther);
 		} else {
-			this.randomBot(tiger);
+			this.randomBot(blackPanther);
 		}
    
 	}
 	
 	
-	public void updateBotTypeGreedy(BlackPanther tiger) {
+	public void updateBotTypeGreedy(BlackPanther blackPanther) {
 		for(int i =0;i<(int)Math.random()*1;i++) {
 			if(this.getPositionX() > 0 && this.getPositionX() <1250) {
 				this.fireBullet();
@@ -75,8 +75,8 @@ public class GunMan extends BadHuman {
 		}
 	}
 	
-    public void updateBotTypeFollowing(BlackPanther tiger) {
-		if((this.getPositionY() > tiger.getPositionY())) {
+    public void updateBotTypeFollowing(BlackPanther blackPanther) {
+		if((this.getPositionY() > blackPanther.getPositionY())) {
     		if(this.getPositionX() < 100) {
           		this.setVelocityX(HumanSprite.MAX_RANDOM_SPEED);
           	} else if (this.getPositionX() > 1175) {
@@ -96,7 +96,7 @@ public class GunMan extends BadHuman {
 		}    	  
     }
 	    
-    public void randomBot(BlackPanther tiger) {
+    public void randomBot(BlackPanther blackPanther) {
     	double random = Math.random();
 	  	if(random > 0.90) {
 	  		if(this.getFace() == "LEFT") {

@@ -68,21 +68,22 @@ public abstract class HumanSprite extends Sprite {
         
     }
     public void setBotType() {
-    	if(Math.random() < 0.2) {
+    	double random = Math.random();
+    	if(Math.random() < 0.15) {
     		this.setFollowing(false);
-    	} else if(Math.random() >= 0.2) {
+    	} else if(Math.random() >= 0.75) {
     		this.setGreedy(true);
     	} else {
     		this.setFollowing(true);
     	}
 	}
-    public void updateBotTypeFollowing(BlackPanther tiger) {
-        if(this.intersect(tiger) == false) {
-     			if(tiger.getPositionX()+120 < this.getPositionX()) {
+    public void updateBotTypeFollowing(BlackPanther blackPanther) {
+        if(this.intersect(blackPanther) == false) {
+     			if(blackPanther.getPositionX()+120 < this.getPositionX()) {
  					this.setFace("LEFT");
  					this.setPositionL(0);
      				this.nextPosition(this.getFace());
-     				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+     				if(blackPanther.getPositionY()+75 < this.getPositionY() ) {
          				this.setVelocity(-Math.random()*200,-Math.random()*200);
      				} else {
      					this.setVelocity(-Math.random()*200,Math.random()*200);
@@ -92,7 +93,7 @@ public abstract class HumanSprite extends Sprite {
      				this.setFace("RIGHT");
  					this.setPositionR(0);
      				this.nextPosition(this.getFace());
-     				if(tiger.getPositionY()+75 < this.getPositionY()) {
+     				if(blackPanther.getPositionY()+75 < this.getPositionY()) {
          				this.setVelocity(Math.random()*200,-Math.random()*200);
      				} else {
      					this.setVelocity(Math.random()*200,Math.random()*200);
@@ -102,12 +103,12 @@ public abstract class HumanSprite extends Sprite {
          }
     }
     
-    public void updateBotTypeGreedy(BlackPanther tiger) {
-    	if(tiger.getPositionX()+120 < this.getPositionX()) {
+    public void updateBotTypeGreedy(BlackPanther blackPanther) {
+    	if(blackPanther.getPositionX()+120 < this.getPositionX()) {
 				this.setFace("LEFT");
 				this.setPositionL(0);
 				this.nextPosition(this.getFace());
-				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+				if(blackPanther.getPositionY()+75 < this.getPositionY() ) {
  				this.setVelocity(-Math.random()*200,-Math.random()*200);
 				} else {
 					this.setVelocity(-Math.random()*200,Math.random()*200);
@@ -117,7 +118,7 @@ public abstract class HumanSprite extends Sprite {
 				this.setFace("RIGHT");
 				this.setPositionR(0);
 				this.nextPosition(this.getFace());
-				if(tiger.getPositionY()+75 < this.getPositionY()) {
+				if(blackPanther.getPositionY()+75 < this.getPositionY()) {
  				this.setVelocity(Math.random()*200,-Math.random()*200);
 				} else {
 					this.setVelocity(Math.random()*200,Math.random()*200);
@@ -126,16 +127,16 @@ public abstract class HumanSprite extends Sprite {
 			}
     }
     
-    public void updateSteady(BlackPanther tiger) {
+    public void updateSteady(BlackPanther blackPanther) {
     	if(Math.random() > 0.3) {
     		this.setVelocity(Math.random()*100-50, Math.random()*100-50);
     		return;
     	}
-    	if(tiger.getPositionX()+120 < this.getPositionX()) {
+    	if(blackPanther.getPositionX()+120 < this.getPositionX()) {
 			this.setFace("LEFT");
 			this.setPositionL(0);
 			this.nextPosition(this.getFace());
-			if(tiger.getPositionY()+75 < this.getPositionY() ) {
+			if(blackPanther.getPositionY()+75 < this.getPositionY() ) {
 				this.setVelocity(-Math.random()*200,0);
 			} else {
 				this.setVelocity(-Math.random()*200,0);
@@ -145,7 +146,7 @@ public abstract class HumanSprite extends Sprite {
 			this.setFace("RIGHT");
 			this.setPositionR(0);
 			this.nextPosition(this.getFace());
-			if(tiger.getPositionY()+75 < this.getPositionY()) {
+			if(blackPanther.getPositionY()+75 < this.getPositionY()) {
 				this.setVelocity(Math.random()*200,0);
 			} else {
 				this.setVelocity(Math.random()*200,0);
@@ -154,8 +155,8 @@ public abstract class HumanSprite extends Sprite {
 		}
     }
     
-	 public void attack(BlackPanther tiger) {
-		tiger.takeDamage(this.getDamage());
+	 public void attack(BlackPanther blackPanther) {
+		blackPanther.takeDamage(this.getDamage());
 	}
 
     public void render(GraphicsContext gc)
@@ -264,7 +265,7 @@ public abstract class HumanSprite extends Sprite {
 	}
 	
 	
-	public abstract void update(double time, BlackPanther tiger);
+	public abstract void update(double time, BlackPanther blackPanther);
 	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
 
 

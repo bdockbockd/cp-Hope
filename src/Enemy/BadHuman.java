@@ -34,18 +34,18 @@ public class BadHuman extends HumanSprite  {
         }
     }
     //bot update
-    public void update(double time, BlackPanther tiger)
+    public void update(double time, BlackPanther blackPanther)
     {
     	
     	if(this.isDead()) {
     		return;
     	}
     	if(this.isFollowing()) {
-    		this.updateBotTypeFollowing(tiger);
+    		this.updateBotTypeFollowing(blackPanther);
     	} else if(this.isGreedy()) {
-    		this.updateBotTypeGreedy(tiger);
+    		this.updateBotTypeGreedy(blackPanther);
     	} else {
-    		this.updateSteady(tiger);
+    		this.updateSteady(blackPanther);
     	}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
