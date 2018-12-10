@@ -25,7 +25,7 @@ public class HowToPlayMenu extends Scene{
 		root.getChildren().addAll(canvas);
 		Main.backMenu(this);
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND)
+		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER)
 		      {
 		    	  Audio.SELECTMENU.play();
 		    	  Main.mainMenu();

@@ -29,14 +29,16 @@ public class QuitMenu extends Popup{
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(this.isShowing())
 			{
-				Audio.SELECTMENU.play();
-		      if(key.getCode()==KeyCode.DOWN || key.getCode()==KeyCode.RIGHT) {
+		      if(key.getCode()==KeyCode.RIGHT) {
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber += 1;
 		      }
-		      if(key.getCode()==KeyCode.UP || key.getCode()==KeyCode.LEFT) {
+		      if(key.getCode()==KeyCode.LEFT) {
+		    	  Audio.SELECTMENU.play();
 		    	  selectNumber -= 1;
 		      }
-		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
+		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER) {
+		    	  Audio.SELECTMENU.play();
 		    	  if(selectNumber%2 == 0){
 		    		  Main.gameQuit();
 		    	  }
@@ -47,6 +49,7 @@ public class QuitMenu extends Popup{
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE)
 		      {
+		    	  Audio.SELECTMENU.play();
 		    	  MainMenu.pressAble = true;
 		    	  selectNumber = 100000;
 		      }
