@@ -138,7 +138,7 @@ public abstract class HumanSprite extends Sprite {
 	public boolean isWaitToHit() {
 		return waitToHit;
 	}
-	public void setWaitToHit(boolean waitToHit) { //change of this by Ou
+	public void setWaitToHit(boolean waitToHit) { 
 		if(this.waitToHit != waitToHit)
 		{
 			this.setFace(this.getFace());
