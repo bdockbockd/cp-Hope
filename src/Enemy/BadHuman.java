@@ -16,14 +16,6 @@ public class BadHuman extends HumanSprite  {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void nextPosition(String direction) {
-    	if(this.getFace().equals("LEFT")) {
-    		this.setImage((this.getImageL())[0]);
-    	} else {
-    		this.setImage((this.getImageR())[0]);
-    	}
-    }
-
     //bot update
     public void update(double time, BlackPanther tiger)
     {
@@ -42,7 +34,7 @@ public class BadHuman extends HumanSprite  {
     				} else {
     					this.setVelocity(-Math.random()*200,Math.random()*200);
     				}
-  
+
     			} else {
     				this.setFace("RIGHT");
     				this.nextPosition(this.getFace());

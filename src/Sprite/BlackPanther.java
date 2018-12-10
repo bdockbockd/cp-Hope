@@ -16,7 +16,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	public static boolean spinAttackDetected = false;
 	public static boolean jumpAttackDetected = false;
 	public static final long ATTACK_COOLDOWN_CONSTANT = 400; //sec
-	public static long ATTACK_COOLDOWN_VALUE = 400;
+	public static long ATTACK_COOLDOWN_VALUE = 200;
 	public static long JUMP_COOLDOWN = 1*1000; //sec
 	public static long SPIN_COOLDOWN = 5*1000; //sec
 	
@@ -197,7 +197,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		}
 		else if(BlackPanther.STATUS == 1)
 		{
-			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/8;
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT/2;
 			setDamage(300);
 			setArmor(20);
 		}
@@ -226,6 +226,10 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	
 	public void disableGodMode() {
 		isGod = false;
+	}
+	public void reset() {
+		this.setActionState(0);
+		BlackPanther.ISSUPER = false;
 	}
 	
 }

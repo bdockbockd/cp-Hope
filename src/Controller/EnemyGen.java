@@ -26,7 +26,7 @@ public class EnemyGen {
 		    if(random > 0.8) {
 		    	enemy = new GunMan();
 		    } else if(random > 0.6) {
-		    	enemy = new TrapMan();
+		    	enemy = new SwordMan();
 		    } else if (random > 0.4) {
 		    	enemy = new TrapMan();
 		    } else {
@@ -74,7 +74,8 @@ public class EnemyGen {
 	    				Thread a = new Thread (()->{
 	    					try {
 	    						enemy.setWaitToHit(true);
-	    						Thread.sleep(2000);
+	    						Thread.sleep(1000);
+	    						Thread.sleep(1000);
 	    						enemy.setWaitToHit(false);
 	    					} catch (InterruptedException e) {
 	    						// TODO Auto-generated catch block

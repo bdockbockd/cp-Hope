@@ -80,8 +80,8 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	        if(this.positionX > 1250-this.getWidth()+10){
 	        	this.setPositionX(1250-this.getWidth()+10);
 	        }
-	        if(this.positionY < 210) {
-	        	this.setPositionY(210);
+	        if(this.getRealY() < 200) {
+	        	this.setPositionY(200);
 	        }
 	        if(this.positionY > 800-this.getHeight()) {
 	        	this.setPositionY(800-this.getHeight());
@@ -93,8 +93,8 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
             if(this.positionX > 1230-this.getRealWidth()){
             	this.setPositionX(1250-this.getRealWidth());
             }
-            if(this.positionY < 210) {
-            	this.setPositionY(210);
+            if(this.getRealY() < 200) {
+            	this.setPositionY(200);
             }
             if(this.positionY > 800-this.getRealHeight()) {
             	this.setPositionY(800-this.getRealHeight());

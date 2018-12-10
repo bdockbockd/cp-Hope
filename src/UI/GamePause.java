@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;
+import Controller.LoopGame;
 import Controller.Main;
 import Controller.ScoreBoard;
 import Controller.Timer;
@@ -61,6 +62,7 @@ public class GamePause extends Popup{
 		    		  Timer.terminate();
 		    		  ScoreBoard.hide();
 		    		  EnemyGen.getbadList().clear();
+		    		  LoopGame.blackPanther.reset();
 		    		  Item.Item.itemList.clear();
 		    		  Audio.ENEMY_FIRE.stop();
 		    		  Audio.GAME_BGM.stop();

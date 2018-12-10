@@ -1,10 +1,11 @@
 package Item;
 
+import Controller.LoopGame;
 import Sprite.BlackPanther;
 import Sprite.Moveable;
 import javafx.scene.image.Image;
 
-public class Trap extends Item implements Moveable {
+public class Trap extends Item implements Moveable, DisappearObject {
     private double velocityX = 0, velocityY =0;
 
 	public Trap(double x, double y, Image image) {
@@ -22,19 +23,19 @@ public class Trap extends Item implements Moveable {
 	@Override
 	public void itemUse(BlackPanther blackPanther) {
 		
-		blackPanther.setSkillOn(true);
 		Thread trap = new Thread(()->{
+			blackPanther.setVelocity(0, 0);
+			blackPanther.setSkillOn(true);
+//			LoopGame.gc.drawImage(img, x, y);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			blackPanther.setSkillOn(false);
 		});
 		trap.start();
-		blackPanther.setSkillOn(false);
-		
-
 	}
 	public double getVelocityX() {
 		return this.velocityX;

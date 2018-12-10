@@ -91,9 +91,9 @@ public class GunMan extends BadHuman {
 		}
 		Audio.ENEMY_FIRE.play();
 		if(this.getFace() == "LEFT") {
-			new Bullet(this.getPositionX()-100, this.getPositionY(), (Images.BULLET)[0]);
+			new Bullet(this.getPositionX()-100, this.getPositionY()+50, (Images.BULLET)[0]);
 		} else {
-			new Bullet(this.getPositionX()+100, this.getPositionY(), (Images.BULLET)[1]);
+			new Bullet(this.getPositionX()+100, this.getPositionY()+50, (Images.BULLET)[1]);
 		}
 	}
 	

@@ -19,14 +19,6 @@ public class TrapMan extends BadHuman {
 		this.isReadyToTrap = true;
 	}
 	
-	public void nextPosition(String direction) {
-    	if(this.getFace().equals("LEFT")) {
-    		this.setImage((this.getImageL())[this.positionL]);
-    	} else {
-    		this.setImage((this.getImageR())[this.positionR]);
-    	}
-    }
-	
 	public void update(double time) {
 		if(this.isDead()) {
 			this.setVelocity(0, 0);
@@ -40,8 +32,8 @@ public class TrapMan extends BadHuman {
         } else if(this.getPositionX()< 1100 && this.getPositionX() > 800) {
         	this.setPositionX(1100);
         }
-        if(this.positionY < 180) {
-        	this.setPositionY(180);
+        if(this.positionY < 205) {
+        	this.setPositionY(205);
         }
         if(this.positionY > 800-this.getHeight()-30) {
         	this.setPositionY(800-this.getHeight()-30);
@@ -61,9 +53,7 @@ public class TrapMan extends BadHuman {
 				Thread delayToThrow = new Thread(()->{
 					try {
 						this.isReadyToTrap = false;
-						this.setFace(this.getFace());
-						this.nextPosition(this.getFace());
-						Thread.sleep(1000);
+						Thread.sleep(2000);
 						this.throwTrap();
 						this.isReadyToTrap = true;
 					} catch (InterruptedException e) {
@@ -91,12 +81,14 @@ public class TrapMan extends BadHuman {
 		}
 		
 		public void throwTrap() {
+			this.setFace(this.getFace());
+			this.nextPosition(this.getFace());
 			System.out.print("THROW");
 			Audio.ENEMY_TRAP.play();
 			if(this.getFace() == "LEFT") {
-				new Trap(this.getPositionX()-100, this.getPositionY(), (Images.TRAPITEM)[0]);
+				new Trap(this.getPositionX()-100, this.getPositionY()+50, (Images.TRAPITEM)[0]);
 			} else {
-				new Trap(this.getPositionX()+100, this.getPositionY(), (Images.TRAPITEM)[1]);
+				new Trap(this.getPositionX()+100, this.getPositionY()+50, (Images.TRAPITEM)[1]);
 			}
 		}
 		

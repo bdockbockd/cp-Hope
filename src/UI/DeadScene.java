@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.LoopGame;
 import Controller.Main;
+import Sprite.BlackPanther;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -53,6 +55,7 @@ public class DeadScene extends Popup {
 		    	  // -> new StartGame
 		    	  if(selectNumber%2 == 0){
 		    		  selectNumber = 100000;
+		    		  LoopGame.blackPanther.reset();
 		    		  Main.startGame(playerName);
 		    	  }
 		    	  else {
