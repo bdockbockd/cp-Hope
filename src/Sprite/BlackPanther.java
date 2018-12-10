@@ -20,6 +20,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 	public static long SPIN_COOLDOWN = 5 * 1000; // sec
 	public static int status = DEFAULT_STATUS;
 	public static boolean ISSUPER = false;
+	public static boolean IsEnraged = false;
 	private boolean isGod;
 
 	public BlackPanther() {
@@ -30,7 +31,6 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 
 	public void takeDamage(double damage) {
 		if (!isGod) {
-			System.out.println("TAKE DamaGE");
 			this.setHealth(this.getHealth() - damage);
 		}
 	}
@@ -185,16 +185,22 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 	}
 
 	public void setStatus() {
-		BlackPanther.status = getStatus();
-		if (BlackPanther.status == 0) {
+		BlackPanther.STATUS = getStatus();
+		if (BlackPanther.STATUS == 0) {
 			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(100);
 			setArmor(10);
-		} else if (BlackPanther.status == 1) {
-			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT / 2;
+			IsEnraged = false;
+		} else if (BlackPanther.STATUS == 1) {
+			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(300);
 			setArmor(20);
-		} else if (BlackPanther.status == 2) {
+			IsEnraged = false;
+		} else if (BlackPanther.STATUS == 2) {
+			if(IsEnraged == false) {
+				Audio.HEARTBEAT.play();
+				IsEnraged = true;
+			}
 			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(200);
 			setArmor(15);

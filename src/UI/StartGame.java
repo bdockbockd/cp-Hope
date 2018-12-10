@@ -16,7 +16,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class StartGame extends Scene {
-	
+
 	public static Group root;
 
     public static GraphicsContext gc;
@@ -34,9 +34,9 @@ public class StartGame extends Scene {
 		root = (Group) super.getRoot();
 		StartGame.playerName = playerName;
 		timerBar = new Timer();
-	    scoreBoard = new ScoreBoard();
-	    statusBar = new StatusBar(playerName);
-	    
+		scoreBoard = new ScoreBoard();
+		statusBar = new StatusBar(playerName);
+
 		Canvas canvas = new Canvas(1250, 800);
         gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
@@ -46,13 +46,9 @@ public class StartGame extends Scene {
         bad1.setPosition(1250, 800);
         
         Audio.GAME_BGM.play();
-        
-//        Timer.reset();
-//        ScoreBoard.reset();
-//        StatusBar.reset(playerName);
-        
-        root.getChildren().addAll(canvas,statusBar,timerBar,scoreBoard);
-        Loop = new LoopGame(gc,this,playerName);
+
+		root.getChildren().addAll(canvas, statusBar, timerBar, scoreBoard);
+		Loop = new LoopGame(gc, this, playerName);
 	}
 
 }

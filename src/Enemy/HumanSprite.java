@@ -158,8 +158,16 @@ public abstract class HumanSprite extends Sprite {
 		blackPanther.takeDamage(this.getDamage());
 	}
 
+
 	public void render(GraphicsContext gc) {
 		gc.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
+		if (!this.isDead()) {
+			gc.setFill(Color.BLACK);
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getWidth(), 5);
+			gc.setFill(Color.RED);
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getWidth()*(getHealth()/getMaxHealth()), 5);
+
+		}
 	}
 
 	// getter and setter

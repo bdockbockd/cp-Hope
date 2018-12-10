@@ -4,8 +4,8 @@ import Enemy.HumanSprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class Sprite extends Rectangle implements Moveable{
-	
+public abstract class Sprite extends Rectangle implements Moveable {
+
 	private Image image;
 	private Image[] imageL;
 	private Image[] imageR;
@@ -16,17 +16,16 @@ public abstract class Sprite extends Rectangle implements Moveable{
 	protected int skillPositionL = 0;
 	protected int skillPositionR = 0;
 
-	
-    private double velocityX, velocityY;
-    
-    public Sprite(Image image, Image[] imageL, Image[] imageR) {
-    	super(0,0,image.getWidth(),image.getHeight());
-    	this.setFace("Right");
-    	this.setImage(image);
-    	this.setImageL(imageL);
-    	this.setImageR(imageR);
-    }
-    
+	private double velocityX, velocityY;
+
+	public Sprite(Image image, Image[] imageL, Image[] imageR) {
+		super(0, 0, image.getWidth(), image.getHeight());
+		this.setFace("Right");
+		this.setImage(image);
+		this.setImageL(imageL);
+		this.setImageR(imageR);
+	}
+
 	public Image[] getImageL() {
 		return imageL;
 	}
@@ -51,26 +50,22 @@ public abstract class Sprite extends Rectangle implements Moveable{
 		return positionL;
 	}
 
-
 	public void setPositionL(int positionL) {
 		this.positionL = positionL;
 	}
-
 
 	public int getPositionR() {
 		return positionR;
 	}
 
-
 	public void setPositionR(int positionR) {
 		this.positionR = positionR;
 	}
 
-
 	public void setImageL(Image[] imageL) {
 		this.imageL = imageL;
 	}
-	
+
 	public Image[] getImageR() {
 		return imageR;
 	}
@@ -79,31 +74,29 @@ public abstract class Sprite extends Rectangle implements Moveable{
 		this.imageR = imageR;
 	}
 
-
-
 	public double getVelocityX() {
-    	return this.velocityX;
-    }
-    public void setVelocityX(double velocityX) {
-    	this.velocityX = velocityX;
-    }
-    public double getVelocityY() {
-    	return this.velocityY;
-    }
-    public void setVelocityY(double velocityY) {
-    	this.velocityY = velocityY;
-    }
-    
-   
-	
+		return this.velocityX;
+	}
+
+	public void setVelocityX(double velocityX) {
+		this.velocityX = velocityX;
+	}
+
+	public double getVelocityY() {
+		return this.velocityY;
+	}
+
+	public void setVelocityY(double velocityY) {
+		this.velocityY = velocityY;
+	}
+
 	public void setImage(Image i) {
 		this.image = i;
 	}
-	public Image getImage() {
-		 return this.image;
-	}
-	
 
+	public Image getImage() {
+		return this.image;
+	}
 
 	public Image[] getImageList() {
 		return imageList;
@@ -124,22 +117,23 @@ public abstract class Sprite extends Rectangle implements Moveable{
 			this.setPositionL(0);
 			return;
 		}
-		if(face == "LEFT") {
-			this.setPositionL((this.getPositionL()+1)%(this.imageL.length));
+		if (face == "LEFT") {
+			this.setPositionL((this.getPositionL() + 1) % (this.imageL.length));
 		} else {
-			this.setPositionR((this.getPositionR()+1)%(this.imageR.length));
+			this.setPositionR((this.getPositionR() + 1) % (this.imageR.length));
 		}
 	}
-	
+
 	public void nextPosition(String direction) {
-    	if(this.getFace().equals("LEFT")) {
-    		this.setImage((this.getImageL())[this.getPositionL()]);
-    	} else {
-    		this.setImage((this.getImageR())[this.getPositionR()]);
-    	}
-    }	
-	
+		if (this.getFace().equals("LEFT")) {
+			this.setImage((this.getImageL())[this.getPositionL()]);
+		} else {
+			this.setImage((this.getImageR())[this.getPositionR()]);
+		}
+	}
+
 	public abstract void update(double time);
+
 	public abstract void render(GraphicsContext gc);
 
 }

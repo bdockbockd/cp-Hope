@@ -5,12 +5,15 @@ import Constant.Images;
 import Controller.LoopGame;
 import Item.Bullet;
 import Sprite.BlackPanther;
+import UI.GamePause;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 
 public class GunMan extends BadHuman {
 	
 	private boolean isReadyToFire;
 	public final static int SCORE = 5000;
-
 
 	public GunMan() {
 		this.setImage((Images.GUNMANR)[0]);
@@ -45,7 +48,16 @@ public class GunMan extends BadHuman {
 		}
 	}
 
-	// update every one time
+	public void render(GraphicsContext gc) {
+		gc.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
+		if (!this.isDead()) {
+			gc.setFill(Color.BLACK);
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getImage().getWidth(), 10);
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, (this.getImage().getWidth())*(getHealth()/getMaxHealth()), 10);
+			gc.setFill(Color.RED);
+	    }
+	}
+	
 	@Override
 	public void update(double time, BlackPanther blackPanther) {
 		if (this.isDead()) {

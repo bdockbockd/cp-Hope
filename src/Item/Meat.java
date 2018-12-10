@@ -10,7 +10,7 @@ public class Meat extends Item {
 	public Meat(double x, double y){
 		super(x, y, Images.meat, Images.meatD);
 	}
-	
+
 	public Meat() {
 		super(0, 0, Images.meat, Images.meatD);
 	}

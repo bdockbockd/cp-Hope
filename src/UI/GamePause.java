@@ -17,12 +17,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Popup;
 
-public class GamePause extends Popup{
-	public static ArrayList<Image>gamePause = Images.gamePause;
+public class GamePause extends Popup {
+	public static ArrayList<Image> gamePause = Images.gamePause;
 	public static int selectNumber = 100000;
 	public static boolean isPause;
 	public static boolean isReGame = false;
-	
+
 	public GamePause() {
 		super();
 		selectNumber = 100000;
@@ -31,39 +31,36 @@ public class GamePause extends Popup{
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(gamePause.get(0), 0, 0);
 		this.getContent().addAll(canvas);
-		this.setAnchorY(800/2-80);
-		this.setAnchorX(1250/2-200);
-		
+		this.setAnchorY(800 / 2 - 80);
+		this.setAnchorX(1250 / 2 - 200);
+
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(this.isShowing()){
-		      if(key.getCode()==KeyCode.RIGHT) {
-		    	  Audio.SELECTMENU.play();
-		    	  selectNumber += 1;
-		      }
-		      if(key.getCode()==KeyCode.LEFT) {
-		    	  Audio.SELECTMENU.play();
-		    	  selectNumber -= 1;
-		      }
-		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER) {
-		    	  Audio.SELECTMENU.play();
-		    	  if(selectNumber%2 == 0){
-		    		  continueGame();
-		    	  }
-		    	  else {
-		    		  this.hide();
-		    		  endGame();
-		    	  }
-		      }
-		      else if(key.getCode() == KeyCode.ESCAPE){
-		    	  Audio.SELECTMENU.play();
-//		    	  Audio.GAME_BGM.play();
-		    	  continueGame();
-		      }
-		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);
+			if (this.isShowing()) {
+				if (key.getCode() == KeyCode.RIGHT) {
+					Audio.SELECTMENU.play();
+					selectNumber += 1;
+				}
+				if (key.getCode() == KeyCode.LEFT) {
+					Audio.SELECTMENU.play();
+					selectNumber -= 1;
+				}
+				if (key.getCode() == KeyCode.SPACE || key.getCode() == KeyCode.ENTER) {
+					Audio.SELECTMENU.play();
+					if (selectNumber % 2 == 0) {
+						continueGame();
+					} else {
+						this.hide();
+						endGame();
+					}
+				} else if (key.getCode() == KeyCode.ESCAPE) {
+					Audio.SELECTMENU.play();
+					continueGame();
+				}
+				gc.drawImage(gamePause.get(selectNumber % 2), 0, 0);
 			}
 		});
 	}
-	
+
 	private void continueGame() {
 		selectNumber = 100000;
 		this.hide();
@@ -72,17 +69,18 @@ public class GamePause extends Popup{
 		ScoreBoard.show();
 		isPause = false;
 	}
-	
+
 	public static void endGame() {
-	    Timer.stop();
-	    Timer.hide();
-        Timer.terminate();
+		Timer.stop();
+		Timer.hide();
+		Timer.terminate();
 		ScoreBoard.hide();
 		EnemyGen.getbadList().clear();
 		LoopGame.blackPanther.reset();
 		Item.Item.itemList.clear();
 		Audio.ENEMY_FIRE.stop();
 		Audio.GAME_BGM.stop();
+		Audio.MENU_BGM.play();
 		Main.mainMenu();
 		System.out.println("BACK TO MAIN MENU!");
 	}

@@ -18,39 +18,51 @@ public class StatusBar extends StackPane {
 	private static ProgressIndicator pounce;
 	private static ProgressIndicator spin;
 	private static Label playerNameLabel;
-
-	public StatusBar(String playerName) {
-		super();
+	private static final int coolDownSize = 100;
+	
+	public StatusBar(String playerName)
+	{
+		super();  
 		playerNameLabel = new Label(playerName);
 		playerNameLabel.setStyle("-fx-text-fill: WHITE;");
 		playerNameLabel.setFont(Font.font("Cornerstone", FontWeight.BLACK, 24));
 		playerNameLabel.setTranslateY(-46);
-
-		attack = new ProgressIndicator(0);
-		attack.setTranslateY(26 + 31);
-		attack.setTranslateX(75 + 30);
-		attack.setStyle(
-				"-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
-
+		
+		attack = new ProgressIndicator(0); 
+		attack.setTranslateY(26+31);
+		attack.setTranslateX(-84+30);
+		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
+//		attack.setMinSize(coolDownSize, coolDownSize);
+//		attack.setMaxSize(coolDownSize, coolDownSize);
+		attack.setPrefSize(coolDownSize, coolDownSize);
+		
+		
 		pounce = new ProgressIndicator(0);
-		pounce.setTranslateY(26 + 31);
-		pounce.setTranslateX(-84 + 30);
+		pounce.setTranslateY(26+31);
+		pounce.setTranslateX(30);
 		pounce.setStyle(" -fx-progress-color: black;");
-
+//		pounce.setMinSize(coolDownSize, coolDownSize);
+//		pounce.setMaxSize(coolDownSize, coolDownSize);
+		pounce.setPrefSize(coolDownSize, coolDownSize);
+		
 		spin = new ProgressIndicator(0);
-		spin.setTranslateY(26 + 31);
-		spin.setTranslateX(30);
+		spin.setTranslateY(26+31);
+		spin.setTranslateX(75+30);
 		spin.setStyle(" -fx-progress-color: black;");
-
+		spin.setPrefSize(10, 10);
+//		spin.setMinSize(coolDownSize, coolDownSize);
+//		spin.setMaxSize(coolDownSize, coolDownSize);
+		spin.setPrefSize(coolDownSize, coolDownSize);
+		
 		ImageView statusBG = new ImageView(Images.STATUSBAR);
 		HPBar = new ProgressBar(1);
 		HPBar.setPrefSize(460, 18);
 		HPBar.setStyle(
 				"-fx-accent: rgb(143,194,103);-fx-border-radius: 9px;-fx-text-box-border: black; -fx-control-inner-background: black; -fx-padding: 0px;-fx-background-insets: 4; -fx-background-color:-fx-box-border,linear-gradient(to bottom, derive(-fx-color,100%), derive(-fx-color,100%));");
 		HPBar.setTranslateY(-23);
-
-		this.setLayoutX(1250 / 2 - 300);
-		this.setLayoutY(20);
+		
+		this.setLayoutX(1250/2-300);
+		this.setLayoutY(20); //800-150
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
 	}
 

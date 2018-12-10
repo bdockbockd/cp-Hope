@@ -11,10 +11,11 @@ public class HealthPotion extends Item {
 	public HealthPotion(double x, double y){
 		super(x, y, Images.healthPotion, Images.healthPotionD);
 	}
+
 	public HealthPotion() {
 		super(0, 0, Images.healthPotion, Images.healthPotionD);
 	}
-	
+
 	@Override
 	public void itemUse(BlackPanther blackTiger) {
 		System.out.println("HealthPotion!");

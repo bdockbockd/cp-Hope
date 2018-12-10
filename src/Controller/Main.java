@@ -49,6 +49,7 @@ public class Main extends Application {
 					gameQuit();
 				}
 			});
+			Audio.MENU_BGM.play();
 			mainMenu();
 			stage.show();
 		} catch (Exception e) {
@@ -61,7 +62,6 @@ public class Main extends Application {
 	}
 
 	public static void mainMenu() {
-		Audio.MENU_BGM.play();
 		stage.setScene(mainMenu);
 	}
 

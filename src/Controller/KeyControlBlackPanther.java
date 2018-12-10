@@ -117,7 +117,7 @@ public class KeyControlBlackPanther {
 		}
 
 		if (input.contains("ESCAPE") && !LoopGame.gamePause.isShowing() && !GamePause.isPause) {
-			Audio.SELECTMENU.play();
+			Audio.CHOOSEMENU.play();
 			GamePause.isPause = true;
 			Timer.stop();
 			Timer.hide();

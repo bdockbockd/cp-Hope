@@ -21,17 +21,6 @@ public class BadHuman extends HumanSprite {
 		this.setMaximumKnockBackX(6000);
 	}
 
-	public void render(GraphicsContext gc) {
-		gc.drawImage(this.getImage(), this.getPositionX(), this.getPositionY());
-		if (!this.isDead()) {
-			gc.setFill(Color.BLACK);
-			gc.fillRect(this.getPositionX() + 10, this.getPositionY() - 10, getMaxHealth() / 10, 5);
-			gc.setFill(Color.RED);
-			gc.fillRect(this.getPositionX() + 10, this.getPositionY() - 10, getHealth() / 10, 5);
-
-		}
-	}
-
 	// bot update
 	public void update(double time, BlackPanther blackPanther) {
 
@@ -119,7 +108,6 @@ public class BadHuman extends HumanSprite {
 			knock.start();
 		}
 	}
-
 	public double getVeKnockX() {
 		return veKnockX;
 	}

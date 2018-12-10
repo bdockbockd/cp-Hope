@@ -84,6 +84,7 @@ public class LoopGame {
 						// stop ever thing must be implement here!
 						deadScene = new DeadScene(playerName, ScoreBoard.getScore(), Timer.getString());
 						deadScene.show(Main.stage);
+						Audio.MENU_BGM.play();
 						Item.itemList.clear();
 						EnemyGen.getbadList().clear();
 						// e.printStackTrace();

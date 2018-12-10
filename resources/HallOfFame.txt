@@ -12,6 +12,7 @@ Player:66000
 Player:65000
 Player:51000
 Jelly:30000
+Player:22000
 Peter:20000
 Adam:20000
 Tony:10000
