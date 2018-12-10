@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 public abstract class BlackPantherSprite extends Sprite /* implements HasSkill */ {
 
-	private static final String name = "BlackPantherSprite";
+	private static final String NAME = "BlackPantherSprite";
 	protected boolean isMove;
 	protected boolean attackable;
 	protected boolean canMovePosition = true;
@@ -136,11 +136,11 @@ public abstract class BlackPantherSprite extends Sprite /* implements HasSkill *
 		this.attackable = attackable;
 		this.setTimesBasicAttack((this.getTimesBasicAttack() + 1) % 3);
 		if (attackable == true) {
-			this.setImageL(Images.blackTigerBasicAttackL);
-			this.setImageR(Images.blackTigerBasicAttackR);
+			this.setImageL(Images.BLACKTIGERBASICATTACKL);
+			this.setImageR(Images.BLACKTIGERBASICATTACKR);
 		} else {
-			this.setImageL(Images.blackTigerMotionL);
-			this.setImageR(Images.blackTigerMotionR);
+			this.setImageL(Images.BLACKTIGERMOTIONL);
+			this.setImageR(Images.BLACKTIGERBASICATTACKR);
 		}
 	}
 
@@ -193,7 +193,7 @@ public abstract class BlackPantherSprite extends Sprite /* implements HasSkill *
 		this.setActionState(0);
 		this.setSkillOn(false);
 		this.setAttackable(false);
-		this.setImageL(Images.blackTigerMotionL);
+		this.setImageL(Images.BLACKTIGERMOTIONL);
 		this.setImageR(Images.blackTigerMotionR);
 		if (this.getFace() == "LEFT") {
 			this.setImage((this.getImageL())[(this.getPositionL() + 1) % 3]);
@@ -321,7 +321,7 @@ public abstract class BlackPantherSprite extends Sprite /* implements HasSkill *
 	}
 
 	public String getName() {
-		return name;
+		return NAME;
 	}
 
 }

@@ -5,9 +5,7 @@ import Constant.Images;
 import Controller.LoopGame;
 import Item.Bullet;
 import Sprite.BlackPanther;
-import UI.GamePause;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 
 public class GunMan extends BadHuman {
@@ -22,7 +20,6 @@ public class GunMan extends BadHuman {
 		this.setImageList(Images.GUNMANL);
 		this.isReadyToFire = true;
 		this.setMaximumKnockBackX(25000);
-//		fire.start();
 	}
 
 	// update all time
@@ -30,7 +27,7 @@ public class GunMan extends BadHuman {
 	public void update(double time) {
 		if (this.isDead()) {
 			this.setVelocity(0, 0);
-			this.setImage(Images.enemyTomb);
+			this.setImage(Images.ENEMYTOMB);
 			return;
 		}
 		this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
@@ -53,8 +50,8 @@ public class GunMan extends BadHuman {
 		if (!this.isDead()) {
 			gc.setFill(Color.BLACK);
 			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getImage().getWidth(), 10);
-			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, (this.getImage().getWidth())*(getHealth()/getMaxHealth()), 10);
 			gc.setFill(Color.RED);
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, (this.getImage().getWidth())*(getHealth()/getMaxHealth()), 10);
 	    }
 	}
 	
@@ -62,19 +59,17 @@ public class GunMan extends BadHuman {
 	public void update(double time, BlackPanther blackPanther) {
 		if (this.isDead()) {
 			this.setVelocity(0, 0);
-			this.setImage(Images.enemyTomb);
+			this.setImage(Images.ENEMYTOMB);
 			this.update(time);
 			return;
 		}
 		this.setGreedy(false);
 		this.setFollowing(false);
 
-
-		double random = Math.random();
-		if (random > HumanSprite.BOT_GREEDY_RATE ) {
+		if (Math.random() > HumanSprite.BOT_GREEDY_RATE ) {
 			this.setGreedy(true);
 			this.updateBotTypeGreedy(blackPanther);
-		} else if (random > HumanSprite.BOT_FOLLOWING_RATE) {
+		} else if (Math.random() > HumanSprite.BOT_FOLLOWING_RATE) {
 			this.setFollowing(true);
 			this.updateBotTypeFollowing(blackPanther);
 		} else {
@@ -83,13 +78,8 @@ public class GunMan extends BadHuman {
 	}
 
 	public void updateBotTypeGreedy(BlackPanther blackPanther) {
-		double randomCount = (int) (Math.random() * 3);
-		System.out.print("enemyGreedy bullet " + randomCount);
-		for (int i = 0; i < (int)randomCount; i++) {
-			System.out.print("enemyGreedy bullet " + i);
-			if (this.getPositionX() > -50 && this.getPositionX() < 1275) {
+		if (this.getPositionX() > -50 && this.getPositionX() < 1275) {
 				this.fireBullet();
-			}
 		}
 	}
 
@@ -130,28 +120,29 @@ public class GunMan extends BadHuman {
 	}
 
 	public void fireBullet() {
-		if(this.isGreedy()) {
-			this.setFire(true);
+		
+		while (LoopGame.gamePause.isShowing()) {
+			System.out.print("WAIT TO FIRE CAUS GAME PAUSED");
+		}
+		if (this.isDead()) {
+			return;
 		}
 		if (this.isReadyToFire) {
 			Thread delayToFire = new Thread(() -> {
 				try {
+					long time = 3000;
+					if(this.isGreedy()) {
+						time = 1000;
+					}
 					this.isReadyToFire = false;
-					Thread.sleep(4000);
+					Thread.sleep(time);
 					this.isReadyToFire = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
 			delayToFire.start();
 		} else {
-			return;
-		}
-		while (LoopGame.gamePause.isShowing()) {
-			System.out.print("WAIT TO FIRE CAUS GAME PAUSED");
-		}
-		if (this.isDead()) {
 			return;
 		}
 		if (this.getFace() == "LEFT") {
@@ -163,7 +154,6 @@ public class GunMan extends BadHuman {
 	}
 
 	public boolean isReadyToFire() {
-
 		return this.isReadyToFire;
 	}
 
@@ -207,7 +197,7 @@ public class GunMan extends BadHuman {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {
@@ -227,7 +217,7 @@ public class GunMan extends BadHuman {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {

@@ -6,9 +6,9 @@ import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;
 import Controller.LoopGame;
-import Controller.Main;
 import Controller.ScoreBoard;
 import Controller.Timer;
+import application.Main;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -18,7 +18,7 @@ import javafx.scene.media.AudioClip;
 import javafx.stage.Popup;
 
 public class GamePause extends Popup {
-	public static ArrayList<Image> gamePause = Images.gamePause;
+	public static ArrayList<Image> gamePause = Images.GAMEPAUSE;
 	public static int selectNumber = 100000;
 	public static boolean isPause;
 	public static boolean isReGame = false;

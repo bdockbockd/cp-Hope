@@ -67,7 +67,7 @@ public abstract class Item extends Rectangle implements DisappearObject {
 					this.timeCount--;
 
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}

@@ -10,7 +10,7 @@ public class SuperPotion extends Item {
 	private int durationLeft = 15;
 
 	public SuperPotion(double x, double y) {
-		super(x, y, Images.superPotion, Images.superPotionD);
+		super(x, y, Images.SUPERPOTION, Images.SUPERPOTIOND);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class SuperPotion extends Item {
 					}
 
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}

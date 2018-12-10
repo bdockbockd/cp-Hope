@@ -3,11 +3,6 @@ package Enemy;
 import Constant.Images;
 import Controller.LoopGame;
 import Sprite.BlackPanther;
-import javafx.application.Platform;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class BadHuman extends HumanSprite {
 
@@ -17,7 +12,7 @@ public class BadHuman extends HumanSprite {
 	public final static int SCORE = 1000;
 
 	public BadHuman() {
-		super((Images.humanMotionR)[0], Images.humanMotionR, Images.humanMotionL, Images.humanMotionR);
+		super((Images.HUMANMOTIONR)[0], Images.HUMANMOTIONR, Images.HUMANMOTIONL, Images.HUMANMOTIONR);
 		this.setMaximumKnockBackX(6000);
 	}
 
@@ -75,7 +70,7 @@ public class BadHuman extends HumanSprite {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {
@@ -95,7 +90,7 @@ public class BadHuman extends HumanSprite {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {

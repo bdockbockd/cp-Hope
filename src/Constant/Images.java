@@ -6,43 +6,38 @@ import java.util.List;
 import javafx.scene.image.Image;
 
 public class Images {
-//	public static final Image startscreen = new Image(ClassLoader.getSystemResource("map-01.png").toString(),1250,800,false,false);
+	
+	public static final Image[] BLACKTIGERMOTIONL = new Image[3];
+	public static final Image[] BLACKTIGERMOTIONR = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKL = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKR = new Image[3];
 
-//	public static final Image[] blackTigerMotion = new Image[3];
-	public static final Image spacePic = new Image(ClassLoader.getSystemResource("transparent.png").toString(), 67, 66,
-			false, false);
+	public static final Image[] BLACKTIGERMOTIONL2 = new Image[3];
+	public static final Image[] BLACKTIGERMOTIONR2 = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKL2 = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKR2 = new Image[3];
 
-	public static final Image[] blackTigerMotionL = new Image[3];
-	public static final Image[] blackTigerMotionR = new Image[3];
-	public static final Image[] blackTigerBasicAttackL = new Image[3];
-	public static final Image[] blackTigerBasicAttackR = new Image[3];
+	public static final Image[] BLACKTIGERMOTIONL3 = new Image[3];
+	public static final Image[] BLACKTIGERMOTIONR3 = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKL3 = new Image[3];
+	public static final Image[] BLACKTIGERBASICATTACKR3 = new Image[3];
 
-	public static final Image[] blackTigerMotionL2 = new Image[3];
-	public static final Image[] blackTigerMotionR2 = new Image[3];
-	public static final Image[] blackTigerBasicAttackL2 = new Image[3];
-	public static final Image[] blackTigerBasicAttackR2 = new Image[3];
-
-	public static final Image[] blackTigerMotionL3 = new Image[3];
-	public static final Image[] blackTigerMotionR3 = new Image[3];
-	public static final Image[] blackTigerBasicAttackL3 = new Image[3];
-	public static final Image[] blackTigerBasicAttackR3 = new Image[3];
-
-	public static final Image[] jumpAttackL = new Image[1];
+	public static final Image[] JUMPATTACKL = new Image[1];
 	public static final Image[] jumpAttackR = new Image[1];
-	public static final Image[] jumpAttackL2 = new Image[1];
-	public static final Image[] jumpAttackR2 = new Image[1];
-	public static final Image[] jumpAttackL3 = new Image[1];
-	public static final Image[] jumpAttackR3 = new Image[1];
+	public static final Image[] JUMPATTACKL2 = new Image[1];
+	public static final Image[] JUMPATTACKR2 = new Image[1];
+	public static final Image[] JUMPATTACKL3 = new Image[1];
+	public static final Image[] JUMPATTACKR3 = new Image[1];
 
-	public static final Image[] spinAttackL = new Image[2];
-	public static final Image[] spinAttackR = new Image[2];
-	public static final Image[] spinAttackL2 = new Image[2];
-	public static final Image[] spinAttackR2 = new Image[2];
-	public static final Image[] spinAttackL3 = new Image[2];
-	public static final Image[] spinAttackR3 = new Image[2];
+	public static final Image[] SPINATTACKL = new Image[2];
+	public static final Image[] SPINATTACKR = new Image[2];
+	public static final Image[] SPINATTACKL2 = new Image[2];
+	public static final Image[] SPINATTACKR2 = new Image[2];
+	public static final Image[] SPINATTACKL3 = new Image[2];
+	public static final Image[] SPINATTACKR3 = new Image[2];
 
-	public static final Image[] humanMotionL = new Image[2]; // 13
-	public static final Image[] humanMotionR = new Image[2];// 24
+	public static final Image[] HUMANMOTIONL = new Image[2]; // 13
+	public static final Image[] HUMANMOTIONR = new Image[2];// 24
 	public static final Image[] SWORDMANL = new Image[2]; // 24
 	public static final Image[] SWORDMANR = new Image[2]; // 13
 	public static final Image[] TRAPMANL = new Image[2];// 24
@@ -52,52 +47,52 @@ public class Images {
 	public static final Image[] GUNMANR = new Image[2];// 1
 	public static final Image[] BULLET = new Image[2];
 
-	public static final Image[] stageMap = new Image[3];
+	public static final Image[] STAGEMAP = new Image[3];
 
 	public static final ArrayList<ArrayList<Image[]>> STAGETIGER = new ArrayList<ArrayList<Image[]>>();
 	public static final ArrayList<Image[]> STAGE1 = new ArrayList<Image[]>();
 	public static final ArrayList<Image[]> STAGE2 = new ArrayList<Image[]>();
 	public static final ArrayList<Image[]> STAGE3 = new ArrayList<Image[]>();
 
-	public static final Image enemyTomb = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70,
+	public static final Image ENEMYTOMB = new Image(ClassLoader.getSystemResource("design/rip/rip.png").toString(), 70,
 			98, false, false);
 
-	public static final Image healthPotion = new Image(
+	public static final Image HEALTHPOTION = new Image(
 			ClassLoader.getSystemResource("design/item/item-01.png").toString(), 65, 49, false, false);
-	public static final Image healthPotionD = new Image(
+	public static final Image HEALTHPOTIOND = new Image(
 			ClassLoader.getSystemResource("design/item/item-04.png").toString(), 65, 49, false, false);
-	public static final Image superPotion = new Image(
+	public static final Image SUPERPOTION = new Image(
 			ClassLoader.getSystemResource("design/item/item-02.png").toString(), 65, 49, false, false);
-	public static final Image superPotionD = new Image(
+	public static final Image SUPERPOTIOND = new Image(
 			ClassLoader.getSystemResource("design/item/item-05.png").toString(), 65, 49, false, false);
-	public static final Image meat = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 65,
+	public static final Image MEAT = new Image(ClassLoader.getSystemResource("design/item/item-03.png").toString(), 65,
 			49, false, false);
-	public static final Image meatD = new Image(ClassLoader.getSystemResource("design/item/item-06.png").toString(), 65,
+	public static final Image MEATD = new Image(ClassLoader.getSystemResource("design/item/item-06.png").toString(), 65,
 			49, false, false);
 
-	public static final Image playerNameMenu = new Image(
+	public static final Image PLAYERNAMEMENU = new Image(
 			ClassLoader.getSystemResource("design/gameinputname/gameinputname.png").toString());
-	public static final Image hallOfFameBG = new Image(
+	public static final Image HALLOFFAMEBG = new Image(
 			ClassLoader.getSystemResource("design/halloffame/halloffame.png").toString());
-	public static final Image howToPlayImage = new Image(
+	public static final Image HOWTOPLAYGAME = new Image(
 			ClassLoader.getSystemResource("design/howtoplay/howtoplay.png").toString());
 	public static final Image STATUSBAR = new Image(
 			ClassLoader.getSystemResource("design/statusbar/gamestatusbar.png").toString());
-	public static final ArrayList<Image> selectMenu = new ArrayList<Image>();
-	public static final ArrayList<Image> quitMenu = new ArrayList<Image>();
-	public static final ArrayList<Image> gamePause = new ArrayList<Image>();
-	public static final ArrayList<Image> deadScene = new ArrayList<Image>();
+	public static final ArrayList<Image> SELECTMENU = new ArrayList<Image>();
+	public static final ArrayList<Image> QUITMENU = new ArrayList<Image>();
+	public static final ArrayList<Image> GAMEPAUSE = new ArrayList<Image>();
+	public static final ArrayList<Image> DEADSCENE = new ArrayList<Image>();
 
 	static {
-		for (int i = 0; i < stageMap.length; i++) {
-			stageMap[i] = new Image(ClassLoader.getSystemResource("design/map/map-0" + (i + 1) + ".png").toString(),
+		for (int i = 0; i < STAGEMAP.length; i++) {
+			STAGEMAP[i] = new Image(ClassLoader.getSystemResource("design/map/map-0" + (i + 1) + ".png").toString(),
 					1250, 800, false, false);
 		}
-		for (int i = 0; i < humanMotionL.length; i++) {
-			humanMotionL[i] = new Image(
+		for (int i = 0; i < HUMANMOTIONL.length; i++) {
+			HUMANMOTIONL[i] = new Image(
 					ClassLoader.getSystemResource("design/enemy1/enemy1-0" + (i + 1) + ".png").toString(), 70, 98,
 					false, false);
-			humanMotionR[i] = new Image(
+			HUMANMOTIONR[i] = new Image(
 					ClassLoader.getSystemResource("design/enemy1/enemy1-0" + (i + 3) + ".png").toString(), 70, 98,
 					false, false);
 			SWORDMANL[i] = new Image(
@@ -123,135 +118,135 @@ public class Images {
 					68, 24, false, false);
 		}
 
-		for (int i = 0; i < blackTigerBasicAttackL.length; i++) {
-			blackTigerBasicAttackL[i] = new Image(
+		for (int i = 0; i < BLACKTIGERBASICATTACKL.length; i++) {
+			BLACKTIGERBASICATTACKL[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/attack/bp1_attack-0" + (i + 1) + ".png").toString(), 351,
 					200, false, false);
-			blackTigerBasicAttackR[i] = new Image(
+			BLACKTIGERBASICATTACKR[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/attack/bp1_attack-0" + (i + 4) + ".png").toString(), 351,
 					200, false, false);
-			blackTigerBasicAttackL2[i] = new Image(
+			BLACKTIGERBASICATTACKL2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/attack/bp2_attack-0" + (i + 1) + ".png").toString(), 351,
 					200, false, false);
-			blackTigerBasicAttackR2[i] = new Image(
+			BLACKTIGERBASICATTACKR2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/attack/bp2_attack-0" + (i + 4) + ".png").toString(), 351,
 					200, false, false);
-			blackTigerBasicAttackL3[i] = new Image(
+			BLACKTIGERBASICATTACKL3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/attack/bp3_attack-0" + (i + 1) + ".png").toString(), 351,
 					200, false, false);
-			blackTigerBasicAttackR3[i] = new Image(
+			BLACKTIGERBASICATTACKR3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/attack/bp3_attack-0" + (i + 4) + ".png").toString(), 351,
 					200, false, false);
 		}
-		for (int i = 0; i < blackTigerMotionL.length; i++) {
-			blackTigerMotionL[i] = new Image(
+		for (int i = 0; i < BLACKTIGERMOTIONL.length; i++) {
+			BLACKTIGERMOTIONL[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/walk/bp1_walk-0" + (i + 1) + ".png").toString(), 351, 200,
 					false, false);
-			blackTigerMotionR[i] = new Image(
+			BLACKTIGERMOTIONR[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/walk/bp1_walk-0" + (i + 4) + ".png").toString(), 351, 200,
 					false, false);
-			blackTigerMotionL2[i] = new Image(
+			BLACKTIGERMOTIONL2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/walk/bp2_walk-0" + (i + 1) + ".png").toString(), 351, 200,
 					false, false);
-			blackTigerMotionR2[i] = new Image(
+			BLACKTIGERMOTIONR2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/walk/bp2_walk-0" + (i + 4) + ".png").toString(), 351, 200,
 					false, false);
-			blackTigerMotionL3[i] = new Image(
+			BLACKTIGERMOTIONL3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/walk/bp3_walk-0" + (i + 1) + ".png").toString(), 351, 200,
 					false, false);
-			blackTigerMotionR3[i] = new Image(
+			BLACKTIGERMOTIONR3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/walk/bp3_walk-0" + (i + 4) + ".png").toString(), 351, 200,
 					false, false);
 		}
 
-		for (int i = 0; i < jumpAttackL.length; i++) {
-			jumpAttackL[i] = new Image(
+		for (int i = 0; i < JUMPATTACKL.length; i++) {
+			JUMPATTACKL[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0" + (2) + ".png").toString(), 351, 200,
 					false, false);
 			jumpAttackR[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/jump/bp1_jump-0" + (4) + ".png").toString(), 351, 200,
 					false, false);
-			jumpAttackL2[i] = new Image(
+			JUMPATTACKL2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0" + (2) + ".png").toString(), 351, 200,
 					false, false);
-			jumpAttackR2[i] = new Image(
+			JUMPATTACKR2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/jump/bp2_jump-0" + (4) + ".png").toString(), 351, 200,
 					false, false);
-			jumpAttackL3[i] = new Image(
+			JUMPATTACKL3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0" + (2) + ".png").toString(), 351, 200,
 					false, false);
-			jumpAttackR3[i] = new Image(
+			JUMPATTACKR3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/jump/bp3_jump-0" + (4) + ".png").toString(), 351, 200,
 					false, false);
 		}
 
-		for (int i = 0; i < spinAttackL.length; i++) {
-			spinAttackL[i] = new Image(
+		for (int i = 0; i < SPINATTACKL.length; i++) {
+			SPINATTACKL[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/spin/bp1_spin-0" + (i + 2) + ".png").toString(), 351, 200,
 					false, false);
-			spinAttackR[i] = new Image(
+			SPINATTACKR[i] = new Image(
 					ClassLoader.getSystemResource("design/bp1/spin/bp1_spin-0" + (i + 5) + ".png").toString(), 351, 200,
 					false, false);
-			spinAttackL2[i] = new Image(
+			SPINATTACKL2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/spin/bp2_spin-0" + (i + 2) + ".png").toString(), 351, 200,
 					false, false);
-			spinAttackR2[i] = new Image(
+			SPINATTACKR2[i] = new Image(
 					ClassLoader.getSystemResource("design/bp2/spin/bp2_spin-0" + (i + 5) + ".png").toString(), 351, 200,
 					false, false);
-			spinAttackL3[i] = new Image(
+			SPINATTACKL3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/spin/bp3_spin-0" + (i + 2) + ".png").toString(), 351, 200,
 					false, false);
-			spinAttackR3[i] = new Image(
+			SPINATTACKR3[i] = new Image(
 					ClassLoader.getSystemResource("design/bp3/spin/bp3_spin-0" + (i + 5) + ".png").toString(), 351, 200,
 					false, false);
 		}
 
 		for (int i = 0; i < 4; i++) {
-			selectMenu.add(new Image(
+			SELECTMENU.add(new Image(
 					ClassLoader.getSystemResource("design/mainmenu/mainmenu-0" + (i + 1) + ".png").toString()));
 		}
 
 		for (int i = 1; i <= 2; i++) {
-			quitMenu.add(
+			QUITMENU.add(
 					new Image(ClassLoader.getSystemResource("design/quitmenu/quitmenu-0" + i + ".png").toString()));
 		}
 
 		for (int i = 1; i <= 2; i++) {
-			gamePause.add(
+			GAMEPAUSE.add(
 					new Image(ClassLoader.getSystemResource("design/gamepause/gamepause-0" + i + ".png").toString()));
 		}
 
 		for (int i = 1; i <= 2; i++) {
-			deadScene.add(
+			DEADSCENE.add(
 					new Image(ClassLoader.getSystemResource("design/deadscene/deadscene-0" + i + ".png").toString()));
 		}
 
-		STAGE1.add(Images.blackTigerMotionL);
-		STAGE1.add(Images.blackTigerMotionR);
-		STAGE1.add(Images.blackTigerBasicAttackL);
-		STAGE1.add(Images.blackTigerBasicAttackR);
-		STAGE1.add(Images.jumpAttackL);
+		STAGE1.add(Images.BLACKTIGERMOTIONL);
+		STAGE1.add(Images.BLACKTIGERMOTIONR);
+		STAGE1.add(Images.BLACKTIGERBASICATTACKL);
+		STAGE1.add(Images.BLACKTIGERBASICATTACKR);
+		STAGE1.add(Images.JUMPATTACKL);
 		STAGE1.add(Images.jumpAttackR);
-		STAGE1.add(Images.spinAttackL);
-		STAGE1.add(Images.spinAttackR);
+		STAGE1.add(Images.SPINATTACKL);
+		STAGE1.add(Images.SPINATTACKR);
 
-		STAGE2.add(Images.blackTigerMotionL2);
-		STAGE2.add(Images.blackTigerMotionR2);
-		STAGE2.add(Images.blackTigerBasicAttackL2);
-		STAGE2.add(Images.blackTigerBasicAttackR2);
-		STAGE2.add(Images.jumpAttackL2);
-		STAGE2.add(Images.jumpAttackR2);
-		STAGE2.add(Images.spinAttackL2);
-		STAGE2.add(Images.spinAttackR2);
+		STAGE2.add(Images.BLACKTIGERMOTIONL2);
+		STAGE2.add(Images.BLACKTIGERMOTIONR2);
+		STAGE2.add(Images.BLACKTIGERBASICATTACKL2);
+		STAGE2.add(Images.BLACKTIGERBASICATTACKR2);
+		STAGE2.add(Images.JUMPATTACKL2);
+		STAGE2.add(Images.JUMPATTACKR2);
+		STAGE2.add(Images.SPINATTACKL2);
+		STAGE2.add(Images.SPINATTACKR2);
 
-		STAGE3.add(Images.blackTigerMotionL3);
-		STAGE3.add(Images.blackTigerMotionR3);
-		STAGE3.add(Images.blackTigerBasicAttackL3);
-		STAGE3.add(Images.blackTigerBasicAttackR3);
-		STAGE3.add(Images.jumpAttackL3);
-		STAGE3.add(Images.jumpAttackR3);
-		STAGE3.add(Images.spinAttackL3);
-		STAGE3.add(Images.spinAttackR3);
+		STAGE3.add(Images.BLACKTIGERMOTIONL3);
+		STAGE3.add(Images.BLACKTIGERMOTIONR3);
+		STAGE3.add(Images.BLACKTIGERBASICATTACKL3);
+		STAGE3.add(Images.BLACKTIGERBASICATTACKR3);
+		STAGE3.add(Images.JUMPATTACKL3);
+		STAGE3.add(Images.JUMPATTACKR3);
+		STAGE3.add(Images.SPINATTACKL3);
+		STAGE3.add(Images.SPINATTACKR3);
 
 		STAGETIGER.add(STAGE1);
 		STAGETIGER.add(STAGE2);

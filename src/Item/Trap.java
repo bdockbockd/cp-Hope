@@ -16,6 +16,7 @@ public class Trap extends Item implements Moveable, DisappearObject {
 		} else {
 			this.setVelocityX(-500);
 		}
+		this.setVelocityY(0);
 		itemList.add(this);
 		System.out.print("Trap Generated");
 	}
@@ -30,7 +31,7 @@ public class Trap extends Item implements Moveable, DisappearObject {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			blackPanther.setLocked(false);

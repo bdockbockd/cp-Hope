@@ -1,7 +1,5 @@
 package Enemy;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import Constant.Images;
 import Sprite.BlackPanther;
 import Sprite.Sprite;
@@ -11,7 +9,7 @@ import javafx.scene.paint.Color;
 
 public abstract class HumanSprite extends Sprite {
 
-	private String name = "HumanSprite";
+	private static final String NAME = "HumanSprite";
 	public int humanPosition = 0;
 	private boolean isMove;
 	private final double maxHealth = 500;
@@ -45,7 +43,7 @@ public abstract class HumanSprite extends Sprite {
 	public void update(double time) {
 		if (this.isDead) {
 			this.setVelocity(0, 0);
-			this.setImage(Images.enemyTomb);
+			this.setImage(Images.ENEMYTOMB);
 			return;
 		}
 		this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
@@ -66,10 +64,9 @@ public abstract class HumanSprite extends Sprite {
 	}
 
 	public void setBotType() {
-		double random = Math.random();
-		if (Math.random() < 0.15) {
+		if (Math.random() >= HumanSprite.BOT_FOLLOWING_RATE) {
 			this.setFollowing(false);
-		} else if (Math.random() >= 0.75) {
+		} else if (Math.random() >= HumanSprite.BOT_GREEDY_RATE) {
 			this.setGreedy(true);
 		} else {
 			this.setFollowing(true);
@@ -166,7 +163,6 @@ public abstract class HumanSprite extends Sprite {
 			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getWidth(), 5);
 			gc.setFill(Color.RED);
 			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getWidth()*(getHealth()/getMaxHealth()), 5);
-
 		}
 	}
 
@@ -278,7 +274,6 @@ public abstract class HumanSprite extends Sprite {
 	}
 
 	public abstract void update(double time, BlackPanther blackPanther);
-
 	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
 
 }

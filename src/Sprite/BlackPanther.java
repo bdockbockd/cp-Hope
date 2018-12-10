@@ -24,8 +24,8 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 	private boolean isGod;
 
 	public BlackPanther() {
-		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL,
-				Images.blackTigerMotionR);
+		super((Images.BLACKTIGERMOTIONR)[0], Images.BLACKTIGERMOTIONR, Images.BLACKTIGERMOTIONL,
+				Images.BLACKTIGERMOTIONR);
 		checkStatus();
 	}
 
@@ -140,7 +140,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					Thread.sleep(BlackPanther.JUMP_COOLDOWN);
 					BlackPanther.jumpAttackDetected = false;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 
 				}
@@ -164,7 +164,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					BlackPanther.jumpAttackDetected = false;
 
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 
 				}
@@ -185,19 +185,19 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 	}
 
 	public void setStatus() {
-		BlackPanther.STATUS = getStatus();
-		if (BlackPanther.STATUS == 0) {
+		BlackPanther.status = getStatus();
+		if (BlackPanther.status == 0) {
 			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(100);
 			setArmor(10);
 			IsEnraged = false;
-		} else if (BlackPanther.STATUS == 1) {
+		} else if (BlackPanther.status == 1) {
 			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
 			setDamage(300);
 			setArmor(20);
 			IsEnraged = false;
-		} else if (BlackPanther.STATUS == 2) {
-			if(IsEnraged == false) {
+		} else if (BlackPanther.status == 2) {
+			if (IsEnraged == false) {
 				Audio.HEARTBEAT.play();
 				IsEnraged = true;
 			}

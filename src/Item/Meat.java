@@ -8,11 +8,11 @@ public class Meat extends Item {
 	private static final int healFactor = 70;
 	
 	public Meat(double x, double y){
-		super(x, y, Images.meat, Images.meatD);
+		super(x, y, Images.MEAT, Images.MEATD);
 	}
 
 	public Meat() {
-		super(0, 0, Images.meat, Images.meatD);
+		super(0, 0, Images.MEAT, Images.MEATD);
 	}
 
 	@Override

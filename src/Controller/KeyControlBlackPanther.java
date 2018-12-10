@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Constant.Audio;
 import Sprite.BlackPanther;
 import UI.GamePause;
+import application.Main;
 import javafx.animation.AnimationTimer;
 
 public class KeyControlBlackPanther {
@@ -95,7 +96,7 @@ public class KeyControlBlackPanther {
 					}
 
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				BlackPanther.spinAttackDetected = false;
@@ -175,7 +176,7 @@ public class KeyControlBlackPanther {
 					blackPanther.setCanMovePosition(true);
 					blackPanther.setActionState(0);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			});

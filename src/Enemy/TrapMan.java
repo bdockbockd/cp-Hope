@@ -24,7 +24,7 @@ public class TrapMan extends BadHuman {
 	public void update(double time) {
 		if (this.isDead()) {
 			this.setVelocity(0, 0);
-			this.setImage(Images.enemyTomb);
+			this.setImage(Images.ENEMYTOMB);
 			return;
 		}
 		this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
@@ -47,7 +47,7 @@ public class TrapMan extends BadHuman {
 	public void update(double time, BlackPanther blackPanther) {
 		if (this.isDead()) {
 			this.setVelocity(0, 0);
-			this.setImage(Images.enemyTomb);
+			this.setImage(Images.ENEMYTOMB);
 			this.update(time);
 			return;
 		}
@@ -131,7 +131,7 @@ public class TrapMan extends BadHuman {
 					Thread.sleep(4000);
 					this.isReadyToTrap = true;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			});

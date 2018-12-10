@@ -6,15 +6,13 @@ import java.util.Comparator;
 
 import Constant.Audio;
 import Constant.Images;
-import Enemy.GunMan;
 import Enemy.HumanSprite;
-import Enemy.TrapMan;
 import Exception.GameOverException;
 import Item.Item;
 import Sprite.BlackPanther;
 import UI.DeadScene;
 import UI.GamePause;
-import UI.StartGame;
+import application.Main;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -60,7 +58,7 @@ public class LoopGame {
 					Controller.ScoreBoard.update();
 					Controller.StatusBar.resetProgress(blackPanther);
 
-					gc.drawImage((Images.stageMap)[blackPanther.getStatus()], 0, 0);
+					gc.drawImage((Images.STAGEMAP)[blackPanther.getStatus()], 0, 0);
 
 					Collections.sort(EnemyGen.getbadList(), new Comparator<HumanSprite>() {
 						@Override
@@ -72,7 +70,7 @@ public class LoopGame {
 							}
 						}
 					});
-					
+
 					blackPanther.render(gc);
 					EnemyGen.renderBotList(gc);
 					Item.render(gc);
@@ -164,12 +162,12 @@ public class LoopGame {
 		EnemyGen.checkQuantityBot();
 		// updateBot random every 3 (VELOCITYXY)
 		if (CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0 && !gamePause.isShowing()) {
-			for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
-				if (!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) {
-					((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
-				}
-			}
 			DELAYBOT = new Thread(() -> {
+				for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
+					if (!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) {
+						((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
+					}
+				}
 				try {
 					CANUPDATEBOT = false;
 					Thread.sleep(3000);

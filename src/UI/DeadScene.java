@@ -6,8 +6,8 @@ import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;
 import Controller.LoopGame;
-import Controller.Main;
 import Sprite.BlackPanther;
+import application.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -24,7 +24,7 @@ import javafx.stage.Popup;
 
 public class DeadScene extends Popup {
 
-	public static ArrayList<Image> deadScene = Images.deadScene;
+	public static ArrayList<Image> deadScene = Images.DEADSCENE;
 	public static int selectNumber;
 
 	public DeadScene(String playerName, int score, String time) {

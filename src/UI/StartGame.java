@@ -39,7 +39,7 @@ public class StartGame extends Scene {
 
 		Canvas canvas = new Canvas(1250, 800);
         gc = canvas.getGraphicsContext2D();
-        gc.drawImage((Images.stageMap)[0], 0, 0);
+        gc.drawImage((Images.STAGEMAP)[0], 0, 0);
                 
         EnemyGen.generatelistBot(EnemyGen.ENEMYSTARTNUMBER);
         HumanSprite bad1 = EnemyGen.generateRandom();

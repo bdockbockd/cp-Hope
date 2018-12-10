@@ -22,7 +22,6 @@ public class EnemyGen {
 		double py = EnemyGen.randomPosition("Y");
 
 		HumanSprite enemy = EnemyGen.randomType();
-
 		enemy.setPosition(px, py);
 		enemy.setBotType();
 		EnemyGen.setInitialImage(enemy);
@@ -71,7 +70,7 @@ public class EnemyGen {
 							Thread.sleep(1000);
 							enemy.setWaitToHit(false);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 					});
@@ -91,7 +90,7 @@ public class EnemyGen {
 			if (enemy.isDead() && !(enemy.isTomb())) {
 				enemy.setTomb(true);
 				Audio.ENEMY_DEAD.play();
-				enemy.setImage(Images.enemyTomb);
+				enemy.setImage(Images.ENEMYTOMB);
 				Controller.ScoreBoard.addScore(enemy);
 				Thread t = new Thread(() -> {
 					try {
@@ -128,9 +127,9 @@ public class EnemyGen {
 
 	public static HumanSprite randomType() {
 		double random = Math.random();
-		if (random > 0.88) {
+		if (random > 0.95) {
 			return new GunMan();
-		} else if (random > 0.80) {
+		} else if (random > 0.88) {
 			return new TrapMan();
 		} else if (random > 0.40) {
 			return new SwordMan();
@@ -142,22 +141,22 @@ public class EnemyGen {
 	public static void modifiyBotLevel() {
 		if (Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.8;
+			HumanSprite.BOT_GREEDY_RATE = 0.95;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.4;
 			HumanSprite.BOT_STEADY_RATE = 0.15;
 		} else if (Timer.getSec() == 50) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.75;
+			HumanSprite.BOT_GREEDY_RATE = 0.90;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.3;
 			HumanSprite.BOT_STEADY_RATE = 0.10;
 		} else if (Timer.getMin() == 1 && Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.65;
+			HumanSprite.BOT_GREEDY_RATE = 0.85;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.2;
 			HumanSprite.BOT_STEADY_RATE = 0.05;
 		} else if (Timer.getMin() == 2) {
-			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.60;
+			enemyMaximumNumber += 10;
+			HumanSprite.BOT_GREEDY_RATE = 0.80;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.1;
 			HumanSprite.BOT_STEADY_RATE = 0;
 		}
@@ -180,7 +179,7 @@ public class EnemyGen {
 			addBot.start();
 		}
 	}
-	
+
 	public static void renderBotList(GraphicsContext gc) {
 		for (int i = 0; i < EnemyGen.getbadList().size(); i++) {
 			((EnemyGen.getbadList()).get(i)).render(gc);

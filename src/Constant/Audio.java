@@ -3,16 +3,23 @@ package Constant;
 import javafx.scene.media.AudioClip;
 
 public class Audio {
-	public static final AudioClip GAME_BGM = new AudioClip(ClassLoader.getSystemResource("sound/bgm-01 naruto.wav").toString());
+
+	public static final AudioClip GAME_BGM = new AudioClip(
+			ClassLoader.getSystemResource("sound/bgm-01 naruto.wav").toString());
 	public static final AudioClip GETHIT = new AudioClip(ClassLoader.getSystemResource("sound/attack.wav").toString());
-	public static final AudioClip SELECTMENU = new AudioClip(ClassLoader.getSystemResource("sound/selectmenu.wav").toString());
-	public static final AudioClip CHOOSEMENU = new AudioClip(ClassLoader.getSystemResource("sound/choosemenu.wav").toString());
-	public static final AudioClip MENU_BGM = new AudioClip(ClassLoader.getSystemResource("sound/bgm-03 menu.wav").toString());
-	public static final AudioClip STARTGAME = new AudioClip(ClassLoader.getSystemResource("sound/startgame.wav").toString());
+	public static final AudioClip SELECTMENU = new AudioClip(
+			ClassLoader.getSystemResource("sound/selectmenu.wav").toString());
+	public static final AudioClip CHOOSEMENU = new AudioClip(
+			ClassLoader.getSystemResource("sound/choosemenu.wav").toString());
+	public static final AudioClip MENU_BGM = new AudioClip(
+			ClassLoader.getSystemResource("sound/bgm-03 menu.wav").toString());
+	public static final AudioClip STARTGAME = new AudioClip(
+			ClassLoader.getSystemResource("sound/startgame.wav").toString());
 	public static final AudioClip RAGE = new AudioClip(ClassLoader.getSystemResource("sound/rage.wav").toString());
 	public static final AudioClip DEAD = new AudioClip(ClassLoader.getSystemResource("sound/dead.wav").toString());
 	public static final AudioClip STUN = new AudioClip(ClassLoader.getSystemResource("sound/stun.wav").toString());
-	public static final AudioClip HEARTBEAT = new AudioClip(ClassLoader.getSystemResource("sound/heartbeat.wav").toString());
+	public static final AudioClip HEARTBEAT = new AudioClip(
+			ClassLoader.getSystemResource("sound/heartbeat.wav").toString());
 	// BlackPanther
 	public static final AudioClip WALK = new AudioClip(
 			ClassLoader.getSystemResource("design/bp1/walk/bp1_walk.wav").toString());
@@ -35,8 +42,7 @@ public class Audio {
 
 	// Item
 	public static final AudioClip EAT = new AudioClip(ClassLoader.getSystemResource("design/item/eat.wav").toString());
-	public static final AudioClip DRINK = new AudioClip(
-			ClassLoader.getSystemResource("design/item/drink.wav").toString());
+	public static final AudioClip DRINK = new AudioClip(ClassLoader.getSystemResource("design/item/drink.wav").toString());
 
 	public static boolean HITDETECTED = false;
 	public static AudioClip[] ListHIT = new AudioClip[20];
@@ -46,7 +52,7 @@ public class Audio {
 		Audio.SELECTMENU.setVolume(0.2);
 		Audio.GAME_BGM.setCycleCount(AudioClip.INDEFINITE);
 		Audio.GAME_BGM.setVolume(0.2);
-		Audio.MENU_BGM.setCycleCount(AudioClip.INDEFINITE);//Audio.GAME_BGM.stop();
+		Audio.MENU_BGM.setCycleCount(AudioClip.INDEFINITE);// Audio.GAME_BGM.stop();
 		Audio.MENU_BGM.setVolume(0.2);
 		for (int i = 0; i <= 10; i++) {
 			ListHIT[i] = GETHIT;
@@ -61,7 +67,7 @@ public class Audio {
 
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 
 			}

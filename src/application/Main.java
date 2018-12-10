@@ -1,4 +1,4 @@
-package Controller;
+package application;
 
 import Constant.Audio;
 import Constant.FontRes;
@@ -24,7 +24,6 @@ import javafx.scene.input.KeyEvent;
 public class Main extends Application {
 
 	public static Stage stage;
-	// public static ArrayList<Image> selectMenu = new ArrayList<Image>();
 	public static int selectNumber = 1000000;
 	public static MainMenu mainMenu;
 	public static GameMenu gameMenu;

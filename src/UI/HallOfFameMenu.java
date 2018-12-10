@@ -13,9 +13,9 @@ import java.util.List;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.Main;
 import Exception.ExitGameException;
 import Exception.HallOfFameException;
+import application.Main;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -33,7 +33,7 @@ import javafx.util.Pair;
 public class HallOfFameMenu extends Scene {
 
 	private static List<Pair<String, Integer>> playerDataList;
-	private static Image hallOfFameBG = Images.hallOfFameBG;
+	private static Image HALLOFFAMEBG = Images.HALLOFFAMEBG;
 	public static Pane root;
 	private static Canvas canvas;
 	private static GraphicsContext gc;
@@ -53,7 +53,7 @@ public class HallOfFameMenu extends Scene {
 		try {
 			fillText();
 		} catch (HallOfFameException e) {
-			// TODO Auto-generated catch block
+			
 			// Alert alert = new Alert(AlertType.INFORMATION);
 			// alert.setTitle("Hall of fame");
 			// alert.setHeaderText("Hall of fame is updated!");
@@ -74,7 +74,7 @@ public class HallOfFameMenu extends Scene {
 	}
 
 	public static void fillText() throws HallOfFameException {
-		gc.drawImage(hallOfFameBG, 0, 0);
+		gc.drawImage(HALLOFFAMEBG, 0, 0);
 		gc.setFont(Font.font("Cornerstone", FontWeight.SEMI_BOLD, 36));
 		gc.setFill(Color.GHOSTWHITE);
 		for (int i = 0; i < HALLOFFAMENUMBER && i < playerDataList.size(); i++) {

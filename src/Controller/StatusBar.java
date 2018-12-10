@@ -5,7 +5,6 @@ import Sprite.BlackPanther;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -18,7 +17,7 @@ public class StatusBar extends StackPane {
 	private static ProgressIndicator pounce;
 	private static ProgressIndicator spin;
 	private static Label playerNameLabel;
-	private static final int coolDownSize = 100;
+	private static final int COOLDOWNSIZE = 50;
 	
 	public StatusBar(String playerName)
 	{
@@ -32,27 +31,27 @@ public class StatusBar extends StackPane {
 		attack.setTranslateY(26+31);
 		attack.setTranslateX(-84+30);
 		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
-//		attack.setMinSize(coolDownSize, coolDownSize);
-//		attack.setMaxSize(coolDownSize, coolDownSize);
-		attack.setPrefSize(coolDownSize, coolDownSize);
+		attack.setMinSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		attack.setMaxSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		attack.setPrefSize(COOLDOWNSIZE, COOLDOWNSIZE);
 		
 		
 		pounce = new ProgressIndicator(0);
 		pounce.setTranslateY(26+31);
 		pounce.setTranslateX(30);
 		pounce.setStyle(" -fx-progress-color: black;");
-//		pounce.setMinSize(coolDownSize, coolDownSize);
-//		pounce.setMaxSize(coolDownSize, coolDownSize);
-		pounce.setPrefSize(coolDownSize, coolDownSize);
+		pounce.setMinSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		pounce.setMaxSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		pounce.setPrefSize(COOLDOWNSIZE, COOLDOWNSIZE);
 		
 		spin = new ProgressIndicator(0);
 		spin.setTranslateY(26+31);
 		spin.setTranslateX(75+30);
 		spin.setStyle(" -fx-progress-color: black;");
 		spin.setPrefSize(10, 10);
-//		spin.setMinSize(coolDownSize, coolDownSize);
-//		spin.setMaxSize(coolDownSize, coolDownSize);
-		spin.setPrefSize(coolDownSize, coolDownSize);
+		spin.setMinSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		spin.setMaxSize(COOLDOWNSIZE, COOLDOWNSIZE);
+		spin.setPrefSize(COOLDOWNSIZE, COOLDOWNSIZE);
 		
 		ImageView statusBG = new ImageView(Images.STATUSBAR);
 		HPBar = new ProgressBar(1);

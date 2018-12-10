@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.Main;
+import application.Main;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -14,7 +14,7 @@ import javafx.stage.Popup;
 
 public class QuitMenu extends Popup {
 
-	public static ArrayList<Image> quitMenu = Images.quitMenu;
+	public static ArrayList<Image> quitMenu = Images.QUITMENU;
 	public static int selectNumber = 100000;
 
 	public QuitMenu() {

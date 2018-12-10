@@ -2,7 +2,7 @@ package UI;
 
 import Constant.Audio;
 import Constant.Images;
-import Controller.Main;
+import application.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -25,7 +25,7 @@ public class GameMenu extends Scene {
 
 	public static Pane root;
 	public static String playerName;
-	public static Image playerNameMenu = Images.playerNameMenu;
+	public static Image PLAYERNAMEMENU = Images.PLAYERNAMEMENU;
 
 	public GameMenu() {
 		super(new Pane(), 1250, 800);
@@ -33,7 +33,7 @@ public class GameMenu extends Scene {
 		playerName = "Player";
 		Canvas canvas = new Canvas(1250, 800);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.drawImage(playerNameMenu, 0, 0);
+		gc.drawImage(PLAYERNAMEMENU, 0, 0);
 
 		Label inputName = new Label("Enter your name and press 'enter'");
 		inputName.setFont(Font.font("Cornerstone", FontWeight.NORMAL, 24));
