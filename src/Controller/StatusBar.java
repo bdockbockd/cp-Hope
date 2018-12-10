@@ -18,6 +18,7 @@ public class StatusBar extends StackPane {
 	private static ProgressIndicator pounce;
 	private static ProgressIndicator spin;
 	private static Label playerNameLabel;
+	private static final int coolDownSize = 100;
 	
 	public StatusBar(String playerName)
 	{
@@ -29,19 +30,29 @@ public class StatusBar extends StackPane {
 		
 		attack = new ProgressIndicator(0); 
 		attack.setTranslateY(26+31);
-		attack.setTranslateX(75+30);
+		attack.setTranslateX(-84+30);
 		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
+//		attack.setMinSize(coolDownSize, coolDownSize);
+//		attack.setMaxSize(coolDownSize, coolDownSize);
+		attack.setPrefSize(coolDownSize, coolDownSize);
 		
 		
 		pounce = new ProgressIndicator(0);
 		pounce.setTranslateY(26+31);
-		pounce.setTranslateX(-84+30);
+		pounce.setTranslateX(30);
 		pounce.setStyle(" -fx-progress-color: black;");
+//		pounce.setMinSize(coolDownSize, coolDownSize);
+//		pounce.setMaxSize(coolDownSize, coolDownSize);
+		pounce.setPrefSize(coolDownSize, coolDownSize);
 		
 		spin = new ProgressIndicator(0);
 		spin.setTranslateY(26+31);
-		spin.setTranslateX(30);
+		spin.setTranslateX(75+30);
 		spin.setStyle(" -fx-progress-color: black;");
+		spin.setPrefSize(10, 10);
+//		spin.setMinSize(coolDownSize, coolDownSize);
+//		spin.setMaxSize(coolDownSize, coolDownSize);
+		spin.setPrefSize(coolDownSize, coolDownSize);
 		
 		ImageView statusBG = new ImageView(Images.STATUSBAR);
 		HPBar = new ProgressBar(1);
@@ -50,7 +61,7 @@ public class StatusBar extends StackPane {
 		HPBar.setTranslateY(-23);
 		
 		this.setLayoutX(1250/2-300);
-		this.setLayoutY(800-150);
+		this.setLayoutY(20); //800-150
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
 	}
 	public static void reset(String playerName) {

@@ -86,8 +86,8 @@ public abstract class Map extends Sprite.Rectangle {
 //		}
 //		return list;
 //	}
-	
-	//return collided things
+
+	// return collided things
 	public Sprite.Sprite collideItemEntity(Rectangle r) {
 //		for (Sprite.Rectangle i: SharedEntity.getInstance().getEntitiesOfMap(this)) {
 //			if (i instanceof ItemEntity && r.collideWith(i)) {
@@ -146,6 +146,5 @@ public abstract class Map extends Sprite.Rectangle {
 //			System.out.println("map.Map.spawnRandom Error: Negative area of spawn");
 //		}
 	}
-
 
 }

@@ -3,7 +3,7 @@ package Sprite;
 import javafx.geometry.Rectangle2D;
 
 public class Rectangle {
-	
+
 	protected double positionX;
 	protected double positionY;
 	protected double width;
@@ -12,37 +12,36 @@ public class Rectangle {
 	public Rectangle() {
 		this(0, 0, 0, 0);
 	}
-	
+
 	public Rectangle(double x, double y, double width, double height) {
 		this.positionX = x;
 		this.positionY = y;
 		this.width = width;
-		this.height = height; 
+		this.height = height;
 	}
-	
-	 public Rectangle2D getBoundary()
-	    {
-	        return new Rectangle2D(this.getPositionX(),this.getPositionY(),this.getWidth(),this.getHeight());
-	    }
 
-	    public void printBoundary() {
-	    	System.out.println( " Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" 
-	    	        + " Width: [" + this.getWidth() + "," + this.getHeight() + "]");
-	    }
-	    public boolean intersect(Sprite s)
-	    {
-	        return this.getBoundary().intersects(s.getBoundary());
-	    }
-	
+	public Rectangle2D getBoundary() {
+		return new Rectangle2D(this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight());
+	}
+
+	public void printBoundary() {
+		System.out.println(" Position: [" + this.getPositionX() + "," + this.getPositionY() + "]" + " Width: ["
+				+ this.getWidth() + "," + this.getHeight() + "]");
+	}
+
+	public boolean intersect(Sprite s) {
+		return this.getBoundary().intersects(s.getBoundary());
+	}
+
 //	public boolean collideWith(double x, double y, double width, double height) {
 //		if (this.x < x + width && this.x + this.width > x && this.y < y + height && this.height + this.y > y) return true;
 //		return false;
 //	}
-	
+
 //	public String toString() {
 //		return String.format("%s [x=%f, y=%f, width=%f, height=%f]", getClass().getSimpleName(), x, y, width, height);
 //	}
-	
+
 	public double getPositionX() {
 		return this.positionX;
 	}

@@ -6,11 +6,11 @@ import Sprite.BlackPanther;
 
 public class Meat extends Item {
 	private static final int healFactor = 50;
-	
-	public Meat(double x, double y){
+
+	public Meat(double x, double y) {
 		super(x, y, Images.meat, Images.meatD);
 	}
-	
+
 	public Meat() {
 		super(0, 0, Images.meat, Images.meatD);
 	}
