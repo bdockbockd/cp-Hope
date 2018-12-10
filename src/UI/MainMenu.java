@@ -50,7 +50,7 @@ public class MainMenu extends Scene{
 		    	  Audio.SELECTMENU.play();
 		    	  Main.quitMenu();
 		      }
-		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER || key.getCode() == KeyCode.ALT || key.getCode() == KeyCode.CONTROL || key.getCode() == KeyCode.COMMAND) {
+		      if(key.getCode()==KeyCode.SPACE || key.getCode() == KeyCode.ENTER) {
 		    	  //System.out.println(selectNumber%4);
 		    	  Audio.SELECTMENU.play();
 		    	  switch(selectNumber%4) {

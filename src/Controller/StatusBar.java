@@ -29,18 +29,18 @@ public class StatusBar extends StackPane {
 		
 		attack = new ProgressIndicator(0); 
 		attack.setTranslateY(26+31);
-		attack.setTranslateX(-84+30);
+		attack.setTranslateX(75+30);
 		attack.setStyle("-fx-text-fill: black;-fx-progress-color: black; -fx-background-insets: 0;-fx-background-radius: 0;");
 		
 		
 		pounce = new ProgressIndicator(0);
 		pounce.setTranslateY(26+31);
-		pounce.setTranslateX(30);
+		pounce.setTranslateX(-84+30);
 		pounce.setStyle(" -fx-progress-color: black;");
 		
 		spin = new ProgressIndicator(0);
 		spin.setTranslateY(26+31);
-		spin.setTranslateX(75+30);
+		spin.setTranslateX(30);
 		spin.setStyle(" -fx-progress-color: black;");
 		
 		ImageView statusBG = new ImageView(Images.STATUSBAR);
