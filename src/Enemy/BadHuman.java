@@ -5,6 +5,11 @@ package Enemy;
 import Constant.Images;
 import Controller.LoopGame;
 import Sprite.BlackPanther;
+import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class BadHuman extends HumanSprite  {
 
@@ -16,6 +21,17 @@ public class BadHuman extends HumanSprite  {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void render(GraphicsContext gc)
+    {
+        gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
+        if(!this.isDead())
+        {
+	        gc.setFill(Color.BLACK);
+	        gc.fillRect(this.getPositionX()+10, this.getPositionY()-10, getMaxHealth()/10, 5);
+	        gc.setFill(Color.RED);
+	        gc.fillRect(this.getPositionX()+10, this.getPositionY()-10, getHealth()/10, 5);
+        }
+    }
     //bot update
     public void update(double time, BlackPanther tiger)
     {

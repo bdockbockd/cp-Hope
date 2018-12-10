@@ -25,7 +25,7 @@ public class StartGame extends Scene {
     public static Canvas canvas;
     public static LoopGame Loop;
     public static String playerName;
-    private static int ENEMYSTARTNUMBER = 30;
+    private static int ENEMYSTARTNUMBER = 1;
 //    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
     //start new game

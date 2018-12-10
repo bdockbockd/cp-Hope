@@ -6,7 +6,7 @@ import Sprite.BlackPanther;
 
 public class HealthPotion extends Item {
 	
-	private static final int healFactor = 500;
+	private static final int healFactor = 200;
 	
 	public HealthPotion(double x, double y){
 		super(x, y, Images.healthPotion, Images.healthPotionD);
