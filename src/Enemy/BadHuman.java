@@ -30,6 +30,7 @@ public class BadHuman extends HumanSprite  {
 	        gc.fillRect(this.getPositionX()+10, this.getPositionY()-10, getMaxHealth()/10, 5);
 	        gc.setFill(Color.RED);
 	        gc.fillRect(this.getPositionX()+10, this.getPositionY()-10, getHealth()/10, 5);
+	      
         }
     }
     //bot update
@@ -44,6 +45,7 @@ public class BadHuman extends HumanSprite  {
 //        if(this.intersect(tiger) == false) {
     			if(tiger.getPositionX()+120 < this.getPositionX()) {
 					this.setFace("LEFT");
+					this.setPositionL(0);
     				this.nextPosition(this.getFace());
     				if(tiger.getPositionY()+75 < this.getPositionY() ) {
         				this.setVelocity(-Math.random()*200,-Math.random()*200);
@@ -53,6 +55,7 @@ public class BadHuman extends HumanSprite  {
 
     			} else {
     				this.setFace("RIGHT");
+					this.setPositionR(0);
     				this.nextPosition(this.getFace());
     				if(tiger.getPositionY()+75 < this.getPositionY()) {
         				this.setVelocity(Math.random()*200,-Math.random()*200);

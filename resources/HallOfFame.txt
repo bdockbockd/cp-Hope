@@ -1,5 +1,14 @@
+Player:51000
+Player:51000
+Player:49000
 Player:48000
 Player:46000
 Player:45000
 Player:41000
+Player:37000
+Player:32000
+Player:17000
+Player:16000
+Player:16000
+Player:16000
 Player:15000
