@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 
 public class Bullet extends Item implements Moveable {
     private double velocityX = 0, velocityY =0;
+    private static final int bulletDamage = 75;
 
 	public Bullet(double x, double y, Image image) {
 		super(x,y,image);
@@ -23,7 +24,7 @@ public class Bullet extends Item implements Moveable {
 	@Override
 	public void itemUse(BlackPanther blackPanther) {
 		
-		blackPanther.setHealth(blackPanther.getHealth()-10);
+		blackPanther.setHealth(blackPanther.getHealth()-bulletDamage);
 
 	}
 	public double getVelocityX() {

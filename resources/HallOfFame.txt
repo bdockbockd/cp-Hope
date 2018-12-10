@@ -5,10 +5,14 @@ Player:1757000
 oufeow:1001000
 Player:364000
 Player:253000
+Player:212000
 Player:194000
+Player:151000
 Player:140000
 Player:131000
+Player:102000
 Player:95000
+<<<<<<< HEAD
 Player:79000
 Player:76000
 Player:70000
@@ -38,6 +42,29 @@ Player:25000
 Player:24000
 Player:24000
 Player:24000
+=======
+Player:86000
+Player:77000
+Player:64000
+Player:64000
+Player:52000
+Player:49000
+Player:49000
+Player:48000
+Player:47000
+Player:33000
+Player:32000
+Player:32000
+Player:28000
+Player:27000
+Player:27000
+Player:25000
+Player:25000
+Player:25000
+Player:24000
+Player:23000
+Player:22000
+>>>>>>> 94d37cf49c7a80943866c1249663a4f859f3323e
 Player:21000
 Player:21000
 Player:19000
@@ -46,13 +73,17 @@ Player:18000
 Player:18000
 Player:18000
 Player:18000
+Player:17000
 Player:17000
 Player:17000
 Player:17000
 Player:17000
 Player:16000
+Player:16000
 Player:15000
 Player:15000
+Player:15000
+Player:14000
 Player:14000
 Player:14000
 Player:14000
@@ -67,6 +98,10 @@ Player:13000
 Player:13000
 Player:12000
 Player:12000
+Player:12000
+Player:12000
+Player:12000
+Player:11000
 Player:11000
 Player:11000
 Player:11000
@@ -79,7 +114,11 @@ Player:8000
 Player:8000
 Player:8000
 Player:7000
+<<<<<<< HEAD
 Player:7000
+=======
+Player:6000
+>>>>>>> 94d37cf49c7a80943866c1249663a4f859f3323e
 Player:6000
 Player:6000
 Player:5000
