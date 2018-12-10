@@ -19,14 +19,10 @@ public class StartGame extends Scene {
 	
 	public static Group root;
 
-//	private AudioClip sound;
-//    public static ArrayList<Sprite> enemySprite;
     public static GraphicsContext gc;
     public static Canvas canvas;
     public static LoopGame Loop;
     public static String playerName;
-    private static int ENEMYSTARTNUMBER = 1;
-//    public ArrayList<BadHuman> bad = new ArrayList<BadHuman>(); 
     
     //start new game
     private static Timer timerBar;
@@ -37,7 +33,6 @@ public class StartGame extends Scene {
 		super(new Group(), 1250, 800);
 		root = (Group) super.getRoot();
 		StartGame.playerName = playerName;
-//		enemySprite = new ArrayList<Sprite>();
 		timerBar = new Timer();
 	    scoreBoard = new ScoreBoard();
 	    statusBar = new StatusBar(playerName);
@@ -45,17 +40,11 @@ public class StartGame extends Scene {
 		Canvas canvas = new Canvas(1250, 800);
         gc = canvas.getGraphicsContext2D();
         gc.drawImage((Images.stageMap)[0], 0, 0);
-        
-
-//        create blackPanther onScreenss
-        
-        EnemyGen.generatelistBot(ENEMYSTARTNUMBER);
+                
+        EnemyGen.generatelistBot(EnemyGen.ENEMYSTARTNUMBER);
         HumanSprite bad1 = EnemyGen.generateRandom();
         bad1.setPosition(1250, 800);
         
-        //enemySprite.add(bad1);
-//        enemySprite.addAll(Enemy.EnemyGen.getbadList());
-
         Audio.GAME_BGM.play();
         
 //        Timer.reset();

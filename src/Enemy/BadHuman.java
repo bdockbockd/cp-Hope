@@ -120,6 +120,38 @@ public class BadHuman extends HumanSprite  {
 			knock.start();
 		}
 	}
+
+	public double getVeKnockX() {
+		return veKnockX;
+	}
+
+	public void setVeKnockX(double veKnockX) {
+		this.veKnockX = veKnockX;
+	}
+
+	public double getVeKnockY() {
+		return veKnockY;
+	}
+
+	public void setVeKnockY(double veKnockY) {
+		this.veKnockY = veKnockY;
+	}
+
+	public double getVeKnockBackX() {
+		return veKnockBackX;
+	}
+
+	public void setVeKnockBackX(double veKnockBackX) {
+		this.veKnockBackX = veKnockBackX;
+	}
+
+	public double getVeKnockBackY() {
+		return veKnockBackY;
+	}
+
+	public void setVeKnockBackY(double veKnockBackY) {
+		this.veKnockBackY = veKnockBackY;
+	}	
     
 }
 

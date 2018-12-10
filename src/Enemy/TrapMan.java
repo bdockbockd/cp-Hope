@@ -54,9 +54,9 @@ public class TrapMan extends BadHuman {
 
 			// random to trap
 			double random = Math.random();
-			if(random > HumanSprite.BOT_GREEDY_CHANCE + 0.5) {
+			if(random > HumanSprite.BOT_GREEDY_RATE + 0.5) {
 				this.updateBotTypeGreedy(blackPanther);
-			} else if(random > HumanSprite.BOT_FOLLOWING_CHANCE) {
+			} else if(random > HumanSprite.BOT_FOLLOWING_RATE) {
 				this.updateBotTypeFollowing(blackPanther);
 			} else {
 				this.randomBot(blackPanther);

@@ -8,6 +8,11 @@ import Enemy.*;
 import Sprite.BlackPanther;
 
 public class EnemyGen {
+	
+    public static boolean BOTSPAWN = true;
+    public static final int BOTSPAWNRATE = 1; //BOTPERSEC
+	public static final int ENEMYSTARTNUMBER = 0;
+    public static int enemyMaximumNumber = 20;
 	private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
 	public static BlackPanther instanceTiger;
 
@@ -130,6 +135,47 @@ public class EnemyGen {
 			return new SwordMan();
 		} else {
 			return new BadHuman();
+		}
+	}
+
+	public static void modifiyBotLevel() {
+		if(Timer.getSec() == 20) {
+			enemyMaximumNumber += 5;
+		    HumanSprite.BOT_GREEDY_RATE = 0.8;
+		    HumanSprite.BOT_FOLLOWING_RATE = 0.4;
+		    HumanSprite.BOT_STEADY_RATE = 0.15;
+		} else if(Timer.getSec() == 50) {
+			enemyMaximumNumber += 5;
+		    HumanSprite.BOT_GREEDY_RATE = 0.75;
+		    HumanSprite.BOT_FOLLOWING_RATE = 0.3;
+		    HumanSprite.BOT_STEADY_RATE = 0.10;
+		} else if(Timer.getMin() == 1 && Timer.getSec() == 20) {
+			enemyMaximumNumber += 5;
+		    HumanSprite.BOT_GREEDY_RATE = 0.65;
+		    HumanSprite.BOT_FOLLOWING_RATE = 0.2;
+		    HumanSprite.BOT_STEADY_RATE = 0.05;
+		} else if(Timer.getMin() == 2 ) {
+		    HumanSprite.BOT_GREEDY_RATE = 0.60;
+		    HumanSprite.BOT_FOLLOWING_RATE = 0.1;
+		    HumanSprite.BOT_STEADY_RATE = 0;		}
+	}
+	
+	public static void checkQuantityBot() {
+		if(EnemyGen.BOTSPAWN)
+		{
+			if(EnemyGen.getbadList().size() < EnemyGen.enemyMaximumNumber) {
+				EnemyGen.addBot();
+			}
+			Thread addBot = new Thread(()->{
+				try {
+					EnemyGen.BOTSPAWN = false;
+					Thread.sleep(1000/EnemyGen.BOTSPAWNRATE);
+					EnemyGen.BOTSPAWN = true;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+			addBot.start();
 		}
 	}
 }

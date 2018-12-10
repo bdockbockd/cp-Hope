@@ -20,7 +20,7 @@ public class KeyControlBlackPanther {
     	DIRECTION_KEY.add("RIGHT");
     }
     
-    public static final String ATTACK_KEY = "SPACE";
+    public static final String ATTACK_KEY = "Z";
     public static final String JUMP_KEY = "X";
     public static final String SPIN_KEY = "C";
     public static final String GODMODE_ON_KEY = "I";

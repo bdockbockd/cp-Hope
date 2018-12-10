@@ -1,4 +1,6 @@
 oozygrub:129000
+Player:113000
+Player:75000
 Jelly:30000
 Peter:20000
 Adam:20000

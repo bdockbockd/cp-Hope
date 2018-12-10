@@ -19,6 +19,7 @@ public class GunMan extends BadHuman {
 		this.setImageR(Images.GUNMANR);
 		this.setImageList(Images.GUNMANL);
 		this.isReadyToFire = true;
+		this.s
 //		fire.start();
 	}
 	
@@ -56,9 +57,9 @@ public class GunMan extends BadHuman {
 		}
 
 		double random = Math.random();
-		if(random > HumanSprite.BOT_GREEDY_CHANCE + 0.5) {
+		if(random > HumanSprite.BOT_GREEDY_RATE + 0.5) {
 			this.updateBotTypeGreedy(blackPanther);
-		} else if(random > HumanSprite.BOT_FOLLOWING_CHANCE) {
+		} else if(random > HumanSprite.BOT_FOLLOWING_RATE) {
 			this.updateBotTypeFollowing(blackPanther);
 		} else {
 			this.randomBot(blackPanther);
