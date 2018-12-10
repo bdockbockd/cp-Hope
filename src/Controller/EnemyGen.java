@@ -196,8 +196,8 @@ public class EnemyGen {
 				}
 			});
 			addBot.start();
-		} else if(EnemyGen.getbadList().size() <= 5) {
-			for(int i=0;i<=5;i++) {
+		} else if (EnemyGen.getbadList().size() <= 5) {
+			for (int i = 0; i <= 5; i++) {
 				EnemyGen.addBot();
 				EnemyGen.bowSpawn = true;
 			}
