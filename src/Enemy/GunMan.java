@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class GunMan extends BadHuman {
-	
+
 	private boolean isReadyToFire;
 	public final static int SCORE = 5000;
 
@@ -51,10 +51,11 @@ public class GunMan extends BadHuman {
 			gc.setFill(Color.BLACK);
 			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, this.getImage().getWidth(), 10);
 			gc.setFill(Color.RED);
-			gc.fillRect(this.getPositionX(), this.getPositionY() - 10, (this.getImage().getWidth())*(getHealth()/getMaxHealth()), 10);
-	    }
+			gc.fillRect(this.getPositionX(), this.getPositionY() - 10,
+					(this.getImage().getWidth()) * (getHealth() / getMaxHealth()), 10);
+		}
 	}
-	
+
 	@Override
 	public void update(double time, BlackPanther blackPanther) {
 		if (this.isDead()) {
@@ -66,7 +67,7 @@ public class GunMan extends BadHuman {
 		this.setGreedy(false);
 		this.setFollowing(false);
 
-		if (Math.random() > HumanSprite.BOT_GREEDY_RATE ) {
+		if (Math.random() > HumanSprite.BOT_GREEDY_RATE) {
 			this.setGreedy(true);
 			this.updateBotTypeGreedy(blackPanther);
 		} else if (Math.random() > HumanSprite.BOT_FOLLOWING_RATE) {
@@ -79,7 +80,7 @@ public class GunMan extends BadHuman {
 
 	public void updateBotTypeGreedy(BlackPanther blackPanther) {
 		if (this.getPositionX() > -50 && this.getPositionX() < 1275) {
-				this.fireBullet();
+			this.fireBullet();
 		}
 	}
 
@@ -120,9 +121,10 @@ public class GunMan extends BadHuman {
 	}
 
 	public void fireBullet() {
-		
-		while (LoopGame.gamePause.isShowing()) {
-			System.out.print("WAIT TO FIRE CAUS GAME PAUSED");
+		if (LoopGame.gamePause.isShowing()) {
+			System.out.print("WAIT WHILE PAUSED");
+			while (LoopGame.gamePause.isShowing()) {
+			}
 		}
 		if (this.isDead()) {
 			return;
@@ -131,7 +133,7 @@ public class GunMan extends BadHuman {
 			Thread delayToFire = new Thread(() -> {
 				try {
 					long time = 3000;
-					if(this.isGreedy()) {
+					if (this.isGreedy()) {
 						time = 1000;
 					}
 					this.isReadyToFire = false;
@@ -197,7 +199,7 @@ public class GunMan extends BadHuman {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					
+
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {
@@ -217,7 +219,7 @@ public class GunMan extends BadHuman {
 					this.setKnockBack(false);
 					LoopGame.CANUPDATEBOT = true;
 				} catch (InterruptedException e) {
-					
+
 					e.printStackTrace();
 				}
 				if (this.isTomb()) {

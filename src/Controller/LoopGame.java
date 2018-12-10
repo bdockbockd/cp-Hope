@@ -50,7 +50,7 @@ public class LoopGame {
 					if (elapsedTime > 0.02) {
 						elapsedTime = 0.016;
 					}
-					// System.out.println(elapsedTime);
+
 					lastNanoTime = currentNanoTime;
 					LoopGame.updateBlackPanther(currentNanoTime, this);
 					LoopGame.updateBotAndItem();

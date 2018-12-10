@@ -48,7 +48,6 @@ public class MainMenu extends Scene {
 					Main.quitMenu();
 				}
 				if (key.getCode() == KeyCode.SPACE || key.getCode() == KeyCode.ENTER) {
-					// System.out.println(selectNumber%4);
 					Audio.CHOOSEMENU.play();
 					switch (selectNumber % 4) {
 					case 0:

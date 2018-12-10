@@ -114,8 +114,8 @@ public class TrapMan extends BadHuman {
 
 	public void throwTrap() {
 		if (LoopGame.gamePause.isShowing()) {
+			System.out.print("WAIT WHILE PAUSED");
 			while (LoopGame.gamePause.isShowing()) {
-				System.out.print("WAIT TO THROW CAUS GAME PAUSED");
 			}
 		}
 		if (this.isDead()) {
@@ -141,7 +141,6 @@ public class TrapMan extends BadHuman {
 		}
 		this.setFace(this.getFace());
 		this.nextPosition(this.getFace());
-		System.out.print("THROW");
 		Audio.ENEMY_TRAP.play();
 		if (this.getFace() == "LEFT") {
 			new Trap(this.getPositionX() - 100, this.getPositionY() + 50, (Images.TRAPITEM)[0]);

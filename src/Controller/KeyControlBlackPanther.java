@@ -37,12 +37,9 @@ public class KeyControlBlackPanther {
 			blackPanther.setSkillOn(true);
 			String direction = blackPanther.getFace();
 			blackPanther.playJump(direction);
-
-//			blackPanther.playJump(KeyControlBlackPanther.getKeyCombination());
 			Audio.pounceSound();
 			blackPanther.attackEnemy(3);
 			return;
-			// set Speed Fix in here
 		} else if (input.contains(SPIN_KEY) && BlackPanther.spinAttackDetected == false && StatusBar.spinIsReady()) {
 
 			blackPanther.setActionState(2);
@@ -60,7 +57,6 @@ public class KeyControlBlackPanther {
 					while (loop != 0) {
 						blackPanther.update(0.016);
 						blackPanther.attackEnemy(2);
-
 						blackPanther.setVelocity(-1000, 0);
 						Thread.sleep(30);
 						blackPanther.setFace(blackPanther.getFace());
@@ -71,32 +67,25 @@ public class KeyControlBlackPanther {
 						Thread.sleep(30);
 						blackPanther.setFace("OPPOSITE");
 						blackPanther.attackEnemy(2);
-
 						blackPanther.setActionState(2);
-
 						blackPanther.nextPosition(blackPanther.getFace());
-
 						blackPanther.setVelocity(-1000, 0);
-
 						Thread.sleep(30);
 						blackPanther.setFace(blackPanther.getFace());
 						blackPanther.attackEnemy(2);
 						blackPanther.setActionState(2);
-
 						blackPanther.nextPosition(blackPanther.getFace());
 						blackPanther.setVelocity(1000, 0);
 						Thread.sleep(30);
 						blackPanther.setFace("OPPOSITE");
 						blackPanther.attackEnemy(2);
-
-//						blackPanther.setActionState(2);
 						blackPanther.nextPosition(blackPanther.getFace());
 
 						loop--;
 					}
 
 				} catch (InterruptedException e) {
-					
+
 					e.printStackTrace();
 				}
 				BlackPanther.spinAttackDetected = false;
@@ -106,16 +95,16 @@ public class KeyControlBlackPanther {
 			delay.start();
 		}
 
-		if (input.contains(GODMODE_ON_KEY)) {
-			blackPanther.enableGodMode();
-			System.out.println("enableGodMode!");
-		} else if (input.contains(GODMODE_OFF_KEY)) {
-			blackPanther.disableGodMode();
-			System.out.println("disableGodMode!");
-		}
-		if (input.contains(GETSCORE_KEY)) {
-			ScoreBoard.addScore(10000);
-		}
+//		if (input.contains(GODMODE_ON_KEY)) {
+//			blackPanther.enableGodMode();
+//			System.out.println("enableGodMode!");
+//		} else if (input.contains(GODMODE_OFF_KEY)) {
+//			blackPanther.disableGodMode();
+//			System.out.println("disableGodMode!");
+//		}
+//		if (input.contains(GETSCORE_KEY)) {
+//			ScoreBoard.addScore(10000);
+//		}
 
 		if (input.contains("ESCAPE") && !LoopGame.gamePause.isShowing() && !GamePause.isPause) {
 			Audio.CHOOSEMENU.play();
@@ -129,7 +118,6 @@ public class KeyControlBlackPanther {
 		}
 
 		if (input.contains("LEFT") && blackPanther.getRealX() > 0) {
-			// x 70
 			if (!blackPanther.isLocked()) {
 				blackPanther.addVelocity(-200, 0);
 			}
@@ -176,7 +164,7 @@ public class KeyControlBlackPanther {
 					blackPanther.setCanMovePosition(true);
 					blackPanther.setActionState(0);
 				} catch (InterruptedException e) {
-					
+
 					e.printStackTrace();
 				}
 			});

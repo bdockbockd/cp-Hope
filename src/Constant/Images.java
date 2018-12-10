@@ -36,15 +36,15 @@ public class Images {
 	public static final Image[] SPINATTACKL3 = new Image[2];
 	public static final Image[] SPINATTACKR3 = new Image[2];
 
-	public static final Image[] HUMANMOTIONL = new Image[2]; // 13
-	public static final Image[] HUMANMOTIONR = new Image[2];// 24
-	public static final Image[] SWORDMANL = new Image[2]; // 24
-	public static final Image[] SWORDMANR = new Image[2]; // 13
-	public static final Image[] TRAPMANL = new Image[2];// 24
-	public static final Image[] TRAPMANR = new Image[2];// 13
-	public static final Image[] TRAPITEM = new Image[2]; //
-	public static final Image[] GUNMANL = new Image[2];// 2
-	public static final Image[] GUNMANR = new Image[2];// 1
+	public static final Image[] HUMANMOTIONL = new Image[2];
+	public static final Image[] HUMANMOTIONR = new Image[2];
+	public static final Image[] SWORDMANL = new Image[2];
+	public static final Image[] SWORDMANR = new Image[2]; 
+	public static final Image[] TRAPMANL = new Image[2];
+	public static final Image[] TRAPMANR = new Image[2];
+	public static final Image[] TRAPITEM = new Image[2];
+	public static final Image[] GUNMANL = new Image[2];
+	public static final Image[] GUNMANR = new Image[2];
 	public static final Image[] BULLET = new Image[2];
 
 	public static final Image[] STAGEMAP = new Image[3];

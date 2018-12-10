@@ -61,7 +61,7 @@ public class StatusBar extends StackPane {
 		HPBar.setTranslateY(-23);
 		
 		this.setLayoutX(1250/2-300);
-		this.setLayoutY(20); //800-150
+		this.setLayoutY(20); 
 		this.getChildren().addAll(statusBG, HPBar, attack, pounce, spin, playerNameLabel);
 	}
 
@@ -94,7 +94,6 @@ public class StatusBar extends StackPane {
 
 	public static boolean attackIsReady() {
 		if (attack.getProgress() >= 1) {
-			System.out.println("attack!");
 			attack.setProgress(0);
 			return true;
 		}

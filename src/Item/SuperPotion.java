@@ -15,7 +15,6 @@ public class SuperPotion extends Item {
 
 	@Override
 	public void itemUse(BlackPanther blackTiger) {
-		System.out.println("SuperPotion!");
 		if (BlackPanther.ISSUPER == true) {
 			this.durationLeft = -1;
 		}

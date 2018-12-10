@@ -1,7 +1,6 @@
 package Item;
 
 import Constant.Audio;
-import Controller.LoopGame;
 import Sprite.BlackPanther;
 import Sprite.Moveable;
 import javafx.scene.image.Image;
@@ -18,7 +17,6 @@ public class Trap extends Item implements Moveable, DisappearObject {
 		}
 		this.setVelocityY(0);
 		itemList.add(this);
-		System.out.print("Trap Generated");
 	}
 
 	// getter and setter
@@ -29,7 +27,7 @@ public class Trap extends Item implements Moveable, DisappearObject {
 			blackPanther.setVelocity(0, 0);
 			blackPanther.setLocked(true);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();

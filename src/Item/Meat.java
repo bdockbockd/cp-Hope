@@ -5,7 +5,7 @@ import Constant.Images;
 import Sprite.BlackPanther;
 
 public class Meat extends Item {
-	private static final int healFactor = 70;
+	private static final int healFactor = 50;
 	
 	public Meat(double x, double y){
 		super(x, y, Images.MEAT, Images.MEATD);
@@ -17,7 +17,6 @@ public class Meat extends Item {
 
 	@Override
 	public void itemUse(BlackPanther blackTiger) {
-		System.out.println("Meat!");
 		blackTiger.heal(healFactor);
 		Audio.EAT.play();
 	}

@@ -33,15 +33,6 @@ public class Rectangle {
 		return this.getBoundary().intersects(s.getBoundary());
 	}
 
-//	public boolean collideWith(double x, double y, double width, double height) {
-//		if (this.x < x + width && this.x + this.width > x && this.y < y + height && this.height + this.y > y) return true;
-//		return false;
-//	}
-
-//	public String toString() {
-//		return String.format("%s [x=%f, y=%f, width=%f, height=%f]", getClass().getSimpleName(), x, y, width, height);
-//	}
-
 	public double getPositionX() {
 		return this.positionX;
 	}

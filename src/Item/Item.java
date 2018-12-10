@@ -1,9 +1,7 @@
 package Item;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import Constant.Images;
 import Sprite.BlackPanther;
 import Sprite.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
@@ -67,7 +65,7 @@ public abstract class Item extends Rectangle implements DisappearObject {
 					this.timeCount--;
 
 				} catch (InterruptedException e) {
-					
+
 					e.printStackTrace();
 				}
 			}
@@ -98,19 +96,17 @@ public abstract class Item extends Rectangle implements DisappearObject {
 	}
 
 	public static void update(double elapsedTime) {
-		// TODO Auto-generated method stub
+
 		for (int i = 0; i < itemList.size(); i++) {
 			if (itemList.get(i) instanceof Bullet) {
 				((Bullet) itemList.get(i)).updateBullet(elapsedTime);
 				if (itemList.get(i).getPositionX() > 1250 || itemList.get(i).getPositionX() < 0) {
 					itemList.remove(i);
-					System.out.println("bullet removed");
 				}
 			} else if (itemList.get(i) instanceof Trap) {
 				((Trap) itemList.get(i)).updateTrap(elapsedTime);
 				if (itemList.get(i).getPositionX() > 1250 || itemList.get(i).getPositionX() < 0) {
 					itemList.remove(i);
-					System.out.println("Trap removed");
 				}
 			}
 

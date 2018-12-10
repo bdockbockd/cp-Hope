@@ -80,7 +80,7 @@ public class Main extends Application {
 			alert.setTitle("blackPantherX");
 			alert.setHeaderText("Hall of fame is updated!");
 			alert.showAndWait();
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 		stage.setScene(hallOfFameMenu);
 	}

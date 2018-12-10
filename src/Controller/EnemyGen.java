@@ -10,8 +10,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class EnemyGen {
 
-	public static boolean BOTSPAWN = true;
-	public static final int BOTSPAWNRATE = 1; // BOTPERSEC
+	public static boolean bowSpawn = true;
+	public static double botSpawnRate = 1;
 	public static final int ENEMYSTARTNUMBER = 0;
 	public static int enemyMaximumNumber = 20;
 	private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
@@ -29,7 +29,7 @@ public class EnemyGen {
 	}
 
 	private static void setInitialImage(HumanSprite enemy) {
-		// TODO Auto-generated method stub
+
 		if (enemy instanceof GunMan || enemy instanceof TrapMan) {
 			if (enemy.getPositionX() == 1300) {
 				enemy.setImage((enemy.getImageL())[0]);
@@ -70,7 +70,7 @@ public class EnemyGen {
 							Thread.sleep(1000);
 							enemy.setWaitToHit(false);
 						} catch (InterruptedException e) {
-							
+
 							e.printStackTrace();
 						}
 					});
@@ -127,9 +127,9 @@ public class EnemyGen {
 
 	public static HumanSprite randomType() {
 		double random = Math.random();
-		if (random > 0.95) {
+		if (random > HumanSprite.BOT_GREEDY_RATE) {
 			return new GunMan();
-		} else if (random > 0.88) {
+		} else if (random > HumanSprite.BOT_GREEDY_RATE - 0.07) {
 			return new TrapMan();
 		} else if (random > 0.40) {
 			return new SwordMan();
@@ -141,42 +141,69 @@ public class EnemyGen {
 	public static void modifiyBotLevel() {
 		if (Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.95;
+			EnemyGen.botSpawnRate = 1.10;
+			HumanSprite.BOT_GREEDY_RATE = 0.90;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.4;
 			HumanSprite.BOT_STEADY_RATE = 0.15;
 		} else if (Timer.getSec() == 50) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.90;
+			EnemyGen.botSpawnRate = 1.2;
+			HumanSprite.BOT_GREEDY_RATE = 0.85;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.3;
 			HumanSprite.BOT_STEADY_RATE = 0.10;
 		} else if (Timer.getMin() == 1 && Timer.getSec() == 20) {
 			enemyMaximumNumber += 5;
-			HumanSprite.BOT_GREEDY_RATE = 0.85;
+			EnemyGen.botSpawnRate = 1.25;
+			HumanSprite.BOT_GREEDY_RATE = 0.80;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.2;
+			HumanSprite.BOT_STEADY_RATE = 0.05;
+		} else if (Timer.getMin() == 1 && Timer.getSec() == 40) {
+			enemyMaximumNumber += 5;
+			EnemyGen.botSpawnRate = 1.35;
+			HumanSprite.BOT_GREEDY_RATE = 0.75;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.2;
 			HumanSprite.BOT_STEADY_RATE = 0.05;
 		} else if (Timer.getMin() == 2) {
-			enemyMaximumNumber += 10;
-			HumanSprite.BOT_GREEDY_RATE = 0.80;
+			enemyMaximumNumber += 5;
+			EnemyGen.botSpawnRate = (long) 1.5;
+			HumanSprite.BOT_GREEDY_RATE = 0.65;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.1;
+			HumanSprite.BOT_STEADY_RATE = 0;
+		} else if (Timer.getMin() == 2 && Timer.getSec() == 30) {
+			enemyMaximumNumber += 5;
+			EnemyGen.botSpawnRate = (long) 1.75;
+			HumanSprite.BOT_GREEDY_RATE = 0.55;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.1;
+			HumanSprite.BOT_STEADY_RATE = 0;
+		} else if (Timer.getMin() == 3) {
+			enemyMaximumNumber += 5;
+			EnemyGen.botSpawnRate = 2;
+			HumanSprite.BOT_GREEDY_RATE = 0.10;
+			HumanSprite.BOT_FOLLOWING_RATE = 0.0;
 			HumanSprite.BOT_STEADY_RATE = 0;
 		}
 	}
 
 	public static void checkQuantityBot() {
-		if (EnemyGen.BOTSPAWN) {
+		if (EnemyGen.bowSpawn) {
 			if (EnemyGen.getbadList().size() < EnemyGen.enemyMaximumNumber) {
 				EnemyGen.addBot();
 			}
 			Thread addBot = new Thread(() -> {
 				try {
-					EnemyGen.BOTSPAWN = false;
-					Thread.sleep(1000 / EnemyGen.BOTSPAWNRATE);
-					EnemyGen.BOTSPAWN = true;
+					EnemyGen.bowSpawn = false;
+					Thread.sleep((long) (1000 / EnemyGen.botSpawnRate));
+					EnemyGen.bowSpawn = true;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			});
 			addBot.start();
+		} else if(EnemyGen.getbadList().size() <= 5) {
+			for(int i=0;i<=5;i++) {
+				EnemyGen.addBot();
+				EnemyGen.bowSpawn = true;
+			}
 		}
 	}
 

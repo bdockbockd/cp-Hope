@@ -194,7 +194,7 @@ public abstract class BlackPantherSprite extends Sprite /* implements HasSkill *
 		this.setSkillOn(false);
 		this.setAttackable(false);
 		this.setImageL(Images.BLACKTIGERMOTIONL);
-		this.setImageR(Images.blackTigerMotionR);
+		this.setImageR(Images.BLACKTIGERMOTIONR);
 		if (this.getFace() == "LEFT") {
 			this.setImage((this.getImageL())[(this.getPositionL() + 1) % 3]);
 		} else {

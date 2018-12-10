@@ -1,7 +1,5 @@
 package UI;
 
-import java.util.ArrayList;
-
 import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;

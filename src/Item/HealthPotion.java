@@ -6,7 +6,7 @@ import Sprite.BlackPanther;
 
 public class HealthPotion extends Item {
 
-	private static final int HEALFACTOR = 250;
+	private static final int HEALFACTOR = 200;
 
 	public HealthPotion(double x, double y) {
 		super(x, y, Images.HEALTHPOTION, Images.HEALTHPOTIOND);
@@ -18,7 +18,6 @@ public class HealthPotion extends Item {
 
 	@Override
 	public void itemUse(BlackPanther blackTiger) {
-		System.out.println("HealthPotion!");
 		blackTiger.heal(HEALFACTOR);
 		Audio.EAT.play();
 	}

@@ -40,6 +40,7 @@ public class QuitMenu extends Popup {
 					Audio.SELECTMENU.play();
 					if (selectNumber % 2 == 0) {
 						Main.gameQuit();
+						Audio.stop();
 					} else {
 						selectNumber = 100000;
 						this.hide();

@@ -54,13 +54,12 @@ public class HallOfFameMenu extends Scene {
 			fillText();
 		} catch (HallOfFameException e) {
 			
-			// Alert alert = new Alert(AlertType.INFORMATION);
-			// alert.setTitle("Hall of fame");
-			// alert.setHeaderText("Hall of fame is updated!");
-			// alert.showAndWait();
-			// alert.setContentText("Could not find file blabla.txt!");
-			// e.printStackTrace();
-			// System.out.println("Hall of Fame fillText initialize!");
+			 Alert alert = new Alert(AlertType.INFORMATION);
+			 alert.setTitle("Hall of fame");
+			 alert.setHeaderText("Hall of fame is updated!");
+			 alert.showAndWait();
+			 e.printStackTrace();
+			 System.out.println("Hall of Fame fillText initialize!");
 		}
 
 		root.getChildren().addAll(canvas);
@@ -137,7 +136,7 @@ public class HallOfFameMenu extends Scene {
 			}
 		});
 	}
-
+//
 	public static void readHallOfFame() {
 		try (BufferedReader reader = new BufferedReader(new FileReader(new File("resources/HallOfFame.txt")))) {
 			String line;
@@ -146,7 +145,6 @@ public class HallOfFameMenu extends Scene {
 				String playerName = line.substring(0, colonIndex);
 				int score = Integer.parseInt(line.substring(colonIndex + 1, line.length()));
 				addList(playerName, score);
-				// System.out.println(playerName+":"+score);
 			}
 			sortList();
 		} catch (IOException e) {
