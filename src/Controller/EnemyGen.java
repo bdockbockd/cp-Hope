@@ -12,8 +12,8 @@ public class EnemyGen {
 
 	public static boolean bowSpawn = true;
 	public static double botSpawnRate = 1;
-	public static final int ENEMYSTARTNUMBER = 0;
-	public static int enemyMaximumNumber = 20;
+	public static final int ENEMYSTARTNUMBER = 1;
+	public static int enemyMaximumNumber = 15;
 	private static CopyOnWriteArrayList<HumanSprite> badList = new CopyOnWriteArrayList<HumanSprite>();
 	public static BlackPanther instanceTiger;
 
@@ -140,15 +140,13 @@ public class EnemyGen {
 
 	public static void modifiyBotLevel() {
 		if (Timer.getSec() == 20) {
-			enemyMaximumNumber += 5;
 			EnemyGen.botSpawnRate = 1.10;
-			HumanSprite.BOT_GREEDY_RATE = 0.90;
+			HumanSprite.BOT_GREEDY_RATE = 0.95;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.4;
 			HumanSprite.BOT_STEADY_RATE = 0.15;
 		} else if (Timer.getSec() == 50) {
-			enemyMaximumNumber += 5;
 			EnemyGen.botSpawnRate = 1.2;
-			HumanSprite.BOT_GREEDY_RATE = 0.85;
+			HumanSprite.BOT_GREEDY_RATE = 0.87;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.3;
 			HumanSprite.BOT_STEADY_RATE = 0.10;
 		} else if (Timer.getMin() == 1 && Timer.getSec() == 20) {
@@ -164,7 +162,6 @@ public class EnemyGen {
 			HumanSprite.BOT_FOLLOWING_RATE = 0.2;
 			HumanSprite.BOT_STEADY_RATE = 0.05;
 		} else if (Timer.getMin() == 2) {
-			enemyMaximumNumber += 5;
 			EnemyGen.botSpawnRate = (long) 1.5;
 			HumanSprite.BOT_GREEDY_RATE = 0.65;
 			HumanSprite.BOT_FOLLOWING_RATE = 0.1;

@@ -82,7 +82,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 	}
 
 	public void attackEnemy(int actionState) {
-		Audio.HITDETECTED = false;
+		Audio.hitDetected = false;
 		LoopGame.botHit = false;
 		if (this.getFace() == "LEFT") {
 			HumanSprite enemy;
@@ -96,7 +96,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					}
 					enemy.setHealth(enemy.getHealth() - this.getDamage());
 
-					Audio.HITDETECTED = true;
+					Audio.hitDetected = true;
 				}
 			}
 		} else {
@@ -109,11 +109,11 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus {
 					if (!(enemy.isDead())) {
 						enemy.knockBack(this.getFace(), actionState, (enemy.getPositionY() > this.getPositionY()));
 					}
-					Audio.HITDETECTED = true;
+					Audio.hitDetected = true;
 				}
 			}
 		}
-		if (Audio.HITDETECTED == true) {
+		if (Audio.hitDetected == true) {
 			Audio.playGetHit(0);
 		}
 	}

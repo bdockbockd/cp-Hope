@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="Item.Bullet" project="cp-Hope" file="/cp-Hope/src/Item/Bullet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="245" width="177" x="7569" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="Constant.MagicNumber" project="cp-Hope" 
+    file="/cp-Hope/src/Constant/MagicNumber.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="117" x="323" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="Controller.ItemGen" project="cp-Hope" file="/cp-Hope/src/Controller/ItemGen.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="179" x="480" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="Constant.FontRes" project="cp-Hope" file="/cp-Hope/src/Constant/FontRes.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="97" x="699" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="Sprite.Moveable" project="cp-Hope" file="/cp-Hope/src/Sprite/Moveable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="161" x="7278" y="2718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="Controller.KeyControlBot" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/KeyControlBot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="209" x="836" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Controller.EnemyGen" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/EnemyGen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="425" width="318" x="1085" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="8" language="java" name="Constant" project="cp-Hope" file="/cp-Hope/src/Constant" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="1443" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="9" language="java" name="UI.QuitMenu" project="cp-Hope" file="/cp-Hope/src/UI/QuitMenu.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="119" width="177" x="1597" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="Enemy.TrapMan" project="cp-Hope" file="/cp-Hope/src/Enemy/TrapMan.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="263" width="263" x="6372" y="3309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Item.Meat" project="cp-Hope" file="/cp-Hope/src/Item/Meat.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="175" x="6919" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="Exception.HallOfFameException" project="cp-Hope" 
+    file="/cp-Hope/src/Exception/HallOfFameException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="183" x="1814" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="Controller.LoopGame" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/LoopGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="371" width="278" x="2037" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="UI.HowToPlayMenu" project="cp-Hope" file="/cp-Hope/src/UI/HowToPlayMenu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="177" x="2355" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="Item.HealthPotion" project="cp-Hope" file="/cp-Hope/src/Item/HealthPotion.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="179" x="7134" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="16" language="java" name="Enemy" project="cp-Hope" file="/cp-Hope/src/Enemy" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="2572" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="17" language="java" name="Sprite" project="cp-Hope" file="/cp-Hope/src/Sprite" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="2726" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="18" language="java" name="Exception" project="cp-Hope" file="/cp-Hope/src/Exception" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="2880" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="19" language="java" name="UI.MainMenu" project="cp-Hope" file="/cp-Hope/src/UI/MainMenu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="189" x="3034" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="20" language="java" name="application" project="cp-Hope" file="/cp-Hope/src/application" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="3263" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="21" language="java" name="Sprite.Sprite" project="cp-Hope" file="/cp-Hope/src/Sprite/Sprite.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="731" width="186" x="6879" y="798"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="Exception.ExitGameException" project="cp-Hope" 
+    file="/cp-Hope/src/Exception/ExitGameException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="156" x="3417" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="application.Main" project="cp-Hope" file="/cp-Hope/src/application/Main.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="407" width="219" x="3613" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="Controller.StatusBar" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/StatusBar.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="206" x="3872" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="Enemy.SwordMan" project="cp-Hope" file="/cp-Hope/src/Enemy/SwordMan.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="157" x="6675" y="3309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="Item.SuperPotion" project="cp-Hope" file="/cp-Hope/src/Item/SuperPotion.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="176" x="7353" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="UI.GamePause" project="cp-Hope" file="/cp-Hope/src/UI/GamePause.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="191" x="4118" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="Controller.KeyControlBlackPanther" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/KeyControlBlackPanther.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="343" x="4349" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="29" language="java" name="Enemy.IsEnemy" project="cp-Hope" file="/cp-Hope/src/Enemy/IsEnemy.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="122" x="4732" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="30" language="java" name="Sprite.Rectangle" project="cp-Hope" file="/cp-Hope/src/Sprite/Rectangle.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="371" width="243" x="7569" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="Sprite.BlackPantherSprite" project="cp-Hope" 
+    file="/cp-Hope/src/Sprite/BlackPantherSprite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1109" width="301" x="6249" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="Constant.Audio" project="cp-Hope" file="/cp-Hope/src/Constant/Audio.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="587" width="177" x="4894" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="33" language="java" name="Controller" project="cp-Hope" file="/cp-Hope/src/Controller" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="5111" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="34" language="java" name="UI.StartGame" project="cp-Hope" file="/cp-Hope/src/UI/StartGame.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="227" width="158" x="5265" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="Exception.GameOverException" project="cp-Hope" 
+    file="/cp-Hope/src/Exception/GameOverException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="162" x="5463" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="Controller.ScoreBoard" project="cp-Hope" 
+    file="/cp-Hope/src/Controller/ScoreBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="299" width="181" x="5665" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="37" language="java" name="UI" project="cp-Hope" file="/cp-Hope/src/UI" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="5886" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="38" language="java" name="Item.Item" project="cp-Hope" file="/cp-Hope/src/Item/Item.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="281" width="231" x="7569" y="798"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="39" language="java" name="Item" project="cp-Hope" file="/cp-Hope/src/Item" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="114" x="6040" y="-297"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="40" language="java" name="UI.DeadScene" project="cp-Hope" file="/cp-Hope/src/UI/DeadScene.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="333" x="6194" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="41" language="java" name="Item.DisappearObject" project="cp-Hope" 
+    file="/cp-Hope/src/Item/DisappearObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="136" x="7846" y="2718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="42" language="java" name="Sprite.HasStatus" project="cp-Hope" file="/cp-Hope/src/Sprite/HasStatus.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="151" x="6181" y="3309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="43" language="java" name="UI.GameMenu" project="cp-Hope" file="/cp-Hope/src/UI/GameMenu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="183" x="6567" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="Enemy.HumanSprite" project="cp-Hope" file="/cp-Hope/src/Enemy/HumanSprite.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="965" width="268" x="6590" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="Constant.Images" project="cp-Hope" file="/cp-Hope/src/Constant/Images.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1055" width="272" x="6790" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="UI.HallOfFameMenu" project="cp-Hope" file="/cp-Hope/src/UI/HallOfFameMenu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="250" x="7102" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="Controller.Timer" project="cp-Hope" file="/cp-Hope/src/Controller/Timer.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="497" width="137" x="7392" y="-297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="Item.Trap" project="cp-Hope" file="/cp-Hope/src/Item/Trap.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="227" width="175" x="7786" y="1569"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="Enemy.GunMan" project="cp-Hope" file="/cp-Hope/src/Enemy/GunMan.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="299" width="263" x="6872" y="3309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="Enemy.BadHuman" project="cp-Hope" file="/cp-Hope/src/Enemy/BadHuman.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="425" width="232" x="6628" y="2718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="Sprite.BlackPanther" project="cp-Hope" 
+    file="/cp-Hope/src/Sprite/BlackPanther.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="551" width="251" x="6215" y="2718"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="50"/>  
+  </generalization>  
+  <realization id="54">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="42"/>  
+  </realization>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <realization id="56">    
+    <bendpoint x="7991" y="1569"/>    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="41"/>  
+  </realization>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="50"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <realization id="60">    
+    <bendpoint x="6888" y="1569"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="61">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="41"/>  
+  </realization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="50"/>  
+  </generalization>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <realization id="67">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="68">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <generalization id="69">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="70">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="44"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -45,7 +45,7 @@ public class Audio {
 	public static final AudioClip EAT = new AudioClip(ClassLoader.getSystemResource("design/item/eat.wav").toString());
 	public static final AudioClip DRINK = new AudioClip(ClassLoader.getSystemResource("design/item/drink.wav").toString());
 
-	public static boolean HITDETECTED = false;
+	public static boolean hitDetected = false;
 	public static AudioClip[] ListHIT = new AudioClip[20];
 	public static boolean[] AudioAvailable = new boolean[20];
 

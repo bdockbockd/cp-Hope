@@ -17,8 +17,8 @@ public class HealthPotion extends Item {
 	}
 
 	@Override
-	public void itemUse(BlackPanther blackTiger) {
-		blackTiger.heal(HEALFACTOR);
+	public void itemUse(BlackPanther blackPanther) {
+		blackPanther.heal(HEALFACTOR);
 		Audio.EAT.play();
 	}
 }
