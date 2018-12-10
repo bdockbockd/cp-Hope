@@ -56,7 +56,7 @@ public class GamePause extends Popup{
 		      }
 		      else if(key.getCode() == KeyCode.ESCAPE){
 		    	  Audio.SELECTMENU.play();
-		    	  Audio.GAME_BGM.play();
+//		    	  Audio.GAME_BGM.play();
 		    	  continueGame();
 		      }
 		      gc.drawImage(gamePause.get(selectNumber%2), 0, 0);
@@ -73,7 +73,7 @@ public class GamePause extends Popup{
 		isPause = false;
 	}
 	
-	private void endGame() {
+	public static void endGame() {
 	    Timer.stop();
 	    Timer.hide();
         Timer.terminate();

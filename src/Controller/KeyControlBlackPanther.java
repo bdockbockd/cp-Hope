@@ -27,11 +27,11 @@ public class KeyControlBlackPanther {
     public static final String GODMODE_OFF_KEY = "O";
     public static final String GETSCORE_KEY = "P";
 
-
 	public static void keyActionToSpeed(BlackPanther blackPanther, long current, AnimationTimer x) {
 		
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 			blackPanther.setActionState(3);
+			blackPanther.setLocked(false);
 			BlackPanther.jumpAttackDetected = true;
 			blackPanther.setSkillOn(true);
 			String direction = blackPanther.getFace();
@@ -46,7 +46,7 @@ public class KeyControlBlackPanther {
 
 			blackPanther.setActionState(2);
 			blackPanther.attackEnemy(2);
-			
+			blackPanther.setLocked(false);
 			Audio.spinSound();
 			blackPanther.setSkillOn(true);
 
@@ -117,38 +117,45 @@ public class KeyControlBlackPanther {
 			ScoreBoard.addScore(10000);
 		}
 		
-
 		if(input.contains("ESCAPE") && !LoopGame.gamePause.isShowing() && !GamePause.isPause){
 			Audio.SELECTMENU.play();
 			GamePause.isPause = true;
 			Timer.stop();
 			Timer.hide();
+			Audio.stop();
 			ScoreBoard.hide();
 			System.out.println("GAME IS PAUSED!");
 			LoopGame.gamePause.show(Main.stage);
 		}
 
-	    if (input.contains("LEFT") && blackPanther.getRealX() > 0) {
+	    if (input.contains("LEFT") && blackPanther.getRealX() > 0 ) {
 			// x 70
-            blackPanther.addVelocity(-200,0);
+	    	if(!blackPanther.isLocked()) {
+	    		blackPanther.addVelocity(-200,0);
+	    	}
             blackPanther.setFace("LEFT");
             blackPanther.setActionState(0);
         }
 	    if (input.contains("RIGHT") && blackPanther.getRealX() < 1230 - blackPanther.getRealWidth()) {
-            blackPanther.addVelocity(200,0);
-            blackPanther.setFace("RIGHT");
+	    	if(!blackPanther.isLocked()) {
+	    		blackPanther.addVelocity(200,0);
+	    	}            blackPanther.setFace("RIGHT");
             blackPanther.setActionState(0);
         }
 	    if (input.contains("UP") && blackPanther.getRealY() > 210) {
         	// y 50
-            blackPanther.addVelocity(0,-200);
-            blackPanther.setFace(blackPanther.getFace());
+	    	if(!blackPanther.isLocked()) {
+	    		blackPanther.addVelocity(0,-200);
+	    	}        
+	    	blackPanther.setFace(blackPanther.getFace());
             blackPanther.setActionState(0);
 
         }
 		else if (input.contains("DOWN") && blackPanther.getRealY() < 800-blackPanther.getRealHeight()) {
-            blackPanther.addVelocity(0,200);
-            blackPanther.setFace(blackPanther.getFace());
+			if(!blackPanther.isLocked()) {
+	    		blackPanther.addVelocity(0,200);
+	    	}                  
+			blackPanther.setFace(blackPanther.getFace());
             blackPanther.setActionState(0);
 		}
         if(input.contains(ATTACK_KEY) && blackPanther.isCanMovePosition() == true && StatusBar.attackIsReady()) {

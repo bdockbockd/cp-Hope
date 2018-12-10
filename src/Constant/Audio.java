@@ -83,5 +83,11 @@ public class Audio {
 //			
 //		}
 	}
+
+	public static void stop() {
+		// TODO Auto-generated method stub
+		Audio.ENEMY_FIRE.stop();
+		Audio.ENEMY_TRAP.stop();
+	}
 	
 }

@@ -20,11 +20,9 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 	public static long JUMP_COOLDOWN = 1*1000; //sec
 	public static long SPIN_COOLDOWN = 5*1000; //sec
 	
-//	private int status; // 0 = normalBP, 1 = superBP, 2 = enragedB
-	public static int STATUS = 0;
+	public static int STATUS = DEFAULT_STATUS;
 	public static boolean ISSUPER = false;
 	private boolean isGod;
-//	private static Image[][] STATUSTIGER = BlackPanther.IMAGESTAGEDEFAULT;
 	
 	public BlackPanther() {
 		super((Images.blackTigerMotionR)[0], Images.blackTigerMotionR, Images.blackTigerMotionL, Images.blackTigerMotionR);
@@ -204,7 +202,7 @@ public class BlackPanther extends BlackPantherSprite implements HasStatus{
 		else if(BlackPanther.STATUS == 2)
 		{
 			BlackPanther.ATTACK_COOLDOWN_VALUE = BlackPanther.ATTACK_COOLDOWN_CONSTANT;
-			setDamage(150);
+			setDamage(200);
 			setArmor(15);
 		}
 	}

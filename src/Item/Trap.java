@@ -25,15 +25,14 @@ public class Trap extends Item implements Moveable, DisappearObject {
 		
 		Thread trap = new Thread(()->{
 			blackPanther.setVelocity(0, 0);
-			blackPanther.setSkillOn(true);
-//			LoopGame.gc.drawImage(img, x, y);
+			blackPanther.setLocked(true);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			blackPanther.setSkillOn(false);
+			blackPanther.setLocked(false);
 		});
 		trap.start();
 	}

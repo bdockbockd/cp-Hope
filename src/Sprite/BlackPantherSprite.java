@@ -10,11 +10,11 @@ import javafx.scene.image.Image;
 public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
 	private static final String name = "BlackPantherSprite";
-	private boolean isMove;
+	protected boolean isMove;
 	protected boolean attackable;
 	protected boolean canMovePosition = true;
 
-	private final double maxHealth = 1000;
+	private final double maxHealth = 1500;
 	private double health;
 	private double damage;
 	private double armor;
@@ -24,6 +24,7 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 	protected int spinPosition = 0;
 	protected int jumpPosition = 0;
 	protected boolean skillOn;
+	protected boolean isLocked;
 	
 
 
@@ -105,7 +106,11 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
     public void render(GraphicsContext gc)
     {
+    	
         gc.drawImage( this.getImage(), this.getPositionX(), this.getPositionY() );
+        if(this.isLocked) {
+        	gc.drawImage(new Image(ClassLoader.getSystemResource("design/question/0-2.png").toString(), 96 ,96 ,false, false), this.getRealX()+this.getRealWidth()/2-30, this.getRealY()-90);
+        }
     }
 
     
@@ -313,6 +318,14 @@ public abstract class BlackPantherSprite extends Sprite /*implements HasSkill*/{
 
 	public void setSkillOn(boolean skillOn) {
 		this.skillOn = skillOn;
+	}
+
+	public boolean isLocked() {
+		return isLocked;
+	}
+
+	public void setLocked(boolean isLocked) {
+		this.isLocked = isLocked;
 	}
 
 	public String getName() {

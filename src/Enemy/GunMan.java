@@ -5,6 +5,7 @@ import Constant.Images;
 import Controller.EnemyGen;
 import Controller.LoopGame;
 import Item.Bullet;
+import Item.Item;
 import Sprite.BlackPanther;
 import UI.GamePause;
 import javafx.scene.media.AudioClip;
@@ -53,12 +54,68 @@ public class GunMan extends BadHuman {
 			this.update(time);
 			return;
 		}
-		if(this.isReadyToFire) {
+
+		double random = Math.random();
+		if(random > HumanSprite.BOT_GREEDY_CHANCE + 0.5) {
+			this.updateBotTypeGreedy(blackPanther);
+		} else if(random > HumanSprite.BOT_FOLLOWING_CHANCE) {
+			this.updateBotTypeFollowing(blackPanther);
+		} else {
+			this.randomBot(blackPanther);
+		}
+   
+	}
+	
+	
+	public void updateBotTypeGreedy(BlackPanther blackPanther) {
+		for(int i =0;i<(int)Math.random()*1;i++) {
+			if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+				this.fireBullet();
+			}		
+		}
+	}
+	
+    public void updateBotTypeFollowing(BlackPanther blackPanther) {
+		if((this.getPositionY() > blackPanther.getPositionY())) {
+    		if(this.getPositionX() < 100) {
+          		this.setVelocityX(HumanSprite.MAX_RANDOM_SPEED);
+          	} else if (this.getPositionX() > 1175) {
+          		this.setVelocityX(-HumanSprite.MAX_RANDOM_SPEED);
+          	}
+          	this.setVelocityY(-Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+    	} else {
+          	this.setVelocityY(Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+          	if(this.getPositionX() < 100) {
+          		this.setVelocityX(Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+          	} else if (this.getPositionX() > 1175) {
+          		this.setVelocityX(-Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+          	}
+        }
+		if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+			this.fireBullet();
+		}    	  
+    }
+	    
+    public void randomBot(BlackPanther blackPanther) {
+    	double random = Math.random();
+	  	if(random > 0.90) {
+	  		if(this.getFace() == "LEFT") {
+		  		this.setVelocity(Math.random()*100, Math.random()*100-50);
+	  		} else {
+		  		this.setVelocity(+Math.random()*100, Math.random()*100-50);
+	  		}
+	    } else {
+	    	if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+				this.fireBullet();
+			}	    
+	    }
+	}
+	public void fireBullet() {
+		if(this.isReadyToFire ) {
 			Thread delayToFire = new Thread(()->{
 				try {
-					this.isReadyToFire = false;
-					Thread.sleep(1000);
-					this.fireBullet();
+					this.isReadyToFire = false;	
+					Thread.sleep(4000);
 					this.isReadyToFire = true;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -66,27 +123,13 @@ public class GunMan extends BadHuman {
 				}
 			});
 			delayToFire.start();
+		} else {
+			return;
 		}
-//		this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
-        if( (this.getPositionY() > blackPanther.getPositionY())) {
-        	if(this.getPositionX() < 100) {
-        		this.setVelocityX(200);
-        	} else if (this.getPositionX() > 1175) {
-        		this.setVelocityX(-200);
-        	}
-        	this.setVelocityY(-200);
-        } else {
-        	this.setVelocityY(200);
-        	if(this.getPositionX() < 100) {
-        		this.setVelocityX(200);
-        	} else if (this.getPositionX() > 1175) {
-        		this.setVelocityX(-200);
-        	}
-        }
-	}
-	
-	public void fireBullet() {
-		if(this.isDead() || GamePause.isPause == true || GamePause.isReGame == true || EnemyGen.getbadList().size() == 0) {
+		while(LoopGame.gamePause.isShowing()) {
+			System.out.print("WAIT TO FIRE CAUS GAME PAUSED");
+		}
+		if(this.isDead()) {
 			return;
 		}
 		Audio.ENEMY_FIRE.play();
@@ -98,6 +141,7 @@ public class GunMan extends BadHuman {
 	}
 	
 	public boolean isReadyToFire() {
+		
 		return this.isReadyToFire;
 	}
 	public void setFire(boolean isReady) {

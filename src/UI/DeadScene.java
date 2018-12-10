@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Constant.Audio;
 import Constant.Images;
+import Controller.EnemyGen;
 import Controller.LoopGame;
 import Controller.Main;
 import Sprite.BlackPanther;
@@ -57,7 +58,9 @@ public class DeadScene extends Popup {
 		    	  // -> new StartGame
 		    	  if(selectNumber%2 == 0){
 		    		  selectNumber = 100000;
+		    		  GamePause.endGame();
 		    		  LoopGame.blackPanther.reset();
+		    		  EnemyGen.getbadList().clear();
 		    		  Main.startGame(playerName);
 		    	  }
 		    	  else {
