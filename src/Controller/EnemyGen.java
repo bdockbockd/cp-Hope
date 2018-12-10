@@ -12,27 +12,13 @@ public class EnemyGen {
     public static BlackPanther instanceTiger;    
 
 	   public static HumanSprite generateRandom() {
-	    	double px,py;
-	    	if(Math.random() < 0.5) {
-		        px = 1300;
-	    	} else {
-	    		px = -250;
-	    	}
-	        py = Math.random()*600+215;
+	    	double px = EnemyGen.randomPosition("X");
+	    	double py = EnemyGen.randomPosition("Y");
 	        
-	        
-		    double random = Math.random();
-	    	HumanSprite enemy;
-		    if(random > 0.95) {
-		    	enemy = new GunMan();
-		    } else if(random > 0.80) {
-		    	enemy = new TrapMan();
-		    } else if (random > 0.60) {
-		    	enemy = new SwordMan();
-		    } else {
-		    	enemy = new BadHuman();
-		    }
+	    	HumanSprite enemy = EnemyGen.randomType();
+		  
 	        enemy.setPosition(px, py);
+	        enemy.setBotType();
 		    EnemyGen.setInitialImage(enemy);
 	        return enemy;
 	    }
@@ -67,6 +53,7 @@ public class EnemyGen {
 	    	for(int i=0; i< EnemyGen.badList.size();i++) {
 	    		HumanSprite enemy = EnemyGen.getbadList().get(i);
 	    		if(enemy.intersect(tiger)) {
+	    			
 	    			if(!(enemy.isWaitToHit())) {
 	    				enemy.setFace(enemy.getFace());
 	    				enemy.nextPosition(enemy.getFace());
@@ -119,5 +106,29 @@ public class EnemyGen {
 
 		public static void setbadList(CopyOnWriteArrayList<HumanSprite> list) {
 			EnemyGen.badList = list;
+		}
+		
+		public static double randomPosition(String axis) {
+			if(axis.equals("X")) {
+				if(Math.random() < 0.5) {
+			        return 1300;
+		    	} else {
+		    		return -250;
+		    	}
+			} 
+			return Math.random()*600+215;
+		}
+		
+		public static HumanSprite randomType() {
+			double random = Math.random();
+		    if(random > 0.9) {
+		    	return new GunMan();
+		    } else if(random > 0.75) {
+		    	return new TrapMan();
+		    } else if (random > 0.50) {
+		    	return new SwordMan();
+		    } else {
+		    	return new BadHuman();
+		    }
 		}
 }

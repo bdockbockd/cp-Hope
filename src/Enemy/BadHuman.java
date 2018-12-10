@@ -36,34 +36,20 @@ public class BadHuman extends HumanSprite  {
     //bot update
     public void update(double time, BlackPanther tiger)
     {
+    	
     	if(this.isDead()) {
     		return;
     	}
+    	if(this.isFollowing()) {
+    		this.updateBotTypeFollowing(tiger);
+    	} else if(this.isGreedy()) {
+    		this.updateBotTypeGreedy(tiger);
+    	} else {
+    		this.updateSteady(tiger);
+    	}
         this.setPositionX(this.getPositionX() + (this.getVelocityX()) * time);
         this.setPositionY(this.getPositionY() + (this.getVelocityY()) * time);
-
-//        if(this.intersect(tiger) == false) {
-    			if(tiger.getPositionX()+120 < this.getPositionX()) {
-					this.setFace("LEFT");
-					this.setPositionL(0);
-    				this.nextPosition(this.getFace());
-    				if(tiger.getPositionY()+75 < this.getPositionY() ) {
-        				this.setVelocity(-Math.random()*200,-Math.random()*200);
-    				} else {
-    					this.setVelocity(-Math.random()*200,Math.random()*200);
-    				}
-
-    			} else {
-    				this.setFace("RIGHT");
-					this.setPositionR(0);
-    				this.nextPosition(this.getFace());
-    				if(tiger.getPositionY()+75 < this.getPositionY()) {
-        				this.setVelocity(Math.random()*200,-Math.random()*200);
-    				} else {
-    					this.setVelocity(Math.random()*200,Math.random()*200);
-
-    				}	
-    			}
+        
     }
 
 	public void knockBack(String direction, int stateSkill, boolean isBotHigher) {

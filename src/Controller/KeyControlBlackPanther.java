@@ -32,6 +32,7 @@ public class KeyControlBlackPanther {
 		
 		if(input.contains(JUMP_KEY) && BlackPanther.jumpAttackDetected == false && StatusBar.pounceIsReady()) {
 			tiger.setActionState(3);
+			tiger.setLocked(false);
 			BlackPanther.jumpAttackDetected = true;
 			tiger.setSkillOn(true);
 			String direction = tiger.getFace();
@@ -46,7 +47,7 @@ public class KeyControlBlackPanther {
 
 			tiger.setActionState(2);
 			tiger.attackEnemy(2);
-			
+			tiger.setLocked(false);
 			Audio.spinSound();
 			tiger.setSkillOn(true);
 
@@ -117,38 +118,45 @@ public class KeyControlBlackPanther {
 			ScoreBoard.addScore(10000);
 		}
 		
-
 		if(input.contains("ESCAPE") && !LoopGame.gamePause.isShowing() && !GamePause.isPause){
 			Audio.SELECTMENU.play();
 			GamePause.isPause = true;
 			Timer.stop();
 			Timer.hide();
+			Audio.stop();
 			ScoreBoard.hide();
 			System.out.println("GAME IS PAUSED!");
 			LoopGame.gamePause.show(Main.stage);
 		}
 
-	    if (input.contains("LEFT") && tiger.getRealX() > 0) {
+	    if (input.contains("LEFT") && tiger.getRealX() > 0 ) {
 			// x 70
-            tiger.addVelocity(-200,0);
+	    	if(!tiger.isLocked()) {
+	    		tiger.addVelocity(-200,0);
+	    	}
             tiger.setFace("LEFT");
             tiger.setActionState(0);
         }
 	    if (input.contains("RIGHT") && tiger.getRealX() < 1230 - tiger.getRealWidth()) {
-            tiger.addVelocity(200,0);
-            tiger.setFace("RIGHT");
+	    	if(!tiger.isLocked()) {
+	    		tiger.addVelocity(200,0);
+	    	}            tiger.setFace("RIGHT");
             tiger.setActionState(0);
         }
 	    if (input.contains("UP") && tiger.getRealY() > 210) {
         	// y 50
-            tiger.addVelocity(0,-200);
-            tiger.setFace(tiger.getFace());
+	    	if(!tiger.isLocked()) {
+	    		tiger.addVelocity(0,-200);
+	    	}        
+	    	tiger.setFace(tiger.getFace());
             tiger.setActionState(0);
 
         }
 		else if (input.contains("DOWN") && tiger.getRealY() < 800-tiger.getRealHeight()) {
-            tiger.addVelocity(0,200);
-            tiger.setFace(tiger.getFace());
+			if(!tiger.isLocked()) {
+	    		tiger.addVelocity(0,200);
+	    	}                  
+			tiger.setFace(tiger.getFace());
             tiger.setActionState(0);
 		}
         if(input.contains(ATTACK_KEY) && tiger.isCanMovePosition() == true && StatusBar.attackIsReady()) {

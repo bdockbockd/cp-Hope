@@ -21,6 +21,13 @@ public abstract class HumanSprite extends Sprite {
     private boolean isTomb = false;
     private boolean waitToHit = false;
     private boolean knockBack = false;
+    private boolean isFollowing = false;
+    private boolean isGreedy = false;
+    
+    public static double BOT_GREEDY_CHANCE = 0.6;
+    public static double BOT_FOLLOWING_CHANCE = 0.4;
+    public static double BOT_STEADY_CHANCE = 0.2;
+    public static double MAX_RANDOM_SPEED = 200;
 
 
 
@@ -60,9 +67,94 @@ public abstract class HumanSprite extends Sprite {
         }
         
     }
+    public void setBotType() {
+    	if(Math.random() < 0.2) {
+    		this.setFollowing(false);
+    	} else if(Math.random() >= 0.2) {
+    		this.setGreedy(true);
+    	} else {
+    		this.setFollowing(true);
+    	}
+	}
+    public void updateBotTypeFollowing(BlackPanther tiger) {
+        if(this.intersect(tiger) == false) {
+     			if(tiger.getPositionX()+120 < this.getPositionX()) {
+ 					this.setFace("LEFT");
+ 					this.setPositionL(0);
+     				this.nextPosition(this.getFace());
+     				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+         				this.setVelocity(-Math.random()*200,-Math.random()*200);
+     				} else {
+     					this.setVelocity(-Math.random()*200,Math.random()*200);
+     				}
+
+     			} else {
+     				this.setFace("RIGHT");
+ 					this.setPositionR(0);
+     				this.nextPosition(this.getFace());
+     				if(tiger.getPositionY()+75 < this.getPositionY()) {
+         				this.setVelocity(Math.random()*200,-Math.random()*200);
+     				} else {
+     					this.setVelocity(Math.random()*200,Math.random()*200);
+
+     				}	
+     			}
+         }
+    }
+    
+    public void updateBotTypeGreedy(BlackPanther tiger) {
+    	if(tiger.getPositionX()+120 < this.getPositionX()) {
+				this.setFace("LEFT");
+				this.setPositionL(0);
+				this.nextPosition(this.getFace());
+				if(tiger.getPositionY()+75 < this.getPositionY() ) {
+ 				this.setVelocity(-Math.random()*200,-Math.random()*200);
+				} else {
+					this.setVelocity(-Math.random()*200,Math.random()*200);
+				}
+
+			} else {
+				this.setFace("RIGHT");
+				this.setPositionR(0);
+				this.nextPosition(this.getFace());
+				if(tiger.getPositionY()+75 < this.getPositionY()) {
+ 				this.setVelocity(Math.random()*200,-Math.random()*200);
+				} else {
+					this.setVelocity(Math.random()*200,Math.random()*200);
+
+				}	
+			}
+    }
+    
+    public void updateSteady(BlackPanther tiger) {
+    	if(Math.random() > 0.3) {
+    		this.setVelocity(Math.random()*100-50, Math.random()*100-50);
+    		return;
+    	}
+    	if(tiger.getPositionX()+120 < this.getPositionX()) {
+			this.setFace("LEFT");
+			this.setPositionL(0);
+			this.nextPosition(this.getFace());
+			if(tiger.getPositionY()+75 < this.getPositionY() ) {
+				this.setVelocity(-Math.random()*200,0);
+			} else {
+				this.setVelocity(-Math.random()*200,0);
+			}
+
+		} else {
+			this.setFace("RIGHT");
+			this.setPositionR(0);
+			this.nextPosition(this.getFace());
+			if(tiger.getPositionY()+75 < this.getPositionY()) {
+				this.setVelocity(Math.random()*200,0);
+			} else {
+				this.setVelocity(Math.random()*200,0);
+
+			}	
+		}
+    }
     
 	 public void attack(BlackPanther tiger) {
-		// TODO Auto-generated method stub
 		tiger.takeDamage(this.getDamage());
 	}
 
@@ -111,8 +203,7 @@ public abstract class HumanSprite extends Sprite {
         + " Velocity: [" + this.getVelocityX() + "," + this.getVelocityY() + "]";
     }  
     
-	//getter & setter
-	public double getMaxHealth() {
+    public double getMaxHealth() {
 		return this.maxHealth;
 	}
 	public double getHealth() {
@@ -159,8 +250,22 @@ public abstract class HumanSprite extends Sprite {
 	public void setKnockBack(boolean knockBack) {
 		this.knockBack = knockBack;
 	}
+	public boolean isFollowing() {
+		return isFollowing;
+	}
+	public void setFollowing(boolean isFollowing) {
+		this.isFollowing = isFollowing;
+	}
+	public boolean isGreedy() {
+		return isGreedy;
+	}
+	public void setGreedy(boolean isGreedy) {
+		this.isGreedy = isGreedy;
+	}
+	
 	
 	public abstract void update(double time, BlackPanther tiger);
 	public abstract void knockBack(String direction, int stateSkill, boolean isBotHigher);
+
 
 }

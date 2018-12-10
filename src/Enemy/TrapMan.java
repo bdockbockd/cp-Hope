@@ -3,7 +3,9 @@ package Enemy;
 import Constant.Audio;
 import Constant.Images;
 import Controller.EnemyGen;
+import Controller.LoopGame;
 import Item.Bullet;
+import Item.Item;
 import Item.Trap;
 import Sprite.BlackPanther;
 import UI.GamePause;
@@ -49,38 +51,89 @@ public class TrapMan extends BadHuman {
 				this.update(time);
 				return;
 			}
-			if(this.isReadyToTrap) {
-				Thread delayToThrow = new Thread(()->{
+
+			// random to trap
+			double random = Math.random();
+			if(random > HumanSprite.BOT_GREEDY_CHANCE + 0.5) {
+				this.updateBotTypeGreedy(tiger);
+			} else if(random > HumanSprite.BOT_FOLLOWING_CHANCE) {
+				this.updateBotTypeFollowing(tiger);
+			} else {
+				this.randomBot(tiger);
+			}
+		}
+		
+		
+		public void updateBotTypeGreedy(BlackPanther tiger) {
+			for(int i =0;i<(int)Math.random()*1;i++) {
+				if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+					this.throwTrap();
+				}
+			}
+		}
+		
+	    public void updateBotTypeFollowing(BlackPanther tiger) {
+			if((this.getPositionY() > tiger.getPositionY())) {
+	    		if(this.getPositionX() < 100) {
+	          		this.setVelocityX(HumanSprite.MAX_RANDOM_SPEED);
+	          	} else if (this.getPositionX() > 1175) {
+	          		this.setVelocityX(-HumanSprite.MAX_RANDOM_SPEED);
+	          	}
+	          	this.setVelocityY(-Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+	    	} else {
+	          	this.setVelocityY(Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+	          	if(this.getPositionX() < 100) {
+	          		this.setVelocityX(Math.random()*HumanSprite.MAX_RANDOM_SPEED-50);
+	          	} else if (this.getPositionX() > 1175) {
+	          		this.setVelocityX(-Math.random()*HumanSprite.MAX_RANDOM_SPEED);
+	          	}
+	        }
+			if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+				this.throwTrap();
+			}	    	  
+	    }
+		    
+	    public void randomBot(BlackPanther tiger) {
+	    	double random = Math.random();
+		  	if(random < 0.90) {
+		  		if(this.getFace() == "LEFT") {
+			  		this.setVelocity(Math.random()*100, Math.random()*100-50);
+		  		} else {
+			  		this.setVelocity(+Math.random()*100, Math.random()*100-50);
+		  		}
+		    	return;
+		    } else {
+		    	if(this.getPositionX() > 0 && this.getPositionX() <1250) {
+					this.throwTrap();
+				}		    
+		    }
+		}
+	
+		
+		public void throwTrap() {
+			if(LoopGame.gamePause.isShowing()) {
+				while(LoopGame.gamePause.isShowing()) {
+					System.out.print("WAIT TO THROW CAUS GAME PAUSED");
+				}
+			}
+			if(this.isDead()) {
+				return;
+			}
+			if(this.isReadyToTrap ) {
+				Thread delayToTrap = new Thread(()->{
 					try {
-						this.isReadyToTrap = false;
-						Thread.sleep(2000);
-						this.throwTrap();
+						this.isReadyToTrap = false;	
+						Thread.sleep(4000);
 						this.isReadyToTrap = true;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				});
-				delayToThrow.start();
+				delayToTrap.start();
+			} else {
+				return;
 			}
-	        if( (this.getPositionY() > tiger.getPositionY())) {
-	        	if(this.getPositionX() < 100) {
-	        		this.setVelocityX(200);
-	        	} else if (this.getPositionX() > 1175) {
-	        		this.setVelocityX(-200);
-	        	}
-	        	this.setVelocityY(-200);
-	        } else {
-	        	this.setVelocityY(200);
-	        	if(this.getPositionX() < 100) {
-	        		this.setVelocityX(200);
-	        	} else if (this.getPositionX() > 1175) {
-	        		this.setVelocityX(-200);
-	        	}
-	        }
-		}
-		
-		public void throwTrap() {
 			this.setFace(this.getFace());
 			this.nextPosition(this.getFace());
 			System.out.print("THROW");

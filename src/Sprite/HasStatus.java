@@ -7,8 +7,7 @@ import javafx.scene.image.Image;
 
 public interface HasStatus {
 	
-	boolean ISSUPER = false;
-	int STATUS = 0;
+	int DEFAULT_STATUS = 0;
     
 	public int getStatus();
 

@@ -24,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 public class LoopGame {
 	public static BlackPanther blackPanther;
 	private static long lastNanoTime ;
+    public static String playerName;
     public static GamePause gamePause;
     public static DeadScene deadScene;
     public static boolean BOTSPAWN = true;
@@ -32,8 +33,9 @@ public class LoopGame {
     public static boolean CCHECK;
     public static double elapsedTime;
     public static GraphicsContext gc;
-    public static String playerName;
     public static boolean botHit;
+//    public static AnimationTimer animation;
+    
 
     public static Thread DELAYBOT;
 
@@ -50,6 +52,7 @@ public class LoopGame {
 				if(!blackPanther.isDead() && !GamePause.isPause) {
 					if(BOTSPAWN)
 					{
+					
 						Thread addBot = new Thread(()->{
 							try {
 								EnemyGen.addBot();
@@ -80,7 +83,7 @@ public class LoopGame {
 						a.setVelocity(0, 0);
 						KeyControlBot.keySpeed(a, currentNanoTime);
 						KeyControlBlackPanther.keyActionToSpeed(blackPanther, currentNanoTime, this);
-
+						
                     // checkPosition Tiger
 						if(CCHECK && blackPanther.getActionState() == 0) {
 							Thread x = new Thread (()-> {
@@ -103,14 +106,14 @@ public class LoopGame {
 					// update Item
 					Item.update(elapsedTime);
 					// updateBot random every 1 (VELOCITYXY)
-					if(CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0) {
+					if(CANUPDATEBOT == true && EnemyGen.getbadList().size() != 0 && !gamePause.isShowing()) {
+						for(int i =0;i<EnemyGen.getbadList().size();i++) {
+							if(!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack()) ) {
+								((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
+							}
+						}
 						DELAYBOT = new Thread(()->{
 							try {
-								for(int i =0;i<EnemyGen.getbadList().size();i++) {
-									if(!EnemyGen.getbadList().get(i).isDead() && !(EnemyGen.getbadList().get(i).isKnockBack())) {
-										((EnemyGen.getbadList()).get(i)).update(elapsedTime, blackPanther);
-									}
-								}
 								CANUPDATEBOT = false;
 								Thread.sleep(3000);
 								CANUPDATEBOT = true;
